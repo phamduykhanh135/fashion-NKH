@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/khanh/login.dart';
 import 'package:sales_application/khanh/menu_dart.dart';
 import 'package:sales_application/khanh/personal_screen.dart';
+import './kien/cart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,13 +20,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     // home: const Menu_Screen()
-     initialRoute: "/login",
-     routes: {
-       "/login":(context)=>const Login_Screen(),
-      "/menu":(context)=>const Menu_Screen(),
-      "/personal":(context)=>const Personal_Screen()
-     },
+      home: const CartScreen()
+    //  initialRoute: "/login",
+    //  routes: {
+    //    "/login":(context)=>const Login_Screen(),
+    //   "/menu":(context)=>const Menu_Screen(),
+    //   "/personal":(context)=>const Personal_Screen()
+    //  },
     );
   }
 }
