@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/khanh/login.dart';
-import 'package:sales_application/khanh/menu_dart.dart';
-import 'package:sales_application/khanh/personal_screen.dart';
+import 'package:sales_application/presenters/login.dart';
+import 'package:sales_application/presenters/menu_dart.dart';
+import 'package:sales_application/presenters/personal_screen.dart';
 
 void main() {
   runApp(const MyApp());
