@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'bottom.dart';
-import 'drawer.dart';
 import 'item_product.dart';
 
 
@@ -27,7 +26,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
             IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
           ],
         ),
-        drawer: const Drawer_Menu(),
+       // drawer: const Drawer_Menu(),
         body: SingleChildScrollView(
           child: Container(
             child: Column(children: [

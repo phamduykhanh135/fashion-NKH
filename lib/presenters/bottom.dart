@@ -17,16 +17,16 @@
               icon: Icon(Icons.home,color: Colors.black,),
             ),
             BottomNavigationBarItem(
+              label:"Đơn hàng",
+              icon: Icon(Icons.card_travel,color: Colors.black),
+            ),
+              BottomNavigationBarItem(
+              label:"Thông báo",
+              icon: Icon(Icons.add_alert,color: Colors.black),
+            ),
+              BottomNavigationBarItem(
               label:"Thông tin cá nhân",
-              icon: Icon(Icons.account_circle_rounded,color: Colors.black),
-            ),
-              BottomNavigationBarItem(
-              label:"Thông tin thống kê",
-              icon: Icon(Icons.bar_chart_outlined,color: Colors.black),
-            ),
-              BottomNavigationBarItem(
-              label:"Danh sách đơn hàng",
-              icon: Icon(Icons.list_alt_sharp,color: Colors.black),
+              icon: Icon(Icons.person,color: Colors.black),
             ),
             //Statistical_Page
           ],
@@ -38,7 +38,7 @@
             //Navigator.push(context, MaterialPageRoute(builder: (context)=>const Home_Page()));
             Navigator.pushNamed(context,'/menu');
             } 
-            if(indexOfItem==1){
+            if(indexOfItem==3){
               Navigator.popUntil(context, (route) => route.isFirst);
             //Navigator.push(context, MaterialPageRoute(builder: (context)=>const Personal_Page()));
             Navigator.pushNamed(context,'/personal');

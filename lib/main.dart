@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/khanh/login.dart';
-import 'package:sales_application/khanh/menu_dart.dart';
-import 'package:sales_application/khanh/personal_screen.dart';
+import 'package:sales_application/presenters/change_password_screen.dart';
+import 'package:sales_application/presenters/sigin_in_screen.dart';
+import 'package:sales_application/presenters/menu_dart.dart';
+import 'package:sales_application/presenters/personal_screen.dart';
+import 'package:sales_application/presenters/sigin_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,13 +21,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     // home: const Menu_Screen()
-     initialRoute: "/login",
-     routes: {
-       "/login":(context)=>const Login_Screen(),
-      "/menu":(context)=>const Menu_Screen(),
-      "/personal":(context)=>const Personal_Screen()
-     },
+      // home: const Menu_Screen()
+      initialRoute: "/personal",
+      routes: {
+        "/sigin_in": (context) => const SiginIn_Screen(),
+        "/sigin_up": (context) => const SiginUp_Screen(),
+        "/change_password": (context) => const Change_Password_screen(),
+        "/menu": (context) => const Menu_Screen(),
+        "/personal": (context) => const Personal_Screen()
+      },
     );
   }
 }
