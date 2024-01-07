@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:sales_application/views/pie_chart.dart';
+import 'package:sales_application/views/quanlysanpham.dart';
+import 'package:sales_application/views/themsanpham.dart';
+import 'package:sales_application/views/thongke.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -17,13 +20,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-     // home: const Menu_Screen()
-     // initialRoute: "/login",
-     // routes: {
-     //   "/login":(context)=>const Login_Screen(),
-     //  "/menu":(context)=>const Menu_Screen(),
-     //  "/personal":(context)=>const Personal_Screen()
-     //},
+       home:QuanLySP()
+      // initialRoute: "/login",
+      // routes: {
+      //   "/login":(context)=>const Login_Screen(),
+      //  "/menu":(context)=>const Menu_Screen(),
+      //  "/personal":(context)=>const Personal_Screen()
+      //},
     );
   }
 }
