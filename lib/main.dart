@@ -3,6 +3,7 @@ import 'package:sales_application/khanh/login.dart';
 import 'package:sales_application/khanh/menu_dart.dart';
 import 'package:sales_application/khanh/personal_screen.dart';
 import './kien/cart.dart';
+import './kien/Detail_Screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CartScreen()
+      home: const Detail_Screen()
     //  initialRoute: "/login",
     //  routes: {
     //    "/login":(context)=>const Login_Screen(),
