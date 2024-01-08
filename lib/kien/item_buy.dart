@@ -10,6 +10,7 @@ class item_buy extends StatefulWidget {
 }
 
 class _item_buyState extends State<item_buy> {
+  Color myLightGrayColor = Color.fromRGBO(243, 243, 243, 1.0);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,9 +21,9 @@ class _item_buyState extends State<item_buy> {
         Container(
         padding: EdgeInsets.all(10),
         width: MediaQuery.of(context).size.width / 1.2,
-        height: MediaQuery.of(context).size.width / 4,
+        height: MediaQuery.of(context).size.width / 3,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.blue),
+          color: myLightGrayColor,
           borderRadius: BorderRadius.all(Radius.circular(8)),
       
         ),
@@ -38,10 +39,14 @@ class _item_buyState extends State<item_buy> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Áo thun"),
-                Text("Size: S"),
-                Text("100000 VND"),
-                Text("số lượng: 1"),
+                SizedBox(height: 5,),
+                Text("Áo thun",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                SizedBox(height: 5,),
+                Text("Size: S",style: TextStyle(fontSize: 16,)),
+                SizedBox(height: 5,),
+                Text("100000 VND",style: TextStyle(fontSize: 16,),),
+                SizedBox(height: 5,),
+                Text("số lượng: 1",style: TextStyle(fontSize: 16,)),
                 
               ],
             )

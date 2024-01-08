@@ -10,13 +10,21 @@ class Payment_Screen extends StatefulWidget {
 }
 
 class _Payment_ScreenState extends State<Payment_Screen> {
+  Color myColor = Color(0xFF8E1C68);
   int _select=1;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Phương thức thanh toán"),),
+    return Scaffold(
+     appBar: AppBar(title: Text("Phương thức thanh toán",style: TextStyle(color: myColor)),
+       iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.pink.shade100,
+        centerTitle: true,
+       ),
     body: ListView(children: [
       RadioListTile(
-        title: Text("Thanh toán ngay khi nhận hàng"),
+        tileColor: Colors.white, 
+        activeColor: Colors.pink.shade100, 
+        title: const Text("Thanh toán ngay khi nhận hàng"),
         value: 1, groupValue: _select, onChanged: (value){
           setState(() {
             _select=value!;
@@ -24,8 +32,10 @@ class _Payment_ScreenState extends State<Payment_Screen> {
         }
         ),
         RadioListTile(
-          title: Text("Thanh toán qua ví online"),
-        value: 2, groupValue: _select, onChanged: (value){
+           tileColor: Colors.white, 
+          activeColor: Colors.pink.shade100, 
+          title: const Text("Thanh toán qua ví online"),
+          value: 2, groupValue: _select, onChanged: (value){
           setState(() {
             _select=value!;
           });

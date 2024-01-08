@@ -11,13 +11,17 @@ class Item_voucher extends StatefulWidget {
 
 class _Item_voucherState extends State<Item_voucher> {
   bool _ischeck = false;
+  Color myLightGrayColor = Color.fromRGBO(243, 243, 243, 1.0);
   @override
   Widget build(BuildContext context) {
    return Container(
       margin: EdgeInsets.all(5),
       child: Row(
         children: [
-          Checkbox(
+          Checkbox( 
+            checkColor: Colors.black,
+            fillColor: MaterialStateProperty.all(Colors.pink.shade100),
+            side: BorderSide(color: Colors.black),
             value: _ischeck,
             onChanged: (bool? value) {
               setState(() {
@@ -29,7 +33,7 @@ class _Item_voucherState extends State<Item_voucher> {
             padding: const EdgeInsets.all(5),
             width: MediaQuery.of(context).size.width / 1.35,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue),
+              color:myLightGrayColor,
               borderRadius: BorderRadius.all(const Radius.circular(8)),
             ),
             child: Row(

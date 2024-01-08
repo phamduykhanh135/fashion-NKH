@@ -10,13 +10,16 @@ class Voucher extends StatefulWidget {
 }
 
 class _VoucherState extends State<Voucher> {
+  Color myColor = Color(0xFF8E1C68);
    TextEditingController _voucherController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Chọn Voucher"),
-      ),
+     appBar: AppBar(title: Text("Chọn voucher",style: TextStyle(color: myColor)),
+       iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.pink.shade100,
+        centerTitle: true,
+       ),
       body: ListView(
         padding: EdgeInsets.all(5.0),
         children: [
@@ -34,13 +37,23 @@ class _VoucherState extends State<Voucher> {
               ),
               SizedBox(width: 16.0),
               ElevatedButton(
-                onPressed: () {
-                  // Xử lý nút nhấn ở đây
-                  String voucherCode = _voucherController.text;
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
+                    minimumSize: MaterialStateProperty.all(const Size(80, 30)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    // Xử lý khi người dùng nhấn nút
                   
-                },
-                child: Text('Áp dụng'),
-              ),
+                  },
+                  child: Text(
+                    'Áp dụng',
+                    style: TextStyle(color: myColor),
+                  ),)
             ],
           ),
           const Divider( // Đường gạch chân dưới

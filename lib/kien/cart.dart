@@ -13,78 +13,76 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  Color myColor = Color(0xFF8E1C68);
+
   bool ischeck = false;
-    List<bool> itemCheckboxStates = List.generate(100, (index) => false);
+  List<bool> itemCheckboxStates = List.generate(100, (index) => false);
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Giỏ hàng",
-          textAlign: TextAlign.center,
+          style: TextStyle(color: myColor),
+        ),
+        iconTheme: IconThemeData(color: myColor),
+        backgroundColor: Colors.pink.shade100,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 1), // Adjust this value
+        child: Stack(
+          children: [
+            ListView(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Item_cart(
+                      ischeck: itemCheckboxStates[index],
+                      onCheckboxChanged: (bool value) {
+                        setState(() {
+                          itemCheckboxStates[index] = value;
+                          ischeck = itemCheckboxStates.every((state) => state);
+                        });
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ),
-      body: Stack(
-        children: [
-          ListView(
+      bottomNavigationBar: Container(
+        height: 100, // Adjust this height according to your bottom app bar's content
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
             children: [
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                itemBuilder: (BuildContext context, int index) {
-                  return Item_cart(
-                    ischeck: itemCheckboxStates[index],
-                    onCheckboxChanged: (bool value) {
-                      setState(() {
-                        itemCheckboxStates[index] = value;
-                        ischeck = itemCheckboxStates.every((state) => state);
-                      });
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-          Positioned(
-            bottom: 45,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 40,
-              color: Colors.white,
-              padding: const EdgeInsets.all(8),
-              child: Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                children: const [
-
-                  Text(
-                    'Tổng tiền:',
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  Text(
-                    '100000đ',
-                    style: TextStyle(color: Colors.black,fontSize: 20),
-                  ),
-                ],
+                children: [
+                  Text("Tổng tiền",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                  Text("100.000VND",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                  
+                ],  
               ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 50,
-              color: Colors.white,
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              SizedBox(height: 10,),
+              Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
                   Checkbox(
+                    checkColor: Colors.black,
+                    fillColor: MaterialStateProperty.all(Colors.pink.shade100),
+                    side: BorderSide(color: Colors.black),
                     value: ischeck,
                     onChanged: (bool? value) {
                       setState(() {
@@ -96,33 +94,36 @@ class _CartScreenState extends State<CartScreen> {
                       });
                     },
                   ),
-                  const Text("tất cả"),
-                  Spacer(),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
-                      minimumSize: MaterialStateProperty.all(const Size(50, 50)),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      // Xử lý khi người dùng nhấn nút
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Buy_Screen()),
-                      );
-                    },
-                    child: const Text('Mua hàng'),
-                  ),
+                  const Text("tất cả", style: TextStyle(fontSize: 18)),
                 ],
               ),
-            ),
-          ), 
-
-        ],
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.pink.shade100),
+                  minimumSize: MaterialStateProperty.all(const Size(120, 50)),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Buy_Screen()),
+                  );
+                },
+                child: Text(
+                  'Thanh toán',
+                  style: TextStyle(color: myColor,fontSize: 18),
+                ),
+              ),
+            ],
+          ),
+            ],
+          )
+        ),
       ),
     );
   }

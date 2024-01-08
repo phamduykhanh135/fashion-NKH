@@ -12,6 +12,56 @@ class Item_cart extends StatefulWidget {
 
 class _Item_cartState extends State<Item_cart> {
   bool _ischeck = false;
+  Color myLightGrayColor = Color.fromARGB(255, 245, 227, 227);
+  Future<void> _showConfirm() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+           backgroundColor: Color.fromARGB(255, 239, 232, 232),
+          title: const Text('Bạn có muốn xóa?',textAlign: TextAlign.center),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              TextButton(
+              style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                    ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(); // Đóng dialog
+              },
+              child: const Text('Hủy',style: TextStyle(color: Colors.black)),
+            ),
+            
+            TextButton(
+              style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.pink.shade100),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                    ),
+              ),
+              onPressed: () {
+                // Thực hiện xóa mục
+                Navigator.of(context).pop(); // Đóng dialog
+              },
+              child: const Text('Xóa',style: TextStyle(color: Colors.black)),
+            ),
+            ],)
+          ],
+        );
+      },
+    );
+  }
    int temp=0;
      @override
   void initState() {
@@ -32,6 +82,9 @@ class _Item_cartState extends State<Item_cart> {
       child: Row(
         children: [
           Checkbox(
+            checkColor: Colors.black,
+            fillColor: MaterialStateProperty.all(Colors.pink.shade100),
+            side: BorderSide(color: Colors.black),
             value: _ischeck,
             onChanged: (bool? value) {
               setState(() {
@@ -44,8 +97,8 @@ class _Item_cartState extends State<Item_cart> {
             padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width / 1.2,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.blue),
-              borderRadius: BorderRadius.all(const Radius.circular(8)),
+              color: myLightGrayColor,
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             child: Row(
               children: [
@@ -58,15 +111,24 @@ class _Item_cartState extends State<Item_cart> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:  [
-                    Text("Áo thun"),
-                    Text("100000 VND"),
-                    Text("Size: S"),
+                    SizedBox(height: 10,),
+                    const Text("Áo thun",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10,),
+                    Text("100000 VND",style: TextStyle(fontSize: 18,)),
+                    SizedBox(height: 10,),
+                    Text("Size: S",style: TextStyle(fontSize: 18)),
+                    SizedBox(height: 10,),
                     Row(
                       children: [
                         SizedBox(width: 10),
                         TextButton(
                           onPressed: () {
-                            
+                           setState(() {
+                              if(temp>0)
+                            {
+                              temp--;
+                            }
+                           });
                           },
                           child: Icon(Icons.remove),
                           style: ButtonStyle(
@@ -80,10 +142,17 @@ class _Item_cartState extends State<Item_cart> {
                           ),
                         ),
                         SizedBox(width: 10),
-                        Text("0", style: TextStyle(fontSize: 20.0)),
+                        Text(temp.toString(), style: TextStyle(fontSize: 20.0)),
                         SizedBox(width: 10),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              if(temp>=0)
+                            {
+                              temp++;
+                            }
+                           });
+                          },
                           child: Icon(Icons.add),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(Colors.black),
@@ -97,7 +166,9 @@ class _Item_cartState extends State<Item_cart> {
                         ),
                         SizedBox(width: 10),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _showConfirm();
+                          },
                           icon: Icon(Icons.delete),
                         ),
                       ],

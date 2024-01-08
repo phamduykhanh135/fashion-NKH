@@ -1,25 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/kien/Container_Detail.dart';
 import 'package:sales_application/kien/cart.dart';
-
-class Detail_Screen extends StatefulWidget {
-  const Detail_Screen({super.key});
+import 'Item_BottomSheet.dart';
+class DetailScreen extends StatefulWidget {
+  const DetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<Detail_Screen> createState() => _Detail_ScreenState();
+  State<DetailScreen> createState() => _DetailScreenState();
 }
 
-class _Detail_ScreenState extends State<Detail_Screen> {
+class _DetailScreenState extends State<DetailScreen> {
+  Color myColor = Color(0xFF8E1C68);
+  // Function to show the bottom sheet
+  void _showBottomSheet() {
+    showModalBottomSheet(
+      backgroundColor: Color.fromARGB(255, 247, 240, 240),
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+      ),
+      builder: (context) {
+        return Item_bottomSheet();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true, // Cho phép nội dung body hiển thị phía sau AppBar
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: myColor),
+        centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined))
+          IconButton(onPressed: () {
+            Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const CartScreen()),);
+          }, icon: const Icon(Icons.shopping_cart_outlined,)),
         ],
-        backgroundColor: Colors.transparent, // Đặt màu nền của AppBar là trong suốt
-        elevation: 0, // Đặt độ nổi của AppBar là 0 để không có bóng đổ
+        backgroundColor: Colors.transparent,
+        
+        elevation: 0,
       ),
       body: Stack(
         fit: StackFit.expand,
@@ -43,10 +67,38 @@ class _Detail_ScreenState extends State<Detail_Screen> {
                 child: Container(
                   color: Colors.white,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children:  [
                       SizedBox(height: 16),
-                      Item_Container(),
+                       Text("Áo PHÔNG TRẮNG", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
+                      ItemContainer(),
+                      Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        SizedBox(height: 30,),
+                        Text("Mô tả sản phẩm", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                        Divider(height: 10),
+                         Text(
+                          "Chất liệu: 100% Catton Compact 2SC2\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n" +
+                              "- Thành phần: 100% Catton\n"
+                              "- mềm mại",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
+            ),
+                      
+                      
                     ],
                   ),
                 ),
@@ -61,52 +113,44 @@ class _Detail_ScreenState extends State<Detail_Screen> {
             child: Container(
               color: Color.fromARGB(255, 255, 255, 255),
               child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "299.000VND",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.pink),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "299.000VND",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CartScreen(),
-                      ),
-                    );
-                  },
-                  child: Row(
-                    children: const [
-                      Text(
-                        "Thêm vào giỏ",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 85, 57, 185),
+                  TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.pink.shade100),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      Icon(
-                        Icons.shopping_bag_outlined,
-                        color: Color.fromARGB(255, 85, 57, 185),
-                      ),
-                    ],
+                    ),
+                    onPressed: _showBottomSheet,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Thêm vào giỏ",
+                          style: TextStyle(
+                            color: myColor,
+                          ),
+                        ),
+                        Icon(
+                          Icons.shopping_bag_outlined,
+                          color: myColor,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            )
           ),
         ],
       ),
