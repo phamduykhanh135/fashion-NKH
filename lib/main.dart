@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/giamgia.dart';
+import 'package:sales_application/views/loaisanpham.dart';
 import 'package:sales_application/views/pie_chart.dart';
 import 'package:sales_application/views/quanlysanpham.dart';
+import 'package:sales_application/views/soluongkho.dart';
 import 'package:sales_application/views/suasanpham.dart';
 import 'package:sales_application/views/themsanpham.dart';
 import 'package:sales_application/views/thongke.dart';
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-       home: ThongKe()
+       home: GiamGia()
       // initialRoute: "/login",
       // routes: {
       //   "/login":(context)=>const Login_Screen(),

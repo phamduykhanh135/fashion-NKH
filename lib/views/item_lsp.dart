@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+
+class ItemLSP extends StatelessWidget {
+  const ItemLSP({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 65,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Color.fromRGBO(243, 243, 243, 1), // Màu sắc của đường viền ở phía dưới
+              width: 1.5, // Độ dày của đường viền
+            ),
+          ),
+        ),
+
+      child: InkWell(
+        onTap: (){},
+        child: Container(
+          padding: EdgeInsets.fromLTRB(35,0, 0,0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(child: Text("Quần"),flex: 3),
+              Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
+            ],
+          ),
+        )
+      )
+    );
+  }
+}
