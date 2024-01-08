@@ -22,7 +22,13 @@ class _QuanLySPState extends State<QuanLySP> {
         ],
 
       ),
-      body: ItemSP(),
+      body:  ListView.builder(
+        itemCount: 10, // Số lượng phần tử trong danh sách
+        itemBuilder: (BuildContext context, int index) {
+          // Hàm này được gọi mỗi khi một phần tử cần được hiển thị
+          return ItemSP();
+        },
+      ),
     );
   }
 }

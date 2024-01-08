@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/pie_chart.dart';
 import 'package:sales_application/views/quanlysanpham.dart';
+import 'package:sales_application/views/suasanpham.dart';
 import 'package:sales_application/views/themsanpham.dart';
 import 'package:sales_application/views/thongke.dart';
 void main() {
