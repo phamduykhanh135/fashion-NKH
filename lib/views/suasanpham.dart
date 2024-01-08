@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
 class SuaSP extends StatefulWidget {
   const SuaSP({super.key});
 
@@ -11,9 +12,9 @@ class _SuaSPState extends State<SuaSP> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text("Sửa sản phẩm",style: TextStyle(color: Color.fromRGBO(142, 28, 104, 1),fontWeight: FontWeight.bold)),
+        title:  Text("Sửa sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(248, 163, 193, 1),
+        backgroundColor:  MyColor.light_pink,
 
       ),
       body: Column(
@@ -22,8 +23,8 @@ class _SuaSPState extends State<SuaSP> {
           Container(
               height: 140,
               padding:const EdgeInsets.all(10),
-              decoration:  const BoxDecoration(
-                color:  Color.fromRGBO(243, 243, 243, 1),
+              decoration:   BoxDecoration(
+                color:  MyColor.light_grey,
               ),
               child:Row(
                 children: [
@@ -66,7 +67,7 @@ class _SuaSPState extends State<SuaSP> {
             padding:EdgeInsets.all(10),
             constraints:BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(
-              color:  Color.fromRGBO(243, 243, 243, 1),
+              color:  MyColor.light_grey,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,7 +98,7 @@ class _SuaSPState extends State<SuaSP> {
             padding:EdgeInsets.all(10),
             constraints:BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(
-              color:  Color.fromRGBO(243, 243, 243, 1),
+              color:  MyColor.light_grey,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -127,7 +128,7 @@ class _SuaSPState extends State<SuaSP> {
             height: 250,
             padding:EdgeInsets.all(10),
             decoration:  BoxDecoration(
-              color:  Color.fromRGBO(243, 243, 243, 1),
+              color:  MyColor.light_grey,
             ),
             child:Column(
               children: [
@@ -192,7 +193,7 @@ class _SuaSPState extends State<SuaSP> {
           ElevatedButton(
               onPressed: (){/*Todo:Luu thong tin*/},
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color.fromRGBO(248, 163, 193, 1)),
+                backgroundColor: MaterialStateProperty.all(MyColor.light_pink),
                 minimumSize: MaterialStateProperty.all(Size(150,50)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(

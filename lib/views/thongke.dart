@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/pie_chart.dart';
 
 class ThongKe extends StatefulWidget {
@@ -9,15 +12,15 @@ class ThongKe extends StatefulWidget {
 }
 
 class _ThongKeState extends State<ThongKe> {
-  bool FirstButton = false;
+  bool FirstButton = true;
   bool SecondButton = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Thống kê",style: TextStyle(color: Color.fromRGBO(142, 28, 104, 1),fontWeight: FontWeight.bold)),
+        title: Text("Thống kê",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(248, 163, 193, 1),
+        backgroundColor: MyColor.light_pink,
 
       ),
       body: Column(
@@ -45,9 +48,9 @@ class _ThongKeState extends State<ThongKe> {
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                           if (FirstButton) {
-                            return Color.fromRGBO(248, 163, 193, 1); // Màu nền khi nút 1 được chọn
+                            return MyColor.light_pink; // Màu nền khi nút 1 được chọn
                           }
-                          return Color.fromRGBO(243, 243, 243, 1); // Màu nền khi nút 1 không được chọn
+                          return MyColor.light_grey; // Màu nền khi nút 1 không được chọn
                         },
                       ),
                       minimumSize: MaterialStateProperty.all(Size(125,60)),
@@ -57,7 +60,7 @@ class _ThongKeState extends State<ThongKe> {
                             topLeft: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái trên
                             bottomLeft: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái dưới
                           ),
-                          side: BorderSide(width: 1.0,color: Color.fromRGBO(142, 28, 104, 1) ),
+                          side: BorderSide(width: 1.0,color: MyColor.dark_pink ),
 
                     ),
                   ),
@@ -78,9 +81,9 @@ class _ThongKeState extends State<ThongKe> {
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                           if (SecondButton) {
-                            return Color.fromRGBO(248, 163, 193, 1); // Màu nền khi nút 1 được chọn
+                            return MyColor.light_pink; // Màu nền khi nút 1 được chọn
                           }
-                          return Color.fromRGBO(243, 243, 243, 1); // Màu nền khi nút 1 không được chọn
+                          return MyColor.light_grey; // Màu nền khi nút 1 không được chọn
                         },
                       ),
                       minimumSize: MaterialStateProperty.all(Size(125,60)),
@@ -90,7 +93,7 @@ class _ThongKeState extends State<ThongKe> {
                             topRight: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái trên
                             bottomRight: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái dưới
                           ),
-                          side: BorderSide(width: 1.0,color: Color.fromRGBO(142, 28, 104, 1) ),
+                          side: BorderSide(width: 1.0,color: MyColor.dark_pink ),
 
                         ),
                       ),
@@ -110,7 +113,7 @@ class _ThongKeState extends State<ThongKe> {
               ,width: 320,
             child:  MyPieChart(10,10,10,10),
             decoration:  BoxDecoration(
-              color:  Color.fromRGBO(243, 243, 243, 1),
+              color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(20.0)
           )
               )
@@ -122,7 +125,7 @@ class _ThongKeState extends State<ThongKe> {
                 height: 40,
                 width: 324,
         decoration:  BoxDecoration(
-    color:  Color.fromRGBO(243, 243, 243, 1),
+    color:  MyColor.light_grey,
     borderRadius: BorderRadius.circular(20.0)
     ),
 
@@ -147,10 +150,10 @@ class _ThongKeState extends State<ThongKe> {
                         SliderTheme(
                           data: SliderThemeData(
                             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
-                            trackHeight: 8.0, ),
+                            trackHeight: 8.0,
+                              disabledActiveTrackColor:MyColor.color_w1
+                          ),
                           child: Slider(
-                            activeColor: Colors.green,
-                            inactiveColor: Colors.grey,
                             value:50 ,
                             onChanged: null,
                             min: 0,
@@ -170,7 +173,7 @@ class _ThongKeState extends State<ThongKe> {
                 height: 40,
                 width: 324,
                 decoration:  BoxDecoration(
-                    color:  Color.fromRGBO(243, 243, 243, 1),
+                    color:  MyColor.light_grey,
                     borderRadius: BorderRadius.circular(20.0)
                 ),
 
@@ -195,10 +198,10 @@ class _ThongKeState extends State<ThongKe> {
                         SliderTheme(
                           data: SliderThemeData(
                             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
-                            trackHeight: 8.0, ),
+                            trackHeight: 8.0,
+                              disabledActiveTrackColor:MyColor.color_w2),
                           child: Slider(
-                            activeColor: Colors.green,
-                            inactiveColor: Colors.grey,
+
                             value:50 ,
                             onChanged: null,
                             min: 0,
@@ -218,7 +221,7 @@ class _ThongKeState extends State<ThongKe> {
                 height: 40,
                 width: 324,
                 decoration:  BoxDecoration(
-                    color:  Color.fromRGBO(243, 243, 243, 1),
+                    color:  MyColor.light_grey,
                     borderRadius: BorderRadius.circular(20.0)
                 ),
 
@@ -243,10 +246,10 @@ class _ThongKeState extends State<ThongKe> {
                         SliderTheme(
                           data: SliderThemeData(
                             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
-                            trackHeight: 8.0, ),
+                            trackHeight: 8.0,
+                              disabledActiveTrackColor:MyColor.color_w3),
                           child: Slider(
-                            activeColor: Colors.green,
-                            inactiveColor: Colors.grey,
+
                             value:50 ,
                             onChanged: null,
                             min: 0,
@@ -266,7 +269,7 @@ class _ThongKeState extends State<ThongKe> {
                 height: 40,
                 width: 324,
                 decoration:  BoxDecoration(
-                    color:  Color.fromRGBO(243, 243, 243, 1),
+                    color:  MyColor.light_grey,
                     borderRadius: BorderRadius.circular(20.0)
                 ),
 
@@ -291,11 +294,10 @@ class _ThongKeState extends State<ThongKe> {
                         SliderTheme(
                           data: SliderThemeData(
                             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
-                            trackHeight: 8.0, ),
+                            trackHeight: 8.0,
+                              disabledActiveTrackColor:MyColor.color_w4),
                           child: Slider(
-                            activeColor: Colors.green,
-                            inactiveColor: Colors.grey,
-                            value:50 ,
+                            value:70 ,
                             onChanged: null,
                             min: 0,
                             max: 100,

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/color.dart';
 
 class ThemSP extends StatefulWidget {
   const ThemSP({super.key});
@@ -12,9 +16,9 @@ class _ThemSPState extends State<ThemSP> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Thêm sản phẩm",style: TextStyle(color: Color.fromRGBO(142, 28, 104, 1),fontWeight: FontWeight.bold)),
+        title: Text("Thêm sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(248, 163, 193, 1),
+        backgroundColor: MyColor.light_pink,
 
       ),
      body: Column(
@@ -24,7 +28,7 @@ class _ThemSPState extends State<ThemSP> {
            height: 140,
          padding:EdgeInsets.all(10),
          decoration:  BoxDecoration(
-             color:  Color.fromRGBO(243, 243, 243, 1),
+             color:  MyColor.light_grey
          ),
           child:Row(
             children: [
@@ -55,7 +59,7 @@ class _ThemSPState extends State<ThemSP> {
          padding:EdgeInsets.all(10),
          constraints:BoxConstraints(maxHeight: 200.0),
          decoration:  BoxDecoration(
-           color:  Color.fromRGBO(243, 243, 243, 1),
+           color:  MyColor.light_grey
          ),
          child: Column(
            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -86,7 +90,7 @@ class _ThemSPState extends State<ThemSP> {
            padding:EdgeInsets.all(10),
            constraints:BoxConstraints(maxHeight: 200.0),
            decoration:  BoxDecoration(
-             color:  Color.fromRGBO(243, 243, 243, 1),
+             color:  MyColor.light_grey
            ),
            child: Column(
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -116,7 +120,7 @@ class _ThemSPState extends State<ThemSP> {
      height: 250,
      padding:EdgeInsets.all(10),
      decoration:  BoxDecoration(
-       color:  Color.fromRGBO(243, 243, 243, 1),
+       color:  MyColor.light_grey
      ),
        child:Column(
          children: [
@@ -181,7 +185,7 @@ class _ThemSPState extends State<ThemSP> {
          ElevatedButton(
              onPressed: (){/*Todo:Luu thong tin*/},
              style: ButtonStyle(
-             backgroundColor: MaterialStateProperty.all(Color.fromRGBO(248, 163, 193, 1)),
+             backgroundColor: MaterialStateProperty.all(MyColor.light_pink),
                  minimumSize: MaterialStateProperty.all(Size(150,50)),
                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                  RoundedRectangleBorder(

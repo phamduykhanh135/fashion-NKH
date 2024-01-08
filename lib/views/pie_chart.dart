@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
 
 class MyPieChart extends StatelessWidget {
   MyPieChart( this.W1, this.W2, this.W3, this.W4);
@@ -15,25 +16,27 @@ class MyPieChart extends StatelessWidget {
       PieChartData(
         sections: [
           PieChartSectionData(
-            value: W1,
-            color: Colors.blueAccent,
+              value: W3,
+              color: MyColor.color_w3,
+              showTitle: false
+          ),
+          PieChartSectionData(
+            value: W4,
+            color: MyColor.color_w4,
+              showTitle: false
+          ),
+
+          PieChartSectionData(
+              value: W1,
+              color: MyColor.color_w1,
               showTitle: false
           ),
           PieChartSectionData(
               value: W2,
-              color: Colors.red,
-              showTitle: false
-          ),
-          PieChartSectionData(
-              value: W3,
-              color: Colors.green,
+              color: MyColor.color_w2,
             showTitle: false
           ),
-          PieChartSectionData(
-              value: W4,
-              color: Colors.yellow,
-              showTitle: false
-          )
+
         ]
       )
 

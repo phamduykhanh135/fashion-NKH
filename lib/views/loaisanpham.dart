@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_lsp.dart';
 import 'package:sales_application/views/item_sl.dart';
 
@@ -14,11 +16,11 @@ class _LoaiSPState extends State<LoaiSP> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Loại sản phẩm",style: TextStyle(color: Color.fromRGBO(142, 28, 104, 1),fontWeight: FontWeight.bold)),
+        title: Text("Loại sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(248, 163, 193, 1),
+        backgroundColor: MyColor.light_pink,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.search,color:Color.fromRGBO(142, 28, 104, 1) ,))
+          IconButton(onPressed: (){}, icon: Icon(Icons.search,color:MyColor.dark_pink ,))
         ],
       ),
       body:  ListView.builder(

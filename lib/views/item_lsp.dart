@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
 
 class ItemLSP extends StatelessWidget {
   const ItemLSP({super.key});
@@ -10,7 +11,7 @@ class ItemLSP extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Color.fromRGBO(243, 243, 243, 1), // Màu sắc của đường viền ở phía dưới
+              color: MyColor.light_grey, // Màu sắc của đường viền ở phía dưới
               width: 1.5, // Độ dày của đường viền
             ),
           ),

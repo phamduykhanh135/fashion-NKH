@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
+import 'package:sales_application/views/color.dart';
 class ItemSL extends StatefulWidget {
   const ItemSL({super.key});
 
@@ -17,7 +18,7 @@ class _ItemSLState extends State<ItemSL> {
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
       decoration:  BoxDecoration(
-          color:  Color.fromRGBO(243, 243, 243, 1),
+          color:  MyColor.light_grey,
           borderRadius: BorderRadius.circular(30.0)
       ),
       child: Row(
@@ -35,11 +36,11 @@ class _ItemSLState extends State<ItemSL> {
                       hintText: 'Enter number',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                        borderSide: BorderSide(color: Colors.grey, width: 2.0),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(color:  Color.fromRGBO(142, 28, 104, 1), width: 2.0),
+                        borderSide: BorderSide(color: MyColor.dark_pink, width: 2.0),
                       ),
                       isDense: true, // Cung cấp khoảng trắng thấp hơn giữa nội dung và đường biên
                       alignLabelWithHint: true,

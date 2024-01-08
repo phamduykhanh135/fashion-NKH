@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/color.dart';
 
 class ItemSP extends StatefulWidget {
   const ItemSP({super.key});
@@ -15,7 +16,7 @@ class _ItemSPState extends State<ItemSP> {
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
       decoration:  BoxDecoration(
-          color:  Color.fromRGBO(243, 243, 243, 1),
+          color:  MyColor.light_grey,
           borderRadius: BorderRadius.circular(20.0)
       ),
       child: Column(
@@ -26,7 +27,7 @@ class _ItemSPState extends State<ItemSP> {
                 decoration:  BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                   border: Border.all(
-                    color: Color.fromRGBO(142, 28, 104, 1),
+                    color: MyColor.dark_pink,
                     width: 1,
                   ),
                 ),
