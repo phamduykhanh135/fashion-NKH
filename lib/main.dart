@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-       home:QuanLySP()
+       home: ThongKe()
       // initialRoute: "/login",
       // routes: {
       //   "/login":(context)=>const Login_Screen(),

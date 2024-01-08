@@ -128,20 +128,38 @@ class _ThongKeState extends State<ThongKe> {
 
                 child: Row(
                   children: [
-                    Text("Week 1"),
-                    Column(
+                   Expanded(child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Text("Week 1")
+                     ],
+                   )),
+                    Expanded(
+                    flex: 4,child: Column(
                       children: [
-                        Text("10"),     //Thanh nang luong
-                      // SizedBox(
-                      //   height: 5,
-                      //   child:   LinearProgressIndicator(
-                      //       backgroundColor: Color.fromRGBO(243, 243, 243, 1),
-                      //       valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                      //       value: 0.5
-                      //   ),
-                      //)
+                        Expanded(child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("10")
+                          ],
+                        )),
+                        Expanded(flex:2,child:
+                        SliderTheme(
+                          data: SliderThemeData(
+                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            trackHeight: 8.0, ),
+                          child: Slider(
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.grey,
+                            value:50 ,
+                            onChanged: null,
+                            min: 0,
+                            max: 100,
+                          ),
+                        )
+                        )
                       ],
-                    )
+                    ))
                   ],
 
           ),)
@@ -155,15 +173,41 @@ class _ThongKeState extends State<ThongKe> {
                     color:  Color.fromRGBO(243, 243, 243, 1),
                     borderRadius: BorderRadius.circular(20.0)
                 ),
+
                 child: Row(
                   children: [
-                    Text("Week 2"),
-                    Column(
+                    Expanded(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("10"),
-                        //Thanh nang luong
+                        Text("Week 2")
                       ],
-                    )
+                    )),
+                    Expanded(
+                        flex: 4,child: Column(
+                      children: [
+                        Expanded(child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("10")
+                          ],
+                        )),
+                        Expanded(flex:2,child:
+                        SliderTheme(
+                          data: SliderThemeData(
+                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            trackHeight: 8.0, ),
+                          child: Slider(
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.grey,
+                            value:50 ,
+                            onChanged: null,
+                            min: 0,
+                            max: 100,
+                          ),
+                        )
+                        )
+                      ],
+                    ))
                   ],
 
                 ),)
@@ -177,15 +221,41 @@ class _ThongKeState extends State<ThongKe> {
                     color:  Color.fromRGBO(243, 243, 243, 1),
                     borderRadius: BorderRadius.circular(20.0)
                 ),
+
                 child: Row(
                   children: [
-                    Text("Week 3"),
-                    Column(
+                    Expanded(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("10"),
-                        //Thanh nang luong
+                        Text("Week 3")
                       ],
-                    )
+                    )),
+                    Expanded(
+                        flex: 4,child: Column(
+                      children: [
+                        Expanded(child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("10")
+                          ],
+                        )),
+                        Expanded(flex:2,child:
+                        SliderTheme(
+                          data: SliderThemeData(
+                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            trackHeight: 8.0, ),
+                          child: Slider(
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.grey,
+                            value:50 ,
+                            onChanged: null,
+                            min: 0,
+                            max: 100,
+                          ),
+                        )
+                        )
+                      ],
+                    ))
                   ],
 
                 ),)
@@ -193,22 +263,47 @@ class _ThongKeState extends State<ThongKe> {
           SizedBox(height: 10),
           Expanded(
               child: Container(
-                height:40,
+                height: 40,
                 width: 324,
-                padding: EdgeInsets.all(5),
                 decoration:  BoxDecoration(
                     color:  Color.fromRGBO(243, 243, 243, 1),
                     borderRadius: BorderRadius.circular(20.0)
                 ),
+
                 child: Row(
                   children: [
-                    Text("Week 4"),
-                    Column(
+                    Expanded(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("10"),
-                        //Thanh nang luong
+                        Text("Week 4")
                       ],
-                    )
+                    )),
+                    Expanded(
+                        flex: 4,child: Column(
+                      children: [
+                        Expanded(child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("10")
+                          ],
+                        )),
+                        Expanded(flex:2,child:
+                        SliderTheme(
+                          data: SliderThemeData(
+                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            trackHeight: 8.0, ),
+                          child: Slider(
+                            activeColor: Colors.green,
+                            inactiveColor: Colors.grey,
+                            value:50 ,
+                            onChanged: null,
+                            min: 0,
+                            max: 100,
+                          ),
+                        )
+                        )
+                      ],
+                    ))
                   ],
 
                 ),)
