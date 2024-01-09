@@ -35,14 +35,20 @@ class _ItemSPState extends State<ItemSP> {
                 width: 120,
                 child: Text("Image"),
               )),
-              Expanded(flex: 2,child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                Text("Tên San Pham"),
-                Text("Giá"),
-                Text("Số lượng")
-              ],
+
+              Expanded(flex: 2,
+                  child: Row(
+                    children: [
+                      SizedBox(width: 20,),
+                    Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child:  Text("Tên San Pham"), ),
+                      Expanded(child:  Text("Giá"), ),
+                      Expanded(child:  Text("Số lượng") )
+                    ],)
+                    ],
 
               ))
             ],

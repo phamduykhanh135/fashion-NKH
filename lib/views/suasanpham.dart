@@ -12,12 +12,19 @@ class _SuaSPState extends State<SuaSP> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
+
         title:  Text("Sửa sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor:  MyColor.light_pink,
+        actions: [
+          TextButton(onPressed: (){}, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
+        ],
+
 
       ),
-      body: Column(
+      body:
+          SingleChildScrollView(
+      child:Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
@@ -63,7 +70,7 @@ class _SuaSPState extends State<SuaSP> {
               )
           ),
           Container(
-            height: 140,
+            height: 120,
             padding:EdgeInsets.all(10),
             constraints:BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(
@@ -83,7 +90,7 @@ class _SuaSPState extends State<SuaSP> {
                 ),
                 TextField(
                   controller: null/*Todo:*/,
-                  maxLines:3,
+                  maxLines:2,
                   decoration: InputDecoration(
                       hintText: 'Nhập tên sản phẩm',
                       border: InputBorder.none // Loại bỏ đường gạch chân khi không có focus
@@ -94,7 +101,7 @@ class _SuaSPState extends State<SuaSP> {
             ),
           ),
           Container(
-            height: 140,
+            height: 120,
             padding:EdgeInsets.all(10),
             constraints:BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(
@@ -113,7 +120,7 @@ class _SuaSPState extends State<SuaSP> {
                 ),
                 TextField(
                   controller: null/*Todo:*/,
-                  maxLines:3,
+                  maxLines:2,
                   decoration: InputDecoration(
                       hintText: 'Nhập mô tả sản phẩm',
                       border: InputBorder.none // Loại bỏ đường gạch chân khi không có focus
@@ -190,22 +197,10 @@ class _SuaSPState extends State<SuaSP> {
               ],
             ) ,
           ),
-          ElevatedButton(
-              onPressed: (){/*Todo:Luu thong tin*/},
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(MyColor.light_pink),
-                minimumSize: MaterialStateProperty.all(Size(150,50)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)
-                    ,// Đặt bán kính bo tròn
-                  ),
-                ),
-              ),
-              child: Text("Lưu thông tin"))
+
         ],
 
       ),
-    );;
+    ));
   }
 }

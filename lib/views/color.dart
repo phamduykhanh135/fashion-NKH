@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyColor{
-  static Color light_grey=Color.fromRGBO(243, 243, 243, 1);
+  static Color light_grey=Color.fromRGBO(255,255,255,1);
   static Color light_pink=Color.fromRGBO(248, 163, 193, 1);
   static Color dark_pink= Color.fromRGBO(142, 28, 104, 1);
   static Color color_w2= Colors.blueAccent;

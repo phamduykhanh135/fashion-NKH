@@ -11,8 +11,8 @@ class ItemLSP extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: MyColor.light_grey, // Màu sắc của đường viền ở phía dưới
-              width: 1.5, // Độ dày của đường viền
+              color: MyColor.light_grey,
+              width: 1.5,
             ),
           ),
         ),

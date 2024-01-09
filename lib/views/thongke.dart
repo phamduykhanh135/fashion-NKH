@@ -111,7 +111,7 @@ class _ThongKeState extends State<ThongKe> {
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
               height: 300
               ,width: 320,
-            child:  MyPieChart(10,10,10,10),
+            child:  MyPieChart(10.0,10.0,10.0,10.0),
             decoration:  BoxDecoration(
               color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(20.0)
