@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'Item_Voucher.dart';
+import '../model/Item_Voucher.dart';
 class Voucher extends StatefulWidget {
   const Voucher({super.key});
 

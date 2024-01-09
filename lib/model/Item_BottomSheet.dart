@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sales_application/kien/Detail_Screen.dart';
-import 'cart.dart';
+import 'package:sales_application/views/Detail_Screen.dart';
+import '../views/cart.dart';
 import 'Container_Detail.dart';
 class Item_bottomSheet extends StatefulWidget {
   const Item_bottomSheet({super.key});
@@ -38,7 +38,6 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
             child: Column(
               children: [
                 Row(
-                  
                   children: [
                     ItemContainer()
                   ],
@@ -109,17 +108,17 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),),),
-                onPressed:(){
-                  Navigator.pop(context); // Close the bottom sheet
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailScreen(), // Replace with your detail page widget
-                        ),
-                      );
-                      showSuccessDialog(context);
-                },
-                 child: const Text("Xác nhận",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.purple),)),
+                onPressed: () {
+  Navigator.pop(context); // Close the bottom sheet
+  showSuccessDialog(context);
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetailScreen(),
+    ),
+  );
+},
+    child: const Text("Xác nhận",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.purple),)),
                )
               ],
             
@@ -131,16 +130,18 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
   }
 }
 void showSuccessDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      Future.delayed(Duration(seconds: 1),//1s
-       () {
-        Navigator.of(context).pop(); 
-      });
-      return const AlertDialog(
-        content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
-      );
-    },
-  );
+  if (context != null) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.of(context).pop();
+        });
+        return const AlertDialog(
+          content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
+        );
+      },
+    );
+  }
 }
+

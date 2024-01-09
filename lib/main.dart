@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/khanh/login.dart';
-import 'package:sales_application/khanh/menu_dart.dart';
-import 'package:sales_application/khanh/personal_screen.dart';
-import './kien/cart.dart';
-import './kien/Detail_Screen.dart';
+// import 'package:sales_application/khanh/login.dart';
+// import 'package:sales_application/khanh/menu_dart.dart';
+// import 'package:sales_application/khanh/personal_screen.dart';
+import 'views/cart.dart';
+import 'views/Detail_Screen.dart';
 
 void main() {
   runApp(const MyApp());
