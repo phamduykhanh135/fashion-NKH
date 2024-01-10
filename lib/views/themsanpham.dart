@@ -3,6 +3,9 @@ import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/giamgia.dart';
+import 'package:sales_application/views/loaisanpham.dart';
+import 'package:sales_application/views/soluongkho.dart';
 
 class ThemSP extends StatefulWidget {
   const ThemSP({super.key});
@@ -30,30 +33,51 @@ class _ThemSPState extends State<ThemSP> {
             child:Column(
               mainAxisAlignment:MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
+          SizedBox(height: MediaQuery.of(context).size.height/60),
+        Container(
             height: 140,
-          padding:EdgeInsets.all(10),
-          decoration:  BoxDecoration(
-              color:  MyColor.light_grey
-          ),
-           child:InkWell(
-             onTap: (){/*TODO:*/},
-            child: Container(
-              height: 120,
-              width: 120,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-              ),
-              child: Center(
-                child: Text("Thêm ảnh"),/*TODO:*/
-              ),
+            padding:const EdgeInsets.all(10),
+            decoration:   BoxDecoration(
+              color:  MyColor.light_grey,
             ),
+            child:Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                      ),
+                      child:InkWell(
+                        onTap: (){/*TODO:*/},
+                        child: Center(
+                          child: Text("Thêm ảnh"),/*TODO:*/
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: IconButton(
+                        icon: Icon(Icons.close_rounded),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                )
 
-           )
-          ),
+              ],
+
+            )
+        )
+          ,
+        SizedBox(height: MediaQuery.of(context).size.height/60),
         Container(
           height: 120,
           padding:EdgeInsets.all(10),
@@ -85,6 +109,7 @@ class _ThemSPState extends State<ThemSP> {
 
           ),
         ),
+          SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
             height: 120,
             padding:EdgeInsets.all(10),
@@ -115,6 +140,7 @@ class _ThemSPState extends State<ThemSP> {
 
             ),
           ),
+          SizedBox(height: MediaQuery.of(context).size.height/60),
           ///Phần chọn
             Container(
             height: 250,
@@ -127,7 +153,10 @@ class _ThemSPState extends State<ThemSP> {
             ///Loáip
             Expanded(
 
-                child: InkWell(onTap: (){},
+                child: InkWell(onTap: (){
+                  Navigator.push( context,
+                    MaterialPageRoute(builder: (context) => LoaiSP()),);
+                },
                    child: Row(
               children: [
                 Expanded(child: Icon(Icons.category)), // Icon ở đầu
@@ -149,7 +178,10 @@ class _ThemSPState extends State<ThemSP> {
                   ),)),
             ///So luong
             Expanded(
-                child: InkWell(onTap: (){},
+                child: InkWell(onTap: (){
+                  Navigator.push( context,
+                    MaterialPageRoute(builder: (context) => SoLuongKho()),);
+                },
                   child: Row(
                     children: [
                       Expanded(child: Icon(Icons.warehouse)), // Icon ở đầu
@@ -172,7 +204,10 @@ class _ThemSPState extends State<ThemSP> {
             Expanded(
 
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push( context,
+                      MaterialPageRoute(builder: (context) => GiamGia()),);
+                  },
                   child: Row(
                     children: [
                       Expanded(child: Icon(Icons.percent)), // Icon ở đầu

@@ -27,6 +27,7 @@ class _SuaSPState extends State<SuaSP> {
       child:Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
               height: 140,
               padding:const EdgeInsets.all(10),
@@ -34,25 +35,25 @@ class _SuaSPState extends State<SuaSP> {
                 color:  MyColor.light_grey,
               ),
               child:Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Stack(
                     children: [
-                      InkWell(
-                        onTap: (){/*TODO:*/},
-                        child: Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 1,
-                            ),
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
                           ),
+                        ),
+                        child:InkWell(
+                          onTap: (){/*TODO:*/},
                           child: Center(
                             child: Text("Thêm ảnh"),/*TODO:*/
                           ),
                         ),
-
                       ),
                       Positioned(
                         top: 0,
@@ -69,6 +70,7 @@ class _SuaSPState extends State<SuaSP> {
 
               )
           ),
+          SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
             height: 120,
             padding:EdgeInsets.all(10),
@@ -100,6 +102,7 @@ class _SuaSPState extends State<SuaSP> {
 
             ),
           ),
+          SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
             height: 120,
             padding:EdgeInsets.all(10),
@@ -130,6 +133,7 @@ class _SuaSPState extends State<SuaSP> {
 
             ),
           ),
+          SizedBox(height: MediaQuery.of(context).size.height/60),
           ///Phần chọn
           Container(
             height: 250,

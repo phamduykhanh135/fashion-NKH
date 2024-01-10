@@ -297,7 +297,7 @@ class _ThongKeState extends State<ThongKe> {
                             trackHeight: 8.0,
                               disabledActiveTrackColor:MyColor.color_w4),
                           child: Slider(
-                            value:70 ,
+                            value:50 ,
                             onChanged: null,
                             min: 0,
                             max: 100,
