@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/khanh/login.dart';
 import 'package:sales_application/khanh/menu_dart.dart';
 import 'package:sales_application/khanh/personal_screen.dart';
+import 'package:sales_application/nghia/manage_order.dart';
+import 'package:sales_application/nghia/purchase_history.dart';
+import 'package:sales_application/nghia/order_status.dart';
+import 'package:sales_application/nghia/cancel_order.dart';
+import 'package:sales_application/nghia/notification.dart';
+import 'package:sales_application/nghia/order_confirmation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,11 +26,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
      // home: const Menu_Screen()
-     initialRoute: "/login",
+     initialRoute: "/notifications",
      routes: {
        "/login":(context)=>const Login_Screen(),
       "/menu":(context)=>const Menu_Screen(),
-      "/personal":(context)=>const Personal_Screen()
+      "/personal":(context)=>const Personal_Screen(),
+      "/manager_order":(context) => const Manage_order(),
+      "/purchase_history":(context) => const PurchaseHistory(),
+      "/order_status":(context) => const OrderStatus(),
+      "/cancel_order":(context) => const CancelOrder(),
+      "/notifications":(context) => const Notifications(),
+      "/order_confirmation":(context) => const OrderConfirmation(),
      },
     );
   }
