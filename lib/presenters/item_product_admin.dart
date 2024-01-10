@@ -32,8 +32,8 @@ class Item_Product_Admin extends StatelessWidget {
                         children: [
                           Image.network(
                             'https://cdn2.yame.vn/pimg/ao-thun-co-tron-seventy-seven-02-0022708/32909fef-c041-4200-0fcc-001ae3b66ae0.jpg?w=540&h=756',
-                            width: 100,
-                            height: 100,
+                            width:  MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
                           ),
                           Positioned(
                             top: 0,
