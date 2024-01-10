@@ -290,12 +290,21 @@ class ImageChangeNotifier extends ChangeNotifier {
   ImageChangeEvent? get imageChangeEvent => _imageChangeEvent;
 }
 
-Future<void> updateUserInfo(String fullName) async {
+Future<void> updateUserInfo(String name,int number) async {
   User? currentUser = FirebaseAuth.instance.currentUser;
 
   if (currentUser != null) {
     await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).update({
-      'fullname': fullName,
+      if(number == 1)
+      'fullname': name,
+      if(number == 2)
+      'phone': name,
+      if(number == 3)
+      'email': name,
+      if(number == 4)
+      'address': name,
+
+      
     });
   } else {
     print('Người dùng chưa đăng nhập');

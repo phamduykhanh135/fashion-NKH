@@ -52,6 +52,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
 
     return Scaffold(
       body: SingleChildScrollView(
+        
         child: Column(
           children: [
             Container(

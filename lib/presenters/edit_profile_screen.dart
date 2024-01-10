@@ -19,9 +19,16 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
   @override
   late UserModel user = UserModel();
   bool isChanges = false;
+  int shouldUpdate = 0;
 
-
-
+  void updateState(int value) {
+    print("haaaaaaaaaaaaaaaaaaa");
+    setState(() {
+      shouldUpdate = value;
+      getData();
+      print("bbbbbbbbbbbbbbbb");
+    });
+  }
 
   @override
   void initState() {
@@ -49,201 +56,235 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
       appBar: AppBar(
         title: const Text("Cài đặt"),
         backgroundColor: Colors.pink.shade100,
-        actions: [
-          IconButton(
-              onPressed: () {
-                updateUserDataWithImage(user.image);
-                someFunction();
-              },
-              icon: const Icon(Icons.add))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         updateUserDataWithImage(user.image);
+        //         someFunction();
+        //       },
+        //       icon: const Icon(Icons.add))
+        // ],
       ),
       body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20,),
-              GestureDetector(
-                
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+              child: GestureDetector(
                   onTap: changeAvatar, child: buildAvatarUser(user.image)),
+            ),
+            if (isChanges == true)
               Container(
-                padding:  const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                child: Column(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      padding:  const EdgeInsets.fromLTRB(0, 20, 10, 0),
-                      decoration:  const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>  const Edit_Screen(name_edit: "Tên", sst: 1)
-                            ),
-                          );
-                        },
+                    ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey.shade200,
-                        ),
-                        child: SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Tên: ${user.fullname}',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 15,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  20.0), // Đặt bán kính để làm tròn góc
+                            ),
+                            backgroundColor: Colors.pink.shade100),
+                        onPressed: () {
+                          // updateUserDataWithImage(user.image);
+                          // someFunction();
+                        },
+                        child: const Text("Lưu"))
+                  ],
+                ),
+              ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Edit_Screen(
+                                    name_edit: "Tên",
+                                    sst: 1,
+                                    onUpdate: updateState,
+                                  )),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey.shade200,
+                      ),
+                      child: SizedBox(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width - 20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Tên: ${user.fullname}',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
-                            ],
-                          ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              size: 15,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Edit_Screen(
+                                    name_edit: "Số điện thoại",
+                                    sst: 2,
+                                    onUpdate: updateState,
+                                  )),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey.shade200,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>const Edit_Screen(name_edit: "Số điện thoại", sst: 2)
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey.shade200,
-                        ),
-                        child: SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Số điện thoại: ${user.phone}',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 15,
+                      child: SizedBox(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width - 20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Số điện thoại: ${user.phone}',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
-                            ],
-                          ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              size: 15,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Edit_Screen(
+                                    name_edit: "Email",
+                                    sst: 3,
+                                    onUpdate: updateState,
+                                  )),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey.shade200,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Edit_Screen(name_edit: "Email", sst: 3)
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey.shade200,
-                        ),
-                        child: SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Email: ${user.email}',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 15,
+                      child: SizedBox(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width - 20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Email: ${user.email}',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
-                            ],
-                          ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              size: 15,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Edit_Screen(
+                                    name_edit: "Địa chỉ",
+                                    sst: 4,
+                                    onUpdate: updateState,
+                                  )),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey.shade200,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Edit_Screen(name_edit: "Địa chỉ", sst: 4)
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey.shade200,
-                        ),
-                        child: SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width - 20,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
+                      child: SizedBox(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width - 20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
                                 'Địa chỉ: ${user.address}',
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
-                                overflow: TextOverflow
-                                    .ellipsis, // Chọn một trong các giá trị: ellipsis, clip, fade
-                                maxLines: 1, // Số dòng tối đa hiển thị
-                                softWrap: false, // Ngăn chặn xuống hàng tự động
+                                // overflow: TextOverflow
+                                //     .ellipsis, // Chọn một trong các giá trị: ellipsis, clip, fade
+                                // maxLines: 1, // Số dòng tối đa hiển thị
+                                // softWrap: false, // Ngăn chặn xuống hàng tự động
                               ),
-                              const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                size: 15,
-                                color: Colors.black,
-                              ),
-                            ],
-                          ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              size: 15,
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-    
+      ),
     );
   }
 
