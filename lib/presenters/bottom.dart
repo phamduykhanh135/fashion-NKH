@@ -17,12 +17,12 @@
               icon: Icon(Icons.home,color: Colors.black,),
             ),
             BottomNavigationBarItem(
-              label:"Đơn hàng",
-              icon: Icon(Icons.card_travel,color: Colors.black),
+              label:"Thống kê",
+              icon: Icon(Icons.bar_chart_sharp,color: Colors.black),
             ),
               BottomNavigationBarItem(
               label:"Thông báo",
-              icon: Icon(Icons.add_alert,color: Colors.black),
+              icon: Icon(Icons.notifications,color: Colors.black),
             ),
               BottomNavigationBarItem(
               label:"Thông tin cá nhân",
@@ -40,7 +40,7 @@
             } 
             if(indexOfItem==3){
               Navigator.popUntil(context, (route) => route.isFirst);
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=>const Personal_Page()));
+           // Navigator.push(context, MaterialPageRoute(builder: (context)=>const Personal_Screen()));
             Navigator.pushNamed(context,'/personal');
             }
             // if(indexOfItem==2){
