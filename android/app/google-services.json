@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602267568095",
+    "project_id": "sales-application-c0d8a",
+    "storage_bucket": "sales-application-c0d8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602267568095:android:98e29b73d2c8decd29e66a",
+        "android_client_info": {
+          "package_name": "com.example.sales_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_LfOdusO2ZhmrR9mNmzV9wC_-MtoKfpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
