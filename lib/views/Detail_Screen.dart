@@ -46,7 +46,7 @@ Widget build(BuildContext context) {
           icon: const Icon(Icons.shopping_cart_outlined),
         ),
       ],
-      backgroundColor: Colors.transparent,
+      backgroundColor: Color.fromARGB(0, 0, 0, 0),
       elevation: 0,
     ),
     body: Detail_body(showBottomSheet: _showBottomSheet),

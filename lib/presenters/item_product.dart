@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/product_screen.dart';
+import 'package:sales_application/views/Detail_Screen.dart';
 
 class Item_Product extends StatelessWidget {
   const Item_Product({super.key});
@@ -10,8 +11,9 @@ class Item_Product extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                // builder:(context)=>ProductScreen(productId: widget.pro.id - 1,)
-                builder: (context) => const Product_Screen()));
+        
+                builder: (context) => const DetailScreen()));
+                
       },
       child: Container(
         decoration: BoxDecoration(
