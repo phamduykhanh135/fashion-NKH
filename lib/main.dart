@@ -1,17 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/login.dart';
-import 'package:sales_application/presenters/menu_dart.dart';
-import 'package:sales_application/presenters/personal_screen.dart';
+import 'package:sales_application/khanh/login.dart';
+import 'package:sales_application/khanh/menu_dart.dart';
+import 'package:sales_application/khanh/personal_screen.dart';
 
-import 'firebase_options.dart';
-
-
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
- await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+void main() {
   runApp(const MyApp());
 }
 
@@ -26,8 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
-      // home: const DetailScreen()
+     // home: const Menu_Screen()
      initialRoute: "/login",
      routes: {
        "/login":(context)=>const Login_Screen(),
