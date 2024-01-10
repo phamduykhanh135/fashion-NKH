@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/seach_screen.dart';
 
-import 'bottom.dart';
-import 'item_product.dart';
+//import 'bottom.dart';
+//import 'item_product.dart';
 
 class Menu_Screen extends StatefulWidget {
   const Menu_Screen({super.key});
