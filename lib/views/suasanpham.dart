@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/gia_sp.dart';
+import 'package:sales_application/views/giamgia.dart';
+import 'package:sales_application/views/loaisanpham.dart';
+import 'package:sales_application/views/soluongkho.dart';
 class SuaSP extends StatefulWidget {
   const SuaSP({super.key});
 
@@ -17,7 +21,7 @@ class _SuaSPState extends State<SuaSP> {
         centerTitle: true,
         backgroundColor:  MyColor.light_pink,
         actions: [
-          TextButton(onPressed: (){}, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
+          TextButton(onPressed: (){}, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
         ],
 
 
@@ -86,7 +90,16 @@ class _SuaSPState extends State<SuaSP> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Tên sản phẩm "),
+                    RichText(
+                      text: TextSpan(
+                        text: null,
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(text: 'Tên sản phẩm ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 13,color: Colors.black,decoration: TextDecoration.none,)),
+                          TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 13,color: Colors.red,decoration: TextDecoration.none,)),
+                        ],
+                      ),
+                    ),
                     Text("0/120")/*Todo:0/120*/
                   ],
                 ),
@@ -117,7 +130,16 @@ class _SuaSPState extends State<SuaSP> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Mô tả sản phẩm "),
+                    RichText(
+                      text: TextSpan(
+                        text: null,
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(text: 'Mô tả sản phẩm ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 13,color: Colors.black,decoration: TextDecoration.none,)),
+                          TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 13,color: Colors.red,decoration: TextDecoration.none,)),
+                        ],
+                      ),
+                    ),
                     Text("0/3000")/*Todo:0/3000*/
                   ],
                 ),
@@ -146,11 +168,47 @@ class _SuaSPState extends State<SuaSP> {
                 ///Loáip
                 Expanded(
 
-                    child: InkWell(onTap: (){},
+                    child: InkWell(onTap: (){
+                      Navigator.push( context,
+                        MaterialPageRoute(builder: (context) => LoaiSP()),);
+                    },
                       child: Row(
                         children: [
                           Expanded(child: Icon(Icons.category)), // Icon ở đầu
-                          Expanded(child: Text("Loại sản phẩm"),flex: 3,), // Khoảng trắng giữa hai icon
+                          Expanded(child: RichText(
+                            text: TextSpan(
+                              text: null,
+                              style: DefaultTextStyle.of(context).style,
+                              children: <TextSpan>[
+                                TextSpan(text: 'Loại sản phẩm ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
+                                TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
+                              ],
+                            ),
+                          ),flex: 3,), // Khoảng trắng giữa hai icon
+                          Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
+                        ],
+                      ),)),
+
+                ///So luong
+                Expanded(
+
+                    child: InkWell(onTap: (){
+                      Navigator.push( context,
+                        MaterialPageRoute(builder: (context) => SoLuongKho()),);
+                    },
+                      child: Row(
+                        children: [
+                          Expanded(child: Icon(Icons.warehouse)), // Icon ở đầu
+                          Expanded(child: RichText(
+                            text: TextSpan(
+                              text: null,
+                              style: DefaultTextStyle.of(context).style,
+                              children: <TextSpan>[
+                                TextSpan(text: 'Số lượng kho ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
+                                TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
+                              ],
+                            ),
+                          ),flex: 3,), // Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),)),
@@ -161,40 +219,44 @@ class _SuaSPState extends State<SuaSP> {
                       child: Row(
                         children: [
                           Expanded(child: Icon(Icons.format_size)), // Icon ở đầu
-                          Expanded(child: Text("Kích cỡ"),flex: 3,), // Khoảng trắng giữa hai icon
-                          Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
-                        ],
-                      ),)),
-                ///So luong
-                Expanded(
-
-                    child: InkWell(onTap: (){},
-                      child: Row(
-                        children: [
-                          Expanded(child: Icon(Icons.warehouse)), // Icon ở đầu
-                          Expanded(child: Text("Số lượng kho"),flex: 3,), // Khoảng trắng giữa hai icon
-                          Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
+                          Expanded(child: Text("Kích cỡ",style: TextStyle(fontSize: 14)),flex: 3,), // Khoảng trắng giữa hai icon
+                          Expanded(child: Text("S,M,L,XL")),  // Icon ở cuối
                         ],
                       ),)),
                 ///Gia
                 Expanded(
 
-                    child: InkWell(onTap: (){},
+                    child: InkWell(onTap: (){
+                      Navigator.push( context,
+                        MaterialPageRoute(builder: (context) => GiaSP()),);
+                    },
                       child: Row(
                         children: [
                           Expanded(child: Icon(Icons.price_change)), // Icon ở đầu
-                          Expanded(child: Text("Giá"),flex: 3,), // Khoảng trắng giữa hai icon
+                          Expanded(child: RichText(
+                            text: TextSpan(
+                              text: null,
+                              style: DefaultTextStyle.of(context).style,
+                              children: <TextSpan>[
+                                TextSpan(text: 'Giá bán ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
+                                TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
+                              ],
+                            ),
+                          ),flex: 3,), // Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),)),
                 ///Mua giam gia
                 Expanded(
 
-                    child: InkWell(onTap: (){},
+                    child: InkWell(onTap: (){
+                      Navigator.push( context,
+                        MaterialPageRoute(builder: (context) => GiamGia()),);
+                    },
                       child: Row(
                         children: [
                           Expanded(child: Icon(Icons.percent)), // Icon ở đầu
-                          Expanded(child: Text("Mua nhiều giảm giá"),flex: 3,), // Khoảng trắng giữa hai icon
+                          Expanded(child: Text("Giảm giá",style: TextStyle(fontSize: 14),),flex: 3,), // Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),))

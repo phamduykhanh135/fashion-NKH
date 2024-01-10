@@ -43,7 +43,7 @@ class _ThongKeState extends State<ThongKe> {
                           };
                         }
                       }
-                      , child: Text("Đơn hàng"),
+                      , child: Text("Đơn hàng",style:TextStyle(color: MyColor.dark_pink)),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
@@ -76,7 +76,7 @@ class _ThongKeState extends State<ThongKe> {
                           })
                         };
                       },
-                    child: Text("Chi tiêu"),
+                    child: Text("Chi tiêu",style:TextStyle(color: MyColor.dark_pink)),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
@@ -134,7 +134,7 @@ class _ThongKeState extends State<ThongKe> {
                    Expanded(child: Row(
                      mainAxisAlignment: MainAxisAlignment.center,
                      children: [
-                       Text("Week 1")
+                       Text("Week 1",style:TextStyle(fontSize: 16))
                      ],
                    )),
                     Expanded(
@@ -182,7 +182,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Week 2")
+                        Text("Week 2",style:TextStyle(fontSize: 16))
                       ],
                     )),
                     Expanded(
@@ -230,7 +230,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Week 3")
+                        Text("Week 3",style:TextStyle(fontSize: 16))
                       ],
                     )),
                     Expanded(
@@ -278,7 +278,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Week 4")
+                        Text("Week 4",style:TextStyle(fontSize: 16))
                       ],
                     )),
                     Expanded(

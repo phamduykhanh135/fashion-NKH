@@ -13,7 +13,7 @@ class SearchPage extends StatelessWidget {
             width: double.infinity,
             height: 40,
             decoration: BoxDecoration(
-                color:Colors.white, borderRadius: BorderRadius.circular(5)),
+                color:Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Center(
               child: TextField(
                 decoration: InputDecoration(

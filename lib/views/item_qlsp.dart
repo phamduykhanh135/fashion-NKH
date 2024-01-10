@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
+import 'package:sales_application/views/suasanpham.dart';
 
 class ItemSP extends StatefulWidget {
   const ItemSP({super.key});
@@ -54,9 +55,28 @@ class _ItemSPState extends State<ItemSP> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child:  Text("Tên San Pham"), flex: 2,),
-                      Expanded(child:  Text("Giá"), ),
-                      Expanded(child:  Text("Số lượng") )
+                     Container(child:  Text("Tên San Pham",softWrap: true,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),overflow: TextOverflow.visible,),),
+                      RichText(
+                        text: TextSpan(
+                          text: null,
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(text: 'Giá: ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
+                            TextSpan(text: '100000', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
+                            TextSpan(text: 'đ', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: null,
+                          style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(text: 'Số lượng: ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
+                            TextSpan(text: '30', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,decoration: TextDecoration.none,)),
+                          ],
+                        ),
+                      )
                     ],)
                     ],
 
@@ -68,7 +88,10 @@ class _ItemSPState extends State<ItemSP> {
               SizedBox(width: 10,),
               Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Xoá"))),
               SizedBox(width: 30,),
-              Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Sửa"))),
+              Expanded(child: ElevatedButton(onPressed: (){
+                Navigator.push( context,
+                  MaterialPageRoute(builder: (context) => SuaSP()),);
+              }, child: Text("Sửa"))),
               SizedBox(width: 10,),
             ],
           ),flex: 1,)
