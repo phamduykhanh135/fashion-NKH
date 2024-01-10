@@ -1,17 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-// import 'package:sales_application/khanh/login.dart';
-// import 'package:sales_application/khanh/menu_dart.dart';
-// import 'package:sales_application/khanh/personal_screen.dart';
-import 'views/cart.dart';
-import 'views/Detail_Screen.dart';
-=======
 import 'package:sales_application/presenters/login.dart';
 import 'package:sales_application/presenters/menu_dart.dart';
 import 'package:sales_application/presenters/personal_screen.dart';
->>>>>>> main
 
-void main() {
+import 'firebase_options.dart';
+
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+ await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const DetailScreen()
-    //  initialRoute: "/login",
-    //  routes: {
-    //    "/login":(context)=>const Login_Screen(),
-    //   "/menu":(context)=>const Menu_Screen(),
-    //   "/personal":(context)=>const Personal_Screen()
-    //  },
+      // home: const DetailScreen()
+     initialRoute: "/login",
+     routes: {
+       "/login":(context)=>const Login_Screen(),
+      "/menu":(context)=>const Menu_Screen(),
+      "/personal":(context)=>const Personal_Screen()
+     },
     );
   }
 }
