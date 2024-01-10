@@ -3,6 +3,7 @@ import 'package:sales_application/presenters/login.dart';
 import 'package:sales_application/presenters/menu_dart.dart';
 import 'package:sales_application/presenters/personal_screen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     // home: const Menu_Screen()
+      // home: const DetailScreen()
      initialRoute: "/login",
      routes: {
        "/login":(context)=>const Login_Screen(),
