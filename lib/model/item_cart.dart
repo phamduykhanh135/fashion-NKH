@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_application/data/cart_Reader.dart';
+import 'package:sales_application/data/product_Reader.dart';
 
 class Item_cart extends StatefulWidget {
-  const Item_cart({super.key, required this.ischeck, required this.onCheckboxChanged});
+  final Carts carts;
+  const Item_cart({super.key, required this.ischeck, required this.onCheckboxChanged, required this.carts});
    final bool ischeck;
   final Function(bool) onCheckboxChanged;
   @override
@@ -101,22 +104,24 @@ class _Item_cartState extends State<Item_cart> {
               borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             child: Row(
+              
               children: [
                 Image.network(
-                  'https://cdn2.yame.vn/pimg/ao-thun-co-tron-seventy-seven-02-0022708/32909fef-c041-4200-0fcc-001ae3b66ae0.jpg?w=540&h=756',
+                  widget.carts.image,
                   width: MediaQuery.of(context).size.width / 6,
                   height: MediaQuery.of(context).size.height / 6,
                   fit: BoxFit.contain,
                 ),
+                SizedBox(width: 30,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:  [
                     SizedBox(height: 10,),
-                    const Text("Áo thun",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                     Text(widget.carts.name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
                     SizedBox(height: 10,),
-                    Text("100000 VND",style: TextStyle(fontSize: 18,)),
+                    Text("${widget.carts.price}.000",style: TextStyle(fontSize: 18,)),
                     SizedBox(height: 10,),
-                    Text("Size: S",style: TextStyle(fontSize: 18)),
+                    Text("Size:${widget.carts.size}",style: TextStyle(fontSize: 18)),
                     SizedBox(height: 10,),
                     Row(
                       children: [

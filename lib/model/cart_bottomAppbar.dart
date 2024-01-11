@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import '../views/buy.dart';
-import 'Cart_ElevatedButton.dart';
+import 'cart_ElevatedButton.dart';
 
 class Cart_bottom extends StatefulWidget {
   final bool isCheckAll;

@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sales_application/views/Detail_Screen.dart';
+import '../data/product_Reader.dart';
 import '../views/cart.dart';
-import 'Container_Detail.dart';
+
+import 'container_Detail.dart';
 class Item_bottomSheet extends StatefulWidget {
-  const Item_bottomSheet({super.key});
+  final Products product;
+  const Item_bottomSheet({super.key, required this.product});
+  
 
   @override
   State<Item_bottomSheet> createState() => _Item_bottomSheetState();
@@ -25,13 +29,14 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
           Row(
             children: [
               Image.network(
-                "https://cdn2.yame.vn/pimg/ao-thun-co-tron-seventy-seven-02-0022708/32909fef-c041-4200-0fcc-001ae3b66ae0.jpg?w=540&h=756",
+                widget.product.image
+                ,
                 fit: BoxFit.contain,
                 height: MediaQuery.of(context).size.height / 5,
                 width: MediaQuery.of(context).size.width / 5,
               ),
               SizedBox(width: 120),
-              Text("299.000VND"),
+              Text("${widget.product.price}.000",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold)),
             ],
           ),
           Container(
@@ -39,7 +44,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
               children: [
                 Row(
                   children: [
-                    ItemContainer()
+                     Item_Container(product: widget.product,),
                   ],
                 ),
                Row(
@@ -135,7 +140,14 @@ void showSuccessDialog(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         Future.delayed(Duration(seconds: 1), () {
-          Navigator.of(context).pop();
+         Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(),
+              ),
+              // Use a condition that always evaluates to true to remove all previous routes
+              (route) => true,
+            );
         });
         return const AlertDialog(
           content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),

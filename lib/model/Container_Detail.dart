@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_application/data/product_Reader.dart';
 
-class ItemContainer extends StatefulWidget {
-  const ItemContainer({Key? key});
+class Item_Container extends StatefulWidget {
+  final Products product;
+
+  const Item_Container({Key? key, required this.product}) : super(key: key);
 
   @override
-  State<ItemContainer> createState() => _ItemContainerState();
+  State<Item_Container> createState() => _Item_ContainerState();
 }
 
-class _ItemContainerState extends State<ItemContainer> {
-  String selectedSize = ''; // Track the selected size
-  int quantity = 0;
+class _Item_ContainerState extends State<Item_Container> {
+  String selectedSize = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,6 @@ class _ItemContainerState extends State<ItemContainer> {
                       buildSizeButton("XL"),
                     ],
                   ),
-                  // Display quantity row only when a size is selected
                   if (selectedSize.isNotEmpty) buildQuantityRow(),
                 ],
               ),
@@ -75,6 +74,7 @@ class _ItemContainerState extends State<ItemContainer> {
             (states) => size == selectedSize ? Colors.pink.shade100 : Colors.white),
       ),
       onPressed: () {
+        // Cập nhật kích thước đã chọn khi nhấn vào nút kích thước
         setState(() {
           selectedSize = size;
         });
@@ -86,11 +86,12 @@ class _ItemContainerState extends State<ItemContainer> {
   }
 
   Widget buildQuantityRow() {
+    int quantity = 0;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text("Số lượng: $quantity", style: TextStyle(fontSize: 16)),
-        
       ],
     );
   }
@@ -117,3 +118,4 @@ class _ItemContainerState extends State<ItemContainer> {
     );
   }
 }
+  

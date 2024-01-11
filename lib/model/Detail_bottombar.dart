@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+
+import '../data/product_Reader.dart';
 class Detail_Bottombar extends StatelessWidget {
   final Function() showBottomSheet;
+  final Products product;
 
-  const Detail_Bottombar({Key? key, required this.showBottomSheet});
+  const Detail_Bottombar({Key? key, required this.showBottomSheet, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class Detail_Bottombar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            "299.000VND",
+            "${product.price}.000",
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,

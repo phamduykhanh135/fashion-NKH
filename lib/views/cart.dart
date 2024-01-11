@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:sales_application/data/cart_Reader.dart';
+import 'package:sales_application/data/product_Reader.dart';
 import 'package:sales_application/model/cart_bottomAppbar.dart';
-
 import '../model/item_cart.dart';
 import '../views/buy.dart';
 
 
 class CartScreen extends StatefulWidget {
+  
   const CartScreen({Key? key}) : super(key: key);
 
   @override
@@ -14,7 +16,21 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  Color myColor = Color(0xFF8E1C68);
+    List<Carts>? _cart;
+  Color myColor = const Color(0xFF8E1C68);
+
+  void _loadData() async {
+    await Carts.loadData_cart();
+    setState(() {
+      _cart = Carts.cart;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+  
   bool isCheckAll = false;
   List<bool> itemCheckboxStates = List.generate(100, (index) => false);
 
@@ -37,7 +53,36 @@ Widget build(BuildContext context) {
       backgroundColor: Colors.pink.shade100,
       centerTitle: true,
     ),
-    body: SingleChildScrollView(
+    body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('carts').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print('Error: ${snapshot.error}');
+            return Text('Error: ${snapshot.error}');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+          if (_cart == null ) {
+            return const Center(
+              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              
+            );
+          }
+
+          if (snapshot.hasData && snapshot.data != null) {
+            _cart = snapshot.data!.docs
+                .map((doc) => Carts.fromJson(doc.data() as Map<String, dynamic>))
+                .toList();
+          }
+
+          if (_cart == null) {
+            return Text('Data is null');
+          }
+
+          return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(bottom: 1),
         child: Column(
@@ -45,7 +90,7 @@ Widget build(BuildContext context) {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 4,
+              itemCount: _cart!.length,
               itemBuilder: (BuildContext context, int index) {
                 return Item_cart(
                   ischeck: itemCheckboxStates[index],
@@ -54,14 +99,16 @@ Widget build(BuildContext context) {
                       itemCheckboxStates[index] = value;
                       isCheckAll = itemCheckboxStates.every((state) => state);
                     });
-                  },
+                  }, carts: _cart![index],
                 );
               },
             ),
           ],
         ),
       ),
-    ),
+    );
+        },
+      ),
     bottomNavigationBar: Cart_bottom(
       isCheckAll: isCheckAll,
       onToggleCheckAll: toggleCheckAll,
