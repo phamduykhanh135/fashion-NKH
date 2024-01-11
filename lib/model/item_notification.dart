@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/notification.dart';
+
 class Item_Notification extends StatefulWidget {
   const Item_Notification({super.key,required this.i});
   final i;

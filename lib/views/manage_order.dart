@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sales_application/views/purchase_history.dart';
-import 'package:sales_application/views/order_status.dart';
-import 'package:sales_application/views/cancel_order.dart';
+
 import 'package:sales_application/model/item_manage1.dart';
 import 'package:sales_application/model/item_manage2.dart';
 import 'package:sales_application/model/item_manage3.dart';
@@ -31,8 +29,9 @@ class _Manage_orderState extends State<Manage_order> {
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         // crossAxisAlignment: CrossAxisAlignment.center,
-        //Lich su 
+        
         children:[
+          //Lich su 
           Container(
             margin: EdgeInsets.fromLTRB(0,10,0,5),
             width: double.infinity,

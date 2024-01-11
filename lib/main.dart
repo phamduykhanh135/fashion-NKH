@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
      // home: const Menu_Screen()
-     initialRoute: "/order_confirmation",
+     initialRoute: "/manager_order",
      routes: {
 
       "/manager_order":(context) => const Manage_order(),
