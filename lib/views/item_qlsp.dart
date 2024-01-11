@@ -18,7 +18,15 @@ class _ItemSPState extends State<ItemSP> {
       margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
       decoration:  BoxDecoration(
           color:  MyColor.light_grey,
-          borderRadius: BorderRadius.circular(20.0)
+          borderRadius: BorderRadius.circular(20.0),
+        // boxShadow: [
+        //   // BoxShadow(
+        //   //   color: Colors.grey,
+        //   //    offset: Offset(00.0, 1.0), // Độ lệch của bóng theo chiều dọc và ngang
+        //   //   blurRadius: 1, // Độ mờ của bóng
+        //   //   spreadRadius: 1.0, // Độ rộng của bóng
+        //   // ),
+        // ],
       ),
       child: Column(
         children: [
@@ -30,7 +38,16 @@ class _ItemSPState extends State<ItemSP> {
                   border: Border.all(
                     color: MyColor.dark_pink,
                     width: 1,
+
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 3.0), // Độ lệch của bóng theo chiều dọc và ngang
+                      blurRadius: 3.0, // Độ mờ của bóng
+                      spreadRadius: 1.0, // Độ rộng của bóng
+                    ),
+                  ],
                 ),
                 height: double.maxFinite,
                 width: double.maxFinite,
@@ -54,14 +71,14 @@ class _ItemSPState extends State<ItemSP> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     Text("Tên San Pham fs fafa fafaf",softWrap: true,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                     Text("Tên San Pham fs fafa fafaff",softWrap: true,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),maxLines: 3,),
                       RichText(
                         text: TextSpan(
                           text: null,
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
-                            TextSpan(text: 'Giá: ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
-                            TextSpan(text: '100000', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
+                            TextSpan(text: 'Giá: ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15,color: Colors.black,decoration: TextDecoration.none,)),
+                            TextSpan(text: '100000', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Colors.red,decoration: TextDecoration.none,)),
                             TextSpan(text: 'đ', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
                           ],
                         ),
@@ -71,8 +88,8 @@ class _ItemSPState extends State<ItemSP> {
                           text: null,
                           style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
-                            TextSpan(text: 'Số lượng: ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
-                            TextSpan(text: '30', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,decoration: TextDecoration.none,)),
+                            TextSpan(text: 'Số lượng: ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 15,color: Colors.black,decoration: TextDecoration.none,)),
+                            TextSpan(text: '30', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.none,)),
                           ],
                         ),
                       )
@@ -88,7 +105,11 @@ class _ItemSPState extends State<ItemSP> {
               Expanded(child: ElevatedButton(onPressed: (){
                 Navigator.push( context,
                   MaterialPageRoute(builder: (context) => SuaSP()),);
-              }, child: Text("Sửa"))),
+              }, child: Text("Sửa"),style: ElevatedButton.styleFrom(
+                 // Màu nền khi nút không được nhấn
+                onPrimary: MyColor.dark_pink,
+                foregroundColor:MyColor.light_pink,// Màu chữ khi nút không được nhấn, // Màu nền khi nút được nhấn
+              ),)),
               SizedBox(width: 10,),
             ],
           ),flex: 1,)

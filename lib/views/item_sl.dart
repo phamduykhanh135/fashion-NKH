@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/services.dart';
 import 'package:sales_application/views/color.dart';
 class ItemSL extends StatefulWidget {
-  const ItemSL({super.key});
+  ItemSL({super.key,this.titlePage, this.atributte});
+  final String? titlePage;
+  final int? atributte;
 
   @override
   State<ItemSL> createState() => _ItemSLState();
 }
 
 class _ItemSLState extends State<ItemSL> {
-  //FilteringTextInputFormatter onlyDigits = FilteringTextInputFormatter.allow(RegExp(r'[0-9]'));
+  final _text=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,10 +26,11 @@ class _ItemSLState extends State<ItemSL> {
         children: [
           Expanded(child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("Giảm giá")],)),
+            children: [Text(widget.titlePage.toString())],)),
           Expanded( flex: 2,
               child: Container(
                 child: TextFormField(
+                  controller:_text,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
@@ -44,7 +46,6 @@ class _ItemSLState extends State<ItemSL> {
                       ),
                       isDense: true, // Cung cấp khoảng trắng thấp hơn giữa nội dung và đường biên
                       alignLabelWithHint: true,
-
                     ),
                   textAlign: TextAlign.center,
                 ),
