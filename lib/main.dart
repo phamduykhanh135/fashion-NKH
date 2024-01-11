@@ -22,17 +22,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-     // home: const Menu_Screen()
-     initialRoute: "/manager_order",
-     routes: {
+     home: const Manage_order()
+    //  initialRoute: "/manager_order",
+    //  routes: {
 
-      "/manager_order":(context) => const Manage_order(),
-      "/purchase_history":(context) => const PurchaseHistory(),
-      "/order_status":(context) => const OrderStatus(),
-      "/cancel_order":(context) => const CancelOrder(),
-      "/notifications":(context) => const Notifications(),
-      "/order_confirmation":(context) => const OrderConfirmation(),
-     },
+    //   "/manager_order":(context) => const Manage_order(),
+    //   "/purchase_history":(context) => const PurchaseHistory(),
+    //   "/order_status":(context) => const OrderStatus(),
+    //   "/cancel_order":(context) => const CancelOrder(),
+    //   "/notifications":(context) => const Notifications(),
+    //   "/order_confirmation":(context) => const OrderConfirmation(),
+    //  },
     );
   }
 }
