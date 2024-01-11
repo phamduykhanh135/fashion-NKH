@@ -48,14 +48,13 @@ class _ItemSPState extends State<ItemSP> {
 
               Expanded(
                 flex: 1,
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20,),
-                    Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     Container(child:  Text("Tên San Pham",softWrap: true,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),overflow: TextOverflow.visible,),),
+                     Text("Tên San Pham fs fafa fafaf",softWrap: true,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                       RichText(
                         text: TextSpan(
                           text: null,
@@ -77,10 +76,8 @@ class _ItemSPState extends State<ItemSP> {
                           ],
                         ),
                       )
-                    ],)
-                    ],
-
-              ))
+                    ],),
+                  ))
             ],
           ),flex: 2),
           Expanded(child: Row(
