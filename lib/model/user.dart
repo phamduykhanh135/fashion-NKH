@@ -3,10 +3,10 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/Utils.dart';
-import 'package:sales_application/presenters/menu_dart.dart';
-import 'package:sales_application/presenters/sigin_in_screen.dart';
+import 'package:sales_application/views/menu_dart.dart';
+import 'package:sales_application/views/sigin_in_screen.dart';
 
+import 'Utils.dart';
 import 'firebase.dart';
 
 class UserModel{

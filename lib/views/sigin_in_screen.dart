@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/user.dart';
-import 'package:sales_application/presenters/sigin_up_screen.dart';
+import 'package:sales_application/views/sigin_up_screen.dart';
+
+import '../model/user.dart';
 
 
 class SiginIn_Screen extends StatefulWidget {

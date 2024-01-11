@@ -1,11 +1,13 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/edit_screen.dart';
-import 'package:sales_application/presenters/personal_screen.dart';
+import 'package:sales_application/views/edit_screen.dart';
 import 'package:sales_application/presenters/upload_image.dart';
 
 import '../model/user.dart';
+import '../presenters/personal_screen.dart';
+
+
 
 class Edit_Profile_Screen extends StatefulWidget {
   final void Function(int) onUpdate;
@@ -86,13 +88,15 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                             ),
                             backgroundColor: Colors.pink.shade100),
                         onPressed: () {
-                          // updateUserDataWithImage(user.image);
-                          // someFunction();
+                          updateUserDataWithImage(user.image);
+                          someFunction();
+                          changeButton();
                         },
                         child: const Text("Lưu"))
                   ],
                 ),
               ),
+            
             Container(
               padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
               child: Column(
@@ -295,6 +299,13 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
       print(image);
       setState(() {
         isChanges = true;
+      });
+    }
+  }
+   changeButton() async {
+    if (isChanges==true) {
+      setState(() {
+        isChanges = false;
       });
     }
   }

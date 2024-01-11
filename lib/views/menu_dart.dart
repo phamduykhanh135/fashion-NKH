@@ -1,9 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/seach_screen.dart';
+import 'package:sales_application/presenters/item_demo.dart';
 
-import 'bottom.dart';
-import 'item_product.dart';
+import '../model/product.dart';
+import 'seach_screen.dart';
+import '../presenters/bottom.dart';
 
 class Menu_Screen extends StatefulWidget {
   const Menu_Screen({super.key});
@@ -13,6 +14,14 @@ class Menu_Screen extends StatefulWidget {
 }
 
 class _Menu_ScreenState extends State<Menu_Screen> {
+  late Future<List<Product>> products;
+
+  @override
+  void initState() {
+    super.initState();
+    products = FirebaseModel().getProductsData();
+  }
+
   int _currentIndex = 0;
   int count = (5 / 2).ceil();
   @override
@@ -96,7 +105,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                   CarouselSlider(
                     items: [
                       Image.network(
-                          'https://cdn2.yame.vn/pimg/ao-thun-sweater-ngan-ha-space-ver37-0021380/73b8a215-24a3-ec00-0317-001a12c0acec.jpg?w=540&h=756'),
+                          'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0'),
                       Image.network(
                           'https://cdn2.yame.vn/pimg/ao-thun-co-tron-on-gian-ngan-ha-space-ver16-0020556/dfeb53a3-c7ed-e800-53f4-0018ac665d5b.jpg?w=540&h=756'),
                       Image.network(
@@ -131,53 +140,104 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                       (index) => buildDotIndicator(index),
                     ),
                   ),
-                  Container(
-                    decoration: const BoxDecoration(color: Colors.white),
-                    child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: count,
-                      itemBuilder: (_, index) {
-                        if (index == count - 1) {
-                          return Container(
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Expanded(
-                                  child: Item_Product(),
+                  // Container(
+                  //   decoration: const BoxDecoration(color: Colors.white),
+                  //   child: ListView.builder(
+                  //     physics: const NeverScrollableScrollPhysics(),
+                  //     shrinkWrap: true,
+                  //     itemCount: count,
+                  //     itemBuilder: (_, index) {
+                  //       if (index == count - 1) {
+                  //         return Container(
+                  //           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  //           child: Row(
+                  //             mainAxisAlignment: MainAxisAlignment.start,
+                  //             children: const [
+                  //               Expanded(
+                  //                 child: Item_Demo(product: snapshot.data![index]);
+                  //               ),
+                  //               SizedBox(
+                  //                 width: 10,
+                  //               ),
+                  //               Expanded(
+                  //                 child: SizedBox(),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         );
+                  //       } else {
+                  //         return Container(
+                  //           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  //           child: Row(
+                  //             mainAxisAlignment: MainAxisAlignment.start,
+                  //             children: const [
+                  //               Expanded(
+                  //                 child: Item_Demo(product: snapshot.data![index]);
+                  //               ),
+                  //               SizedBox(
+                  //                 width: 10,
+                  //               ),
+                  //               Expanded(
+                  //                 child: Item_Demo(product: snapshot.data![index]);
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         );
+                  //       }
+                  //     },
+                  //   ),
+                  // ),
+
+                  FutureBuilder<List<Product>>(
+                    future: products,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text("Error: ${snapshot.error}");
+                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                        return const Text("No products available");
+                      } else {
+                        return Container(
+                          decoration: const BoxDecoration(color: Colors.white),
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: (snapshot.data!.length / 2).ceil(),
+                            itemBuilder: (_, index) {
+                              final int firstProductIndex = index * 2;
+                              final int secondProductIndex =
+                                  firstProductIndex + 1;
+
+                              return Container(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Item_Demo(
+                                          product: snapshot
+                                              .data![firstProductIndex]),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: secondProductIndex <
+                                              snapshot.data!.length
+                                          ? Item_Demo(
+                                              product: snapshot
+                                                  .data![secondProductIndex])
+                                          : const SizedBox(),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: SizedBox(),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          return Container(
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const [
-                                Expanded(
-                                  child: Item_Product(),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Item_Product(),
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
+                              );
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  )
                 ],
               ),
             )

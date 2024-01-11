@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/user.dart';
+
+import '../model/user.dart';
 
 class SiginUp_Screen extends StatefulWidget {
   const SiginUp_Screen({super.key});
