@@ -17,14 +17,45 @@ class Edit_Screen extends StatefulWidget {
 }
 
 class _Edit_ScreenState extends State<Edit_Screen> {
+  late UserModel user = UserModel();
+  TextEditingController name = TextEditingController();
   void someFunction() {
     // Thực hiện các thao tác và khi cần cập nhật trạng thái của trang trước đó
     widget.onUpdate(1); // Gọi hàm callback từ trang trước đó
   }
-
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    // Đặt giá trị ban đầu từ widget.name_edit
+  }
+  Future<void> getData() async {
+    UserModel? userData = await FirestoreService().getUserData();
+    if (userData != null) {
+      setState(() {
+        user = userData;
+        getName();
+      });
+    }
+  }
+  Future<void> getName() async {
+    if(widget.sst==1) {
+      name.text = user.fullname;
+    } 
+    if(widget.sst==2) {
+      name.text = user.phone;
+    } 
+    if(widget.sst==3) {
+      name.text = user.email;
+    } 
+    if(widget.sst==4) {
+      name.text = user.address;
+    } 
+  }
+  
   @override
   Widget build(BuildContext context) {
-    TextEditingController name = TextEditingController();
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Sửa ${widget.name_edit}"),
@@ -78,11 +109,6 @@ class _Edit_ScreenState extends State<Edit_Screen> {
                     ),
                   ),
                 ),
-                // inputFormatters: [
-                //   FilteringTextInputFormatter.allow(RegExp(
-                //       r"[a-zA-Záàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]")),
-                // ],
-                //   keyboardType: TextInputType.emailAddress,
               ),
             ),
           ],

@@ -15,8 +15,7 @@ class FirebaseModel {
     }
   }
 
-  static Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>?>
-      getAllUsers() async {
+  static Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>?>getAllUsers() async {
     try {
       // Truy vấn Firestore
       Query<Map<String, dynamic>> query = FirebaseFirestore.instance

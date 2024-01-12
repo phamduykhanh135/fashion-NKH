@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/user.dart';
+
+import '../model/user.dart';
 
 class SiginUp_Screen extends StatefulWidget {
   const SiginUp_Screen({super.key});
@@ -18,6 +19,7 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
       TextEditingController();
   final TextEditingController _addessTextController = TextEditingController();
   final TextEditingController _phoneTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,15 +27,9 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(color: Colors.pink.shade100.withOpacity(0.1)
-          // gradient: LinearGradient(colors: [
-          //   //hexStringToCoLor("FFC0CB"),
-          //   // hexStringToCoLor("FFB6C1"),
-          //   // hexStringToCoLor("#FF69B4"),
-          //   //  hexStringToCoLor("#FF1493")
-          // ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
           ),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(20, 30, 20, 50),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 50),
         child: Form(
           key: _formKey,
           child: Column(
@@ -42,26 +38,40 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
               Row(
                 children: [
                   SizedBox(
-                    // height: 40,
-                    // decoration: BoxDecoration(
-                    //   color: Colors.pink.shade100,
-                    //   borderRadius: BorderRadius.circular(10),
-                    //   border: Border.all(width: 2,color: Colors.pink)
-                    // ),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.pink,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                    height: 150,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.pink,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+                          child: Image.asset(
+                            "assets/logo.png",
+                            height: 150,
+                            width: 150,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
-              ),
-              const SizedBox(
-                height: 30,
               ),
               Container(
                 child: Text(
@@ -81,7 +91,7 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,

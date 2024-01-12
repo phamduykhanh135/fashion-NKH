@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/change_password_screen.dart';
+import 'package:sales_application/views/change_password_screen.dart';
 
 import 'edit_profile_screen.dart';
 

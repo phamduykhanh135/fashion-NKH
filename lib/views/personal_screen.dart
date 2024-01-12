@@ -2,9 +2,10 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/user.dart';
 import 'package:sales_application/presenters/bottom.dart';
-import 'package:sales_application/presenters/setting_screen.dart';
+import 'package:sales_application/views/setting_screen.dart';
+
+import '../model/user.dart';
 
 class Personal_Screen extends StatefulWidget {
   const Personal_Screen({
@@ -164,7 +165,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
             const SizedBox(
               height: 50,
             ),
-            if (a == 1)
+            if (user.admin == false)
               Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -200,7 +201,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                   ),
                 ),
               ),
-            if (a != 1)
+            if (user.admin==true)
               Container(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 decoration: const BoxDecoration(
@@ -237,8 +238,8 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                   ),
                 ),
               ),
-            if (a != 1)
-              Container(
+              if (user.admin==true)
+                   Container(
                 padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -281,7 +282,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
               ),
               child: ElevatedButton(
                 onPressed: () {
-                  // Add your onPressed function here
+                  logOut(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade300,

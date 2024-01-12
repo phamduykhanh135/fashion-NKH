@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../model/product.dart';
+
 class Product_Screen extends StatefulWidget {
-  const Product_Screen({super.key});
+  final String idz;
+  const Product_Screen({super.key, required this.idz});
 
   @override
   State<Product_Screen> createState() => _Product_ScreenState();
 }
 
 class _Product_ScreenState extends State<Product_Screen> {
-//  void _onPressCart(int newId) {
-//   bool checkId = false;
-//   int checkSimilar = 0;
+  late Product products = Product();
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
-//   setState(() {
-//     for (int i = 0; i < Cart.carts.length; ++i) {
-//       if (Cart.carts[i].product.id == newId) {
-//        // print('vào $newId');
-//         checkId = true;
-//         checkSimilar = i;
-//         break;
-//       }
-//     }
-//     if (checkId) {
-//       Cart.carts[checkSimilar].qualityCart++;
-//     } else {
-//       Cart.carts.add(Cart(Product.products[newId-1]));
-//     }
-//   });
-// }
+  Future<void> getData() async {
+    Product? userData = await FirebaseModel().getProductData(widget.idz);
+    if (userData != null) {
+      setState(() {
+        products = userData;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // print(widget.productId);
@@ -44,8 +43,8 @@ class _Product_ScreenState extends State<Product_Screen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.network(
-                      //  Product.products[widget.productId].url,
-                      'https://cdn2.yame.vn/pimg/ao-thun-co-tron-seventy-seven-02-0022708/32909fef-c041-4200-0fcc-001ae3b66ae0.jpg?w=540&h=756',
+                      // products.image,
+'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0',
                       fit: BoxFit.contain,
                       width: MediaQuery.of(context).size.width / 2 - 10,
                       //color: Colors.amber,
@@ -68,10 +67,9 @@ class _Product_ScreenState extends State<Product_Screen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      // Product.products[widget.productId].name,
-                      "Áo Thun Cổ Tròn Tay Ngắn Cá Sấu 4 Chiều Thấm Hút Biểu Tượng Dáng Vừa Đơn Giản No Style 100",
-                      style: TextStyle(
+                    Text(
+                      products.name,
+                      style: const TextStyle(
                         color: Colors.blue,
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -211,7 +209,10 @@ class _Product_ScreenState extends State<Product_Screen> {
                   color: Colors.blue,
                   child: TextButton(
                     //style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.red)),
-                    child:  const Text("Mua ngay",style: TextStyle(color: Colors.white,)),
+                    child: const Text("Mua ngay",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     onPressed: () {},
                   ),
                 ))
