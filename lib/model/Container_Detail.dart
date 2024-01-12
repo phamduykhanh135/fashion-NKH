@@ -3,8 +3,8 @@ import 'package:sales_application/data/product_Reader.dart';
 
 class Item_Container extends StatefulWidget {
   final Products product;
-
-  const Item_Container({Key? key, required this.product}) : super(key: key);
+  final Function(String) onSizeSelected;
+  const Item_Container({Key? key, required this.product, required this.onSizeSelected}) : super(key: key);
 
   @override
   State<Item_Container> createState() => _Item_ContainerState();
@@ -12,6 +12,7 @@ class Item_Container extends StatefulWidget {
 
 class _Item_ContainerState extends State<Item_Container> {
   String selectedSize = '';
+  int quantity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +75,26 @@ class _Item_ContainerState extends State<Item_Container> {
             (states) => size == selectedSize ? Colors.pink.shade100 : Colors.white),
       ),
       onPressed: () {
-        // Cập nhật kích thước đã chọn khi nhấn vào nút kích thước
-        setState(() {
+        
+       setState(() {
           selectedSize = size;
+          widget.onSizeSelected(selectedSize);
+          switch (size) {
+            case 'S':
+              quantity = widget.product.sizeS;
+              break;
+            case 'M':
+              quantity = widget.product.sizeM;
+              break;
+            case 'L':
+              quantity = widget.product.sizeL;
+              break;
+            case 'XL':
+              quantity = widget.product.sizeXL;
+              break;
+            default:
+              quantity = 0;
+          }
         });
       },
       child: Text(size,
@@ -86,7 +104,7 @@ class _Item_ContainerState extends State<Item_Container> {
   }
 
   Widget buildQuantityRow() {
-    int quantity = 0;
+   
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -8,6 +9,7 @@ import '../model/buy_bottom.dart';
 import '../model/item_buy.dart';
 import 'payment.dart';
 import 'Voucher.dart';
+import '../data/payment_Reader.dart';
 class Buy_Screen extends StatefulWidget {
   const Buy_Screen({super.key});
 
@@ -16,10 +18,22 @@ class Buy_Screen extends StatefulWidget {
 }
 
 class _Buy_ScreenState extends State<Buy_Screen> {
-  Color myColor = Color(0xFF8E1C68);
-  
+  List<Payments>? _payment;
+  Color myColor = const Color(0xFF8E1C68);
+  void _loadData() async {
+    await Payments.loadData_payment();
+    setState(() {
+      _payment = Payments.payment;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
        appBar: AppBar(title: Text("Mua hàng",style: TextStyle(color: myColor)),
       iconTheme: IconThemeData(color: myColor),
@@ -27,7 +41,36 @@ class _Buy_ScreenState extends State<Buy_Screen> {
         centerTitle: true,
        ),
        
-       body: Padding(padding: const EdgeInsets.only(bottom: 1),
+       body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('payments').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print('Error: ${snapshot.error}');
+            return Text('Error: ${snapshot.error}');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+          if (_payment == null || _payment!.isEmpty) {
+            return const Center(
+              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              
+            );
+          }
+
+          if (snapshot.hasData && snapshot.data != null) {
+            _payment = snapshot.data!.docs
+                .map((doc) => Payments.fromJson(doc.data() as Map<String, dynamic>))
+                .toList();
+          }
+
+          if (_payment == null) {
+            return Text('Data is null');
+          }
+
+          return Padding(padding: const EdgeInsets.only(bottom: 1),
        child: Stack(
         children: [
           ListView(children: [
@@ -45,9 +88,9 @@ class _Buy_ScreenState extends State<Buy_Screen> {
     padding: EdgeInsets.only(left: 20),
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
-    itemCount: 4,
+    itemCount: _payment!.length,
     itemBuilder: (BuildContext context, int index) {
-      return const item_buy (); 
+      return  item_buy (payment: _payment![index],); 
     },
   ),
   const Divider( color: Colors.grey, thickness: 1),
@@ -82,7 +125,9 @@ class _Buy_ScreenState extends State<Buy_Screen> {
     Buy_List(),
 ]),
         ],
-       ),),
+       ),);
+        },
+      ),
        bottomNavigationBar:const buy_bottom()
       );
     

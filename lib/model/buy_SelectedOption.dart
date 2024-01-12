@@ -31,7 +31,7 @@ class Buy_SelectedOption extends StatelessWidget {
 
       IconButton(onPressed: (){
          Navigator.push( context,
-              MaterialPageRoute(builder: (context) => Voucher()),);
+              MaterialPageRoute(builder: (context) =>  Voucher()),);
       }, icon: Icon(Icons.arrow_forward_ios)),
     ],),
 ],

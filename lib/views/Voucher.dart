@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_application/data/voucher_Reader.dart';
+
 import '../model/Item_Voucher.dart';
 class Voucher extends StatefulWidget {
   const Voucher({super.key});
@@ -10,17 +13,60 @@ class Voucher extends StatefulWidget {
 }
 
 class _VoucherState extends State<Voucher> {
+  List<Vouchers>? _voucher;
   Color myColor = Color(0xFF8E1C68);
+  
    TextEditingController _voucherController = TextEditingController();
+   void _loadData() async {
+    await Vouchers.loadData_voucher();
+    setState(() {
+      _voucher = Vouchers.voucher;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  } 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
      appBar: AppBar(title: Text("Chọn voucher",style: TextStyle(color: myColor)),
-       iconTheme: IconThemeData(color: Colors.black),
+       iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.pink.shade100,
         centerTitle: true,
        ),
-      body: ListView(
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('voucher').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print('Error: ${snapshot.error}');
+            return Text('Error: ${snapshot.error}');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+
+          if (_voucher == null || _voucher!.isEmpty) {
+            return const Center(
+              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              
+            );
+          }
+
+          if (snapshot.hasData && snapshot.data != null) {
+            _voucher = snapshot.data!.docs
+                .map((doc) => Vouchers.fromJson(doc.data() as Map<String, dynamic>))
+                .toList();
+          }
+
+          if (_voucher == null) {
+            return Text('Data is null');
+          }
+
+          return ListView(
         padding: EdgeInsets.all(5.0),
         children: [
           Row(
@@ -64,13 +110,15 @@ class _VoucherState extends State<Voucher> {
     ListView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
-    itemCount: 2,
+    itemCount: _voucher!.length,
     itemBuilder: (BuildContext context, int index) {
-      return const Item_voucher(); 
+      return  Item_voucher(voucher: _voucher![index],); 
     },
   ),
         ],
         
+      );
+        },
       ),
       
     );

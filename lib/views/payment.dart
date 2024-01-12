@@ -31,16 +31,16 @@ class _Payment_ScreenState extends State<Payment_Screen> {
           });
         }
         ),
-        RadioListTile(
-           tileColor: Colors.white, 
-          activeColor: Colors.pink.shade100, 
-          title: const Text("Thanh toán qua ví online"),
-          value: 2, groupValue: _select, onChanged: (value){
-          setState(() {
-            _select=value!;
-          });
-        }
-        )
+        // RadioListTile(
+        //    tileColor: Colors.white, 
+        //   activeColor: Colors.pink.shade100, 
+        //   title: const Text("Thanh toán qua ví online"),
+        //   value: 2, groupValue: _select, onChanged: (value){
+        //   setState(() {
+        //     _select=value!;
+        //   });
+        // }
+        // )
     ]),
 
     );

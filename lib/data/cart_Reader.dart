@@ -40,5 +40,30 @@ class Carts{
       print('Error loading data from Firestore: $e');
     }
   }
+  static Future<void> addNewCart(String name,String size,int price,int quality,String image) async {
+    int newId = cart.length + 1;
+    Carts newCart =Carts(id: newId, name: name, status: true, size: size, price: price, quality: quality, image: image);
+    cart.add(newCart);
+    // Thêm vào Firestore
+    CollectionReference cartCollection = FirebaseFirestore.instance.collection('carts');
+    await cartCollection.doc('$newId').set({
+      "id": newId,
+      "name": name,
+      "status": true, 
+      "size":size,
+      "price":price,
+      "quality":quality,
+      "image":image
+      
+    });
+   
+  }
+   static Future<void> deleteCart(String cartId) async {
+    try {
+      await FirebaseFirestore.instance.collection('carts').doc(cartId).delete();
+    } catch (e) {
+      print('Error deleting cart: $e');
+    }
+  }
 
 }

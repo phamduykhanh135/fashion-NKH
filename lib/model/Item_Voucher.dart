@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:sales_application/data/voucher_Reader.dart';
 
 class Item_voucher extends StatefulWidget {
-  const Item_voucher({super.key});
+  final Vouchers voucher;
+  const Item_voucher({super.key, required this.voucher});
 
   @override
   State<Item_voucher> createState() => _Item_voucherState();
 }
 
 class _Item_voucherState extends State<Item_voucher> {
+  
   bool _ischeck = false;
   Color myLightGrayColor = Color.fromRGBO(243, 243, 243, 1.0);
   @override
@@ -39,7 +42,7 @@ class _Item_voucherState extends State<Item_voucher> {
             child: Row(
               children: [
                 Image.network(
-                  'https://as2.ftcdn.net/v2/jpg/00/98/48/35/1000_F_98483558_NdOgudtcKCXsNk7QeVsJtklqwxuoFGbS.jpg',
+                  widget.voucher.image,
                   width: MediaQuery.of(context).size.width / 10,
                   height: MediaQuery.of(context).size.height / 10,
                   fit: BoxFit.contain,
@@ -50,9 +53,9 @@ class _Item_voucherState extends State<Item_voucher> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Free Ship", style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(widget.voucher.name, style: TextStyle(fontWeight: FontWeight.bold)),
                         Text(
-                          "Free ship áp dụng cho hóa đơn trên 500.000 VND",
+                          widget.voucher.descriptions,
                           softWrap: true,
                         ),
                       ],

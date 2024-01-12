@@ -7,12 +7,10 @@ import 'cart_ElevatedButton.dart';
 class Cart_bottom extends StatefulWidget {
   final bool isCheckAll;
   final VoidCallback onToggleCheckAll;
+  final double totalPrice; 
 
-  const Cart_bottom({
-    Key? key,
-    required this.isCheckAll,
-    required this.onToggleCheckAll,
-  }) : super(key: key);
+
+  const Cart_bottom({Key? key,required this.isCheckAll,required this.onToggleCheckAll, required this.totalPrice}) : super(key: key);
 
   @override
   State<Cart_bottom> createState() => _Cart_bottomState();
@@ -34,7 +32,7 @@ class _Cart_bottomState extends State<Cart_bottom> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Tổng tiền", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text("100.000VND", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                 Text("${widget.totalPrice.toStringAsFixed(3)} VND", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             SizedBox(height: 10),

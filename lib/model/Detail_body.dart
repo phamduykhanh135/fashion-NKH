@@ -43,7 +43,7 @@
                       product.name,
                       style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                     ),
-                    Item_Container(product: product),
+                    Item_Container(product: product, onSizeSelected:(String){},),
                     Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,13 +65,13 @@
                 ),
               ),
             ),
-          ],
+          ],  
         ),
         Positioned(
           bottom: 1,
           left: 1,
           right: 1,
-          child: Detail_Bottombar(showBottomSheet: showBottomSheet, product: product,),
+          child: Detail_Bottombar(showBottomSheet: showBottomSheet, product: product),
         ),
       ],
     );

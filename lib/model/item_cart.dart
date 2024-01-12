@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -6,9 +7,10 @@ import 'package:sales_application/data/product_Reader.dart';
 
 class Item_cart extends StatefulWidget {
   final Carts carts;
-  const Item_cart({super.key, required this.ischeck, required this.onCheckboxChanged, required this.carts});
+  const Item_cart({super.key, required this.ischeck, required this.onCheckboxChanged, required this.carts, required this.onQuantityChanged});
    final bool ischeck;
   final Function(bool) onCheckboxChanged;
+  final VoidCallback onQuantityChanged;
   @override
   State<Item_cart> createState() => _Item_cartState();
 }
@@ -53,8 +55,8 @@ class _Item_cartState extends State<Item_cart> {
                         ),
                     ),
               ),
-              onPressed: () {
-                // Thực hiện xóa mục
+              onPressed: () async{
+                await Carts.deleteCart(widget.carts.id.toString());
                 Navigator.of(context).pop(); // Đóng dialog
               },
               child: const Text('Xóa',style: TextStyle(color: Colors.black)),
@@ -65,7 +67,7 @@ class _Item_cartState extends State<Item_cart> {
       },
     );
   }
-   int temp=0;
+   
      @override
   void initState() {
     super.initState();
@@ -127,13 +129,18 @@ class _Item_cartState extends State<Item_cart> {
                       children: [
                         SizedBox(width: 10),
                         TextButton(
-                          onPressed: () {
+                          onPressed: () async{
                            setState(() {
-                              if(temp>0)
+                              if(widget.carts.quality>0)
                             {
-                              temp--;
+                              widget.carts.quality--;
                             }
                            });
+                           await FirebaseFirestore.instance.collection('carts').doc(widget.carts.id.toString()).update({
+                            'quality': widget.carts.quality,
+                          });
+                          widget.onCheckboxChanged(_ischeck);
+                           widget.onQuantityChanged();
                           },
                           child: Icon(Icons.remove),
                           style: ButtonStyle(
@@ -147,16 +154,22 @@ class _Item_cartState extends State<Item_cart> {
                           ),
                         ),
                         SizedBox(width: 10),
-                        Text(temp.toString(), style: TextStyle(fontSize: 20.0)),
+                        Text(widget.carts.quality.toString(), style: TextStyle(fontSize: 20.0)),
                         SizedBox(width: 10),
                         TextButton(
-                          onPressed: () {
+                          onPressed: () async{
                             setState(() {
-                              if(temp>=0)
+                              if(widget.carts.quality>=0)
                             {
-                              temp++;
+                              widget.carts.quality++;
                             }
                            });
+                           
+                           await FirebaseFirestore.instance.collection('carts').doc(widget.carts.id.toString()).update({
+                            'quality': widget.carts.quality,
+                          });
+                          widget.onCheckboxChanged(_ischeck);
+                           widget.onQuantityChanged();//thay đổi số lượng
                           },
                           child: Icon(Icons.add),
                           style: ButtonStyle(
@@ -171,10 +184,11 @@ class _Item_cartState extends State<Item_cart> {
                         ),
                         SizedBox(width: 10),
                         IconButton(
-                          onPressed: () {
+                          onPressed: (){
+                            
                             _showConfirm();
                           },
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                         ),
                       ],
                     ),

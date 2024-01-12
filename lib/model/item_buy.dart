@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import '../data/payment_Reader.dart';
 
 class item_buy extends StatefulWidget {
-  const item_buy({super.key});
+  final Payments payment; 
+  const item_buy({super.key, required this.payment});
 
   @override
   State<item_buy> createState() => _item_buyState();
@@ -30,7 +32,7 @@ class _item_buyState extends State<item_buy> {
         child: Row(
           children: [
           Image.network(
-            'https://cdn2.yame.vn/pimg/ao-thun-co-tron-seventy-seven-02-0022708/32909fef-c041-4200-0fcc-001ae3b66ae0.jpg?w=540&h=756',
+            widget.payment.image,
               width: MediaQuery.of(context).size.width / 6,
               height: MediaQuery.of(context).size.height /6,
               fit: BoxFit.contain,
@@ -40,13 +42,13 @@ class _item_buyState extends State<item_buy> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 5,),
-                Text("Áo thun",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+                Text(widget.payment.name,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
                 SizedBox(height: 5,),
-                Text("Size: S",style: TextStyle(fontSize: 16,)),
+                Text("Size: ${widget.payment.size}",style: TextStyle(fontSize: 16,)),
                 SizedBox(height: 5,),
-                Text("100000 VND",style: TextStyle(fontSize: 16,),),
+                Text("${widget.payment.price}",style: TextStyle(fontSize: 16,),),
                 SizedBox(height: 5,),
-                Text("số lượng: 1",style: TextStyle(fontSize: 16,)),
+                Text("số lượng: ${widget.payment.quality}",style: TextStyle(fontSize: 16,)),
                 
               ],
             )
