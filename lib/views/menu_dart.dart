@@ -23,7 +23,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
   }
 
   int _currentIndex = 0;
-  int count = (5 / 2).ceil();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                 Expanded(
                   flex: 4,
                   child: Container(
-                    padding: const EdgeInsets.fromLTRB(20, 30, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(
@@ -53,7 +53,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                         decoration: BoxDecoration(
                             color: Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(20)),
-                        height: 50,
+                        height: 30,
                         width: MediaQuery.of(context).size.width - 20,
                         padding: const EdgeInsets.all(10),
                         child: Row(
@@ -61,7 +61,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                           children: const [
                             Icon(
                               Icons.search,
-                              size: 20,
+                              size: 10,
                               color: Colors.grey,
                             ),
                             SizedBox(
@@ -70,7 +70,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                             Text(
                               'Tìm kiếm...',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 10,
                                 color: Colors.grey,
                               ),
                             ),
@@ -82,7 +82,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                 ),
                 Expanded(
                     child: Container(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.fromLTRB(0, 15, 10, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -99,7 +99,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
               ]),
             ),
             Container(
-              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Column(
                 children: [
                   CarouselSlider(
@@ -133,11 +133,14 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                       },
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      5, // Replace with the actual number of images
-                      (index) => buildDotIndicator(index),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        5, // Replace with the actual number of images
+                        (index) => buildDotIndicator(index),
+                      ),
                     ),
                   ),
                   // Container(
@@ -211,7 +214,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
 
                               return Container(
                                 padding:
-                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                    const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [

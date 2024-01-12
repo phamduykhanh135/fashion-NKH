@@ -5,7 +5,7 @@ import 'package:sales_application/views/edit_screen.dart';
 import 'package:sales_application/presenters/upload_image.dart';
 
 import '../model/user.dart';
-import '../presenters/personal_screen.dart';
+import 'personal_screen.dart';
 
 
 

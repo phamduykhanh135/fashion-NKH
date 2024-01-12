@@ -13,7 +13,8 @@ class _GroupCategoryState extends State<GroupCategory> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      height: 35,
+      padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       decoration: BoxDecoration(
         color:  Colors.grey.shade200,
         borderRadius: BorderRadius.circular(10)

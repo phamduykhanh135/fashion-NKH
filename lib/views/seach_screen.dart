@@ -50,9 +50,9 @@ class _Search_ScreenState extends State<Search_Screen> {
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9,
-                          height: 50,
-                          margin: const EdgeInsets.fromLTRB(10, 70, 0, 10),
-                          padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),//
+                          height: 40,
+                          margin: const EdgeInsets.fromLTRB(10, 90, 0, 10),
+                          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),//
                           child: TextField(
                             onChanged: (value) {
                               setState(() {
@@ -62,7 +62,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                             },
                             decoration: InputDecoration(
                               hintText: 'Tìm kiếm...',
-                              hintStyle: const TextStyle(color: Colors.grey),
+                              hintStyle: const TextStyle(color: Colors.grey,fontSize: 12),
                               filled: true,
                               fillColor: Colors.grey.shade200,
                               border: OutlineInputBorder(
@@ -77,7 +77,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                       ],
                     ),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+                        padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

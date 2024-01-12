@@ -9,7 +9,7 @@ import 'package:sales_application/views/sigin_in_screen.dart';
 import 'Utils.dart';
 import 'firebase.dart';
 
-class UserModel{
+class UserModel {
   late String id;
   late Uint8List? image;
   late String fullname;
@@ -19,15 +19,15 @@ class UserModel{
   late bool admin;
   late bool custom;
 
-   UserModel() {
+  UserModel() {
     id = "";
     image = null;
     fullname = "";
     email = "";
     phone = "";
-     address="";
-    admin =false;
-    custom =false;
+    address = "";
+    admin = false;
+    custom = false;
   }
 
   UserModel.info(
@@ -62,7 +62,8 @@ class UserModel{
 
   Map<String, dynamic> toJson({bool? deleted}) {
     return {
-      'image':image?.isNotEmpty ?? false ? convertImageToString(image!) : "null",
+      'image':
+          image?.isNotEmpty ?? false ? convertImageToString(image!) : "null",
       'fullname': fullname,
       'email': email,
       'phone': phone,
@@ -74,10 +75,10 @@ class UserModel{
   }
 
   bool isEqual(UserModel otherUser) {
-     bool  result =fullname == otherUser.fullname;
+    bool result = fullname == otherUser.fullname;
     result = result && email == otherUser.email;
     result = result && phone == otherUser.phone;
-     result = result && address == otherUser.address;
+    result = result && address == otherUser.address;
     result = result && admin == otherUser.admin;
     result = result && custom == otherUser.custom;
     result = result && image == otherUser.image;
@@ -117,7 +118,6 @@ class UserModel{
     return s;
   }
 
-
   Future<bool> add() async {
     return await FirebaseModel.addUser(toJson());
   }
@@ -130,6 +130,7 @@ class UserModel{
     return await FirebaseModel.updateUser(fullname, toJson(deleted: true));
   }
 }
+
 class FirestoreService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -139,10 +140,8 @@ class FirestoreService {
       User? user = _auth.currentUser;
 
       if (user != null) {
-        DocumentSnapshot userDoc = await _firestore
-            .collection('users')
-            .doc(user.uid)
-            .get();
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(user.uid).get();
 
         if (userDoc.exists) {
           return UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
@@ -159,6 +158,7 @@ class FirestoreService {
     return null;
   }
 }
+
 Future<void> signUp(
     BuildContext context, UserModel user, String password) async {
   try {
@@ -194,7 +194,56 @@ Future<void> signUp(
   }
 }
 
+// Future<void> signIn(BuildContext context, String email, String password) async {
+//   try {
+//     FirebaseAuth.instance.signOut();
+//     await FirebaseAuth.instance.signInWithEmailAndPassword(
+//       email: email.trim(),
+//       password: password.trim(),
+//     );
+
+//     if (FirebaseAuth.instance.currentUser != null) {
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(builder: (context) => const Menu_Screen()),
+//       );
+//       DocumentSnapshot<Map<String, dynamic>> userData = await FirebaseFirestore
+//           .instance
+//           .collection("users")
+//           .doc(FirebaseAuth.instance.currentUser!.uid)
+//           .get();
+
+//     } else {
+//         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+//                     content: Text('Mật khẩu không hợp lệ !'),
+//                   ));
+//     }
+//   } on FirebaseAuthException {
+//     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+//                     content: Text('Mật khẩu không hợp lệ !'),
+//                   ));
+//   }
+// }
+
 Future<void> signIn(BuildContext context, String email, String password) async {
+  // Show loading dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            CircularProgressIndicator(),
+            SizedBox(height: 16),
+            Text("Đang đăng nhập..."),
+          ],
+        ),
+      );
+    },
+    barrierDismissible: false, 
+  );
+
   try {
     FirebaseAuth.instance.signOut();
     await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -202,45 +251,26 @@ Future<void> signIn(BuildContext context, String email, String password) async {
       password: password.trim(),
     );
 
-// Không in ở đây, kiểm tra bên trong điều kiện if
     if (FirebaseAuth.instance.currentUser != null) {
-      print("Thông tin người dùng hiện tại: ${FirebaseAuth.instance.currentUser}");
-      // Đăng nhập thành công, chuyển hướng đến màn hình Home
+      Navigator.pop(context);
+
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const Menu_Screen()),
       );
-      DocumentSnapshot<Map<String, dynamic>> userData = await FirebaseFirestore
-          .instance
-          .collection("users")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .get();
-
-      // if (userData.exists) {
-      //   bool isDeleted = userData.data()?["deleted"] ?? false;
-      //   bool blocked = userData.data()?["blocked"] ?? false;
-      //   if (isDeleted) {
-      //     // Tài khoản đã bị đánh dấu xóa
-      //     // Xử lý tùy thuộc vào yêu cầu của bạn
-      //     Utils.showSnackBarFalse("Tài khoản đã bị Xóa!");
-      //   } else if (blocked) {
-      //     // Tài khoản đã bị đánh dấu xóa
-      //     // Xử lý tùy thuộc vào yêu cầu của bạn
-      //     Utils.showSnackBarFalse("Tài khoản đã bị Khóa!");
-      //   } else {
-      //     print("Chuyển trang");
-      //     // Đăng nhập thành công, chuyển hướng đến màn hình Home
-      //     Navigator.pushNamed(context, "/");
-      //   }
-      // }
     } else {
-      // Đăng nhập không thành công, xuất thông báo
-      print("Mật khẩu không hợp lệ");
-      Utils.showSnackBarFalse("Mật khẩu không hợp lệ");
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Mật khẩu không hợp lệ !'),
+      ));
     }
   } on FirebaseAuthException {
-    // Utils.showSnackBarFalse(e.message)
-    Utils.showSnackBarFalse("Mật khẩu không hợp lệ");
+    Navigator.pop(context);
+
+    // Display invalid password message
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Mật khẩu không hợp lệ !'),
+    ));
   }
 }
 
@@ -257,28 +287,30 @@ void logOut(BuildContext context) async {
 }
 
 Future<void> updateUserDataWithImage(Uint8List? image) async {
-   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    try {
-      User? currentUser = FirebaseAuth.instance.currentUser;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  try {
+    User? currentUser = FirebaseAuth.instance.currentUser;
 
-      if (currentUser != null && image != null) {
-        await firestore.collection('users').doc(currentUser.uid).update({
-          'image': image.isNotEmpty ? UserModel.convertImageToString(image) : "null",
-        });
-        print('User image updated successfully.');
-      } else {
-        print('No user is currently logged in or image data is empty.');
-      }
-    } catch (e) {
-      print('Error updating user image: $e');
+    if (currentUser != null && image != null) {
+      await firestore.collection('users').doc(currentUser.uid).update({
+        'image':
+            image.isNotEmpty ? UserModel.convertImageToString(image) : "null",
+      });
+      print('User image updated successfully.');
+    } else {
+      print('No user is currently logged in or image data is empty.');
     }
+  } catch (e) {
+    print('Error updating user image: $e');
   }
+}
 
-  class ImageChangeEvent {
+class ImageChangeEvent {
   final Uint8List? newImage;
 
   ImageChangeEvent(this.newImage);
 }
+
 class ImageChangeNotifier extends ChangeNotifier {
   ImageChangeEvent? _imageChangeEvent;
 
@@ -290,21 +322,18 @@ class ImageChangeNotifier extends ChangeNotifier {
   ImageChangeEvent? get imageChangeEvent => _imageChangeEvent;
 }
 
-Future<void> updateUserInfo(String name,int number) async {
+Future<void> updateUserInfo(String name, int number) async {
   User? currentUser = FirebaseAuth.instance.currentUser;
 
   if (currentUser != null) {
-    await FirebaseFirestore.instance.collection('users').doc(currentUser.uid).update({
-      if(number == 1)
-      'fullname': name,
-      if(number == 2)
-      'phone': name,
-      if(number == 3)
-      'email': name,
-      if(number == 4)
-      'address': name,
-
-      
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .update({
+      if (number == 1) 'fullname': name,
+      if (number == 2) 'phone': name,
+      if (number == 3) 'email': name,
+      if (number == 4) 'address': name,
     });
   } else {
     print('Người dùng chưa đăng nhập');

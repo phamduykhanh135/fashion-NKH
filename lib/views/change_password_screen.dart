@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class Change_Password_screen extends StatefulWidget {
   const Change_Password_screen({super.key});
 
@@ -17,36 +16,49 @@ class _Change_Password_screenState extends State<Change_Password_screen> {
         body: Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration:  BoxDecoration(
-        color: Colors.pink.shade100.withOpacity(0.1)
-
-          ),
+      decoration: BoxDecoration(color: Colors.pink.shade100.withOpacity(0.1)),
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             Row(
+            Row(
               children: [
                 SizedBox(
-                  height: 40,
-                  // decoration: BoxDecoration(
-                  //   color: Colors.pink.shade100,
-                  //   borderRadius: BorderRadius.circular(10),
-                  //   border: Border.all(width: 2,color: Colors.pink)
-                  // ),
-                  child: IconButton(
-                    
-                    icon: const Icon(Icons.arrow_back,color: Colors.pink,size: 30,),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                  height: 150,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.pink,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+                        child: Image.asset(
+                          "assets/logo.png",
+                          height: 150,
+                          width: 150,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
-            ),
-            const SizedBox(
-              height: 40,
             ),
             Container(
               child: Text(
@@ -100,7 +112,6 @@ class _Change_Password_screenState extends State<Change_Password_screen> {
                 keyboardType: TextInputType.emailAddress,
               ),
             ),
-           
             Container(
               width: 150,
               height: 50,
@@ -117,19 +128,21 @@ class _Change_Password_screenState extends State<Change_Password_screen> {
                 ],
               ),
               child: ElevatedButton(
-               onPressed: () async {
-                String email = emailTextController.text;
-                try {
-                  await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-                  // Thông báo cho người dùng rằng liên kết đã được gửi
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Liên kết đổi mật khẩu đã được gửi đến email $email'),
-                  ));
-                } catch (e) {
-                  // Xử lý lỗi (ví dụ: email không tồn tại)
-                  print('Error: $e');
-                }
-              },
+                onPressed: () async {
+                  String email = emailTextController.text;
+                  try {
+                    await FirebaseAuth.instance
+                        .sendPasswordResetEmail(email: email);
+                    // Thông báo cho người dùng rằng liên kết đã được gửi
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                          'Liên kết đổi mật khẩu đã được gửi đến email $email'),
+                    ));
+                  } catch (e) {
+                    // Xử lý lỗi (ví dụ: email không tồn tại)
+                    print('Error: $e');
+                  }
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateColor.resolveWith((states) {
                     if (states.contains(MaterialState.pressed)) {
@@ -149,12 +162,10 @@ class _Change_Password_screenState extends State<Change_Password_screen> {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                   
                   ),
                 ),
               ),
             ),
-             
           ],
         ),
       ),

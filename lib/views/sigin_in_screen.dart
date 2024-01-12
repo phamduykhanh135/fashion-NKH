@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/sigin_up_screen.dart';
 
@@ -15,6 +16,19 @@ class _SiginIn_ScreenState extends State<SiginIn_Screen> {
   final GlobalKey<FormState> _formKey =GlobalKey<FormState>();
   final TextEditingController _emailTextController =TextEditingController();
   final TextEditingController _passwordTextController =TextEditingController();
+
+      @override
+  initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // Nếu đã đăng nhập, chuyển hướng đến trang chủ
+      Navigator.pushReplacementNamed(context, "/menu");
+    }
+  });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +45,16 @@ class _SiginIn_ScreenState extends State<SiginIn_Screen> {
           // ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
           ),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: Form(
           key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+              child: Image.asset("assets/logo.png",height: 150,width: 150,),
+            ),
             Container(
               child: Text(
                 "Đăng nhập",
@@ -55,7 +73,7 @@ class _SiginIn_ScreenState extends State<SiginIn_Screen> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height:20,
             ),
             Container(
               width: MediaQuery.of(context).size.width * 0.8,

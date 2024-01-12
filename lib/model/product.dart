@@ -97,6 +97,27 @@ class Product {
 class FirebaseModel {
   // ...
 
+ Future<Product?> getProductData(String productId) async {
+    try {
+      // Replace 'yourFirestoreCollection' with the actual collection name
+      DocumentSnapshot<Map<String, dynamic>> productSnapshot = await FirebaseFirestore.instance
+          .collection('product')
+          .doc(productId)
+          .get();
+
+      if (productSnapshot.exists) {
+        Map<String, dynamic> productData = productSnapshot.data()!;
+        return Product.fromJson(productData); // Assuming you have a method to convert data to Product
+      } else {
+        // Product not found
+        return null;
+      }
+    } catch (error) {
+      print("Error getting product data: $error");
+      return null;
+    }
+  }
+
   Future<List<Product>> getProductsData() async {
     final CollectionReference productsCollection =
         FirebaseFirestore.instance.collection('product');

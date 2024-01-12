@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/bottom.dart';
-import 'package:sales_application/presenters/setting_screen.dart';
+import 'package:sales_application/views/setting_screen.dart';
 
 import '../model/user.dart';
 
@@ -281,7 +281,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
               ),
               child: ElevatedButton(
                 onPressed: () {
-                  // Add your onPressed function here
+                  logOut(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade300,

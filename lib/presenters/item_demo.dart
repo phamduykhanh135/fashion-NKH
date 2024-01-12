@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/presenters/product_screen.dart';
 
 import '../model/product.dart';
 
@@ -10,15 +11,15 @@ class Item_Demo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   // Navigate to the product details screen
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => Product_Screen(product: product),
-      //     ),
-      //   );
-      // },
+      onTap: () {
+       print("ssssssssssssssssssssssssssssssssssssssssssss");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Product_Screen(idz: product.id),
+          ),
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -30,8 +31,8 @@ class Item_Demo extends StatelessWidget {
           children: [
             Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                SizedBox(
+                 // padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   height: 210,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
