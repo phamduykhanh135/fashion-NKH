@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_lsp.dart';
 import 'package:sales_application/views/item_sl.dart';
-import 'package:sales_application/views/serach_lsp.dart';
 import 'package:sales_application/views/themsanpham.dart';
 
 class LoaiSP extends StatefulWidget {
@@ -21,12 +21,6 @@ class _LoaiSPState extends State<LoaiSP> {
         title: Text("Loại sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: MyColor.light_pink,
-        actions: [
-          IconButton(onPressed: (){
-            Navigator.push( context,
-              MaterialPageRoute(builder: (context) => SearchPage()),);
-          }, icon: Icon(Icons.search,color:MyColor.dark_pink ,))
-        ],
         leading: IconButton(onPressed: (){
           Navigator.push( context,
             MaterialPageRoute(builder: (context) => ThemSP()),);
@@ -50,6 +44,7 @@ class _LoaiSPState extends State<LoaiSP> {
                 onTap: (){
                   Navigator.push( context,
                     MaterialPageRoute(builder: (context) => ThemSP()),);
+                  Them.l_sp="Quần";
                 },
                 child: Container(
                   padding: EdgeInsets.fromLTRB(35,0, 0,0),
@@ -79,6 +74,7 @@ class _LoaiSPState extends State<LoaiSP> {
                 onTap: (){
                   Navigator.push( context,
                     MaterialPageRoute(builder: (context) => ThemSP()),);
+                  Them.l_sp="Áo";
                 },
                 child: Container(
                   padding: EdgeInsets.fromLTRB(35,0, 0,0),
@@ -108,6 +104,7 @@ class _LoaiSPState extends State<LoaiSP> {
                 onTap: (){
                   Navigator.push( context,
                     MaterialPageRoute(builder: (context) => ThemSP()),);
+                  Them.l_sp="Phụ kiện";
                 },
                 child: Container(
                   padding: EdgeInsets.fromLTRB(35,0, 0,0),

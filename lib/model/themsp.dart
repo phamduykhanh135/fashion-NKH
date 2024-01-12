@@ -1,15 +1,14 @@
-class Them{
-  dynamic linkImage;
-  String? ten_sp;
-  String? mota_sp;
-  String? l_sp;
-  String? size_S;
-  String? size_M;
-  String? size_L;
-  String? size_XL;
-  int? quatitySizeS;
-  int? quatitySizeM;
-  int? quatitySizeL;
-  int? quatitySizeXL;
-  int? discount;
+ class Them{
+  static dynamic linkImage;
+  static String ten_sp="";
+  static String mota_sp="";
+  static String l_sp="";
+  static String kichco_sp="";
+  static int price_sp=0;
+  static int quatitySizeS=0;
+  static int quatitySizeM=0;
+  static int quatitySizeL=0;
+  static int quatitySizeXL=0;
+  static int discount_sp=0;
+
 }

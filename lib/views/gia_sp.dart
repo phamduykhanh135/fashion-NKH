@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/item_sl.dart';
 import 'package:flutter/services.dart';
+import 'package:sales_application/views/themsanpham.dart';
 import 'color.dart';
 
 class GiaSP extends StatefulWidget {
@@ -11,6 +13,7 @@ class GiaSP extends StatefulWidget {
 }
 
 class _GiaSPState extends State<GiaSP> {
+  var _giaban=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +22,11 @@ class _GiaSPState extends State<GiaSP> {
           centerTitle: true,
           backgroundColor: MyColor.light_pink,
           actions: [
-            TextButton(onPressed: (){}, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
+            TextButton(onPressed: (){
+              Them.price_sp=int.parse(_giaban.text);
+              Navigator.push( context,
+                MaterialPageRoute(builder: (context) => ThemSP()),);
+            }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
 
         ),
@@ -39,7 +46,7 @@ class _GiaSPState extends State<GiaSP> {
               Expanded( flex: 2,
                   child: Container(
                     child: TextFormField(
-                      controller:null,
+                      controller:_giaban,
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       decoration: InputDecoration(
@@ -53,7 +60,7 @@ class _GiaSPState extends State<GiaSP> {
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(color: MyColor.dark_pink, width: 2.0),
                         ),
-                        isDense: true, // Cung cấp khoảng trắng thấp hơn giữa nội dung và đường biên
+                        isDense: true,
                         alignLabelWithHint: true,
                       ),
                       textAlign: TextAlign.center,

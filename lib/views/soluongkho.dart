@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_sl.dart';
 import 'package:flutter/services.dart';
+import 'package:sales_application/views/themsanpham.dart';
 
 class SoLuongKho extends StatefulWidget {
   const SoLuongKho({super.key});
@@ -12,6 +14,10 @@ class SoLuongKho extends StatefulWidget {
 }
 
 class _SoLuongKhoState extends State<SoLuongKho> {
+  var _sizeS=TextEditingController();
+  var _sizeM=TextEditingController();
+  var _sizeL=TextEditingController();
+  var _sizeXL=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +26,22 @@ class _SoLuongKhoState extends State<SoLuongKho> {
         centerTitle: true,
         backgroundColor: MyColor.light_pink,
         actions: [
-          TextButton(onPressed: (){}, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
+          TextButton(onPressed: (){
+            Them.quatitySizeS=int.parse(_sizeS.text);
+            Them.quatitySizeM=int.parse(_sizeM.text);
+            Them.quatitySizeL=int.parse(_sizeL.text);
+            Them.quatitySizeXL=int.parse(_sizeXL.text);
+            if(int.parse(_sizeS.text)>0)
+              Them.kichco_sp+="S ";
+            if(int.parse(_sizeM.text)>0)
+              Them.kichco_sp+="M ";
+            if(int.parse(_sizeL.text)>0)
+              Them.kichco_sp+="L ";
+            if(int.parse(_sizeXL.text)>0)
+              Them.kichco_sp+="XL ";
+            Navigator.push( context,
+              MaterialPageRoute(builder: (context) => ThemSP()),);
+          }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
 
       ),
@@ -43,7 +64,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             Expanded( flex: 2,
                 child: Container(
                   child: TextFormField(
-                    controller:null,
+                    controller:_sizeS,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
@@ -83,7 +104,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
-                        controller:null,
+                        controller:_sizeM,
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                         decoration: InputDecoration(
@@ -123,7 +144,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
-                        controller:null,
+                        controller:_sizeL,
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                         decoration: InputDecoration(
@@ -163,7 +184,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
-                        controller:null,
+                        controller:_sizeXL,
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                         decoration: InputDecoration(

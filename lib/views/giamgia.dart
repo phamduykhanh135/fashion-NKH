@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/item_sl.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:flutter/services.dart';
+import 'package:sales_application/views/themsanpham.dart';
 class GiamGia extends StatefulWidget {
   const GiamGia({super.key});
 
@@ -10,15 +12,20 @@ class GiamGia extends StatefulWidget {
 }
 
 class _GiamGiaState extends State<GiamGia> {
+  var _giamgia=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Số lượng",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
+        title: Text("Giảm giá",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: MyColor.light_pink,
         actions: [
-          TextButton(onPressed: (){}, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
+          TextButton(onPressed: (){
+            Them.discount_sp=int.parse(_giamgia.text);
+            Navigator.push( context,
+              MaterialPageRoute(builder: (context) => ThemSP()),);
+          }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
 
       ),
@@ -39,7 +46,7 @@ class _GiamGiaState extends State<GiamGia> {
                 child: Container(
                   child: TextFormField(
 
-                    controller:null,
+                    controller:_giamgia,
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
