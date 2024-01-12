@@ -3,10 +3,10 @@ import 'package:sales_application/presenters/product_screen.dart';
 
 import '../model/product.dart';
 
-class Item_Demo extends StatelessWidget {
+class Item_Product_Home extends StatelessWidget {
   final Product product;
 
-  const Item_Demo({Key? key, required this.product}) : super(key: key);
+  const Item_Product_Home({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

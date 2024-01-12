@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../presenters/item_demo.dart';
-import '../presenters/group_category copy.dart';
+import '../presenters/group_category.dart';
+import '../presenters/item_poduct_home.dart';
 import '../model/product.dart'; // Import model Product
 
 class Search_Screen extends StatefulWidget {
@@ -136,7 +136,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Expanded(
-                                      child: Item_Demo(
+                                      child: Item_Product_Home(
                                           product: snapshot
                                               .data![firstProductIndex]),
                                     ),
@@ -144,7 +144,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                                     Expanded(
                                       child: secondProductIndex <
                                               snapshot.data!.length
-                                          ? Item_Demo(
+                                          ? Item_Product_Home(
                                               product: snapshot
                                                   .data![secondProductIndex])
                                           : const SizedBox(),

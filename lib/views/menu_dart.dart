@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/item_demo.dart';
+import 'package:sales_application/presenters/item_poduct_home.dart';
 
 import '../model/product.dart';
 import 'seach_screen.dart';
@@ -143,53 +143,6 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   decoration: const BoxDecoration(color: Colors.white),
-                  //   child: ListView.builder(
-                  //     physics: const NeverScrollableScrollPhysics(),
-                  //     shrinkWrap: true,
-                  //     itemCount: count,
-                  //     itemBuilder: (_, index) {
-                  //       if (index == count - 1) {
-                  //         return Container(
-                  //           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.start,
-                  //             children: const [
-                  //               Expanded(
-                  //                 child: Item_Demo(product: snapshot.data![index]);
-                  //               ),
-                  //               SizedBox(
-                  //                 width: 10,
-                  //               ),
-                  //               Expanded(
-                  //                 child: SizedBox(),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         );
-                  //       } else {
-                  //         return Container(
-                  //           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  //           child: Row(
-                  //             mainAxisAlignment: MainAxisAlignment.start,
-                  //             children: const [
-                  //               Expanded(
-                  //                 child: Item_Demo(product: snapshot.data![index]);
-                  //               ),
-                  //               SizedBox(
-                  //                 width: 10,
-                  //               ),
-                  //               Expanded(
-                  //                 child: Item_Demo(product: snapshot.data![index]);
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         );
-                  //       }
-                  //     },
-                  //   ),
-                  // ),
 
                   FutureBuilder<List<Product>>(
                     future: products,
@@ -219,7 +172,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Expanded(
-                                      child: Item_Demo(
+                                      child: Item_Product_Home(
                                           product: snapshot
                                               .data![firstProductIndex]),
                                     ),
@@ -227,7 +180,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                                     Expanded(
                                       child: secondProductIndex <
                                               snapshot.data!.length
-                                          ? Item_Demo(
+                                          ? Item_Product_Home(
                                               product: snapshot
                                                   .data![secondProductIndex])
                                           : const SizedBox(),
