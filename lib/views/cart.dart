@@ -14,12 +14,14 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   List<Carts>? _cart;
+  List<Carts> selectedItems = [];
   Color myColor = const Color(0xFF8E1C68);
 
   void _loadData() async {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id - 1]).toList();
     });
   }
 
@@ -35,7 +37,25 @@ class _CartScreenState extends State<CartScreen> {
   void toggleCheckAll() {
     setState(() {
       isCheckAll = !isCheckAll;
-      itemCheckboxStates = List.filled(itemCheckboxStates.length, isCheckAll);
+
+      if (isCheckAll) {
+        selectedItems = List.from(_cart!);
+      } else {
+        selectedItems.clear();
+      }
+
+      for (int i = 0; i < itemCheckboxStates.length; i++) {
+        itemCheckboxStates[i] = isCheckAll;
+      }
+
+      onTotalPriceChanged(calculateTotalPrice());
+    });
+  }
+
+  void clearAndReloadSelectedItems() {
+    setState(() {
+      selectedItems.clear();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id - 1]).toList();
     });
   }
 
@@ -49,6 +69,12 @@ class _CartScreenState extends State<CartScreen> {
       }
     }
     return totalPrice;
+  }
+
+  void onTotalPriceChanged(double totalPrice) {
+    // Implement the logic you want to execute when the total price changes
+    print('Total Price Changed: $totalPrice');
+    // You can update UI or perform any actions with the total price
   }
 
   @override
@@ -107,12 +133,16 @@ class _CartScreenState extends State<CartScreen> {
                           setState(() {
                             itemCheckboxStates[index] = value;
                             isCheckAll = itemCheckboxStates.every((state) => state);
+                            if (value) {
+                              selectedItems.add(_cart![index]);
+                            } else {
+                              selectedItems.remove(_cart![index]);
+                            }
                           });
+                          clearAndReloadSelectedItems();
                         },
                         carts: _cart![index],
-                        onQuantityChanged: () {
-                          // Do something when quantity changes
-                        },
+                        onQuantityChanged: () {},
                       );
                     },
                   ),
@@ -126,6 +156,9 @@ class _CartScreenState extends State<CartScreen> {
         isCheckAll: isCheckAll,
         onToggleCheckAll: toggleCheckAll,
         totalPrice: calculateTotalPrice(),
+        selectedItems: selectedItems, 
+        calculateTotalPrice: calculateTotalPrice,
+        
       ),
     );
   }

@@ -1,35 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import '../data/cart_Reader.dart';
+import '../data/payment_Reader.dart';
 import '../views/buy.dart';
 
 class Cart_ElevatedButton extends StatelessWidget {
-  const Cart_ElevatedButton({super.key});
+  const Cart_ElevatedButton({Key? key, required this.selectedItems, required this.calculateTotalPrice});
+  
+  final List<Carts> selectedItems;
+  final double Function() calculateTotalPrice;
 
   @override
   Widget build(BuildContext context) {
     Color myColor = Color(0xFF8E1C68);
     return ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.pink.shade100),
-                  minimumSize: MaterialStateProperty.all(const Size(120, 50)),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Buy_Screen()),
-                  );
-                },
-                child: Text(
-                  'Thanh toán',
-                  style: TextStyle(color: myColor,fontSize: 18),
-                ),
-  );
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
+        minimumSize: MaterialStateProperty.all(const Size(120, 50)),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      onPressed: () async {
+        Payments.addNewpayment(selectedItems);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Buy_Screen(totalPrice: calculateTotalPrice()), 
+          ),
+        );
+      },
+      child: Text(
+        'Mua Hàng',
+        style: TextStyle(color: myColor, fontSize: 18),
+      ),
+    );
   }
 }

@@ -66,7 +66,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                 width: MediaQuery.of(context).size.width / 5,
               ),
               SizedBox(width: 120),
-              Text("${widget.product.price}.000",
+              Text(widget.product.price.toStringAsFixed(3),
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             ],
           ),

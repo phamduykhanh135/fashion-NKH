@@ -27,25 +27,25 @@ class _Menu_ScreenState extends State<Menu_Screen> {
           actions: [
             IconButton(onPressed: () {
               
-Navigator.push(
-  context,
-  PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => Buy_Screen(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
-      const curve = Curves.easeInOut;
-      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+// Navigator.push(
+//   context,
+//   PageRouteBuilder(
+//     pageBuilder: (context, animation, secondaryAnimation) => Buy_Screen(),
+//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//       const begin = Offset(1.0, 0.0);
+//       const end = Offset.zero;
+//       const curve = Curves.easeInOut;
+//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      var offsetAnimation = animation.drive(tween);
+//       var offsetAnimation = animation.drive(tween);
 
-      return SlideTransition(
-        position: offsetAnimation,
-        child: child,
-      );
-    },
-  ),
-);// chuyển hướng animation 
+//       return SlideTransition(
+//         position: offsetAnimation,
+//         child: child,
+//       );
+//     },
+//   ),
+// );// chuyển hướng animation 
 
             }, icon: const Icon(Icons.shopping_cart))
           ],

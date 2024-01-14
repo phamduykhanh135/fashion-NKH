@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'cart_Reader.dart';
 class Payments{
   int id;
   String name;
@@ -40,23 +42,32 @@ class Payments{
       print('Error loading data from Firestore: $e');
     }
   }
-  static Future<void> addNewpayment(String name,String size,int price,int quality,String image) async {
-    int newId = payment.length + 1;
-    Payments newpayment =Payments(id: newId, name: name, status: true, size: size, price: price, quality: quality, image: image);
-    payment.add(newpayment);
-    // Thêm vào Firestore
+   static Future<void> addNewpayment(List<Carts> selectedItems) async {
     CollectionReference paymentCollection = FirebaseFirestore.instance.collection('payments');
-    await paymentCollection.doc('$newId').set({
-      "id": newId,
-      "name": name,
-      "status": true, 
-      "size":size,
-      "price":price,
-      "quality":quality,
-      "image":image
-      
-    });
-   
+    
+    for (var cart in selectedItems) {
+      await paymentCollection.doc('${cart.id}').set({
+        "id": cart.id,
+        "name": cart.name,
+        "status": true,
+        "size": cart.size,
+        "price": cart.price,
+        "quality": cart.quality,
+        "image": cart.image,
+      });
+    }
+  }
+   static Future<void> deleteAllPayments() async {
+    QuerySnapshot paymentSnapshot =
+        await FirebaseFirestore.instance.collection('payments').get();
+
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    for (QueryDocumentSnapshot doc in paymentSnapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    await batch.commit();
   }
 
 }

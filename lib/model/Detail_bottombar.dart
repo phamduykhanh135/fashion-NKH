@@ -20,7 +20,7 @@ class Detail_Bottombar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            "${product.price}.000",
+            product.price.toStringAsFixed(3),
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,

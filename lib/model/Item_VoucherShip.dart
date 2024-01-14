@@ -1,48 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sales_application/data/voucher_Reader.dart';
+import 'package:sales_application/data/voucherShip_Reader.dart';
+import 'package:sales_application/data/voucherSale_Reader.dart';
 
-class Item_voucher extends StatefulWidget {
-  final Vouchers voucher;
-  const Item_voucher({super.key, required this.voucher});
+class Item_voucherShip extends StatelessWidget {
+  final VoucherShips voucher;
+  final int? selectedVoucherId;
+  final ValueChanged<int?> onChanged;
 
-  @override
-  State<Item_voucher> createState() => _Item_voucherState();
-}
+  const Item_voucherShip({
+    Key? key,
+    required this.voucher,
+    required this.selectedVoucherId,
+    required this.onChanged,
+  }) : super(key: key);
 
-class _Item_voucherState extends State<Item_voucher> {
-  
-  bool _ischeck = false;
-  Color myLightGrayColor = Color.fromRGBO(243, 243, 243, 1.0);
   @override
   Widget build(BuildContext context) {
-   return Container(
+    return Container(
       margin: EdgeInsets.all(5),
       child: Row(
         children: [
-          Checkbox( 
-            checkColor: Colors.black,
-            fillColor: MaterialStateProperty.all(Colors.pink.shade100),
-            side: BorderSide(color: Colors.black),
-            value: _ischeck,
-            onChanged: (bool? value) {
-              setState(() {
-                _ischeck = value ?? false;
-              });
-            },
+          Radio<int>(
+            activeColor: Colors.pink.shade100,
+            value: voucher.id,
+            groupValue: selectedVoucherId,
+            onChanged: onChanged,
           ),
           Container(
             padding: const EdgeInsets.all(5),
             width: MediaQuery.of(context).size.width / 1.35,
             decoration: BoxDecoration(
-              color:myLightGrayColor,
+              color: Colors.grey[200],
               borderRadius: BorderRadius.all(const Radius.circular(8)),
             ),
             child: Row(
               children: [
                 Image.network(
-                  widget.voucher.image,
+                  voucher.image,
                   width: MediaQuery.of(context).size.width / 10,
                   height: MediaQuery.of(context).size.height / 10,
                   fit: BoxFit.contain,
@@ -53,9 +47,17 @@ class _Item_voucherState extends State<Item_voucher> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.voucher.name, style: TextStyle(fontWeight: FontWeight.bold)),
                         Text(
-                          widget.voucher.descriptions,
+                          voucher.name,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          
+                        ),
+                        Text(
+                          voucher.value.toString(),
+                          softWrap: true,
+                        ),
+                        Text(
+                          voucher.descriptions,
                           softWrap: true,
                         ),
                       ],

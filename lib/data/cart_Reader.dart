@@ -59,11 +59,13 @@ class Carts{
    
   }
    static Future<void> deleteCart(String cartId) async {
-    try {
-      await FirebaseFirestore.instance.collection('carts').doc(cartId).delete();
-    } catch (e) {
-      print('Error deleting cart: $e');
-    }
+  try {
+    await FirebaseFirestore.instance.collection('carts').doc(cartId).delete();
+    print('Deleted cart with ID: $cartId');
+  } catch (e) {
+    print('Error deleting cart: $e');
   }
+}
+
 
 }

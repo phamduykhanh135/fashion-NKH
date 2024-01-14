@@ -16,6 +16,7 @@ class Item_cart extends StatefulWidget {
 }
 
 class _Item_cartState extends State<Item_cart> {
+  List<Carts> selectedItems = [];
   bool _ischeck = false;
   Color myLightGrayColor = Color.fromARGB(255, 245, 227, 227);
   Future<void> _showConfirm() async {
@@ -87,17 +88,31 @@ class _Item_cartState extends State<Item_cart> {
       child: Row(
         children: [
           Checkbox(
-            checkColor: Colors.black,
-            fillColor: MaterialStateProperty.all(Colors.pink.shade100),
-            side: BorderSide(color: Colors.black),
-            value: _ischeck,
-            onChanged: (bool? value) {
-              setState(() {
-                _ischeck = value ?? false;
-              });
-              widget.onCheckboxChanged(_ischeck);
-            },
-          ),
+        checkColor: Colors.black,
+        fillColor: MaterialStateProperty.all(Colors.pink.shade100),
+        side: BorderSide(color: Colors.black),
+        value: _ischeck,
+        onChanged: (bool? value) {
+          setState(() {
+            _ischeck = value ?? false;
+            if (_ischeck) {
+              selectedItems.add(widget.carts);
+            } else {
+              selectedItems.remove(widget.carts);
+            }
+          });
+          widget.onCheckboxChanged(_ischeck);
+
+          // Check if the checkbox is unchecked and remove from selectedItems
+          if (!_ischeck) {
+            selectedItems.remove(widget.carts);
+          }
+
+          widget.onCheckboxChanged(_ischeck);
+        },
+      ),
+          
+
           Container(
             padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width / 1.2,
@@ -121,7 +136,7 @@ class _Item_cartState extends State<Item_cart> {
                     SizedBox(height: 10,),
                      Text(widget.carts.name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
                     SizedBox(height: 10,),
-                    Text("${widget.carts.price}.000",style: TextStyle(fontSize: 18,)),
+                    Text(widget.carts.price.toStringAsFixed(3),style: TextStyle(fontSize: 18,)),
                     SizedBox(height: 10,),
                     Text("Size:${widget.carts.size}",style: TextStyle(fontSize: 18)),
                     SizedBox(height: 10,),
