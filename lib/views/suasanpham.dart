@@ -5,18 +5,30 @@ import 'package:sales_application/views/giamgia.dart';
 import 'package:sales_application/views/loaisanpham.dart';
 import 'package:sales_application/views/quanlysanpham.dart';
 import 'package:sales_application/views/soluongkho.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 class SuaSP extends StatefulWidget {
-  const SuaSP({super.key});
+  final Map<dynamic, dynamic> sp;
+
+  SuaSP(this.sp, {Key? key}) : super(key: key);
 
   @override
-  State<SuaSP> createState() => _SuaSPState();
+  _SuaSPState createState() => _SuaSPState();
 }
-
 class _SuaSPState extends State<SuaSP> {
-  TextEditingController _tensp = TextEditingController();
-  TextEditingController _mota = TextEditingController();
+
+  late DocumentReference _reference;
+  late TextEditingController _tensp;
+  late TextEditingController _mota;
+  GlobalKey<FormState> _key = GlobalKey();
   int _charCount1 = 0;
   int _charCount = 0;
+  @override
+  void initState() {
+    super.initState();
+    _tensp = TextEditingController(text: widget.sp['name']);
+    _mota= TextEditingController(text: widget.sp['Description']);
+    _reference = FirebaseFirestore.instance.collection('products').doc(widget.sp['id']);
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -220,7 +232,7 @@ class _SuaSPState extends State<SuaSP> {
                               ],
                             ),
                           ),flex: 3,),
-                          Expanded(child: Text("Quần")),// Khoảng trắng giữa hai icon
+                          Expanded(child: Text(widget.sp['category'])),// Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),)),
@@ -243,7 +255,7 @@ class _SuaSPState extends State<SuaSP> {
                               ],
                             ),
                           ),flex: 3,),
-                          Expanded(child: Text("112")),// Khoảng trắng giữa hai icon
+                          Expanded(child: Text(widget.sp['category'])),// Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),)),
@@ -270,7 +282,7 @@ class _SuaSPState extends State<SuaSP> {
                             ),
                           )
                             ,flex: 3,),
-                          Expanded(child: Text("2000000")),// Khoảng trắng giữa hai icon
+                          Expanded(child: Text(widget.sp['price'])),// Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),)),
@@ -286,7 +298,7 @@ class _SuaSPState extends State<SuaSP> {
                         children: [
                           Expanded(child: Icon(Icons.percent)), // Icon ở đầu
                           Expanded(child: Text("Giảm giá",style:TextStyle(fontSize: 14)),flex: 3,),
-                          Expanded(child: Text("100")),// Khoảng trắng giữa hai icon
+                          Expanded(child: Text(widget.sp['discount'])),// Khoảng trắng giữa hai icon
                           Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                         ],
                       ),)),

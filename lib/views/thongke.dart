@@ -14,8 +14,14 @@ class ThongKe extends StatefulWidget {
 class _ThongKeState extends State<ThongKe> {
   bool FirstButton = true;
   bool SecondButton = false;
+  double W1=50;
+  double W2=50;
+  double W3=100;
+  double W4=50;
+
   @override
   Widget build(BuildContext context) {
+    double TotalW=W1+W2+W3+W4;
     return Scaffold(
       appBar: AppBar(
         title: Text("Thống kê",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
@@ -41,6 +47,14 @@ class _ThongKeState extends State<ThongKe> {
                               SecondButton = false;
                             })
                           };
+                          //
+                          // setState(() {
+                          //   W1=;
+                          //   W2=;
+                          //   W3=;
+                          //   W4=;
+                          // }
+                          // );
                         }
                       }
                       , child: Text("Đơn hàng",style:TextStyle(color: MyColor.dark_pink)),
@@ -75,6 +89,13 @@ class _ThongKeState extends State<ThongKe> {
                             SecondButton = true;
                           })
                         };
+                        //setState(() {
+                          //   W1=;
+                          //   W2=;
+                          //   W3=;
+                          //   W4=;
+                          // }
+                          // );
                       },
                     child: Text("Chi tiêu",style:TextStyle(color: MyColor.dark_pink)),
                     style: ButtonStyle(
@@ -111,7 +132,12 @@ class _ThongKeState extends State<ThongKe> {
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
               height: 300
               ,width: 320,
-            child:  MyPieChart(10.0,10.0,10.0,10.0),
+            child: Stack(
+              children: [
+                MyPieChart(W1,W2,W3,W4),
+                Center(child:Text((TotalW).toString(),style: TextStyle(fontSize: 15),))
+              ],
+            ),
             decoration:  BoxDecoration(
               color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(20.0)
@@ -143,7 +169,7 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("10")
+                            Text(W1.toString())
                           ],
                         )),
                         Expanded(flex:2,child:
@@ -154,7 +180,7 @@ class _ThongKeState extends State<ThongKe> {
                               disabledActiveTrackColor:MyColor.color_w1
                           ),
                           child: Slider(
-                            value:50 ,
+                            value:(W1*100)/TotalW,
                             onChanged: null,
                             min: 0,
                             max: 100,
@@ -191,7 +217,7 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("10")
+                            Text(W2.toString())
                           ],
                         )),
                         Expanded(flex:2,child:
@@ -202,7 +228,7 @@ class _ThongKeState extends State<ThongKe> {
                               disabledActiveTrackColor:MyColor.color_w2),
                           child: Slider(
 
-                            value:50 ,
+                            value:(W2*100)/TotalW,
                             onChanged: null,
                             min: 0,
                             max: 100,
@@ -239,7 +265,7 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("10")
+                            Text(W3.toString())
                           ],
                         )),
                         Expanded(flex:2,child:
@@ -250,7 +276,7 @@ class _ThongKeState extends State<ThongKe> {
                               disabledActiveTrackColor:MyColor.color_w3),
                           child: Slider(
 
-                            value:50 ,
+                            value:(W3*100)/TotalW,
                             onChanged: null,
                             min: 0,
                             max: 100,
@@ -287,7 +313,7 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text("10")
+                            Text(W4.toString())
                           ],
                         )),
                         Expanded(flex:2,child:
@@ -297,7 +323,7 @@ class _ThongKeState extends State<ThongKe> {
                             trackHeight: 8.0,
                               disabledActiveTrackColor:MyColor.color_w4),
                           child: Slider(
-                            value:50 ,
+                            value:(W4*100)/TotalW,
                             onChanged: null,
                             min: 0,
                             max: 100,

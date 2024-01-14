@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/views/item_sl.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:flutter/services.dart';
 import 'package:sales_application/views/themsanpham.dart';

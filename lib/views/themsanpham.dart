@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/color.dart';
@@ -18,16 +19,16 @@ class ThemSP extends StatefulWidget {
 }
 
 class _ThemSPState extends State<ThemSP> {
+  //Firebase
+  CollectionReference _reference=FirebaseFirestore.instance.collection('products');
+  //Khai báo
+  GlobalKey<FormState> key=GlobalKey();
   File ? _selected;
   TextEditingController _tensp = TextEditingController();
   TextEditingController _mota = TextEditingController();
   String _loai_sp= Them.l_sp.toString();
   String _kichco_sp=Them.kichco_sp;
   int _soLuongKho=Them.quatitySizeL+Them.quatitySizeM+Them.quatitySizeS+Them.quatitySizeXL;
-  // int _sizeS=Them.quatitySizeS.toInt();
-  // int _sizeM=Them.quatitySizeM.toInt();
-  // int _sizeL=Them.quatitySizeL.toInt();
-  // int _sizeXL=Them.quatitySizeXL.toInt();
   int _giaBan=Them.price_sp;
   int _giamGia=Them.discount_sp;
   int _charCount1 = 0;
@@ -40,16 +41,38 @@ class _ThemSPState extends State<ThemSP> {
       centerTitle: true,
       backgroundColor: MyColor.light_pink,
       actions: [
-        TextButton(onPressed: (){
+        TextButton(onPressed: () async {
           //Cap nhat gia tri sp của class
-          Them.ten_sp=_tensp.text;
-          Them.mota_sp=_mota.text;
+
+            Them.ten_sp=_tensp.text;
+            Them.mota_sp=_mota.text;
+            //Create a Map of data
+            Map<String,dynamic> dataToSend={
+
+              'id':Them.id_sp+1,
+              'Descriptions':Them.mota_sp,
+              'category':Them.l_sp,
+              'discount':Them.discount_sp,
+              //image:
+              'name':Them.ten_sp,
+              'price':Them.price_sp,
+              'sizeS':Them.quatitySizeS,
+              'sizeM':Them.quatitySizeM,
+              'sizeL':Them.quatitySizeL,
+              'sizeXL':Them.quatitySizeXL,
+              'status':true
+            };
+
+            //Add a new item
+            await _reference.add(dataToSend);
+
 
           // if(_tensp==null||_tensp==""||_mota==""||_mota==null||_loai_sp==""||_giaBan==0||_soLuongKho==0){
           //   print("Nhập thiếu thông tin");
           // }
           //Firebase
           //Final
+            Them.id_sp=0;
           Them.kichco_sp="";
           Them.ten_sp="";
           Them.mota_sp="";
@@ -60,11 +83,14 @@ class _ThemSPState extends State<ThemSP> {
            Them.quatitySizeL=0;
            Them.quatitySizeXL=0;
            Them.discount_sp=0;
+           Them.id_sp=0;
           Navigator.push( context,
             MaterialPageRoute(builder: (context) => QuanLySP()),);
         }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
       ],
       leading: IconButton(onPressed: (){
+
+
         Navigator.push( context,
           MaterialPageRoute(builder: (context) => QuanLySP()),);
       }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
@@ -342,11 +368,10 @@ class _ThemSPState extends State<ThemSP> {
                   onTap: (){},
                   child: Row(
                     children:[
-                      Expanded(child: Icon(Icons.format_size)), // Icon ở đầu
+                      Expanded(child: Icon(Icons.format_size)),
                       Expanded(child: Text("Kích cỡ",style:TextStyle(fontSize: 14)),flex: 3,),
-                      Expanded(child: Text("")),// Khoảng trắng giữa hai icon
+                      Expanded(child: Text("")),
                       Expanded(child: Text(_kichco_sp)),
-                      // Icon ở cuối
                     ],
                   ),)),
           ],
