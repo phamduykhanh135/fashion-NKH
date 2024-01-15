@@ -10,17 +10,15 @@ class ItemSP extends StatelessWidget {
     _reference = FirebaseFirestore.instance.collection('products').doc(itemId);
     _futureData = _reference.get();
   }
-
   String itemId;
-  late DocumentReference _reference;
 
-  //_reference.get()  --> returns Future<DocumentSnapshot>
-  //_reference.snapshots() --> Stream<DocumentSnapshot>
+  late DocumentReference _reference;
   late Future<DocumentSnapshot> _futureData;
   late Map data;
 
   @override
   Widget build(BuildContext context) {
+    print("AAAAAAA$itemId");
     return FutureBuilder<DocumentSnapshot>(
         future: _futureData,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -156,16 +154,28 @@ class ItemSP extends StatelessWidget {
                           ))
                     ],
                   ), flex: 2),
-                  Expanded(child: Row(
+                  Expanded(flex: 1,child: Row(
                     children: [
                       SizedBox(width: 10,),
                       Expanded(
-                          child: ElevatedButton(onPressed: () {}, child: Text(
+                          child: ElevatedButton(onPressed: () async{
+                            bool result = await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return _showDialog(context);
+                              },
+                            );
+                            if (result != null && result) {
+                              _reference.delete();
+                            } else {
+                              print('Người dùng đã chọn "No" hoặc đóng dialog');
+                            }
+                          }, child: Text(
                               "Xoá"))),
                       SizedBox(width: 30,),
                       Expanded(child: ElevatedButton(onPressed: () {
                         // truyen id
-                        //data['id'] =itemId.toString();
+                        data['id'] =itemId;
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SuaSP(data)));
                         //Firebase gán class sửa
@@ -177,7 +187,7 @@ class ItemSP extends StatelessWidget {
                       ),)),
                       SizedBox(width: 10,),
                     ],
-                  ), flex: 1,)
+                  ),)
                 ],
               ),
             );
@@ -186,6 +196,38 @@ class ItemSP extends StatelessWidget {
 
           return Center(child: CircularProgressIndicator());
         }
+    );
+  }
+  @override
+  Widget _showDialog(BuildContext context) {
+    return AlertDialog(
+      title: Text('Xác nhận',style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
+      content: Text('Bạn có muốn xoá sản phẩm này?',style: TextStyle(color: MyColor.dark_pink)),
+      backgroundColor: MyColor.light_grey,
+      actions: <Widget>[
+        ElevatedButton(
+          child: Text('No',style: TextStyle(color: MyColor.dark_pink),),
+          style: ElevatedButton.styleFrom(
+            // Màu nền của nút
+          ),
+          onPressed: () {
+            // Đóng dialog và không thực hiện hành động gì
+            Navigator.of(context).pop(false);
+          },
+        ),
+        ElevatedButton(
+          child: Text('Yes'),
+          style: ElevatedButton.styleFrom(
+            // Màu nền của nút
+            primary: MyColor.light_pink,
+            onPrimary:Colors.white
+          ),
+          onPressed: () {
+            // Thực hiện hành động khi người dùng chọn "Yes"
+            Navigator.of(context).pop(true);
+          },
+        ),
+      ],
     );
   }
 }

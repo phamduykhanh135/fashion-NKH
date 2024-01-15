@@ -10,7 +10,7 @@ import 'package:sales_application/views/loaisanpham.dart';
 import 'package:sales_application/views/quanlysanpham.dart';
 import 'package:sales_application/views/soluongkho.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 class ThemSP extends StatefulWidget {
   const ThemSP({super.key});
 
@@ -23,7 +23,7 @@ class _ThemSPState extends State<ThemSP> {
   CollectionReference _reference=FirebaseFirestore.instance.collection('products');
   //Khai báo
   GlobalKey<FormState> key=GlobalKey();
-  File ? _selected;
+  String? _selected;
   TextEditingController _tensp = TextEditingController();
   TextEditingController _mota = TextEditingController();
   String _loai_sp= Them.l_sp.toString();
@@ -33,6 +33,14 @@ class _ThemSPState extends State<ThemSP> {
   int _giamGia=Them.discount_sp;
   int _charCount1 = 0;
   int _charCount = 0;
+  String imageUrl='';
+  @override
+  void initState() {
+    super.initState();
+    _tensp = TextEditingController(text: Them.ten_sp);
+    _mota= TextEditingController(text:Them.mota_sp);
+    _selected=Them.linkImage;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +61,7 @@ class _ThemSPState extends State<ThemSP> {
               'Descriptions':Them.mota_sp,
               'category':Them.l_sp,
               'discount':Them.discount_sp,
-              //image:
+              'image':Them.linkImage,
               'name':Them.ten_sp,
               'price':Them.price_sp,
               'sizeS':Them.quatitySizeS,
@@ -73,10 +81,11 @@ class _ThemSPState extends State<ThemSP> {
           //Firebase
           //Final
             Them.id_sp=0;
-          Them.kichco_sp="";
-          Them.ten_sp="";
-          Them.mota_sp="";
-          Them.l_sp="";
+            Them.linkImage="";
+            Them.kichco_sp="";
+            Them.ten_sp="";
+            Them.mota_sp="";
+            Them.l_sp="";
            Them.price_sp=0;
            Them.quatitySizeS=0;
            Them.quatitySizeM=0;
@@ -84,6 +93,7 @@ class _ThemSPState extends State<ThemSP> {
            Them.quatitySizeXL=0;
            Them.discount_sp=0;
            Them.id_sp=0;
+           _selected="";
           Navigator.push( context,
             MaterialPageRoute(builder: (context) => QuanLySP()),);
         }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
@@ -122,13 +132,31 @@ class _ThemSPState extends State<ThemSP> {
                         ),
                       ),
                       child:InkWell(
-                        onTap: (){_pickImage();},
-                        child: _selected!=null? Image.file(_selected!):Center(
+                        onTap: ()async{
+                          _pickImage();
+                          // ImagePicker imagePicker=ImagePicker();
+                          // XFile? file=await imagePicker.pickImage(source: ImageSource.gallery);
+                          // Reference referenceRoot=FirebaseStorage.instance.ref();
+                          // Reference referenceDirImages=referenceRoot.child('images');
+                          // //
+                          // String uniqueName=DateTime.now().millisecondsSinceEpoch.toString();
+                          // Reference referenceImageUpLoad=referenceDirImages.child(uniqueName);
+                          // try{
+                          //    await referenceImageUpLoad.putFile(File(file!.path));
+                          //   imageUrl=await referenceImageUpLoad.getDownloadURL();
+                          //
+                          // }catch(e){
+                          //
+                          // }
+                          // Them.linkImage=imageUrl;
+
+                          },
+                        child: _selected!=""? Image.network(_selected!):Center(
                           child: Text("Thêm ảnh",style:TextStyle(fontSize: 14)),/*TODO:*/
                         ),
                       ),
                     ),
-                    if (_selected != null)
+                    if (_selected != "")
                       ...[
                         Positioned(
                           top: 0,
@@ -137,7 +165,7 @@ class _ThemSPState extends State<ThemSP> {
                             icon: Icon(Icons.close_rounded),
                             onPressed: () {
                               setState(() {
-                                _selected = null;
+                                _selected = "";
                               });
                             },
                           ),
@@ -185,6 +213,7 @@ class _ThemSPState extends State<ThemSP> {
                 maxLines:2,
                 onChanged: (text) {
                   setState(() {
+                    Them.ten_sp=_tensp.text;
                     _charCount = text.length;
                     if (_charCount >119) {
                       // Nếu vượt quá giới hạn, cắt bớt văn bản nhập mới
@@ -238,6 +267,7 @@ class _ThemSPState extends State<ThemSP> {
                   maxLines:2,
                   onChanged: (text) {
                     setState(() {
+                      Them.mota_sp=_mota.text;
                       _charCount1 = text.length;
                       if (_charCount1 >2999) {
                         // Nếu vượt quá giới hạn, cắt bớt văn bản nhập mới
@@ -386,9 +416,24 @@ class _ThemSPState extends State<ThemSP> {
   Future _pickImage() async{
     final returnImage=await ImagePicker().pickImage(source: ImageSource.gallery);
     if(returnImage==null)return;
-    setState(() {
-      _selected=File(returnImage!.path);
+    Reference storageReference = FirebaseStorage.instance.ref().child('images/${DateTime.now().millisecondsSinceEpoch}');
+    UploadTask uploadTask = storageReference.putFile(File(returnImage.path));
 
-    });
+    setState(() async {
+      //_selected=File(returnImage!.path);
+      uploadTask.whenComplete(() async {
+        // Lấy URL của hình ảnh đã upload
+        String imageUrl = await storageReference.getDownloadURL();
+
+        // Cập nhật trạng thái và in ra console URL của hình ảnh
+        setState(() {
+          _selected = imageUrl;
+          print("Image URL: $imageUrl");
+          Them.linkImage = imageUrl;
+        });
+      });
+    }
+    );
   }
+
 }

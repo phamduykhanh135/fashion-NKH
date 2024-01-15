@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/model/searchsp.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_qlsp.dart';
@@ -12,8 +13,7 @@ class QuanLySP extends StatelessWidget {
 //Firebase
 CollectionReference _reference=FirebaseFirestore.instance.collection('products');
   late Stream<QuerySnapshot> _stream;
-
-
+  late List<Map<String,dynamic>> items;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
             List<QueryDocumentSnapshot> documents = querySnapshot.docs;
 
             //Convert the documents to Maps
-            List<Map<String,dynamic>> items = documents.map((e) =>
+            items = documents.map((e) =>
             {
 
               'id': e.id,
@@ -64,7 +64,6 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
               'discount':e['discount']
             }).toList();
             Them.id_sp=items.length;
-
             //Display the list
             return ListView.builder(
                 itemCount: items.length,
@@ -73,17 +72,8 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
                   Map thisItem = items[index];
                   //REturn the widget for the list items
                   return ItemSP(thisItem['id']);
-                  // return ListTile(
-                  //   title: Text('${thisItem['name']}'),
-                  //   subtitle: Text('${thisItem['qty']}'),
-                  //   onTap: () {
-                  //     // Navigator.of(context).push(
-                  //     //     MaterialPageRoute(
-                  //     //         builder: (context) =>
-                  //     //             ItemDetails(thisItem['id'] )));
-                  //   },
-                  // );
-                });
+
+                }) ;
           }
 
           //Show loader
@@ -98,4 +88,5 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
     // ),
     );
   }
+
 }

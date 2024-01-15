@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/views/color.dart';
 import 'package:flutter/services.dart';
+import 'package:sales_application/views/suasanpham.dart';
 import 'package:sales_application/views/themsanpham.dart';
+
+import '../model/suasp.dart';
 class GiamGia extends StatefulWidget {
   const GiamGia({super.key});
 
@@ -68,6 +71,71 @@ class _GiamGiaState extends State<GiamGia> {
           ],
         ),
       )
+    );
+  }
+}
+///========================================
+class SGiamGia extends StatelessWidget {
+    SGiamGia(this.itemId, {Key? key}) : super(key: key);
+    String itemId;
+  var _giamgia=TextEditingController(text: SuaMap.myMap['discount'].toString());
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Giảm giá",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
+          centerTitle: true,
+          backgroundColor: MyColor.light_pink,
+          actions: [
+            TextButton(onPressed: (){
+              SuaMap.myMap['id']=itemId;
+              SuaMap.myMap['discount']=_giamgia.text;
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SuaSP(SuaMap.myMap)));
+            }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
+          ],
+
+        ),
+        body:  Container(
+          height: 130,
+          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+          decoration:  BoxDecoration(
+              color:  MyColor.light_grey,
+              borderRadius: BorderRadius.circular(30.0)
+          ),
+          child: Row(
+            children: [
+              Expanded(child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text("Giảm giá")],)),
+              Expanded( flex: 2,
+                  child: Container(
+                    child: TextFormField(
+
+                      controller:_giamgia,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(10),
+                        hintText: 'Enter number',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: MyColor.dark_pink, width: 2.0),
+                        ),
+                        isDense: true, // Cung cấp khoảng trắng thấp hơn giữa nội dung và đường biên
+                        alignLabelWithHint: true,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ))
+            ],
+          ),
+        )
     );
   }
 }
