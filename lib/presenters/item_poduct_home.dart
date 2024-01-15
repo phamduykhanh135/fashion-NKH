@@ -12,13 +12,15 @@ class Item_Product_Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-       print("ssssssssssssssssssssssssssssssssssssssssssss");
+       
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => Product_Screen(idz: product.id),
+            
           ),
         );
+        print("ssssssssssssssssssssssss${product.id}");
       },
       child: Container(
         decoration: BoxDecoration(
@@ -60,15 +62,16 @@ class Item_Product_Home extends StatelessWidget {
                   ),
                 ),
                 child: Row(
-                  children: const [
-                    Icon(
+                  children:  [
+                    const Icon(
                       Icons.local_offer,
                       color: Colors.white,
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     Text(
-                      'SALE',
-                      style: TextStyle(
+                      //'SALE',
+                      product.id,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),

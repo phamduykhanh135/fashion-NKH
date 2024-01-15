@@ -16,6 +16,7 @@ class _Product_ScreenState extends State<Product_Screen> {
   void initState() {
     super.initState();
     getData();
+    print("ppppppppppppppppppppppppp${widget.idz}");
   }
 
   Future<void> getData() async {
@@ -44,7 +45,7 @@ class _Product_ScreenState extends State<Product_Screen> {
                   children: [
                     Image.network(
                       // products.image,
-'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0',
+                      'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0',
                       fit: BoxFit.contain,
                       width: MediaQuery.of(context).size.width / 2 - 10,
                       //color: Colors.amber,
