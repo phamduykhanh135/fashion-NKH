@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Buy_List extends StatelessWidget {
   final double totalPrice;
   final double selectedVoucherValue;
   final void Function(double) onTotalAmountChanged;
 
-  const Buy_List({Key? key, required this.totalPrice, required this.selectedVoucherValue, required this.onTotalAmountChanged});
+  const Buy_List({Key? key, required this.totalPrice, required this.selectedVoucherValue, required this.onTotalAmountChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double finalTotalAmount = totalPrice - (totalPrice * selectedVoucherValue) / 100;
-    onTotalAmountChanged(finalTotalAmount); // Gọi callback khi giá trị thay đổi
+    onTotalAmountChanged(finalTotalAmount);
 
     return Container(
       child: Column(
@@ -25,7 +24,6 @@ class Buy_List extends StatelessWidget {
             ],
           ),
           SizedBox(height: 5,),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

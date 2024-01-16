@@ -7,7 +7,8 @@ import '../views/payment.dart';
 
 class Buy_SelectedOption extends StatefulWidget {
   final void Function(double) onVoucherSelected;
-  const Buy_SelectedOption({Key? key, required this.onVoucherSelected}) : super(key: key);
+  final double totalPrice;
+  const Buy_SelectedOption({Key? key, required this.onVoucherSelected, required this.totalPrice}) : super(key: key);
 
   @override
   State<Buy_SelectedOption> createState() => _Buy_SelectedOptionState();
@@ -50,7 +51,7 @@ class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
                   onVoucherSelected: (value) {
                     // Gọi hàm callback của widget cha để truyền giá trị lên
                     widget.onVoucherSelected(value);
-                  },
+                  }, totalPrice:widget.totalPrice,
                 ),
               ),
             );

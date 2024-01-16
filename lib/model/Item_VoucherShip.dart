@@ -5,13 +5,14 @@ import 'package:sales_application/data/voucherSale_Reader.dart';
 class Item_voucherShip extends StatelessWidget {
   final VoucherShips voucher;
   final int? selectedVoucherId;
+   final double totalPrice;
   final ValueChanged<int?> onChanged;
 
   const Item_voucherShip({
     Key? key,
     required this.voucher,
     required this.selectedVoucherId,
-    required this.onChanged,
+    required this.onChanged, required this.totalPrice,
   }) : super(key: key);
 
   @override

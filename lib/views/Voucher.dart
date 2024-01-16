@@ -1,66 +1,91 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// voucher.dart
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/data/voucherSale_Reader.dart';
-
 import '../model/Item_VoucherSale.dart';
 
 class Voucher extends StatefulWidget {
-   final void Function(double) onVoucherSelected;
-  const Voucher({Key? key, required this.onVoucherSelected}) : super(key: key);
+  final double totalPrice;
+  final void Function(double) onVoucherSelected;
+
+  const Voucher({Key? key, required this.onVoucherSelected, required this.totalPrice}) : super(key: key);
 
   @override
   State<Voucher> createState() => _VoucherState();
 }
 
 class _VoucherState extends State<Voucher> {
-   void _confirmVoucher() {
-  double selectedVoucherValue = getSelectedVoucherValue();
-  print('Selected Voucher Value: $selectedVoucherValue'); // In giá trị để kiểm tra
-
-  if (selectedVoucherValue > 0.0) {
-    // Gọi hàm callback để truyền giá trị lên widget cha
-    widget.onVoucherSelected(selectedVoucherValue);
-    
-    // Xác nhận và truyền giá trị về trang trước
-    Navigator.pop(context, selectedVoucherValue);
-  } else {
-    // Hiển thị thông báo hoặc không thực hiện gì cả nếu không có voucher nào được chọn
-    print('No voucher selected or invalid value'); // In thông báo để kiểm tra
-  }
-}
-
-  double getSelectedVoucherValue() {
-  if (_selectedVoucherId != null) {
-    VoucherSales? selectedVoucher = _voucherSale?.firstWhere((voucher) => voucher.id == _selectedVoucherId);
-    if (selectedVoucher != null) {
-      return selectedVoucher.value.toDouble(); // Chuyển đổi giá trị sang kiểu double
-    }
-  }
-  return 0.0; // Giá trị mặc định nếu không có voucher nào được chọn
-}
-
+  int _selectedVoucherMoney = 0;
   int? _selectedVoucherId;
- 
-
   List<VoucherSales>? _voucherSale;
   Color myColor = Color(0xFF8E1C68);
-
   TextEditingController _voucherController = TextEditingController();
 
   void _loadData() async {
-
     await VoucherSales.loadData_voucher();
     setState(() {
       _voucherSale = VoucherSales.voucher;
     });
   }
-  
 
   @override
   void initState() {
     super.initState();
     _loadData();
+  }
+
+ void _confirmVoucher() {
+  double selectedVoucherValue = getSelectedVoucherValue();
+  print('Selected Voucher Value: $selectedVoucherValue');
+  print('Selected Voucher Money: $_selectedVoucherMoney');
+  print('Selected Voucher Value: ${widget.totalPrice}');
+
+  if (selectedVoucherValue > 0.0) {
+    if (widget.totalPrice > _selectedVoucherMoney) {
+      widget.onVoucherSelected(selectedVoucherValue);
+      Navigator.pop(context, selectedVoucherValue);
+    } else {
+      // Hiển thị thông báo không phù hợp nếu giá trị voucher không đủ
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Thông báo'),
+            content: const Text('Giá trị đơn hàng không đủ để áp dụng cho voucher này.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  } else {
+    print('No voucher selected or invalid value');
+  }
+}
+
+
+  double getSelectedVoucherValue() {
+    if (_selectedVoucherId != null) {
+      VoucherSales? selectedVoucher = _voucherSale?.firstWhere((voucher) => voucher.id == _selectedVoucherId);
+      if (selectedVoucher != null) {
+        return selectedVoucher.value.toDouble();
+      }
+    }
+    return 0.0;
+  }
+
+  void _updateVoucherSale(AsyncSnapshot<QuerySnapshot> snapshot) {
+    if (snapshot.hasData && snapshot.data != null) {
+      _voucherSale = snapshot.data!.docs
+          .map((doc) => VoucherSales.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+    }
   }
 
   @override
@@ -90,7 +115,6 @@ class _VoucherState extends State<Voucher> {
             );
           }
 
-         
           _updateVoucherSale(snapshot);
 
           return ListView(
@@ -120,7 +144,7 @@ class _VoucherState extends State<Voucher> {
                       ),
                     ),
                     onPressed: () {
-                       _confirmVoucher(); // Gọi hàm xác nhận
+                      _confirmVoucher();
                     },
                     child: Text(
                       'Áp dụng',
@@ -140,7 +164,7 @@ class _VoucherState extends State<Voucher> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: _voucherSale!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Item_voucherSale(
+                    return ItemVoucherSale(
                       voucher: _voucherSale![index],
                       selectedVoucherId: _selectedVoucherId,
                       onChanged: (value) {
@@ -148,10 +172,14 @@ class _VoucherState extends State<Voucher> {
                           _selectedVoucherId = value;
                         });
                       },
+                      onChangedMoney: (money) {
+                        setState(() {
+                          _selectedVoucherMoney = money;
+                        });
+                      },
                     );
                   },
                 ),
-              
             ],
           );
         },
@@ -192,14 +220,5 @@ class _VoucherState extends State<Voucher> {
         ),
       ),
     );
-  }
-
-
-  void _updateVoucherSale(AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (snapshot.hasData && snapshot.data != null) {
-      _voucherSale = snapshot.data!.docs
-          .map((doc) => VoucherSales.fromJson(doc.data() as Map<String, dynamic>))
-          .toList();
-    }
   }
 }

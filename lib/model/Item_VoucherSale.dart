@@ -1,17 +1,19 @@
+
 import 'package:flutter/material.dart';
-import 'package:sales_application/data/voucherShip_Reader.dart';
 import 'package:sales_application/data/voucherSale_Reader.dart';
 
-class Item_voucherSale extends StatelessWidget {
+class ItemVoucherSale extends StatelessWidget {
   final VoucherSales voucher;
   final int? selectedVoucherId;
   final ValueChanged<int?> onChanged;
+  final ValueChanged<int> onChangedMoney;
 
-  const Item_voucherSale({
+  const ItemVoucherSale({
     Key? key,
     required this.voucher,
     required this.selectedVoucherId,
     required this.onChanged,
+    required this.onChangedMoney,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,10 @@ class Item_voucherSale extends StatelessWidget {
             activeColor: Colors.pink.shade100,
             value: voucher.id,
             groupValue: selectedVoucherId,
-            onChanged: onChanged,
+            onChanged: (value) {
+              onChanged(value);
+              onChangedMoney(voucher.money);
+            },
           ),
           Container(
             padding: const EdgeInsets.all(5),

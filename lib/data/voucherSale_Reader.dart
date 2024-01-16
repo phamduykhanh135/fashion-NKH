@@ -7,6 +7,7 @@ class VoucherSales {
   String image;
   String descriptions;
   int value;
+  int money;
 
   VoucherSales({
     required this.id,
@@ -15,6 +16,7 @@ class VoucherSales {
     required this.image,
     required this.descriptions,
     required this.value,
+    required this.money
   });
 
   VoucherSales.fromJson(Map<String, dynamic> json)
@@ -23,6 +25,7 @@ class VoucherSales {
         status = json['status'] ?? false,
         image = json['image'] ?? '',
         value = json["value"] ?? 0,
+        money = json["money"] ?? 0,
         descriptions = json['descriptions'] ?? '';
 
   static List<VoucherSales> voucher = [];
