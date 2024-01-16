@@ -1,18 +1,17 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Address {
   int id;
   String fullname;
   bool status;
-  String addressText; // Rename the field to avoid conflicts
+  String addressText;
   String phone;
 
   Address({
     required this.id,
     required this.fullname,
     required this.status,
-    required this.addressText, 
+    required this.addressText,
     required this.phone,
   });
 
@@ -20,7 +19,7 @@ class Address {
       : id = json["id"] ?? 0,
         fullname = json['fullname'] ?? '',
         status = json['status'] ?? false,
-        addressText = json['address'] ?? '', 
+        addressText = json['address'] ?? '',
         phone = json['phone'] ?? '';
 
   static List<Address> _address = [];
@@ -37,29 +36,29 @@ class Address {
           .map((doc) => Address.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      // Handle exceptions or errors here
       print('Error loading data from Firestore: $e');
     }
   }
 
-  static Future<void> addNewaddress(String fullname, String address, String phone) async {
+  static Future<void> addNewaddress(
+      String fullname, String address, String phone) async {
     int newId = _address.length + 1;
     Address newaddress = Address(
       id: newId,
       fullname: fullname,
       status: true,
-      addressText: address, // Update the field name
+      addressText: address,
       phone: phone,
     );
     _address.add(newaddress);
 
     CollectionReference addressCollection =
-        FirebaseFirestore.instance.collection('Address');
+        FirebaseFirestore.instance.collection('address');
     await addressCollection.doc('$newId').set({
       "id": newId,
       "fullname": fullname,
       "status": true,
-      'address': address, // Update the field name
+      'address': address,
       'phone': phone,
     });
   }

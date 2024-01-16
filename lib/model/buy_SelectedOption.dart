@@ -1,26 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
+import '../data/address_Reader.dart';
+import '../views/address_Screen.dart';
 import '../views/Voucher.dart';
 import '../views/payment.dart';
 
 class Buy_SelectedOption extends StatefulWidget {
   final void Function(double) onVoucherSelected;
   final double totalPrice;
-  const Buy_SelectedOption({Key? key, required this.onVoucherSelected, required this.totalPrice}) : super(key: key);
+  final void Function(Address) onAddressSelected;
+
+  const Buy_SelectedOption({
+    Key? key,
+    required this.onVoucherSelected,
+    required this.totalPrice,
+    required this.onAddressSelected,
+  }) : super(key: key);
 
   @override
   State<Buy_SelectedOption> createState() => _Buy_SelectedOptionState();
 }
 
 class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
+  Address? selectedAddress;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
-          const Divider(color: Colors.grey, thickness: 1),
+         
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -38,30 +46,55 @@ class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
           ),
           const Divider(color: Colors.grey, thickness: 1),
           Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    Text("Chọn voucher", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-    IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Voucher(
-            
-                  onVoucherSelected: (value) {
-                    // Gọi hàm callback của widget cha để truyền giá trị lên
-                    widget.onVoucherSelected(value);
-                  }, totalPrice:widget.totalPrice,
-                ),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Chọn voucher", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Voucher(
+                        onVoucherSelected: (value) {
+                          widget.onVoucherSelected(value);
+                        },
+                        totalPrice: widget.totalPrice,
+                      ),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.arrow_forward_ios),
               ),
-            );
-          },
-          icon: Icon(Icons.arrow_forward_ios),
-        )
+            ],
+          ),
+          const Divider(color: Colors.grey, thickness: 1),
+           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text("Chọn địa chỉ nhận hàng", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              
+              IconButton(
+                onPressed: () async {
+                  final result = await Navigator.push<Address?>(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => address_Screen(onAddressSelected: widget.onAddressSelected),
+                    ),
+                  );
 
-          ],
-        ),
-
+                  if (result != null) {
+                    setState(() {
+                      selectedAddress = result;
+                      // No need to update the text here, it's updated in the Text widget
+                      widget.onAddressSelected(result); 
+                    });
+                  }
+                },
+                icon: Icon(Icons.arrow_forward_ios),
+              ),
+            ],
+          ),
+          
         ],
       ),
     );

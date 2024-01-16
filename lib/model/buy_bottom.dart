@@ -1,10 +1,12 @@
+// BuyBottom.dart
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sales_application/data/address_Reader.dart';
 
 class BuyBottom extends StatelessWidget {
   final double onTotalAmountChanged;
   final double VoucherSale;
-  final String address;
+  final Address? address; // Change the type to Address?
 
   const BuyBottom({Key? key, required this.onTotalAmountChanged, required this.VoucherSale, required this.address}) : super(key: key);
 
@@ -31,12 +33,10 @@ class BuyBottom extends StatelessWidget {
                 ),
               ),
               onPressed: () async {
-                
-                print(address);
-                if (address.isEmpty) {
-                  showAddressDialog(context);
-                } else {
+                if (address != null && address!.fullname.isNotEmpty) {
                   await createAndAddInvoice();
+                } else {
+                  showAddressDialog(context);
                 }
               },
               child: Text(
@@ -56,7 +56,7 @@ class BuyBottom extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Lỗi"),
-          content: Text("Vui lòng nhập địa chỉ trước khi thanh toán."),
+          content: Text("Vui lòng chọn địa chỉ trước khi thanh toán."),
           actions: [
             TextButton(
               onPressed: () {
@@ -75,7 +75,9 @@ class BuyBottom extends StatelessWidget {
     List<Map<String, dynamic>> items = paymentsSnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
 
     await FirebaseFirestore.instance.collection('invoices').add({
-      'address': address,
+      'name': address?.fullname,
+      'phone':address?.phone,
+      'address':address?.addressText,
       'items': items,
       'totalAmount': VoucherSale == 0 ? onTotalAmountChanged : onTotalAmountChanged - (onTotalAmountChanged * VoucherSale) / 100,
       'timestamp': FieldValue.serverTimestamp(),

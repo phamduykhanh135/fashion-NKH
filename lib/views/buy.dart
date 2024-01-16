@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../data/address_Reader.dart';
 import '../data/payment_Reader.dart';
 import '../model/buy_SelectedOption.dart';
 import '../model/buy_list.dart';
@@ -22,7 +23,7 @@ class _Buy_ScreenState extends State<Buy_Screen> {
   List<Payments>? _payment;
   double _finalTotalAmount = 0.0;
   Color myColor = const Color(0xFF8E1C68);
-  String _address = '';
+  Address? selectedAddress;
 
   void _loadData() async {
     await Payments.loadData_payment();
@@ -48,80 +49,109 @@ class _Buy_ScreenState extends State<Buy_Screen> {
           backgroundColor: Colors.pink.shade100,
           centerTitle: true,
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('payments').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              print('Lỗi: ${snapshot.error}');
-              return Text('Lỗi: ${snapshot.error}');
-            }
+        body: SingleChildScrollView(
+          child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection('payments').snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                print('Lỗi: ${snapshot.error}');
+                return Text('Lỗi: ${snapshot.error}');
+              }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
 
-            if (snapshot.hasData && snapshot.data != null) {
-              _payment = snapshot.data!.docs.map((doc) => Payments.fromJson(doc.data() as Map<String, dynamic>)).toList();
-            }
+              if (snapshot.hasData && snapshot.data != null) {
+                _payment = snapshot.data!.docs.map((doc) => Payments.fromJson(doc.data() as Map<String, dynamic>)).toList();
+              }
 
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 1),
-              child: ListView(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(8.0),
-                    child: const Text(
-                      'Tổng đơn hàng:',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 1),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(8.0),
+                      child: const Text(
+                        'Tổng đơn hàng:',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  ListView.builder(
-                    padding: EdgeInsets.only(left: 20),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _payment!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return item_buy(payment: _payment![index]);
-                    },
-                  ),
-                  const Divider(color: Colors.grey, thickness: 1),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        address_Screen(),
-                      ],
+                    ListView.builder(
+                      padding: EdgeInsets.only(left: 20),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: _payment!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return item_buy(payment: _payment![index]);
+                      },
                     ),
-                  ),
-                  Buy_SelectedOption(
-                    totalPrice: widget.totalPrice,
-                    onVoucherSelected: (value) {
-                      setState(() {
-                        _selectedVoucherValue = value;
-                      });
-                    },
-                  ),
-                  const Divider(color: Colors.grey, thickness: 1),
-                  Buy_List(
-                    totalPrice: widget.totalPrice,
-                    selectedVoucherValue: _selectedVoucherValue ?? 0.0,
-                    onTotalAmountChanged: (finalTotalAmount) {
+                    const Divider(color: Colors.grey, thickness: 1),
+                    
+                    Buy_SelectedOption(
+                      totalPrice: widget.totalPrice,
+                      onVoucherSelected: (value) {
+                        setState(() {
+                          _selectedVoucherValue = value;
+                        });
+                      },
+                      onAddressSelected: (address) {
+                        setState(() {
+                          selectedAddress = address; 
+                        });
+                      },
+                    ),
+                    
+                    // Display address information
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.all(8.0),
+                          child: selectedAddress != null
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      selectedAddress!.fullname,
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Text(
+                                      selectedAddress!.phone,
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Text(
+                                      selectedAddress!.addressText,
+                                      style: const TextStyle(fontSize: 18),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ],
+                                )
+                              : const Text('Chưa chọn địa chỉ', style: TextStyle(fontSize: 18),textAlign: TextAlign.center),
+                        ),
+
+
+                    const Divider(color: Colors.grey, thickness: 1),
+                    Buy_List(
+                      totalPrice: widget.totalPrice,
+                      selectedVoucherValue: _selectedVoucherValue ?? 0.0,
+                      onTotalAmountChanged: (finalTotalAmount) {
                         _finalTotalAmount = finalTotalAmount;           
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
         bottomNavigationBar: BuyBottom(
           onTotalAmountChanged: widget.totalPrice,
           VoucherSale: _selectedVoucherValue ?? 0,
-          address: _address,
+          address: selectedAddress,
         ),
       ),
     );
