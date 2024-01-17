@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../model/container_Detail.dart';
-import 'package:sales_application/views/cart.dart';
+import '../model/item_detailcontainer.dart';
+import 'package:sales_application/views/cart_Screen.dart';
 import '../model/Item_BottomSheet.dart';
-import 'package:sales_application/model/detail_body.dart';
+import 'package:sales_application/model/item_detailbody.dart';
 import '../data/product_Reader.dart';
 
 class DetailScreen extends StatefulWidget {

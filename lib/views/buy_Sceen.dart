@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../data/address_Reader.dart';
 import '../data/payment_Reader.dart';
-import '../model/buy_SelectedOption.dart';
-import '../model/buy_list.dart';
-import '../model/buy_bottom.dart';
+import '../model/item_buyselectedoption.dart';
+import '../model/item_buylist.dart';
+import '../model/item_buybottom.dart';
 import 'address_Screen.dart';
 import '../model/item_buy.dart';
 

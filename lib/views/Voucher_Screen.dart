@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/data/voucherSale_Reader.dart';
-import '../model/Item_VoucherSale.dart';
+import '../model/Item_vouchersale.dart';
 
 class Voucher extends StatefulWidget {
   final double totalPrice;

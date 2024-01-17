@@ -1,6 +1,6 @@
   import 'package:flutter/material.dart';
-  import 'package:sales_application/model/container_Detail.dart';
-  import 'package:sales_application/model/detail_bottombar.dart';
+  import 'package:sales_application/model/item_detailcontainer.dart';
+  import 'package:sales_application/model/item_detailbottom.dart';
   import '../data/product_Reader.dart';
   import '../data/product_Reader.dart';
 

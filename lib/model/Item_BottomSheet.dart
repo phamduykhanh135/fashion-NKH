@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/data/product_Reader.dart';
 import '../data/cart_Reader.dart';
-import '../views/Detail_Screen.dart';
-import 'container_Detail.dart';
+import '../views/detail_Screen.dart';
+import 'item_detailcontainer.dart';
 
 class Item_bottomSheet extends StatefulWidget {
   final Products product;

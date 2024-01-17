@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../data/address_Reader.dart';
-import '../model/add_address.dart';
-import '../model/buy_SelectedOption.dart';
+import '../model/item_addaddress.dart';
+import '../model/item_buyselectedoption.dart';
 
 class address_Screen extends StatefulWidget {
   final void Function(Address) onAddressSelected;

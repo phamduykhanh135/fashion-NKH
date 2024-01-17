@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/product_screen.dart';
-import 'package:sales_application/views/Detail_Screen.dart';
+import 'package:sales_application/views/detail_Screen.dart';
 
 class Item_Product extends StatelessWidget {
   const Item_Product({super.key});

@@ -29,7 +29,7 @@ class _add_AddressState extends State<add_Address> {
           children: [
             TextFormField(
               controller: _fullNameController,
-              decoration: InputDecoration(labelText: 'Họ và tên'),
+              decoration: InputDecoration(labelText: 'Họ và tên',),
             ),
             SizedBox(height: 10),
             TextFormField(
@@ -42,7 +42,7 @@ class _add_AddressState extends State<add_Address> {
                 TextInputFormatter.withFunction(
                   (oldValue, newValue) {
                     // Số đầu tiên không được là 0
-                    if (newValue!.text.isNotEmpty && newValue.text[0] == '0') {
+                    if (newValue.text.isNotEmpty && newValue.text[0] == '0') {
                       return newValue;
                     }
                     return oldValue;
@@ -76,9 +76,10 @@ class _add_AddressState extends State<add_Address> {
                     _addressController.text,
                     _phoneController.text,
                   );
+                  Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Vui lòng điền đầy đủ thông tin.'),
                     ),
                   );

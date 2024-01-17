@@ -75,6 +75,9 @@ class BuyBottom extends StatelessWidget {
     List<Map<String, dynamic>> items = paymentsSnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
 
     await FirebaseFirestore.instance.collection('invoices').add({
+      'confirm_state': false,
+      'cancel_state': false,
+      'bill_state': true,
       'name': address?.fullname,
       'phone':address?.phone,
       'address':address?.addressText,
