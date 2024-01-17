@@ -45,6 +45,10 @@ class _SoLuongKhoState extends State<SoLuongKho> {
               MaterialPageRoute(builder: (context) => ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
+        leading: IconButton(onPressed: (){
+          Navigator.push( context,
+            MaterialPageRoute(builder: (context) => ThemSP()),);
+        }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
       ),
       body:SingleChildScrollView(
@@ -68,7 +72,9 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                   child: TextFormField(
                     controller:_sizeS,
                     keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly
+                      ,LengthLimitingTextInputFormatter(10)
+                    ],
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
                       hintText: 'Enter number',
@@ -108,7 +114,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                       child: TextFormField(
                         controller:_sizeM,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly ,LengthLimitingTextInputFormatter(10)],
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           hintText: 'Enter number',
@@ -148,7 +154,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                       child: TextFormField(
                         controller:_sizeL,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly ,LengthLimitingTextInputFormatter(10)],
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           hintText: 'Enter number',
@@ -188,7 +194,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                       child: TextFormField(
                         controller:_sizeXL,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly ,LengthLimitingTextInputFormatter(10)],
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(10),
                           hintText: 'Enter number',

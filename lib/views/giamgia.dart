@@ -29,6 +29,10 @@ class _GiamGiaState extends State<GiamGia> {
               MaterialPageRoute(builder: (context) => ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
+        leading: IconButton(onPressed: (){
+          Navigator.push( context,
+            MaterialPageRoute(builder: (context) => ThemSP()),);
+        }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
       ),
       body:  Container(
@@ -50,7 +54,9 @@ class _GiamGiaState extends State<GiamGia> {
 
                     controller:_giamgia,
                     keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(3)
+                    ],
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
                       hintText: 'Enter number',

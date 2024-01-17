@@ -18,7 +18,6 @@ class ItemSP extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("AAAAAAA$itemId");
     return FutureBuilder<DocumentSnapshot>(
         future: _futureData,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -27,13 +26,10 @@ class ItemSP extends StatelessWidget {
           }
 
           if (snapshot.hasData) {
-            //Get the data
             DocumentSnapshot documentSnapshot = snapshot.data;
             data = documentSnapshot.data() as Map;
-
-            //display the data
             return Container(
-              height: 280,
+              height: 300,
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
               decoration: BoxDecoration(
@@ -117,7 +113,7 @@ class ItemSP extends StatelessWidget {
                                       TextSpan(text: '${data['price']}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 16,
+                                            fontSize: 18,
                                             color: Colors.red,
                                             decoration: TextDecoration.none,)),
                                       TextSpan(text: 'đ',
@@ -181,7 +177,6 @@ class ItemSP extends StatelessWidget {
                         //Firebase gán class sửa
                       }, child: Text("Sửa"), style: ElevatedButton.styleFrom(
                         // Màu nền khi nút không được nhấn
-                        onPrimary: MyColor.dark_pink,
                         foregroundColor: MyColor
                             .light_pink, // Màu chữ khi nút không được nhấn, // Màu nền khi nút được nhấn
                       ),)),
@@ -203,7 +198,7 @@ class ItemSP extends StatelessWidget {
     return AlertDialog(
       title: Text('Xác nhận',style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
       content: Text('Bạn có muốn xoá sản phẩm này?',style: TextStyle(color: MyColor.dark_pink)),
-      backgroundColor: MyColor.light_grey,
+      backgroundColor: Colors.white,
       actions: <Widget>[
         ElevatedButton(
           child: Text('No',style: TextStyle(color: MyColor.dark_pink),),

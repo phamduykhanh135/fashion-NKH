@@ -92,6 +92,10 @@ class SGiaSP extends StatelessWidget {
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
+          leading: IconButton(onPressed: (){
+            Navigator.push( context,
+              MaterialPageRoute(builder: (context) => ThemSP()),);
+          }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
         ),
         body:   Container(
@@ -112,7 +116,9 @@ class SGiaSP extends StatelessWidget {
                     child: TextFormField(
                       controller:_giaban,
                       keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly
+                      ,LengthLimitingTextInputFormatter(8)
+                      ],
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
                         hintText: 'Enter number',

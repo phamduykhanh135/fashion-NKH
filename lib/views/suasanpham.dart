@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sales_application/model/suasp.dart';
 import 'package:sales_application/views/color.dart';
@@ -107,7 +108,7 @@ class _SuaSPState extends State<SuaSP> {
             children: [
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-                  height: 140,
+                  height: MediaQuery.of(context).size.width/2.5,
                   padding:const EdgeInsets.all(10),
                   decoration:   BoxDecoration(
                     color:  MyColor.light_grey,
@@ -118,8 +119,8 @@ class _SuaSPState extends State<SuaSP> {
                       Stack(
                         children: [
                           Container(
-                            height: 120,
-                            width: 120,
+                            height: MediaQuery.of(context).size.width/3,
+                            width: MediaQuery.of(context).size.width/3,
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Colors.black,
@@ -139,7 +140,7 @@ class _SuaSPState extends State<SuaSP> {
                                 top: 0,
                                 right: 0,
                                 child: IconButton(
-                                  icon: Icon(Icons.close_rounded),
+                                  icon: Icon(Icons.close_rounded,color: MyColor.light_pink),
                                   onPressed: () {
                                     setState(() {
                                       _selected = "";
@@ -159,7 +160,7 @@ class _SuaSPState extends State<SuaSP> {
               ,
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-                height: 120,
+                height: MediaQuery.of(context).size.width/3.5,
                 padding:EdgeInsets.all(10),
                 constraints:BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(
@@ -188,19 +189,9 @@ class _SuaSPState extends State<SuaSP> {
                     TextField(
                       controller: _tensp/*Todo:*/,
                       maxLines:2,
-                      onChanged: (text) {
-                        setState(() {
-                          _charCount = text.length;
-                          if (_charCount >119) {
-                            // Nếu vượt quá giới hạn, cắt bớt văn bản nhập mới
-                            _mota.text = text.substring(0, 119);
-                            // Di chuyển con trỏ về cuối văn bản
-                            _mota.selection = TextSelection.fromPosition(
-                              TextPosition(offset: _mota.text.length),
-                            );
-                          }
-                        });
-                      },
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(120)
+                      ],
                       decoration: const InputDecoration(
                           hintText: 'Nhập tên sản phẩm',
                           border: InputBorder.none // Loại bỏ đường gạch chân khi không có focus
@@ -212,7 +203,7 @@ class _SuaSPState extends State<SuaSP> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-                height: 120,
+                height: MediaQuery.of(context).size.width/3.5,
                 padding:const EdgeInsets.all(10),
                 constraints:const BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(
@@ -240,20 +231,10 @@ class _SuaSPState extends State<SuaSP> {
                     ),
                     TextField(
                       controller: _mota/*Todo:*/,
+                      inputFormatters: [
+                      LengthLimitingTextInputFormatter(3000)
+                      ],
                       maxLines:2,
-                      onChanged: (text) {
-                        setState(() {
-                          _charCount1 = text.length;
-                          if (_charCount1 >2999) {
-                            // Nếu vượt quá giới hạn, cắt bớt văn bản nhập mới
-                            _mota.text = text.substring(0, 2999);
-                            // Di chuyển con trỏ về cuối văn bản
-                            _mota.selection = TextSelection.fromPosition(
-                              TextPosition(offset: _mota.text.length),
-                            );
-                          }
-                        });
-                      },
                       decoration: const InputDecoration(
                           hintText: 'Nhập mô tả sản phẩm',
                           border: InputBorder.none // Loại bỏ đường gạch chân khi không có focus
@@ -266,7 +247,7 @@ class _SuaSPState extends State<SuaSP> {
               SizedBox(height: MediaQuery.of(context).size.height/60),
               ///Phần chọn
               Container(
-                height: 250,
+                height: MediaQuery.of(context).size.width/1.6,
                 padding:const EdgeInsets.all(10),
                 decoration:  BoxDecoration(
                     color:  MyColor.light_grey

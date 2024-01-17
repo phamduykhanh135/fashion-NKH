@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
@@ -75,9 +74,13 @@ class _ThemSPState extends State<ThemSP> {
             await _reference.add(dataToSend);
 
 
-          // if(_tensp==null||_tensp==""||_mota==""||_mota==null||_loai_sp==""||_giaBan==0||_soLuongKho==0){
-          //   print("Nhập thiếu thông tin");
-          // }
+          if(_tensp==""||_mota==""||_loai_sp==""||_giaBan==0||_soLuongKho==0||_selected==""){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Bạn chưa nhập đầy đủ thông tin'),
+              ),
+            );
+          }
           //Firebase
           //Final
             Them.id_sp=0;
@@ -99,7 +102,20 @@ class _ThemSPState extends State<ThemSP> {
         }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
       ],
       leading: IconButton(onPressed: (){
-
+        Them.id_sp=0;
+        Them.linkImage="";
+        Them.kichco_sp="";
+        Them.ten_sp="";
+        Them.mota_sp="";
+        Them.l_sp="";
+        Them.price_sp=0;
+        Them.quatitySizeS=0;
+        Them.quatitySizeM=0;
+        Them.quatitySizeL=0;
+        Them.quatitySizeXL=0;
+        Them.discount_sp=0;
+        Them.id_sp=0;
+        _selected="";
 
         Navigator.push( context,
           MaterialPageRoute(builder: (context) => QuanLySP()),);
@@ -112,7 +128,7 @@ class _ThemSPState extends State<ThemSP> {
         children: [
           SizedBox(height: MediaQuery.of(context).size.height/60),
         Container(
-            height: 140,
+            height: MediaQuery.of(context).size.width/2.5,
             padding:const EdgeInsets.all(10),
             decoration:   BoxDecoration(
               color:  MyColor.light_grey,
@@ -123,8 +139,8 @@ class _ThemSPState extends State<ThemSP> {
                 Stack(
                   children: [
                     Container(
-                      height: 120,
-                      width: 120,
+                      height: MediaQuery.of(context).size.width/3,
+                      width: MediaQuery.of(context).size.width/3,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Colors.black,
@@ -134,22 +150,6 @@ class _ThemSPState extends State<ThemSP> {
                       child:InkWell(
                         onTap: ()async{
                           _pickImage();
-                          // ImagePicker imagePicker=ImagePicker();
-                          // XFile? file=await imagePicker.pickImage(source: ImageSource.gallery);
-                          // Reference referenceRoot=FirebaseStorage.instance.ref();
-                          // Reference referenceDirImages=referenceRoot.child('images');
-                          // //
-                          // String uniqueName=DateTime.now().millisecondsSinceEpoch.toString();
-                          // Reference referenceImageUpLoad=referenceDirImages.child(uniqueName);
-                          // try{
-                          //    await referenceImageUpLoad.putFile(File(file!.path));
-                          //   imageUrl=await referenceImageUpLoad.getDownloadURL();
-                          //
-                          // }catch(e){
-                          //
-                          // }
-                          // Them.linkImage=imageUrl;
-
                           },
                         child: _selected!=""? Image.network(_selected!):Center(
                           child: Text("Thêm ảnh",style:TextStyle(fontSize: 14)),/*TODO:*/
@@ -162,7 +162,7 @@ class _ThemSPState extends State<ThemSP> {
                           top: 0,
                           right: 0,
                           child: IconButton(
-                            icon: Icon(Icons.close_rounded),
+                            icon: Icon(Icons.close_rounded,color: MyColor.light_pink,),
                             onPressed: () {
                               setState(() {
                                 _selected = "";
@@ -171,18 +171,15 @@ class _ThemSPState extends State<ThemSP> {
                           ),
                         ),
                       ],
-
                   ],
                 )
-
               ],
-
             )
         )
           ,
         SizedBox(height: MediaQuery.of(context).size.height/60),
         Container(
-          height: 120,
+          height: MediaQuery.of(context).size.width/3.5,
           padding:EdgeInsets.all(10),
           constraints:BoxConstraints(maxHeight: 200.0),
           decoration:  BoxDecoration(
@@ -236,7 +233,7 @@ class _ThemSPState extends State<ThemSP> {
         ),
           SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
-            height: 120,
+            height:MediaQuery.of(context).size.width/3.5,
             padding:const EdgeInsets.all(10),
             constraints:const BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(
@@ -251,7 +248,6 @@ class _ThemSPState extends State<ThemSP> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: null,
                         style: DefaultTextStyle.of(context).style,
                         children: const <TextSpan>[
                           TextSpan(text: 'Mô tả sản phẩm ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 13,color: Colors.black,decoration: TextDecoration.none,)),
@@ -291,7 +287,7 @@ class _ThemSPState extends State<ThemSP> {
           SizedBox(height: MediaQuery.of(context).size.height/60),
           ///Phần chọn
             Container(
-            height: 250,
+            height: MediaQuery.of(context).size.width/1.6,
             padding:const EdgeInsets.all(10),
             decoration:  BoxDecoration(
         color:  MyColor.light_grey

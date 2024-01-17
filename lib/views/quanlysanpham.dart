@@ -80,12 +80,6 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
           return Center(child: CircularProgressIndicator());
         },
       ),
-    //   ListView.builder(
-    //     itemCount: 10,
-    //     itemBuilder: (BuildContext context, int index) {
-    //   return ItemSP();
-    // },
-    // ),
     );
   }
 
