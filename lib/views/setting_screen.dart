@@ -56,7 +56,7 @@ class Setting_Screen extends StatelessWidget {
                 child: const Text(
                   "Chỉnh sửa hồ sơ",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     
@@ -100,7 +100,7 @@ class Setting_Screen extends StatelessWidget {
                 child: const Text(
                   "Ngôn ngữ",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     
@@ -144,7 +144,7 @@ class Setting_Screen extends StatelessWidget {
                 child: const Text(
                   "Đổi mật khẩu",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     

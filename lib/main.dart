@@ -2,6 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sales_application/model/user.dart';
+
+import 'package:sales_application/presenters/home.dart';
+
 import 'package:sales_application/views/personal_screen.dart';
 import 'package:sales_application/views/change_password_screen.dart';
 import 'package:sales_application/views/seach_screen.dart';
@@ -33,8 +36,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const Menu_Screen()
-      initialRoute: "/sigin_in",
+      initialRoute: "/home",
       routes: {
+        "/home": (context) => const Home(),
         "/sigin_in": (context) => const SiginIn_Screen(),
         "/sigin_up": (context) => const SiginUp_Screen(),
         "/change_password": (context) => const Change_Password_screen(),

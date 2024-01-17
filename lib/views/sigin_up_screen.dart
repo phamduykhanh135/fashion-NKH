@@ -1,6 +1,9 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:sales_application/presenters/resuable_widget.dart';
 
 import '../model/user.dart';
+import '../presenters/language_presenter.dart';
 
 class SiginUp_Screen extends StatefulWidget {
   const SiginUp_Screen({super.key});
@@ -19,6 +22,8 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
       TextEditingController();
   final TextEditingController _addessTextController = TextEditingController();
   final TextEditingController _phoneTextController = TextEditingController();
+  bool _isObscure = true;
+    bool _isObscures = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +31,7 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
         body: Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(color: Colors.pink.shade100.withOpacity(0.1)
-          ),
+      decoration: BoxDecoration(color: Colors.pink.shade100.withOpacity(0.1)),
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 50),
         child: Form(
@@ -96,195 +100,130 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: TextFormField(
-                  controller: _fullnNameTextController,
-                  cursorColor: Colors.pink,
-                  style: TextStyle(color: Colors.pink.withOpacity(0.9)),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    labelText: "Họ tên",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    filled: true,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: Colors.pink.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
-                            width: 0, style: BorderStyle.none)),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: const BorderSide(
-                        color: Colors.pink, // Border color when focused
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
+                child: resuableTexFile(
+                  "Họ tên",
+                  Icons.person,
+                  false,
+                  false,
+                  _fullnNameTextController,
+                  (value) {
+                    if (value == null || value.isEmpty) {
+                      return "${LanguagePresenter.language.fullName} ${LanguagePresenter.language.notBeEmpty}";
+                    }
+                    return null; // Valid
+                  },
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: TextFormField(
-                  controller: _emailTextController,
-                  cursorColor: Colors.pink,
-                  style: TextStyle(color: Colors.pink.withOpacity(0.9)),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    labelText: "Email",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    filled: true,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: Colors.pink.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
-                            width: 0, style: BorderStyle.none)),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: const BorderSide(
-                        color: Colors.pink, // Border color when focused
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
+                child: resuableTexFile(
+                  "Email",
+                  Icons.email,
+                  false,
+                  false,
+                  _emailTextController,
+                  (value) {
+                    if (value != null && !EmailValidator.validate(value)) {
+                      return LanguagePresenter.language.enterEmailValid;
+                    }
+                    if (value == null || value.isEmpty) {
+                      return LanguagePresenter.language.notBeEmpty;
+                    }
+                    return null;
+                  },
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: TextFormField(
-                  controller: _addessTextController,
-                  cursorColor: Colors.pink,
-                  style: TextStyle(color: Colors.pink.withOpacity(0.9)),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    labelText: "Địa chỉ",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    filled: true,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: Colors.pink.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
-                            width: 0, style: BorderStyle.none)),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: const BorderSide(
-                        color: Colors.pink, // Border color when focused
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.streetAddress,
+                child: resuableTexFile(
+                  "Địa chỉ",
+                  Icons.location_on,
+                  false,
+                  false,
+                  _addessTextController,
+                  (value) {
+                    if (value == null || value.isEmpty) {
+                      return LanguagePresenter.language.notBeEmpty;
+                    }
+                    return null;
+                  },
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: TextFormField(
-                  controller: _phoneTextController,
-                  cursorColor: Colors.pink,
-                  style: TextStyle(color: Colors.pink.withOpacity(0.9)),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.email,
-                      color: Colors.white,
-                    ),
-                    labelText: "Số diện thoại",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    filled: true,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: Colors.pink.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
-                            width: 0, style: BorderStyle.none)),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: const BorderSide(
-                        color: Colors.pink, // Border color when focused
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.phone,
+                child: resuableTexFile(
+                  "Số điện thoại",
+                  Icons.phone,
+                  false,
+                  true,
+                  _phoneTextController,
+                  (value) {
+                    if (value == null || value.isEmpty) {
+                      return LanguagePresenter.language.notBeEmpty;
+                    }
+                    if (value.length < 10) {
+                      return LanguagePresenter.language.invalidphonenumber;
+                    }
+                    return null;
+                  },
                 ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: TextFormField(
-                  controller: _passwordTextController,
-                  cursorColor: Colors.pink,
-                  style: TextStyle(color: Colors.pink.withOpacity(0.9)),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    labelText: "Mật Khẩu",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    filled: true,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: Colors.pink.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
-                            width: 0, style: BorderStyle.none)),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: const BorderSide(
-                        color: Colors.pink, // Border color when focused
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
+                child: resuablepassTexFile(
+                  "Password",
+                  Icons.lock,
+                  true,
+                  _passwordTextController,
+                  (value) {
+                    if (value != null && value.isNotEmpty) {
+                      if (value.length < 8) {
+                        return LanguagePresenter.language.passwordValid;
+                      }
+                    } else {
+                      return LanguagePresenter.language.notBeEmpty;
+                    }
+                    return null;
+                  },
+                  _isObscure, // Truyền giá trị _isObscure
+                  () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                child: TextFormField(
-                  controller: _comfirmpasswordTextController,
-                  cursorColor: Colors.pink,
-                  style: TextStyle(color: Colors.pink.withOpacity(0.9)),
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                    ),
-                    labelText: "Xác thực mật Khẩu",
-                    labelStyle: const TextStyle(color: Colors.white),
-                    filled: true,
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    fillColor: Colors.pink.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                        borderSide: const BorderSide(
-                            width: 0, style: BorderStyle.none)),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: const BorderSide(
-                        color: Colors.pink, // Border color when focused
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
-                ),
-              ),
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                  child: resuablepassTexFile(
+                    "Xác thực mật khẩu",
+                    Icons.lock,
+                    true,
+                    _comfirmpasswordTextController,
+                    (value) {
+                      if (value != null && value.isNotEmpty) {
+                        if (value.length < 8) {
+                          return LanguagePresenter.language.passwordValid;
+                        } else if (value != _passwordTextController.text) {
+                          return "Mật khẩu không khớp";
+                        }
+                      } else {
+                        return LanguagePresenter.language.notBeEmpty;
+                      }
+                      return null;
+                    },
+                    _isObscures, // Truyền giá trị _isObscure
+                    () {
+                      setState(() {
+                        _isObscures = !_isObscures;
+                      });
+                    },
+                  )),
               Container(
                 width: 150,
                 height: 50,
@@ -344,4 +283,54 @@ class _SiginUp_ScreenState extends State<SiginUp_Screen> {
       ),
     ));
   }
+}
+
+TextFormField resuablepassTexFile(
+  String text,
+  IconData icon,
+  bool isPasswordType,
+  TextEditingController controller,
+  String? Function(String?)? validator,
+  bool isObscure, // Thêm tham số để truyền giá trị _isObscure từ bên ngoài
+  VoidCallback toggleObscure, // Thêm callback để cập nhật _isObscure
+) {
+  return TextFormField(
+    controller: controller,
+    obscureText: isObscure,
+    cursorColor: Colors.pink,
+    style: TextStyle(
+        color: Colors.pink
+            .withOpacity(0.9)), // Sử dụng giá trị được truyền từ bên ngoài
+    decoration: InputDecoration(
+      prefixIcon: Icon(
+        icon,
+        color: Colors.white,
+      ),
+      suffixIcon: isPasswordType
+          ? IconButton(
+              icon: Icon(
+                isObscure ? Icons.visibility_off : Icons.visibility,
+                color: Colors.white,
+              ),
+              onPressed:
+                  toggleObscure, // Sử dụng callback để cập nhật _isObscure
+            )
+          : null,
+      labelText: text,
+      labelStyle: const TextStyle(color: Colors.white),
+      filled: true,
+      floatingLabelBehavior: FloatingLabelBehavior.never,
+      fillColor: Colors.pink.withOpacity(0.1),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.0),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none)),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20.0),
+        borderSide: const BorderSide(
+          color: Colors.pink, // Border color when focused
+          width: 1.0,
+        ),
+      ),
+    ),
+  );
 }

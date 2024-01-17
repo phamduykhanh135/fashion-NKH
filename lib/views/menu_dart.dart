@@ -52,7 +52,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                         decoration: BoxDecoration(
                             color: Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(20)),
-                        height: 30,
+                        height: 40,
                         width: MediaQuery.of(context).size.width - 20,
                         padding: const EdgeInsets.all(10),
                         child: Row(
@@ -60,7 +60,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                           children: const [
                             Icon(
                               Icons.search,
-                              size: 10,
+                              size: 15,
                               color: Colors.grey,
                             ),
                             SizedBox(
@@ -69,7 +69,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                             Text(
                               'Tìm kiếm...',
                               style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 15,
                                 color: Colors.grey,
                               ),
                             ),
@@ -98,6 +98,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
               ]),
             ),
             Container(
+              color: Colors.pink.withOpacity(0.1),
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Column(
                 children: [
@@ -106,13 +107,13 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                       Image.network(
                           'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0'),
                       Image.network(
-                          'https://cdn2.yame.vn/pimg/ao-thun-co-tron-on-gian-ngan-ha-space-ver16-0020556/dfeb53a3-c7ed-e800-53f4-0018ac665d5b.jpg?w=540&h=756'),
+                          'https://cmsv2.yame.vn/uploads/60b16fe1-2f0f-4535-b264-9ba7784e0934/Banner_web_04_(_1280x1280).jpg?quality=80&w=0&h=0'),
                       Image.network(
-                          'https://cdn2.yame.vn/pimg/so-mi-co-danton-than-co-ai-khepri-ver2-0021563/7a839b12-e38c-9c00-e4a8-001a235d78d5.jpg?w=540&h=756'),
+                          'https://cmsv2.yame.vn/uploads/da6551a6-7ed7-4515-8502-f8b1de462d36/z4963783541296_74a59797be557c9e67f67f28fbc7ba41.jpg?quality=80&w=0&h=0'),
                       Image.network(
-                          'https://cdn2.yame.vn/pimg/ao-khoac-la-co-y-nguyen-ban-18--ver39-0021147/29d2f437-dac2-c800-73bf-001999bb2024.jpg?w=540&h=756'),
+                          'https://cmsv2.yame.vn/uploads/c54d6d05-b510-43ef-bfed-96fcc70b0639/Landing_page_MGC_(1280x..)02.jpg?quality=80&w=0&h=0'),
                       Image.network(
-                          'https://cdn2.yame.vn/pimg/so-mi-tay-ngan-on-gian-y-nguyen-ban-ver50-0021396/39834ab1-150b-3a01-adf4-001a33ea75f4.jpg?w=800'),
+                          'https://cmsv2.yame.vn/uploads/ae4227ee-2ac9-49c4-918b-689f5f9c0fae/BALO-Sale-2.jpg?quality=80&w=0&h=0'),
                       // Add more images if needed
                     ],
                     options: CarouselOptions(

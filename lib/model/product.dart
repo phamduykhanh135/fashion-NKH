@@ -10,9 +10,9 @@ class Product {
   late String name;
   late String price;
   late bool status;
-  late String size;
   late String descriptions;
   late String category;
+  late String discount;
 
   Product() {
     id = "";
@@ -20,9 +20,9 @@ class Product {
     name = "";
     price = "";
     status = false;
-    size = "";
     descriptions = "";
     category="";
+    discount="";
   }
 
   Product.info({
@@ -31,7 +31,8 @@ class Product {
     required this.name,
     required this.price,
     required this.status,
-    required this.size,
+    required this.discount,
+  //  required this.size,
     required this.descriptions,
     required this.category
   });
@@ -40,11 +41,11 @@ class Product {
       : id = json['id'] ?? "",
         image = json['image'] ?? "",
         name = json['name'] ?? "",
-        price = (json['price'] ?? "")
-            .toString(), // Kiểm tra và chuyển đổi kiểu nếu cần
+        price = (json['price'] ?? "") ,// Kiểm tra và chuyển đổi kiểu nếu cần
         status = json['status'] ?? false,
-        size = json['size'] ?? "",
-        descriptions = json['descriptions'] ?? "",
+        //size = json['size'] ?? "",
+        discount = (json['discount'] ?? "") ,
+        descriptions = json['Descriptions'] ?? "",
         category = json['category'] ?? "";
 
   Product.copy(Product product)
@@ -53,19 +54,21 @@ class Product {
         name = product.name,
         price = product.price,
         status = product.status,
-        size = product.size,
+        discount = product.discount,
+        //size = product.size,
         descriptions = product.descriptions,
         category=product.category;
 
   Map<String, dynamic> toJson({bool? deleted}) {
     return {
       'id': id,
-      'image': image.isNotEmpty ? image : "null",
+      'image': image,//.isNotEmpty ? image : "null",
       'name': name,
       'price': price,
       'status': status,
-      'size': size,
-      'descriptions': descriptions,
+      'discount': discount,
+      //'size': size,
+      'Descriptions': descriptions,
       'category':category,
       'deleted': deleted ?? false,
     };
@@ -77,7 +80,8 @@ class Product {
     result = result && name == otherProduct.name;
     result = result && price == otherProduct.price;
     result = result && status == otherProduct.status;
-    result = result && size == otherProduct.size;
+    // result = result && size == otherProduct.size;
+      result = result && discount == otherProduct.discount;
     result = result && descriptions == otherProduct.descriptions;
     result = result && category == otherProduct.category;
     return result;
@@ -101,7 +105,7 @@ class FirebaseModel {
     try {
       // Replace 'yourFirestoreCollection' with the actual collection name
       DocumentSnapshot<Map<String, dynamic>> productSnapshot = await FirebaseFirestore.instance
-          .collection('product')
+          .collection('products')
           .doc(productId)
           .get();
 
@@ -120,7 +124,7 @@ class FirebaseModel {
 
   Future<List<Product>> getProductsData() async {
     final CollectionReference productsCollection =
-        FirebaseFirestore.instance.collection('product');
+        FirebaseFirestore.instance.collection('products');
 
     try {
       QuerySnapshot productsSnapshot = await productsCollection.get();
@@ -137,33 +141,29 @@ class FirebaseModel {
     }
   }
 
+
   Future<List<Product>> searchProducts(String searchQuery) async {
-    try {
-      // QuerySnapshot<Map<String, dynamic>> querySnapshot =
-      //     await FirebaseFirestore.instance
-      //         .collection("product")
-      //         .where("name", arrayContains: searchQuery)
-      //         .get();
-      QuerySnapshot<Map<String, dynamic>> querySnapshot =
-    await FirebaseFirestore.instance
-        .collection("product")
-        .where("name", isGreaterThanOrEqualTo: searchQuery)
-        //.orderBy("name")
-        .get();
+  try {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance
+            .collection("products")
+            .where("name", isGreaterThanOrEqualTo: searchQuery)
+            .where("name", isLessThan: '${searchQuery}z')
+            .get();
 
+    // Convert data from QuerySnapshot to a list of products
+    List<Product> products = querySnapshot.docs
+        .map((doc) => Product.fromJson(doc.data()))
+        .toList();
 
-      // Convert data from QuerySnapshot to a list of products
-      List<Product> products = querySnapshot.docs
-          .map((doc) => Product.fromJson(doc.data()))
-          .toList();
-
-      return products;
-    } catch (e) {
-      print("Error searching products by name: $e");
-      // Handle the error or return an empty list depending on your requirements
-      return [];
-    }
+    return products;
+  } catch (e) {
+    print("Error searching products by name: $e");
+    // Handle the error or return an empty list depending on your requirements
+    return [];
   }
+}
+
 
 Future<List<Product>> searchProductsByCategory(String searchQuery, String category) async {
   try {
@@ -173,13 +173,13 @@ Future<List<Product>> searchProductsByCategory(String searchQuery, String catego
     if (category == "Tất cả") {
       // Nếu là "Tất cả", không áp dụng điều kiện tìm kiếm theo danh mục
       querySnapshot = await FirebaseFirestore.instance
-          .collection("product")
+          .collection("products")
           //.where("name", isGreaterThanOrEqualTo: searchQuery)
           .get();
     } else {
       // Nếu không phải "Tất cả", áp dụng điều kiện tìm kiếm theo danh mục
       querySnapshot = await FirebaseFirestore.instance
-          .collection("product")
+          .collection("products")
          // .where("name", isGreaterThanOrEqualTo: searchQuery)
           .where("category", isEqualTo: category)
           .get();
@@ -201,8 +201,10 @@ Future<List<Product>> searchProductsByCategory(String searchQuery, String catego
 
   Future<int> fetchTotalProductCount() async {
     final CollectionReference productsCollection =
-        FirebaseFirestore.instance.collection('product');
+        FirebaseFirestore.instance.collection('products');
     QuerySnapshot productsSnapshot = await productsCollection.get();
     return productsSnapshot.size;
   }
 }
+
+

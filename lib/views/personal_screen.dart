@@ -188,7 +188,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.grey,
                           ),
                         ),
                         Icon(
@@ -225,13 +225,13 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.grey,
                           ),
                         ),
                         Icon(
                           Icons.arrow_forward_ios_outlined,
                           size: 15,
-                          color: Colors.black,
+                          color: Colors.grey,
                         ),
                       ],
                     ),
@@ -262,13 +262,13 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                            color: Colors.grey,
                           ),
                         ),
                         Icon(
                           Icons.arrow_forward_ios_outlined,
                           size: 15,
-                          color: Colors.black,
+                          color: Colors.grey,
                         ),
                       ],
                     ),
