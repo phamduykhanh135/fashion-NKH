@@ -22,28 +22,46 @@ Future<void> _showConfirm(String addressId) async {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Xác nhận xóa'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Bạn có chắc muốn xóa địa chỉ này không?'),
-              ],
-            ),
-          ),
+           backgroundColor: Color.fromARGB(255, 239, 232, 232),
+          title: const Text('Bạn có muốn xóa?',textAlign: TextAlign.center),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          
           actions: <Widget>[
-            TextButton(
-              child: Text('Hủy'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+              TextButton(
+              style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                    ),
+              ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(); // Đóng dialog
               },
+              child: const Text('Hủy',style: TextStyle(color: Colors.black)),
             ),
+            
             TextButton(
-              child: Text('Xóa'),
-              onPressed: () {
+              style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.pink.shade100),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                    ),
+              ),
+             onPressed: () async {
+                Address.deleteAddress(addressId);
                 Navigator.of(context).pop();
-               Address.deleteAddress(addressId);
-              },
+            },
+
+              child: const Text('Xóa',style: TextStyle(color: Colors.black)),
             ),
+            ],)
           ],
         );
       },

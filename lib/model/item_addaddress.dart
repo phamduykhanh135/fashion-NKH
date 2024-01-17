@@ -27,14 +27,27 @@ class _add_AddressState extends State<add_Address> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TextFormField(
-              controller: _fullNameController,
-              decoration: InputDecoration(labelText: 'Họ và tên',),
+            SizedBox(height: 30),
+          TextFormField(
+          controller: _fullNameController,
+          decoration: const InputDecoration(
+            labelText: 'Họ và tên',
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black), // Màu viền khi trường được focus
             ),
+            labelStyle: TextStyle(color: Colors.black), // Màu label
+          ),
+        ),
             SizedBox(height: 10),
             TextFormField(
               controller: _phoneController,
-              decoration: InputDecoration(labelText: 'Số điện thoại'),
+              decoration: const InputDecoration(
+              labelText: 'Số điện thoại',
+              focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            labelStyle: TextStyle(color: Colors.black),
+              ),
               keyboardType: TextInputType.phone,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly, // Chỉ cho phép nhập số
@@ -51,11 +64,16 @@ class _add_AddressState extends State<add_Address> {
               ],
             ),
             SizedBox(height: 10),
-            TextFormField(
-              maxLength: 200,
-              controller: _addressController,
-              decoration: InputDecoration(labelText: 'Địa chỉ'),
+           TextFormField(
+          controller: _addressController,
+          decoration: const InputDecoration(
+            labelText: 'Địa chỉ',
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black), // Màu viền khi trường được focus
             ),
+            labelStyle: TextStyle(color: Colors.black), // Màu label
+          ),
+        ),
             SizedBox(height: 20),
             ElevatedButton(
               style: ButtonStyle(
