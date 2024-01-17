@@ -62,4 +62,12 @@ class Address {
       'phone': phone,
     });
   }
+  static Future<void> deleteaddress(String addressId) async {
+  try {
+    await FirebaseFirestore.instance.collection('address').doc(addressId).delete();
+    print('Deleted cart with ID: $addressId');
+  } catch (e) {
+    print('Error deleting cart: $e');
+  }
+}
 }

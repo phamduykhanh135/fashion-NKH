@@ -132,6 +132,7 @@ class _address_ScreenState extends State<address_Screen> {
   Widget buildAddressItem(int index) {
     return ListTile(
       title: Row(
+        
         children: [
           Radio(
             activeColor: Colors.pink.shade100,
@@ -154,8 +155,18 @@ class _address_ScreenState extends State<address_Screen> {
                 Text(addr[index].phone,style: TextStyle(fontSize: 18)),
                 Text(addr[index].addressText,style: TextStyle(fontSize: 18)),
               ],
+              
             ),
+            
+            
           ),
+           IconButton(
+                          onPressed: (){
+                            
+                            // _showConfirm();
+                          },
+                          icon: const Icon(Icons.delete),
+                        ),
         ],
       ),
     );

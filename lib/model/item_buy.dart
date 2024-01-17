@@ -46,7 +46,7 @@ class _item_buyState extends State<item_buy> {
                 SizedBox(height: 5,),
                 Text("Size: ${widget.payment.size}",style: TextStyle(fontSize: 16,)),
                 SizedBox(height: 5,),
-                // ignore: unnecessary_string_interpolations
+                
                 Text("${widget.payment.price.toStringAsFixed(3)}",style: const TextStyle(fontSize: 16,),),
                 SizedBox(height: 5,),
                 Text("số lượng: ${widget.payment.quality}",style: TextStyle(fontSize: 16,)),
