@@ -1,6 +1,5 @@
  class Them{
   static String linkImage="";
-  static int id_sp=0;
   static String ten_sp="";
   static String mota_sp="";
   static String l_sp="";
@@ -11,5 +10,7 @@
   static int quatitySizeL=0;
   static int quatitySizeXL=0;
   static int discount_sp=0;
+  static int char_ten=0;
+  static int char_mota=0;
 
 }

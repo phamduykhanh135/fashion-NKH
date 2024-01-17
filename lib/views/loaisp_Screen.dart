@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/suasp.dart';
 import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/suasanpham.dart';
-import 'package:sales_application/views/themsanpham.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/views/suasp_Screen.dart';
+import 'package:sales_application/views/themsp_Screen.dart';
 
 class LoaiSP extends StatefulWidget {
   const LoaiSP({super.key});
@@ -22,7 +22,7 @@ class _LoaiSPState extends State<LoaiSP> {
         centerTitle: true,
         backgroundColor: MyColor.light_pink,
         leading: IconButton(onPressed: (){
-          Navigator.push( context,
+          Navigator.pop(   context,
             MaterialPageRoute(builder: (context) => ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),      ),
       body:  SingleChildScrollView(
@@ -102,7 +102,7 @@ class _LoaiSPState extends State<LoaiSP> {
 
             child: InkWell(
                 onTap: (){
-                  Navigator.push( context,
+                  Navigator.pop( context,
                     MaterialPageRoute(builder: (context) => ThemSP()),);
                   Them.l_sp="Phụ kiện";
                 },
@@ -138,7 +138,7 @@ class SuaLoaiSP extends StatelessWidget {
           backgroundColor: MyColor.light_pink,
           leading: IconButton(onPressed: (){
             SuaMap.myMap['id']=itemId;
-            Navigator.of(context).push(MaterialPageRoute(
+            Navigator.of(context).pop(MaterialPageRoute(
                 builder: (context) => SuaSP(SuaMap.myMap)));
           }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),      ),
         body:  SingleChildScrollView(

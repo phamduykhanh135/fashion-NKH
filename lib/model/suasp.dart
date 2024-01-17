@@ -12,19 +12,15 @@
 class SuaMap {
   // Map static
   static Map<dynamic, dynamic> myMap = {
-    'id': 0,
     'image':"" ,
     'name':"",
-    'Descriptions':"",
+    'descriptions':"",
     'category':"",
-    'price':0,
-    'sizeS':0,
-    'sizeM':0,
-    'sizeL':0,
-    'sizeXL':0,
-    'discount':0
+    'price':"0",
+    'sizeS':"0",
+    'sizeM':"0",
+    'sizeL':"0",
+    'sizeXL':"0",
+    'discount':"0"
   };
-  static int getValueByKey(String key) {
-    return myMap[key] ?? -1; // Trả về -1 nếu key không tồn tại
-  }
 }

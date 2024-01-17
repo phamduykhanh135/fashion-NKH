@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/model/color.dart';
 import 'package:flutter/services.dart';
-import 'package:sales_application/views/suasanpham.dart';
-import 'package:sales_application/views/themsanpham.dart';
+import 'package:sales_application/views/suasp_Screen.dart';
+import 'package:sales_application/views/themsp_Screen.dart';
 
 import '../model/suasp.dart';
 
@@ -33,15 +33,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             Them.quatitySizeM=int.parse(_sizeM.text);
             Them.quatitySizeL=int.parse(_sizeL.text);
             Them.quatitySizeXL=int.parse(_sizeXL.text);
-            if(int.parse(_sizeS.text)>0)
-              Them.kichco_sp+="S ";
-            if(int.parse(_sizeM.text)>0)
-              Them.kichco_sp+="M ";
-            if(int.parse(_sizeL.text)>0)
-              Them.kichco_sp+="L ";
-            if(int.parse(_sizeXL.text)>0)
-              Them.kichco_sp+="XL ";
-            Navigator.push( context,
+            Navigator.pop( context,
               MaterialPageRoute(builder: (context) => ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
@@ -238,15 +230,19 @@ class SSoLuongKho extends StatelessWidget {
           backgroundColor: MyColor.light_pink,
           actions: [
             TextButton(onPressed: (){
-              SuaMap.myMap['sizeS']=int.parse(_sizeS.text);
-              SuaMap.myMap['sizeM']=int.parse(_sizeM.text);
-              SuaMap.myMap['sizeL']=int.parse(_sizeL.text);
-              SuaMap.myMap['sizeXL']=int.parse(_sizeXL.text);
+              SuaMap.myMap['sizeS']=_sizeS.text;
+              SuaMap.myMap['sizeM']=_sizeM.text;
+              SuaMap.myMap['sizeL']=_sizeL.text;
+              SuaMap.myMap['sizeXL']=_sizeXL.text;
               SuaMap.myMap['id']=itemId;
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pop(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
+            leading:IconButton(onPressed: (){
+              Navigator.of(context).pop(MaterialPageRoute(
+                  builder: (context) => SuaSP(SuaMap.myMap)));
+            }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink))
 
         ),
         body:SingleChildScrollView(
@@ -270,7 +266,7 @@ class SSoLuongKho extends StatelessWidget {
                             child: TextFormField(
                               controller:_sizeS,
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
                                 hintText: 'Enter number',
@@ -310,7 +306,7 @@ class SSoLuongKho extends StatelessWidget {
                             child: TextFormField(
                               controller:_sizeM,
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
                                 hintText: 'Enter number',
@@ -350,7 +346,7 @@ class SSoLuongKho extends StatelessWidget {
                             child: TextFormField(
                               controller:_sizeL,
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
                                 hintText: 'Enter number',
@@ -390,7 +386,7 @@ class SSoLuongKho extends StatelessWidget {
                             child: TextFormField(
                               controller:_sizeXL,
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
                                 hintText: 'Enter number',

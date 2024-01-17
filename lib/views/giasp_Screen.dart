@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:flutter/services.dart';
-import 'package:sales_application/views/suasanpham.dart';
-import 'package:sales_application/views/themsanpham.dart';
+import 'package:sales_application/views/suasp_Screen.dart';
+import 'package:sales_application/views/themsp_Screen.dart';
 import '../model/suasp.dart';
-import 'color.dart';
+import '../model/color.dart';
 
 class GiaSP extends StatefulWidget {
   const GiaSP({super.key});
@@ -24,7 +24,7 @@ class _GiaSPState extends State<GiaSP> {
           actions: [
             TextButton(onPressed: (){
               Them.price_sp=int.parse(_giaban.text);
-              Navigator.push( context,
+              Navigator.pop( context,
                 MaterialPageRoute(builder: (context) => ThemSP()),);
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
@@ -48,10 +48,10 @@ class _GiaSPState extends State<GiaSP> {
                     child: TextFormField(
                       controller:_giaban,
                       keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(8)],
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
-                        hintText: 'Enter number',
+                        hintText: 'Nhập giá .000',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(color: Colors.grey, width: 2.0),
@@ -76,7 +76,7 @@ class _GiaSPState extends State<GiaSP> {
 class SGiaSP extends StatelessWidget {
   SGiaSP(this.itemId, {Key? key}) : super(key: key) ;
   String itemId;
-  var _giaban=TextEditingController(text: SuaMap.myMap['price'].toString());
+  var _giaban=TextEditingController(text: SuaMap.myMap['price'].toString().replaceAll(RegExp(r'\.0*$'), ''));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,14 +87,15 @@ class SGiaSP extends StatelessWidget {
           actions: [
             TextButton(onPressed: (){
               SuaMap.myMap['id']=itemId;
-              SuaMap.myMap['price']=_giaban.text;
-              Navigator.of(context).push(MaterialPageRoute(
+              int _price=int.parse(_giaban.text);
+              SuaMap.myMap['price']=_price.toStringAsFixed(3);
+              Navigator.of(context).pop(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
           leading: IconButton(onPressed: (){
             Navigator.push( context,
-              MaterialPageRoute(builder: (context) => ThemSP()),);
+              MaterialPageRoute(builder: (context) => SuaSP(SuaMap.myMap)),);
           }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
         ),

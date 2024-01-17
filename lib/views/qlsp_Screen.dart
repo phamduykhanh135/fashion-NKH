@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/searchsp.dart';
 import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/item_qlsp.dart';
-import 'package:sales_application/views/search_qlsp.dart';
-import 'package:sales_application/views/themsanpham.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/presenters/item_qlsp.dart';
+import 'package:sales_application/views/searchqlsp_Screen.dart';
+import 'package:sales_application/views/themsp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class QuanLySP extends StatelessWidget {
   QuanLySP({Key? key}) : super(key: key) {
@@ -32,8 +32,11 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
               MaterialPageRoute(builder: (context) => ThemSP()),);
           }, icon: Icon(Icons.add, color: MyColor.dark_pink)),
         ],
-      ),
-      body: StreamBuilder<QuerySnapshot>(
+        leading:IconButton(onPressed: (){
+      // Navigator.pop( context,
+      //   MaterialPageRoute(builder: (context) => ThemSP()),);
+    }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink)),)
+      ,body: StreamBuilder<QuerySnapshot>(
         stream: _stream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           //Check error
@@ -54,7 +57,7 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
               'id': e.id,
               'image': e.get('image'),
               'name': e['name'],
-              'descriptions':e['Descriptions'],
+              'descriptions':e['descriptions'],
               'category':e['category'],
               'price':e['price'],
               'sizeS':e['sizeS'],
@@ -63,7 +66,6 @@ CollectionReference _reference=FirebaseFirestore.instance.collection('products')
               'sizeXL':e['sizeXL'],
               'discount':e['discount']
             }).toList();
-            Them.id_sp=items.length;
             //Display the list
             return ListView.builder(
                 itemCount: items.length,

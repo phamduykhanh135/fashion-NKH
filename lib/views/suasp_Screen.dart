@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sales_application/model/suasp.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/gia_sp.dart';
-import 'package:sales_application/views/giamgia.dart';
-import 'package:sales_application/views/loaisanpham.dart';
-import 'package:sales_application/views/quanlysanpham.dart';
-import 'package:sales_application/views/soluongkho.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/views/giasp_Screen.dart';
+import 'package:sales_application/views/giamgia_Screen.dart';
+import 'package:sales_application/views/loaisp_Screen.dart';
+import 'package:sales_application/views/qlsp_Screen.dart';
+import 'package:sales_application/views/slkho_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import'package:firebase_storage/firebase_storage.dart';
 import '../model/themsp.dart';
@@ -34,23 +34,22 @@ class _SuaSPState extends State<SuaSP> {
     super.initState();
     SuaMap.myMap=widget.sp;
     _tensp = TextEditingController(text: SuaMap.myMap['name']);
-    _mota= TextEditingController(text: SuaMap.myMap['Descriptions']);
+    _mota= TextEditingController(text: SuaMap.myMap['descriptions']);
     _charCount1 =_mota.text.length ;
     _charCount = _tensp.text.length;
     _selected=SuaMap.myMap['image'];
     _reference = FirebaseFirestore.instance.collection('products').doc(SuaMap.myMap['id']);
-    if(SuaMap.myMap['sizeS']>0)
+    if(int.parse(SuaMap.myMap['sizeS'])>0)
       _kichco_sp+="S ";
-    if(SuaMap.myMap['sizeM']>0)
+    if(int.parse(SuaMap.myMap['sizeM'])>0)
       _kichco_sp+="M ";
-    if(SuaMap.myMap['sizeL']>0)
+    if(int.parse(SuaMap.myMap['sizeL'])>0)
       _kichco_sp+="L ";
-    if(SuaMap.myMap['sizeXL']>0)
+    if(int.parse(SuaMap.myMap['sizeXL'])>0)
       _kichco_sp+="XL ";
   }
   @override
   Widget build(BuildContext context) {
-
    return Scaffold(
         appBar: AppBar(
           title: Text("Sửa sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
@@ -59,41 +58,45 @@ class _SuaSPState extends State<SuaSP> {
           actions: [
             TextButton(onPressed: () async {
               SuaMap.myMap['name']=_tensp.text;
-              SuaMap.myMap['Descriptions']=_mota.text;
-              // Map<String,dynamic> dataToSend={
-              //   'Descriptions':SuaMap.getValueByKey('Descriptions'),
-              //   'category':SuaMap.getValueByKey('category'),
-              //   'discount':SuaMap.getValueByKey('discount'),
-              //   //image:
-              //   'name':SuaMap.getValueByKey('name'),
-              //   'price':SuaMap.getValueByKey('price'),
-              //   'sizeS':SuaMap.getValueByKey('sizeS'),
-              //   'sizeM':SuaMap.getValueByKey('sizeM'),
-              //   'sizeL':SuaMap.getValueByKey('sizeL'),
-              //   'sizeXL':SuaMap.getValueByKey('sizeXL'),
-              //   'status':true
-              // };
-              try {
-                await _reference.update(Map<String,dynamic>.from(SuaMap.myMap));
-                print('Tài liệu được cập nhật thành công trên Firestore.');
-              } catch (e) {
-                print('Lỗi khi cập nhật tài liệu: $e');
+              SuaMap.myMap['image']=_selected;
+              SuaMap.myMap['descriptions']=_mota.text;
+              if(SuaMap.myMap['name']==""||SuaMap.myMap['image']==""||
+                  SuaMap.myMap['descriptions']==""||SuaMap.myMap['category']==""||
+                  SuaMap.myMap['price']==""||int.parse(SuaMap.myMap['sizeS'])+int.parse(SuaMap.myMap['sizeM'])+int.parse(SuaMap.myMap['sizeL'])+int.parse(SuaMap.myMap['sizeXL'])==0||SuaMap.myMap['discount']==""){
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Bạn chưa nhập đầy đủ thông tin'),
+                  ),
+                );
               }
-              SuaMap.myMap= {
-                'id': 0,
-                'image':"" ,
-                'name':"",
-                'Descriptions':"",
-                'category':"",
-                'price':0,
-                'sizeS':0,
-                'sizeM':0,
-                'sizeL':0,
-                'sizeXL':0,
-                'discount':0
-              };
-              Navigator.push( context,
-                MaterialPageRoute(builder: (context) => QuanLySP()),);
+              else{
+                try {
+                  await _reference.update(Map<String,dynamic>.from(SuaMap.myMap));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Sửa thông tin thành công '),
+                    ),
+                  );
+                } catch (e) {
+                  print('Lỗi khi cập nhật tài liệu: $e');
+                }
+                SuaMap.myMap= {
+                  'image':"" ,
+                  'name':"",
+                  'descriptions':"",
+                  'category':"",
+                  'price':"0",
+                  'sizeS':"0",
+                  'sizeM':"0",
+                  'sizeL':"0",
+                  'sizeXL':"0",
+                  'discount':"0"
+                };
+                Navigator.pop( context,
+                  MaterialPageRoute(builder: (context) => QuanLySP()),);
+
+              }
+
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
           ],
           leading: IconButton(onPressed: ()async{
@@ -297,7 +300,7 @@ class _SuaSPState extends State<SuaSP> {
                                   ],
                                 ),
                               ),flex: 3,),
-                              Expanded(child: Text("${SuaMap.myMap['sizeS']+SuaMap.myMap['sizeM']+SuaMap.myMap['sizeL']+SuaMap.myMap['sizeXL']}")),// Khoảng trắng giữa hai icon
+                              Expanded(child: Text("${int.parse(SuaMap.myMap['sizeS'])+int.parse(SuaMap.myMap['sizeM'])+int.parse(SuaMap.myMap['sizeL'])+int.parse(SuaMap.myMap['sizeXL'])}")),// Khoảng trắng giữa hai icon
                               Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                             ],
                           ),)),

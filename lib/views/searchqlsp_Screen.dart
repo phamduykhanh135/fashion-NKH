@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/color.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/views/qlsp_Screen.dart';
 class SearchPage extends StatefulWidget {
    SearchPage({Key? key}) : super(key: key);
   @override
@@ -10,6 +11,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _search=TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColor.light_pink,
@@ -20,24 +22,30 @@ class _SearchPageState extends State<SearchPage> {
                 color:Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Center(
               child: TextField(
+                controller: _search,
                 decoration: InputDecoration(
                     prefixIcon: IconButton(
                       icon: const Icon(Icons.search),
                       onPressed: () {
-                        /* Clear the search field */
+                        Navigator.pop( context,
+                          MaterialPageRoute(builder: (context) => QuanLySP()),);
                       },
                     ),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.clear),
                       onPressed: () {
-                        /* Clear the search field */
+                        _search.clear();
                       },
                     ),
                     hintText: 'Search...',
                     border: InputBorder.none),
               ),
             ),
-          )),
+          ),
+          leading:IconButton(onPressed: (){
+            Navigator.of(context).pop(MaterialPageRoute(
+                builder: (context) => QuanLySP()));
+          }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink))),
     );
   }
 }

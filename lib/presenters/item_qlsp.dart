@@ -1,8 +1,8 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/suasanpham.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/views/suasp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ItemSP extends StatelessWidget {
@@ -114,6 +114,36 @@ class ItemSP extends StatelessWidget {
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
+                                            color: int.parse(data['discount'])!=0?Colors.grey:Colors.red,
+                                            decoration: int.parse(data['discount'])!=0?TextDecoration.lineThrough:TextDecoration.none)),
+                                      TextSpan(text: 'đ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14,
+                                            color:int.parse(data['discount'])!=0?Colors.grey:Colors.red,
+                                            decoration: TextDecoration.none,)),
+                                    ],
+                                  ),
+                                ),
+                                //Giá sau giảm
+                                if(int.parse(data['discount'])!=0)
+                                RichText(
+                                  text: TextSpan(
+                                    text: null,
+                                    style: DefaultTextStyle
+                                        .of(context)
+                                        .style,
+                                    children: <TextSpan>[
+                                      TextSpan(text: 'Giảm: ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            decoration: TextDecoration.none,)),
+                                      TextSpan(text: '${(int.parse(data['price'].replaceAll(RegExp(r'\.0*$'), '').toString())-(int.parse(data['price'].replaceAll(RegExp(r'\.0*$'), '').toString())*int.parse(data['discount'])/100).toInt()).toStringAsFixed(3)}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
                                             color: Colors.red,
                                             decoration: TextDecoration.none,)),
                                       TextSpan(text: 'đ',
@@ -138,7 +168,7 @@ class ItemSP extends StatelessWidget {
                                             fontSize: 15,
                                             color: Colors.black,
                                             decoration: TextDecoration.none,)),
-                                      TextSpan(text: '${data['sizeS']+data['sizeM']+data['sizeL']+data['sizeXL']}',
+                                      TextSpan(text: '${int.parse(data['sizeS'])+int.parse(data['sizeM'])+int.parse(data['sizeL'])+int.parse(data['sizeXL'])}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,

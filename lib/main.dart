@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/giamgia.dart';
-import 'package:sales_application/views/loaisanpham.dart';
-import 'package:sales_application/views/pie_chart.dart';
-import 'package:sales_application/views/quanlysanpham.dart';
-import 'package:sales_application/views/soluongkho.dart';
-import 'package:sales_application/views/suasanpham.dart';
-import 'package:sales_application/views/themsanpham.dart';
-import 'package:sales_application/views/thongke.dart';
+import 'package:sales_application/views/giamgia_Screen.dart';
+import 'package:sales_application/views/loaisp_Screen.dart';
+import 'package:sales_application/views/qlsp_Screen.dart';
+import 'package:sales_application/views/slkho_Screen.dart';
+import 'package:sales_application/views/suasp_Screen.dart';
+import 'package:sales_application/views/themsp_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 void main() async{

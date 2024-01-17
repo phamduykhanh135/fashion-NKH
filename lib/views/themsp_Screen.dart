@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/gia_sp.dart';
-import 'package:sales_application/views/giamgia.dart';
-import 'package:sales_application/views/loaisanpham.dart';
-import 'package:sales_application/views/quanlysanpham.dart';
-import 'package:sales_application/views/soluongkho.dart';
+import 'package:sales_application/model/color.dart';
+import 'package:sales_application/views/giasp_Screen.dart';
+import 'package:sales_application/views/giamgia_Screen.dart';
+import 'package:sales_application/views/loaisp_Screen.dart';
+import 'package:sales_application/views/qlsp_Screen.dart';
+import 'package:sales_application/views/slkho_Screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 class ThemSP extends StatefulWidget {
@@ -25,13 +26,11 @@ class _ThemSPState extends State<ThemSP> {
   String? _selected;
   TextEditingController _tensp = TextEditingController();
   TextEditingController _mota = TextEditingController();
-  String _loai_sp= Them.l_sp.toString();
+  String _loai_sp= Them.l_sp;
   String _kichco_sp=Them.kichco_sp;
   int _soLuongKho=Them.quatitySizeL+Them.quatitySizeM+Them.quatitySizeS+Them.quatitySizeXL;
   int _giaBan=Them.price_sp;
   int _giamGia=Them.discount_sp;
-  int _charCount1 = 0;
-  int _charCount = 0;
   String imageUrl='';
   @override
   void initState() {
@@ -39,6 +38,14 @@ class _ThemSPState extends State<ThemSP> {
     _tensp = TextEditingController(text: Them.ten_sp);
     _mota= TextEditingController(text:Them.mota_sp);
     _selected=Them.linkImage;
+    if(Them.quatitySizeS>0)
+      _kichco_sp+="S ";
+    if(Them.quatitySizeM>0)
+      _kichco_sp+="M ";
+    if(Them.quatitySizeL>0)
+      _kichco_sp+="L ";
+    if(Them.quatitySizeXL>0)
+      _kichco_sp+="XL ";
   }
   @override
   Widget build(BuildContext context) {
@@ -55,54 +62,67 @@ class _ThemSPState extends State<ThemSP> {
             Them.mota_sp=_mota.text;
             //Create a Map of data
             Map<String,dynamic> dataToSend={
-
-              'id':Them.id_sp+1,
-              'Descriptions':Them.mota_sp,
+              'id':"",
+              'descriptions':Them.mota_sp,
               'category':Them.l_sp,
-              'discount':Them.discount_sp,
+              'discount':Them.discount_sp.toString(),
               'image':Them.linkImage,
               'name':Them.ten_sp,
-              'price':Them.price_sp,
-              'sizeS':Them.quatitySizeS,
-              'sizeM':Them.quatitySizeM,
-              'sizeL':Them.quatitySizeL,
-              'sizeXL':Them.quatitySizeXL,
+              'price':Them.price_sp.toStringAsFixed(3).toString(),
+              'sizeS':Them.quatitySizeS.toString(),
+              'sizeM':Them.quatitySizeM.toString(),
+              'sizeL':Them.quatitySizeL.toString(),
+              'sizeXL':Them.quatitySizeXL.toString(),
               'status':true
             };
 
             //Add a new item
-            await _reference.add(dataToSend);
 
 
-          if(_tensp==""||_mota==""||_loai_sp==""||_giaBan==0||_soLuongKho==0||_selected==""){
+
+          if(_tensp.text==""||_mota.text==""||_loai_sp==""||_giaBan==0||_soLuongKho==0||_selected==""){
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Bạn chưa nhập đầy đủ thông tin'),
               ),
             );
           }
-          //Firebase
-          //Final
-            Them.id_sp=0;
+          else{
+            try {
+              DocumentReference newDocumentRef= await _reference.add(dataToSend);
+              String autoId=newDocumentRef.id;
+              await newDocumentRef.update({'id':autoId});
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Thêm sản phẩm thành công'),
+                ),
+              );
+            }catch(e){
+              print(e);
+            }
             Them.linkImage="";
             Them.kichco_sp="";
             Them.ten_sp="";
             Them.mota_sp="";
             Them.l_sp="";
-           Them.price_sp=0;
-           Them.quatitySizeS=0;
-           Them.quatitySizeM=0;
-           Them.quatitySizeL=0;
-           Them.quatitySizeXL=0;
-           Them.discount_sp=0;
-           Them.id_sp=0;
-           _selected="";
-          Navigator.push( context,
-            MaterialPageRoute(builder: (context) => QuanLySP()),);
+            Them.price_sp=0;
+            Them.quatitySizeS=0;
+            Them.quatitySizeM=0;
+            Them.quatitySizeL=0;
+            Them.quatitySizeXL=0;
+            Them.discount_sp=0;
+            Them.char_ten=0;
+            Them.char_mota=0;
+            _selected="";
+            Navigator.push( context,
+              MaterialPageRoute(builder: (context) => QuanLySP()),);
+          }
+          //Firebase
+          //Final
+
         }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
       ],
       leading: IconButton(onPressed: (){
-        Them.id_sp=0;
         Them.linkImage="";
         Them.kichco_sp="";
         Them.ten_sp="";
@@ -114,10 +134,10 @@ class _ThemSPState extends State<ThemSP> {
         Them.quatitySizeL=0;
         Them.quatitySizeXL=0;
         Them.discount_sp=0;
-        Them.id_sp=0;
+        Them.char_ten=0;
+        Them.char_mota=0;
         _selected="";
-
-        Navigator.push( context,
+        Navigator.pop( context,
           MaterialPageRoute(builder: (context) => QuanLySP()),);
       }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
     ),
@@ -202,24 +222,17 @@ class _ThemSPState extends State<ThemSP> {
                       ],
                     ),
                   ),
-                  Text("${_charCount.toString()}/120")
+                  Text("${Them.char_ten.toString()}/120")
                 ],
               ),
               TextField(
                 controller: _tensp/*Todo:*/,
                 maxLines:2,
+                inputFormatters: [LengthLimitingTextInputFormatter(120)],
                 onChanged: (text) {
                   setState(() {
                     Them.ten_sp=_tensp.text;
-                    _charCount = text.length;
-                    if (_charCount >119) {
-                      // Nếu vượt quá giới hạn, cắt bớt văn bản nhập mới
-                      _mota.text = text.substring(0, 119);
-                      // Di chuyển con trỏ về cuối văn bản
-                      _mota.selection = TextSelection.fromPosition(
-                        TextPosition(offset: _mota.text.length),
-                      );
-                    }
+                    Them.char_ten = text.length;
                   });
                 },
                 decoration: const InputDecoration(
@@ -255,24 +268,17 @@ class _ThemSPState extends State<ThemSP> {
                         ],
                       ),
                     ),
-                    Text("${_charCount1.toString()}/3000")/*Todo:0/3000*/
+                    Text("${Them.char_mota.toString()}/3000")/*Todo:0/3000*/
                   ],
                 ),
                 TextField(
                   controller: _mota/*Todo:*/,
                   maxLines:2,
+                  inputFormatters: [LengthLimitingTextInputFormatter(120)],
                   onChanged: (text) {
                     setState(() {
                       Them.mota_sp=_mota.text;
-                      _charCount1 = text.length;
-                      if (_charCount1 >2999) {
-                        // Nếu vượt quá giới hạn, cắt bớt văn bản nhập mới
-                        _mota.text = text.substring(0, 2999);
-                        // Di chuyển con trỏ về cuối văn bản
-                        _mota.selection = TextSelection.fromPosition(
-                          TextPosition(offset: _mota.text.length),
-                        );
-                      }
+                      Them.char_mota = text.length;
                     });
                   },
                   decoration: const InputDecoration(
@@ -365,7 +371,7 @@ class _ThemSPState extends State<ThemSP> {
                         ),
                       )
                         ,flex: 3,),
-                      Expanded(child: Text(_giaBan.toString(),maxLines: 1,)),// Khoảng trắng giữa hai icon
+                      Expanded(child: Text(_giaBan.toStringAsFixed(3).toString(),maxLines: 1,)),// Khoảng trắng giữa hai icon
                       Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                     ],
                   ),)),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/views/color.dart';
+import 'package:sales_application/model/color.dart';
 import 'package:flutter/services.dart';
-import 'package:sales_application/views/suasanpham.dart';
-import 'package:sales_application/views/themsanpham.dart';
+import 'package:sales_application/views/suasp_Screen.dart';
+import 'package:sales_application/views/themsp_Screen.dart';
 
 import '../model/suasp.dart';
 class GiamGia extends StatefulWidget {
@@ -25,12 +25,12 @@ class _GiamGiaState extends State<GiamGia> {
         actions: [
           TextButton(onPressed: (){
             Them.discount_sp=int.parse(_giamgia.text);
-            Navigator.push( context,
+            Navigator.pop( context,
               MaterialPageRoute(builder: (context) => ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
         leading: IconButton(onPressed: (){
-          Navigator.push( context,
+          Navigator.pop( context,
             MaterialPageRoute(builder: (context) => ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
@@ -96,10 +96,14 @@ class SGiamGia extends StatelessWidget {
             TextButton(onPressed: (){
               SuaMap.myMap['id']=itemId;
               SuaMap.myMap['discount']=_giamgia.text;
-              Navigator.of(context).push(MaterialPageRoute(
+              Navigator.of(context).pop(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
+            leading:IconButton(onPressed: (){
+              Navigator.of(context).pop(MaterialPageRoute(
+                  builder: (context) => SuaSP(SuaMap.myMap)));
+            }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink))
 
         ),
         body:  Container(
@@ -121,7 +125,8 @@ class SGiamGia extends StatelessWidget {
 
                       controller:_giamgia,
                       keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(3)],
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(10),
                         hintText: 'Enter number',
