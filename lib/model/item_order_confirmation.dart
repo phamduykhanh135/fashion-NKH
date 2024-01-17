@@ -8,6 +8,38 @@ class Item_Confirm extends StatefulWidget {
 }
 
 class _Item_ConfirmState extends State<Item_Confirm> {
+
+  bool confirmedState=false;
+  void confirmed_state() {
+    setState(() {
+      confirmedState=true;
+    });
+    showDialog(
+      context: context, 
+      builder: (BuildContext context){
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),side: BorderSide(width: 1,color: Colors.black)),                                   
+          content:Text("Xác nhận đơn thành công",textAlign: TextAlign.center,) ,
+          actions: [
+            Center(
+              child: ElevatedButton(
+                onPressed:(){ Navigator.of(context).pop();}, 
+                child: Text("OK",style: TextStyle(color: Colors.purpleAccent.shade400,fontSize: 15),),
+                
+                style:ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.pink.shade100), //thay đổi
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),)),
+                  
+                ),
+              
+
+              )
+            )
+          ],
+        );
+      }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +61,7 @@ class _Item_ConfirmState extends State<Item_Confirm> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //Tên sản phẩmSS
+                  //Tên sản phẩm
                   Text("Quần Jean nam xanh",style: TextStyle(fontSize: 18),),
                   //Đơn giá
                   Text("299.000 đ",style: TextStyle(fontSize: 15,color: Colors.red),),
@@ -55,41 +87,17 @@ class _Item_ConfirmState extends State<Item_Confirm> {
           child:Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              confirmedState==false?
               ElevatedButton(
-                onPressed: (){
-                  showDialog(
-                    context: context, 
-                    builder: (BuildContext context){
-                      return AlertDialog(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),side: BorderSide(width: 1,color: Colors.black)),                                   
-                        content:Text("Xác nhận đơn thành công",textAlign: TextAlign.center,) ,
-                        actions: [
-                          Center(
-                            child: ElevatedButton(
-                              onPressed:(){ Navigator.of(context).pop();}, 
-                              child: Text("OK",style: TextStyle(color: Colors.purpleAccent.shade400,fontSize: 15),),
-                              
-                              style:ButtonStyle(
-                                backgroundColor: MaterialStatePropertyAll(Colors.pink.shade100), //thay đổi
-                                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),)),
-                                
-                              ),
-                            
-
-                            )
-                          )
-                        ],
-                      );
-                    }
-                  );
-                },
+                onPressed: confirmed_state,
                 child: Text("Xác nhận đơn",style: TextStyle(color: Colors.purpleAccent.shade400,fontSize: 15),),
                 style:ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.pink.shade100), //thay đổi
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),)),
 
                 ),
-              ) ,
+              ) :
+              Text("Đã xác nhận",style: TextStyle(color:Colors.red,fontSize: 15),)
             ],
           )
         )

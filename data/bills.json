@@ -1,0 +1,35 @@
+[
+    {
+      "id":1,
+      "name":"Áo thun đen",
+      "price":299000,
+      "quantity":1,
+      "total":299000,
+      "url_img":"https://cdn.muabannhanh.com/asset/frontend/img/gallery/2020/01/04/5e100b8cc94ba_1578109836.jpg",      
+      "bill_state":false,
+      "confirm_state":true,
+      "cancel_state":false
+    },
+    {
+      "id":2,
+      "name":"Quần jean nam",
+      "price":199000,
+      "quantity":2,
+      "total":398000,
+      "url_img":"https://product.hstatic.net/1000284478/product/dbl_jmrlw23v001_1_a391b342940b4f8ebfe0132175c6f1cf_master.jpg",
+      "bill_state":true,
+      "confirm_state":true,
+      "cancel_state":false
+    },
+    {
+      "id":3,
+      "name":"Áo khoác",
+      "price":200000,
+      "quantity":1,
+      "total":200000,
+      "url_img":"https://bizweb.dktcdn.net/thumb/1024x1024/100/369/522/products/ao-khoac-local-brand-vai-du-form-rong-mau-den-alb-streetwear-7.jpg",
+      "bill_state":true,
+      "confirm_state":false,
+      "cancel_state":false
+    }
+]

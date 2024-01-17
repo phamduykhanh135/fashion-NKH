@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
     //  home: const Manage_order()
-     initialRoute: "/notifications",
+     initialRoute: "/manager_order",
      routes: {
 
       "/manager_order":(context) => const Manage_order(),

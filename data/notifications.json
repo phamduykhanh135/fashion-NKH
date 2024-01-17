@@ -1,0 +1,38 @@
+[
+    {
+        "id":1,
+        "title":"Chờ xác nhận",
+        "message":"Đơn hàng của bạn đã đặt thành công vui lòng chờ người bán xác nhận",
+        "url_img":"https://cdn.muabannhanh.com/asset/frontend/img/gallery/2020/01/04/5e100b8cc94ba_1578109836.jpg"
+    },
+    {
+      "id":2,
+      "title":"Đang giao",
+      "message":"Đơn hàng của bạn đã được xác nhận và đang trên đường giao đến bạn",
+      "url_img":"https://cdn.muabannhanh.com/asset/frontend/img/gallery/2020/01/04/5e100b8cc94ba_1578109836.jpg"
+    },
+    {
+        "id":3,
+        "title":"Giao hàng thành công",
+        "message":"Đơn hàng của bạn đã được giao đến bạn",
+        "url_img":"https://cdn.muabannhanh.com/asset/frontend/img/gallery/2020/01/04/5e100b8cc94ba_1578109836.jpg"
+    },
+    {
+        "id":4,
+        "title":"Chờ xác nhận",
+        "message":"Đơn hàng của bạn đã đặt thành công vui lòng chờ người bán xác nhận",
+        "url_img":"https://product.hstatic.net/1000284478/product/dbl_jmrlw23v001_1_a391b342940b4f8ebfe0132175c6f1cf_master.jpg"
+    },
+    {
+      "id":5,
+      "title":"Đang giao",
+      "message":"Đơn hàng của bạn đã được xác nhận và đang trên đường giao đến bạn",
+      "url_img":"https://product.hstatic.net/1000284478/product/dbl_jmrlw23v001_1_a391b342940b4f8ebfe0132175c6f1cf_master.jpg"
+    },
+    {
+        "id":6,
+        "title":"Chờ xác nhận",
+        "message":"Đơn hàng của bạn đã đặt thành công vui lòng chờ người bán xác nhận",
+        "url_img":"https://bizweb.dktcdn.net/thumb/1024x1024/100/369/522/products/ao-khoac-local-brand-vai-du-form-rong-mau-den-alb-streetwear-7.jpg"
+    }
+]
