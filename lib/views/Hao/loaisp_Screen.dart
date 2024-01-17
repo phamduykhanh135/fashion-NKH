@@ -3,8 +3,8 @@ import 'package:sales_application/model/suasp.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/model/color.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/views/suasp_Screen.dart';
-import 'package:sales_application/views/themsp_Screen.dart';
+import 'package:sales_application/views/Hao/suasp_Screen.dart';
+import 'package:sales_application/views/Hao/themsp_Screen.dart';
 
 class LoaiSP extends StatefulWidget {
   const LoaiSP({super.key});

@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/views/giasp_Screen.dart';
-import 'package:sales_application/views/giamgia_Screen.dart';
-import 'package:sales_application/views/loaisp_Screen.dart';
-import 'package:sales_application/views/qlsp_Screen.dart';
-import 'package:sales_application/views/slkho_Screen.dart';
+import 'package:sales_application/views/Hao/qlsp_Screen.dart';
+import 'package:sales_application/views/Hao/slkho_Screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+import 'giamgia_Screen.dart';
+import 'giasp_Screen.dart';
+import 'loaisp_Screen.dart';
 class ThemSP extends StatefulWidget {
   const ThemSP({super.key});
 
@@ -137,8 +138,8 @@ class _ThemSPState extends State<ThemSP> {
         Them.char_ten=0;
         Them.char_mota=0;
         _selected="";
-        Navigator.pop( context,
-          MaterialPageRoute(builder: (context) => QuanLySP()),);
+        Navigator.pop (context,
+          MaterialPageRoute(builder: (context) => QuanLySP()));
       }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
     ),
          body:

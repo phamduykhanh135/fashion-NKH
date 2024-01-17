@@ -2,8 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/views/suasp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../views/Hao/suasp_Screen.dart';
 
 class ItemSP extends StatelessWidget {
   ItemSP(this.itemId, {Key? key}) : super(key: key) {

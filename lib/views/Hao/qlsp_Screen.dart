@@ -3,8 +3,8 @@ import 'package:sales_application/model/searchsp.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/model/color.dart';
 import 'package:sales_application/presenters/item_qlsp.dart';
-import 'package:sales_application/views/searchqlsp_Screen.dart';
-import 'package:sales_application/views/themsp_Screen.dart';
+import 'package:sales_application/views/Hao/searchqlsp_Screen.dart';
+import 'package:sales_application/views/Hao/themsp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class QuanLySP extends StatelessWidget {
   QuanLySP({Key? key}) : super(key: key) {

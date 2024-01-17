@@ -4,14 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sales_application/model/suasp.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/views/giasp_Screen.dart';
-import 'package:sales_application/views/giamgia_Screen.dart';
-import 'package:sales_application/views/loaisp_Screen.dart';
-import 'package:sales_application/views/qlsp_Screen.dart';
-import 'package:sales_application/views/slkho_Screen.dart';
+import 'package:sales_application/views/Hao/qlsp_Screen.dart';
+import 'package:sales_application/views/Hao/slkho_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import'package:firebase_storage/firebase_storage.dart';
-import '../model/themsp.dart';
+import 'giamgia_Screen.dart';
+import 'giasp_Screen.dart';
+import 'loaisp_Screen.dart';
 class SuaSP extends StatefulWidget {
   final Map<dynamic, dynamic> sp;
 

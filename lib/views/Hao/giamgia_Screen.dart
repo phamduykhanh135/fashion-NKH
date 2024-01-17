@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/model/color.dart';
 import 'package:flutter/services.dart';
-import 'package:sales_application/views/suasp_Screen.dart';
-import 'package:sales_application/views/themsp_Screen.dart';
+import 'package:sales_application/views/Hao/suasp_Screen.dart';
+import 'package:sales_application/views/Hao/themsp_Screen.dart';
 
-import '../model/suasp.dart';
+import '../../model/suasp.dart';
 class GiamGia extends StatefulWidget {
   const GiamGia({super.key});
 

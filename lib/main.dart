@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/giamgia_Screen.dart';
-import 'package:sales_application/views/loaisp_Screen.dart';
-import 'package:sales_application/views/qlsp_Screen.dart';
-import 'package:sales_application/views/slkho_Screen.dart';
-import 'package:sales_application/views/suasp_Screen.dart';
-import 'package:sales_application/views/themsp_Screen.dart';
+import 'package:sales_application/views/Hao/qlsp_Screen.dart';
+import 'package:sales_application/views/Hao/slkho_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 void main() async{

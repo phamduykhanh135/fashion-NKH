@@ -1,9 +1,10 @@
-
+import 'package:sales_application/model/searchsp.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/views/qlsp_Screen.dart';
+import 'package:sales_application/views/Hao/qlsp_Screen.dart';
 class SearchPage extends StatefulWidget {
-   SearchPage({Key? key}) : super(key: key);
+   SearchPage( {Key? key}) : super(key: key);
+  // final List<Map<String, dynamic>> items;
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
@@ -23,7 +24,16 @@ class _SearchPageState extends State<SearchPage> {
             child: Center(
               child: TextField(
                 controller: _search,
+                  onChanged: (value) {
+                    setState(() {
+                      // SearchSP.found = widget.items
+                      //     .where((product) =>
+                      //     product['name'].toLowerCase().contains(value.toLowerCase()))
+                      //     .toList();
+                    });
+                  },
                 decoration: InputDecoration(
+
                     prefixIcon: IconButton(
                       icon: const Icon(Icons.search),
                       onPressed: () {
@@ -38,7 +48,8 @@ class _SearchPageState extends State<SearchPage> {
                       },
                     ),
                     hintText: 'Search...',
-                    border: InputBorder.none),
+                    border: InputBorder.none,
+                    ),
               ),
             ),
           ),
@@ -47,5 +58,7 @@ class _SearchPageState extends State<SearchPage> {
                 builder: (context) => QuanLySP()));
           }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink))),
     );
+
   }
-}
+
+  }
