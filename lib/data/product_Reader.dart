@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Products {
-  int id;
+  String id;
   String name;
   bool status;
   String description;
   String category;
-  int discount;
+  String discount;
   String image;
-  int price;
-  int sizeS;
-  int sizeM;
-  int sizeL;
-  int sizeXL;
+  String price;
+  String sizeS;
+  String sizeM;
+  String sizeL;
+  String sizeXL;
 
   Products({
     required this.id,
@@ -31,18 +31,18 @@ class Products {
   });
 
   Products.fromJson(Map<String, dynamic> json)
-      : id = json["id"] ?? 0,
+      : id = json["id"] ?? '',
         name = json['name'] ?? '',
         status = json['status'] ?? false,
         category = json["category"] ?? '',
-        discount = json["discount"] ?? 0,
+        discount = json["discount"] ?? '',
         image = json["image"] ?? '',
-        price = json["price"] ?? 0,
+        price = json["price"] ?? '',
         description = json['Descriptions'] ?? '',
-        sizeM=json["sizeM"]?? 0,
-        sizeS=json["sizeS"]?? 0,
-        sizeL=json["sizeL"]?? 0,
-        sizeXL=json["sizeXL"]?? 0;
+        sizeM=json["sizeM"]?? '',
+        sizeS=json["sizeS"]?? '',
+        sizeL=json["sizeL"]?? '',
+        sizeXL=json["sizeXL"]?? '';
 
   static List<Products> products = [];
 

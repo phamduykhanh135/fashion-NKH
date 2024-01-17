@@ -44,7 +44,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
       widget.product.name,
       selectedSize,
       widget.product.price,
-      temp,
+      temp.toString(),
       widget.product.image,
     );
     showSuccessDialog(context);
@@ -66,7 +66,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                 width: MediaQuery.of(context).size.width / 5,
               ),
               SizedBox(width: 120),
-              Text(widget.product.price.toStringAsFixed(3),
+              Text(widget.product.price,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             ],
           ),
@@ -176,13 +176,7 @@ void showSuccessDialog(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         Future.delayed(Duration(seconds: 1), () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(),
-            ),
-            (route) => true,
-          );
+          Navigator.pop(context);
         });
         return const AlertDialog(
           content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),

@@ -18,7 +18,7 @@ class Item_cart extends StatefulWidget {
 class _Item_cartState extends State<Item_cart> {
   List<Carts> selectedItems = [];
   bool _ischeck = false;
-  Color myLightGrayColor = Color.fromARGB(255, 245, 227, 227);
+  Color myLightGrayColor = Color.fromARGB(243, 243, 227, 227);
   Future<void> _showConfirm() async {
     return showDialog<void>(
       context: context,
@@ -56,10 +56,15 @@ class _Item_cartState extends State<Item_cart> {
                         ),
                     ),
               ),
-              onPressed: () async{
-                await Carts.deleteCart(widget.carts.id.toString());
+             onPressed: () async {
+              if (widget.carts.id != null && widget.carts.id.isNotEmpty) {
+                await Carts.deleteCartByAutoid(widget.carts.id.toString());
                 Navigator.of(context).pop(); // Đóng dialog
-              },
+              } else {
+                print('Invalid autoid: ${widget.carts.id}');
+              }
+            },
+
               child: const Text('Xóa',style: TextStyle(color: Colors.black)),
             ),
             ],)
@@ -136,7 +141,7 @@ class _Item_cartState extends State<Item_cart> {
                     SizedBox(height: 10,),
                      Text(widget.carts.name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
                     SizedBox(height: 10,),
-                    Text(widget.carts.price.toStringAsFixed(3),style: TextStyle(fontSize: 18,)),
+                    Text(widget.carts.price,style: TextStyle(fontSize: 18,)),
                     SizedBox(height: 10,),
                     Text("Size:${widget.carts.size}",style: TextStyle(fontSize: 18)),
                     SizedBox(height: 10,),
@@ -146,10 +151,9 @@ class _Item_cartState extends State<Item_cart> {
                         TextButton(
                           onPressed: () async{
                            setState(() {
-                              if(widget.carts.quality>0)
-                            {
-                              widget.carts.quality--;
-                            }
+                               if (int.parse(widget.carts.quality) > 0) {
+                       widget.carts.quality = (int.parse(widget.carts.quality) - 1).toString();
+                          }
                            });
                            await FirebaseFirestore.instance.collection('carts').doc(widget.carts.id.toString()).update({
                             'quality': widget.carts.quality,
@@ -174,10 +178,9 @@ class _Item_cartState extends State<Item_cart> {
                         TextButton(
                           onPressed: () async{
                             setState(() {
-                              if(widget.carts.quality>=0)
-                            {
-                              widget.carts.quality++;
-                            }
+                               if (int.parse(widget.carts.quality) >= 0) {
+                                        widget.carts.quality = (int.parse(widget.carts.quality) + 1).toString();
+                                      }
                            });
                            
                            await FirebaseFirestore.instance.collection('carts').doc(widget.carts.id.toString()).update({

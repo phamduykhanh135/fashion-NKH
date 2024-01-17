@@ -79,7 +79,7 @@ class BuyBottom extends StatelessWidget {
       'cancel_state': false,
       'bill_state': true,
       'name': address?.fullname,
-      'phone':address?.phone,
+      'phone':address?.phone.toString(),
       'address':address?.addressText,
       'items': items,
       'totalAmount': VoucherSale == 0 ? onTotalAmountChanged : onTotalAmountChanged - (onTotalAmountChanged * VoucherSale) / 100,

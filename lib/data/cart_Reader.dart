@@ -1,30 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-class Carts{
-  int id;
+
+class Carts {
+  String id;
   String name;
   bool status;
   String size;
-  int price;
-  int quality;
+  String price;
+  String quality;
   String image;
-    Carts({
+  static List<Carts> cart = [];
+
+  Carts({
     required this.id,
     required this.name,
     required this.status,
     required this.size,
     required this.price,
     required this.quality,
-    required this.image
+    required this.image,
   });
-  Carts.fromJson(Map<String, dynamic> json):
-        id = json["id"] ?? 0,
+
+  Carts.fromJson(Map<String, dynamic> json)
+      : id = json["id"] ?? 0,
         name = json['name'] ?? '',
         status = json['status'] ?? false,
-        price=json['price']?? 0,
-        quality=json['quality']?? 0,
-        size=json['size']??'',
-        image=json['image']??'';
-        static List<Carts> cart = [];
+        price = json['price'] ?? '',
+        quality = json['quality'] ?? 0,
+        size = json['size'] ?? '',
+        image = json['image'] ?? '';
+
   static Future<void> loadData_cart() async {
     try {
       CollectionReference cartCollection =
@@ -40,32 +44,57 @@ class Carts{
       print('Error loading data from Firestore: $e');
     }
   }
-  static Future<void> addNewCart(String name,String size,int price,int quality,String image) async {
-    int newId = cart.length + 1;
-    Carts newCart =Carts(id: newId, name: name, status: true, size: size, price: price, quality: quality, image: image);
-    cart.add(newCart);
-    // Thêm vào Firestore
+
+  static Future<void> addNewCart(String name, String size, String price, String quality, String image) async {
+  try {
     CollectionReference cartCollection = FirebaseFirestore.instance.collection('carts');
-    await cartCollection.doc('$newId').set({
+
+    // Tạo autoid mới
+    String newId = cartCollection.doc().id;
+
+    // Thêm vào Firestore với autoid mới
+    await cartCollection.doc(newId).set({
       "id": newId,
       "name": name,
-      "status": true, 
-      "size":size,
-      "price":price,
-      "quality":quality,
-      "image":image
-      
+      "status": true,
+      "size": size,
+      "price": price,
+      "quality": quality,
+      "image": image,
     });
-   
-  }
-   static Future<void> deleteCart(String cartId) async {
-  try {
-    await FirebaseFirestore.instance.collection('carts').doc(cartId).delete();
-    print('Deleted cart with ID: $cartId');
+
+    // Thêm vào danh sách cart
+    Carts newCart = Carts(
+      id: newId,
+      name: name,
+      status: true,
+      size: size,
+      price: price,
+      quality: quality,
+      image: image,
+    );
+    cart.add(newCart);
   } catch (e) {
-    print('Error deleting cart: $e');
+    // Handle exceptions or errors here
+    print('Error adding new cart to Firestore: $e');
   }
 }
 
 
+   static Future<void> deleteCartByAutoid(String autoid) async {
+    try {
+      // Tìm đối tượng cần xóa trong danh sách cart
+      Carts cartToDelete = cart.firstWhere((cart) => cart.id == autoid);
+
+      // Xóa đối tượng khỏi danh sách cart
+      cart.remove(cartToDelete);
+
+      // Xóa đối tượng trong Firestore
+      await FirebaseFirestore.instance.collection('carts').doc(autoid).delete();
+
+      print('Deleted cart with autoid: $autoid');
+    } catch (e) {
+      print('Error deleting cart by autoid: $e');
+    }
+  }
 }

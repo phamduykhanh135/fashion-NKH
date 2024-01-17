@@ -21,7 +21,7 @@ class _CartScreenState extends State<CartScreen> {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id - 1]).toList();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[int.parse(cart.id) - 1]).toList();
     });
   }
 
@@ -52,19 +52,27 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  void clearAndReloadSelectedItems() {
-    setState(() {
-      selectedItems.clear();
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id - 1]).toList();
-    });
-  }
+ void clearAndReloadSelectedItems() {
+  setState(() {
+    selectedItems.clear();
+
+
+    for (int i = 0; i < _cart!.length; i++) {
+  
+      if (itemCheckboxStates[i]) {
+        selectedItems.add(_cart![i]);
+      }
+    }
+  });
+}
+
 
   double calculateTotalPrice() {
     double totalPrice = 0.0;
     if (_cart != null) {
       for (int i = 0; i < _cart!.length; i++) {
         if (itemCheckboxStates[i]) {
-          totalPrice += _cart![i].price * _cart![i].quality;
+          totalPrice += double.parse(_cart![i].price) * double.parse(_cart![i].quality);
         }
       }
     }
@@ -72,9 +80,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void onTotalPriceChanged(double totalPrice) {
-    // Implement the logic you want to execute when the total price changes
     print('Total Price Changed: $totalPrice');
-    // You can update UI or perform any actions with the total price
   }
 
   @override
@@ -139,7 +145,7 @@ class _CartScreenState extends State<CartScreen> {
                               selectedItems.remove(_cart![index]);
                             }
                           });
-                          clearAndReloadSelectedItems();
+                           clearAndReloadSelectedItems();
                         },
                         carts: _cart![index],
                         onQuantityChanged: () {},
@@ -156,9 +162,8 @@ class _CartScreenState extends State<CartScreen> {
         isCheckAll: isCheckAll,
         onToggleCheckAll: toggleCheckAll,
         totalPrice: calculateTotalPrice(),
-        selectedItems: selectedItems, 
+        selectedItems: selectedItems,
         calculateTotalPrice: calculateTotalPrice,
-        
       ),
     );
   }

@@ -81,16 +81,16 @@ class _Item_ContainerState extends State<Item_Container> {
           widget.onSizeSelected(selectedSize);
           switch (size) {
             case 'S':
-              quantity = widget.product.sizeS;
+              quantity = int.parse(widget.product.sizeS);
               break;
             case 'M':
-              quantity = widget.product.sizeM;
+              quantity =int.parse(widget.product.sizeM);
               break;
             case 'L':
-              quantity = widget.product.sizeL;
+              quantity = int.parse(widget.product.sizeL);
               break;
             case 'XL':
-              quantity = widget.product.sizeXL;
+              quantity = int.parse(widget.product.sizeXL);
               break;
             default:
               quantity = 0;

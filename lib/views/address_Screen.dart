@@ -17,6 +17,38 @@ class _address_ScreenState extends State<address_Screen> {
   Color myColor = Color(0xFF8E1C68);
   List<Address> addr = [];
   int selectedAddressIndex = -1;
+Future<void> _showConfirm(String addressId) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Xác nhận xóa'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Bạn có chắc muốn xóa địa chỉ này không?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Hủy'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Xóa'),
+              onPressed: () {
+                Navigator.of(context).pop();
+               Address.deleteAddress(addressId);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   void _loadData() async {
     await Address.loadData_address();
@@ -162,8 +194,7 @@ class _address_ScreenState extends State<address_Screen> {
           ),
            IconButton(
                           onPressed: (){
-                            
-                            // _showConfirm();
+                            _showConfirm(addr[index].id);
                           },
                           icon: const Icon(Icons.delete),
                         ),
@@ -172,3 +203,4 @@ class _address_ScreenState extends State<address_Screen> {
     );
   }
 }
+
