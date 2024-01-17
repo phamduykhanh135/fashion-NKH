@@ -1,5 +1,4 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/resuable_widget.dart';
 import 'package:sales_application/views/sigin_up_screen.dart';
@@ -20,18 +19,18 @@ class _SiginIn_ScreenState extends State<SiginIn_Screen> {
   final TextEditingController _passwordTextController = TextEditingController();
   bool _isObscure = true;
 
-  @override
-  initState() {
-    super.initState();
+  // @override
+  // initState() {
+  //   super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      User? user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
-        // Nếu đã đăng nhập, chuyển hướng đến trang chủ
-        Navigator.pushReplacementNamed(context, "/menu");
-      }
-    });
-  }
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     User? user = FirebaseAuth.instance.currentUser;
+  //     if (user != null) {
+  //       // Nếu đã đăng nhập, chuyển hướng đến trang chủ
+  //       Navigator.pushReplacementNamed(context, "/menu");
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

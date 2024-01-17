@@ -13,22 +13,21 @@ class Change_Password_screen extends StatefulWidget {
 }
 
 class _Change_Password_screenState extends State<Change_Password_screen> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    final TextEditingController emailTextController = TextEditingController();
     return Scaffold(
-        body: Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(color: Colors.pink.shade100.withOpacity(0.1)),
-      child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
-          child: Form(
-            key: formKey,
+      body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration:
+              BoxDecoration(color: Colors.pink.shade100.withOpacity(0.1)),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
@@ -87,23 +86,21 @@ class _Change_Password_screenState extends State<Change_Password_screen> {
                   height: 40,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                  child: resuableTexFile(
-                    "Email",
-                    Icons.email,
-                    false,
-                    false,
-                    emailTextController,
-                    (value) {
-                      if (value != null && !EmailValidator.validate(value)) {
-                        return LanguagePresenter.language.enterEmailValid;
-                      }
-                      return null;
-                    },
-                    
-                  ),
-                ),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    child: resuableTexFile(
+                      "Email",
+                      Icons.email,
+                      false,
+                      false,
+                      emailTextController,
+                      (value) {
+                        if (value != null && !EmailValidator.validate(value)) {
+                          return LanguagePresenter.language.enterEmailValid;
+                        }
+                        return null;
+                      },
+                    )),
                 Container(
                   width: 150,
                   height: 50,
@@ -163,6 +160,6 @@ class _Change_Password_screenState extends State<Change_Password_screen> {
               ],
             ),
           )),
-    ));
+    );
   }
 }

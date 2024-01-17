@@ -12,11 +12,11 @@ class Product_Screen extends StatefulWidget {
 
 class _Product_ScreenState extends State<Product_Screen> {
   late Product products = Product();
+
   @override
   void initState() {
     super.initState();
     getData();
-    print("ppppppppppppppppppppppppp${widget.idz}");
   }
 
   Future<void> getData() async {
@@ -30,7 +30,7 @@ class _Product_ScreenState extends State<Product_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    // print(widget.productId);
+    bool hasDiscount = products.discount != "0";
     return Scaffold(
         appBar: AppBar(
           title: const Text('Product Detail'),
@@ -43,14 +43,19 @@ class _Product_ScreenState extends State<Product_Screen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(
-                      // products.image,
-                      'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0',
-                      fit: BoxFit.contain,
-                      width: MediaQuery.of(context).size.width / 2 - 10,
-                      //color: Colors.amber,
-                      // height: 100,
-                    )
+                    SizedBox(
+                      height: 210,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (products.image.isNotEmpty)
+                            Image.network(
+                              products.image,
+                              fit: BoxFit.cover,
+                            ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -80,39 +85,39 @@ class _Product_ScreenState extends State<Product_Screen> {
                       child: Row(
                         children: [
                           Expanded(
-                              flex: 1,
+                              flex: 3,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Mã số: #0022708',
-                                      style: TextStyle(
+                                children: [
+                                  Text('Mã số :${products.id}',
+                                      style: const TextStyle(
                                         fontSize: 12,
                                         color: Colors.black,
                                       )),
-                                  Text(
-                                      //  'Price: \$${Product.products[widget.productId].price} vnd',
-                                      'Giá gốc: 177,000 đ',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          decoration:
-                                              TextDecoration.lineThrough)),
-                                  Text(
-                                      //  'Price: \$${Product.products[widget.productId].price} vnd',
-                                      'Giá Sale: 144,000 đ',
-                                      style: TextStyle(
-                                        fontSize: 18,
+                                  if (hasDiscount)
+                                    Text(
+                                      '\$${products.price}',
+                                      style: const TextStyle(
+                                        color: Colors.grey,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.red,
-                                      )),
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                    ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    '\$${(double.tryParse(products.price) ?? 0.0) - (double.tryParse(products.price) ?? 0.0) * ((double.tryParse(products.discount) ?? 0.0) / 100)}',
+                                    style: const TextStyle(
+                                        color: Colors.green, fontSize: 20
+                                        //decoration: TextDecoration.lineThrough,
+                                        ),
+                                  ),
                                 ],
                               )),
                           Expanded(
-                            flex: 1,
+                            flex: 2,
                             child: Container(
-                              width: 150,
                               height: 35,
-                              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                              margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(90)),
                               child: ElevatedButton(
@@ -134,11 +139,11 @@ class _Product_ScreenState extends State<Product_Screen> {
                                                   BorderRadius.circular(
                                                       10.0)))),
                                   child: const Text(
-                                    "Hướng dẫn chọn size",
+                                    "Hướng dẫn chọn sizes",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 15),
+                                        fontSize: 12),
                                   )),
                             ),
                           )
@@ -157,8 +162,8 @@ class _Product_ScreenState extends State<Product_Screen> {
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                         //  'Price: \$${Product.products[widget.productId].price} vnd',
                         "Mô tả sản phẩm\n",
                         style: TextStyle(
@@ -166,14 +171,7 @@ class _Product_ScreenState extends State<Product_Screen> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         )),
-                    Text("Chất liệu: Poly 4C\n"
-                        "Thành phần: 95% Polyester 5% Spandex\n"
-                        "- Mau khô\n"
-                        "- Không nhăn\n"
-                        "+ Kỹ thuật: In Cao\n"
-                        "+ Áo thun cổ tròn may dạng raglang phối màu, sử dụng bo cotton cùng màu vải chính làm cổ áo.\n"
-                        "+ Trước ngực áo họa tiết in cao\n"
-                        "^ Ẩn bớt nội dung"),
+                    Text(products.descriptions),
                   ],
                 ),
               )
