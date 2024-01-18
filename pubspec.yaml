@@ -56,6 +56,7 @@ dependencies:
   shared_preferences: ^2.2.2
   lite_rolling_switch: ^1.0.1
   geolocator: ^10.1.0
+  unorm_dart: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -79,11 +80,19 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+<<<<<<< HEAD
   # assets:
   #   - assets/img/package.jpg
   #   - assets/img/quanjean.jpg
 
 
+=======
+  assets:
+    - assets/email.png
+    - assets/google.png
+    - assets/avartar.png
+    - assets/logo.png
+>>>>>>> main
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
