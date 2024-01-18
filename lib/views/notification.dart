@@ -12,21 +12,24 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   List<Notificates> notificates=[];
-  void _loadData() {
-    Notificates.loadData().then((value) {
-      setState(() {
-
-        notificates= Notificates.notificates;
-        
-      });
+  void _loadData() async {
+    await Notificates.loadNotificates();
+    setState(() {
+      notificates = Notificates.notificates;
     });
   }
+
   @override
   void initState() {
     super.initState();
-    
+
     _loadData();
-    
+  }
+
+  @override
+  void dispose() {
+  
+    super.dispose();
   }
 
   

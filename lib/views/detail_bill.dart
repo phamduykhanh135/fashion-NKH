@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+import 'order_status.dart';
+import '../model/bills.dart';
+class Detail_bill extends StatefulWidget {
+  const Detail_bill({super.key,required this.bill}) ;
+  final Bills bill;
+  @override
+  State<Detail_bill> createState() => _Detail_billState();
+}
+
+class _Detail_billState extends State<Detail_bill> {
+
+  @override
+  Widget build(BuildContext context) {
+    int n=widget.bill.items.length;
+    return FutureBuilder(
+      future: Bills.loadBills(),
+      builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      }
+
+      if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}');
+      }
+
+      return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pink.shade100,
+        title: Text(
+          'Chi tiết đơn hàng',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.purpleAccent.shade400),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+          color: Colors.purpleAccent.shade400,
+        ),
+      ),
+      body:SingleChildScrollView(
+        child: Column(
+          children: [
+          for(int i=0;i<n;i++)
+          
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(5),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 4 + 10,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child:Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [                   
+                    //Ảnh
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      width: MediaQuery.of(context).size.width/5,
+                      height: MediaQuery.of(context).size.height/6,
+                      child: Image.network("${widget.bill.items[i]['image']}",fit:BoxFit.cover)
+                    ),
+                    
+                    //Thông tin sản phẩm                      
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [ 
+                          //Tên sản phẩm
+                          Text("${widget.bill.items[i]['name']}",style: TextStyle(fontSize: 18),),
+                          //Đơn giá
+                          Text("${widget.bill.items[i]['price']} đ",style: TextStyle(fontSize: 15,color: Colors.red),),
+                          //Số lượng
+                          Text("Số lượng: ${widget.bill.items[i]['quality']}",style: TextStyle(fontSize: 15),),
+                        ]
+                      ),
+                    )     
+                  ],
+                ),
+              ]
+            )
+          ),
+        //Thành tiền
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Text("Thành tiền: ",style: TextStyle(fontSize: 18,),),
+            Text("${widget.bill.totalAmount} đ",style: TextStyle(fontSize: 18,color: Colors.red),),
+          ],),
+        ),
+          ]
+        )
+                
+                        
+                
+      ),
+      );
+      },
+    );
+  }
+}
