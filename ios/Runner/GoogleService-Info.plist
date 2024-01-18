@@ -27,9 +27,14 @@
 	<key>GOOGLE_APP_ID</key>
 	<string>1:602267568095:ios:fd9421218505755a29e66a</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<key>DATABASE_URL</key>
 	<string>https://sales-application-c0d8a-default-rtdb.firebaseio.com</string>
 =======
+>>>>>>> main
+=======
+	<key>DATABASE_URL</key>
+	<string>https://sales-application-c0d8a-default-rtdb.firebaseio.com</string>
 >>>>>>> main
 </dict>
 </plist>

@@ -5,14 +5,13 @@ import '../../data/kien/payment_Reader.dart';
 import '../../model/kien/item_buyselectedoption.dart';
 import '../../model/kien/item_buylist.dart';
 import '../../model/kien/item_buybottom.dart';
-import 'address_Screen.dart';
 import '../../model/kien/item_buy.dart';
 
 class Buy_Screen extends StatefulWidget {
   final double totalPrice;
   double? selectedVoucherValue;
 
-  Buy_Screen({Key? key, required this.totalPrice, this.selectedVoucherValue});
+  Buy_Screen({super.key, required this.totalPrice, this.selectedVoucherValue});
 
   @override
   State<Buy_Screen> createState() => _Buy_ScreenState();
@@ -59,7 +58,7 @@ class _Buy_ScreenState extends State<Buy_Screen> {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
 
               if (snapshot.hasData && snapshot.data != null) {
@@ -71,7 +70,7 @@ class _Buy_ScreenState extends State<Buy_Screen> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: const Text(
                         'Tổng đơn hàng:',
                         style: TextStyle(
@@ -81,7 +80,7 @@ class _Buy_ScreenState extends State<Buy_Screen> {
                       ),
                     ),
                     ListView.builder(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 20),
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: _payment!.length,
@@ -108,7 +107,7 @@ class _Buy_ScreenState extends State<Buy_Screen> {
                     // Display address information
                     Container(
                       width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: selectedAddress != null
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

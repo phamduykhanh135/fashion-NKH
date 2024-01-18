@@ -9,7 +9,8 @@ import 'package:sales_application/model/kien/item_detailbody.dart';
 
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  final String idz;
+  const DetailScreen({Key? key,required this.idz}) : super(key: key);
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -37,7 +38,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         ),
       ),
       builder: (context) {
-        return Item_bottomSheet(product:_products![0],);
+        return Item_bottomSheet(product:_products![3],);
       },
     );
   }
@@ -66,7 +67,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
-        backgroundColor: Color.fromARGB(0, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
         elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -78,7 +79,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (_products == null || _products!.isEmpty) {
@@ -95,7 +96,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           }
 
           if (_products == null) {
-            return Text('Data is null');
+            return const Text('Data is null');
           }
 
           return Detail_body(

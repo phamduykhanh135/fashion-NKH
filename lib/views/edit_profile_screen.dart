@@ -133,13 +133,13 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                                color: Colors.grey,
                               ),
                             ),
                             const Icon(
                               Icons.arrow_forward_ios_outlined,
                               size: 15,
-                              color: Colors.black,
+                              color: Colors.grey,
                             ),
                           ],
                         ),
@@ -177,13 +177,13 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                                color: Colors.grey,
                               ),
                             ),
                             const Icon(
                               Icons.arrow_forward_ios_outlined,
                               size: 15,
-                              color: Colors.black,
+                              color: Colors.grey,
                             ),
                           ],
                         ),
@@ -221,13 +221,13 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                                color: Colors.grey,
                               ),
                             ),
                             const Icon(
                               Icons.arrow_forward_ios_outlined,
                               size: 15,
-                              color: Colors.black,
+                              color: Colors.grey,
                             ),
                           ],
                         ),
@@ -266,7 +266,7 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.grey,
                                 ),
                                 // overflow: TextOverflow
                                 //     .ellipsis, // Chọn một trong các giá trị: ellipsis, clip, fade
@@ -277,7 +277,7 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                             const Icon(
                               Icons.arrow_forward_ios_outlined,
                               size: 15,
-                              color: Colors.black,
+                              color: Colors.grey,
                             ),
                           ],
                         ),

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/data/kien/cart_Reader.dart';
-import 'package:sales_application/views/kien/buy_Sceen.dart';
 import '../../model/kien/item_cart.dart';
 import '../../model/kien/item_cartbottom.dart';
 
@@ -21,7 +20,7 @@ class _CartScreenState extends State<CartScreen> {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[int.parse(cart.id) - 1]).toList();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id.length - 1]).toList();
     });
   }
 
@@ -104,7 +103,7 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (_cart == null || _cart!.isEmpty) {
@@ -120,7 +119,7 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           if (_cart == null) {
-            return Text('Data is null');
+            return const Text('Data is null');
           }
 
           return SingleChildScrollView(

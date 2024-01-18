@@ -175,13 +175,14 @@ Future<void> signUp(
     );
     user.id = auth.user!.uid;
     // ignore: avoid_print
-    print('Tài khoản đã được tạo thành công!');
     await FirebaseFirestore.instance
         .collection('users')
         .doc(auth.user!.uid)
         .set(user.toJson());
 
-    Utils.showSnackBarTrue('Tài khoản đã được tạo thành công!');
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Tài khoản tạo thành công ',style: TextStyle(color: Colors.green),),
+      ));
   } on FirebaseAuthException catch (e) {
     // Ẩn loading indicator
     Navigator.of(context).pop();

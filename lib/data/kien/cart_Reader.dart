@@ -21,11 +21,12 @@ class Carts {
   });
 
   Carts.fromJson(Map<String, dynamic> json)
-      : id = json["id"] ?? '',
+
+      : id = json["id"] ?? "",
         name = json['name'] ?? '',
         status = json['status'] ?? false,
         price = json['price'] ?? '',
-        quality = json['quality'] ?? '',
+        quality = json['quality'] ?? "",
         size = json['size'] ?? '',
         image = json['image'] ?? '';
 

@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,12 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
+
         return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,6 +51,7 @@ class DefaultFirebaseOptions {
     }
   }
 
+
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyDIVzpCGVwnU965UulEEJ7fI65_IGd8o3Q',
     appId: '1:602267568095:web:22353b6f88b823b329e66a',
@@ -50,12 +59,16 @@ class DefaultFirebaseOptions {
     projectId: 'sales-application-c0d8a',
     authDomain: 'sales-application-c0d8a.firebaseapp.com',
 
+
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
+
 
 
     storageBucket: 'sales-application-c0d8a.appspot.com',
     measurementId: 'G-0766E369E1',
   );
+
+
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA_LfOdusO2ZhmrR9mNmzV9wC_-MtoKfpg',
@@ -64,7 +77,6 @@ class DefaultFirebaseOptions {
     projectId: 'sales-application-c0d8a',
 
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
-
 
     storageBucket: 'sales-application-c0d8a.appspot.com',
   );
@@ -75,7 +87,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '602267568095',
     projectId: 'sales-application-c0d8a',
 
+
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
+
 
 
     storageBucket: 'sales-application-c0d8a.appspot.com',
