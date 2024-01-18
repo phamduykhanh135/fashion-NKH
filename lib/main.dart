@@ -1,9 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/login.dart';
-import 'package:sales_application/views/menu_Screen.dart';
-import 'package:sales_application/presenters/personal_screen.dart';
-import 'package:sales_application/views/detail_Screen.dart';
+import 'package:sales_application/views/kien/detail_Screen.dart';
 
 import 'firebase_options.dart';
 
