@@ -14,14 +14,14 @@ import 'loaisp_Screen.dart';
 class SuaSP extends StatefulWidget {
   final Map<dynamic, dynamic> sp;
 
-  SuaSP(this.sp, {Key? key}) : super(key: key);
+  const SuaSP(this.sp, {Key? key}) : super(key: key);
 
   @override
   _SuaSPState createState() => _SuaSPState();
 }
 class _SuaSPState extends State<SuaSP> {
   late DocumentReference _reference;
-  GlobalKey<FormState> _key = GlobalKey();
+  final GlobalKey<FormState> _key = GlobalKey();
   String _selected="";
   late TextEditingController _tensp ;
   late TextEditingController _mota ;
@@ -38,14 +38,18 @@ class _SuaSPState extends State<SuaSP> {
     _charCount = _tensp.text.length;
     _selected=SuaMap.myMap['image'];
     _reference = FirebaseFirestore.instance.collection('products').doc(SuaMap.myMap['id']);
-    if(int.parse(SuaMap.myMap['sizeS'])>0)
+    if(int.parse(SuaMap.myMap['sizeS'])>0) {
       _kichco_sp+="S ";
-    if(int.parse(SuaMap.myMap['sizeM'])>0)
+    }
+    if(int.parse(SuaMap.myMap['sizeM'])>0) {
       _kichco_sp+="M ";
-    if(int.parse(SuaMap.myMap['sizeL'])>0)
+    }
+    if(int.parse(SuaMap.myMap['sizeL'])>0) {
       _kichco_sp+="L ";
-    if(int.parse(SuaMap.myMap['sizeXL'])>0)
+    }
+    if(int.parse(SuaMap.myMap['sizeXL'])>0) {
       _kichco_sp+="XL ";
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -63,7 +67,7 @@ class _SuaSPState extends State<SuaSP> {
                   SuaMap.myMap['descriptions']==""||SuaMap.myMap['category']==""||
                   SuaMap.myMap['price']==""||int.parse(SuaMap.myMap['sizeS'])+int.parse(SuaMap.myMap['sizeM'])+int.parse(SuaMap.myMap['sizeL'])+int.parse(SuaMap.myMap['sizeXL'])==0||SuaMap.myMap['discount']==""){
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text('Bạn chưa nhập đầy đủ thông tin'),
                   ),
                 );
@@ -72,7 +76,7 @@ class _SuaSPState extends State<SuaSP> {
                 try {
                   await _reference.update(Map<String,dynamic>.from(SuaMap.myMap));
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Sửa thông tin thành công '),
                     ),
                   );
@@ -131,7 +135,7 @@ class _SuaSPState extends State<SuaSP> {
                             ),
                             child:InkWell(
                               onTap: (){_pickImage();},
-                              child: _selected!=""? Image.network(_selected!):Center(
+                              child: _selected!=""? Image.network(_selected):const Center(
                                 child: Text("Thêm ảnh",style:TextStyle(fontSize: 14)),/*TODO:*/
                               ),
                             ),
@@ -163,8 +167,8 @@ class _SuaSPState extends State<SuaSP> {
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
                 height: MediaQuery.of(context).size.width/3.5,
-                padding:EdgeInsets.all(10),
-                constraints:BoxConstraints(maxHeight: 200.0),
+                padding:const EdgeInsets.all(10),
+                constraints:const BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(
                     color:  MyColor.light_grey
                 ),
@@ -179,7 +183,7 @@ class _SuaSPState extends State<SuaSP> {
                         RichText(
                           text: TextSpan(
                             style: DefaultTextStyle.of(context).style,
-                            children: <TextSpan>[
+                            children: const <TextSpan>[
                               TextSpan(text: 'Tên sản phẩm ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 13,color: Colors.black,decoration: TextDecoration.none,)),
                               TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 13,color: Colors.red,decoration: TextDecoration.none,)),
                             ],
@@ -266,7 +270,7 @@ class _SuaSPState extends State<SuaSP> {
                           child: Row(
                             children: [
                               const Expanded(child: Icon(Icons.category)), // Icon ở đầu
-                              Expanded(child: RichText(
+                              Expanded(flex: 3,child: RichText(
                                 text: TextSpan(
                                   text: null,
                                   style: DefaultTextStyle.of(context).style,
@@ -275,9 +279,9 @@ class _SuaSPState extends State<SuaSP> {
                                     TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
                                   ],
                                 ),
-                              ),flex: 3,),
+                              ),),
                               Expanded(child: Text(SuaMap.myMap['category'])),// Khoảng trắng giữa hai icon
-                              Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
+                              const Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                             ],
                           ),)),
                     ///So luong
@@ -288,8 +292,8 @@ class _SuaSPState extends State<SuaSP> {
                         },
                           child: Row(
                             children: [
-                              Expanded(child: Icon(Icons.warehouse)), // Icon ở đầu
-                              Expanded(child: RichText(
+                              const Expanded(child: Icon(Icons.warehouse)), // Icon ở đầu
+                              Expanded(flex: 3,child: RichText(
                                 text: TextSpan(
                                   text: null,
                                   style: DefaultTextStyle.of(context).style,
@@ -298,9 +302,9 @@ class _SuaSPState extends State<SuaSP> {
                                     TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
                                   ],
                                 ),
-                              ),flex: 3,),
+                              ),),
                               Expanded(child: Text("${int.parse(SuaMap.myMap['sizeS'])+int.parse(SuaMap.myMap['sizeM'])+int.parse(SuaMap.myMap['sizeL'])+int.parse(SuaMap.myMap['sizeXL'])}")),// Khoảng trắng giữa hai icon
-                              Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
+                              const Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                             ],
                           ),)),
 
@@ -314,8 +318,8 @@ class _SuaSPState extends State<SuaSP> {
                           },
                           child: Row(
                             children: [
-                              Expanded(child: Icon(Icons.price_change)), // Icon ở đầu
-                              Expanded(child:RichText(
+                              const Expanded(child: Icon(Icons.price_change)), // Icon ở đầu
+                              Expanded(flex: 3,child:RichText(
                                 text: TextSpan(
                                   text: null,
                                   style: DefaultTextStyle.of(context).style,
@@ -325,9 +329,9 @@ class _SuaSPState extends State<SuaSP> {
                                   ],
                                 ),
                               )
-                                ,flex: 3,),
+                                ,),
                               Expanded(child: Text("${SuaMap.myMap['price']}",maxLines: 1,)),// Khoảng trắng giữa hai icon
-                              Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
+                              const Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                             ],
                           ),)),
                     ///Mua giam gia
@@ -340,10 +344,10 @@ class _SuaSPState extends State<SuaSP> {
                           },
                           child: Row(
                             children: [
-                              Expanded(child: Icon(Icons.percent)), // Icon ở đầu
-                              Expanded(child: Text("Giảm giá",style:TextStyle(fontSize: 14)),flex: 3,),
+                              const Expanded(child: Icon(Icons.percent)), // Icon ở đầu
+                              const Expanded(flex: 3,child: Text("Giảm giá",style:TextStyle(fontSize: 14)),),
                               Expanded(child: Text("${SuaMap.myMap['discount']}")),// Khoảng trắng giữa hai icon
-                              Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
+                              const Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                             ],
                           ),)),
 
@@ -355,9 +359,9 @@ class _SuaSPState extends State<SuaSP> {
                           onTap: (){},
                           child: Row(
                             children:[
-                              Expanded(child: Icon(Icons.format_size)),
-                              Expanded(child: Text("Kích cỡ",style:TextStyle(fontSize: 14)),flex: 3,),
-                              Expanded(child: Text("")),
+                              const Expanded(child: Icon(Icons.format_size)),
+                              const Expanded(flex: 3,child: Text("Kích cỡ",style:TextStyle(fontSize: 14)),),
+                              const Expanded(child: Text("")),
                               Expanded(child: Text(_kichco_sp)),
                             ],
                           ),)),

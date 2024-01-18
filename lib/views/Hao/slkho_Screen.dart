@@ -16,10 +16,10 @@ class SoLuongKho extends StatefulWidget {
 }
 
 class _SoLuongKhoState extends State<SoLuongKho> {
-  var _sizeS=TextEditingController();
-  var _sizeM=TextEditingController();
-  var _sizeL=TextEditingController();
-  var _sizeXL=TextEditingController();
+  final _sizeS=TextEditingController();
+  final _sizeM=TextEditingController();
+  final _sizeL=TextEditingController();
+  final _sizeXL=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +34,12 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             Them.quatitySizeL=int.parse(_sizeL.text);
             Them.quatitySizeXL=int.parse(_sizeXL.text);
             Navigator.pop( context,
-              MaterialPageRoute(builder: (context) => ThemSP()),);
+              MaterialPageRoute(builder: (context) => const ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
         leading: IconButton(onPressed: (){
           Navigator.push( context,
-            MaterialPageRoute(builder: (context) => ThemSP()),);
+            MaterialPageRoute(builder: (context) => const ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
       ),
@@ -48,8 +48,8 @@ class _SoLuongKhoState extends State<SoLuongKho> {
         children: [
         Container(
         height: 130,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
         decoration:  BoxDecoration(
             color:  MyColor.light_grey,
             borderRadius: BorderRadius.circular(30.0)
@@ -58,7 +58,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
           children: [
             Expanded(child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text("S")],)),
+              children: const [Text("S")],)),
             Expanded( flex: 2,
                 child: Container(
                   child: TextFormField(
@@ -68,11 +68,11 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                       ,LengthLimitingTextInputFormatter(10)
                     ],
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
+                      contentPadding: const EdgeInsets.all(10),
                       hintText: 'Enter number',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                        borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
@@ -90,8 +90,8 @@ class _SoLuongKhoState extends State<SoLuongKho> {
           ///M
           Container(
             height: 130,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
             decoration:  BoxDecoration(
                 color:  MyColor.light_grey,
                 borderRadius: BorderRadius.circular(30.0)
@@ -100,7 +100,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
               children: [
                 Expanded(child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("M")],)),
+                  children: const [Text("M")],)),
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
@@ -108,11 +108,11 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly ,LengthLimitingTextInputFormatter(10)],
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Enter number',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
@@ -130,8 +130,8 @@ class _SoLuongKhoState extends State<SoLuongKho> {
           ///L
           Container(
             height: 130,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
             decoration:  BoxDecoration(
                 color:  MyColor.light_grey,
                 borderRadius: BorderRadius.circular(30.0)
@@ -140,7 +140,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
               children: [
                 Expanded(child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("L")],)),
+                  children: const [Text("L")],)),
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
@@ -148,11 +148,11 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly ,LengthLimitingTextInputFormatter(10)],
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Enter number',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
@@ -170,8 +170,8 @@ class _SoLuongKhoState extends State<SoLuongKho> {
           ///XL
           Container(
             height: 130,
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
             decoration:  BoxDecoration(
                 color:  MyColor.light_grey,
                 borderRadius: BorderRadius.circular(30.0)
@@ -180,7 +180,7 @@ class _SoLuongKhoState extends State<SoLuongKho> {
               children: [
                 Expanded(child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text("XL")],)),
+                  children: const [Text("XL")],)),
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
@@ -188,11 +188,11 @@ class _SoLuongKhoState extends State<SoLuongKho> {
                         keyboardType: TextInputType.number,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly ,LengthLimitingTextInputFormatter(10)],
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
+                          contentPadding: const EdgeInsets.all(10),
                           hintText: 'Enter number',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
@@ -216,10 +216,10 @@ class _SoLuongKhoState extends State<SoLuongKho> {
 class SSoLuongKho extends StatelessWidget {
   SSoLuongKho(this.itemId, {Key? key}) : super(key: key);
   String itemId;
-  var _sizeS=TextEditingController(text: SuaMap.myMap['sizeS'].toString());
-  var _sizeM=TextEditingController(text: SuaMap.myMap['sizeM'].toString());
-  var _sizeL=TextEditingController(text: SuaMap.myMap['sizeL'].toString());
-  var _sizeXL=TextEditingController(text: SuaMap.myMap['sizeXL'].toString());
+  final _sizeS=TextEditingController(text: SuaMap.myMap['sizeS'].toString());
+  final _sizeM=TextEditingController(text: SuaMap.myMap['sizeM'].toString());
+  final _sizeL=TextEditingController(text: SuaMap.myMap['sizeL'].toString());
+  final _sizeXL=TextEditingController(text: SuaMap.myMap['sizeXL'].toString());
 
   @override
   Widget build(BuildContext context) {
@@ -250,8 +250,8 @@ class SSoLuongKho extends StatelessWidget {
               children: [
                 Container(
                   height: 130,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                   decoration:  BoxDecoration(
                       color:  MyColor.light_grey,
                       borderRadius: BorderRadius.circular(30.0)
@@ -260,7 +260,7 @@ class SSoLuongKho extends StatelessWidget {
                     children: [
                       Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("S")],)),
+                        children: const [Text("S")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -268,11 +268,11 @@ class SSoLuongKho extends StatelessWidget {
                               keyboardType: TextInputType.number,
                               inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
+                                contentPadding: const EdgeInsets.all(10),
                                 hintText: 'Enter number',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                  borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
@@ -290,8 +290,8 @@ class SSoLuongKho extends StatelessWidget {
                 ///M
                 Container(
                   height: 130,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                   decoration:  BoxDecoration(
                       color:  MyColor.light_grey,
                       borderRadius: BorderRadius.circular(30.0)
@@ -300,7 +300,7 @@ class SSoLuongKho extends StatelessWidget {
                     children: [
                       Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("M")],)),
+                        children: const [Text("M")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -308,11 +308,11 @@ class SSoLuongKho extends StatelessWidget {
                               keyboardType: TextInputType.number,
                               inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
+                                contentPadding: const EdgeInsets.all(10),
                                 hintText: 'Enter number',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                  borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
@@ -330,8 +330,8 @@ class SSoLuongKho extends StatelessWidget {
                 ///L
                 Container(
                   height: 130,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                   decoration:  BoxDecoration(
                       color:  MyColor.light_grey,
                       borderRadius: BorderRadius.circular(30.0)
@@ -340,7 +340,7 @@ class SSoLuongKho extends StatelessWidget {
                     children: [
                       Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("L")],)),
+                        children: const [Text("L")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -348,11 +348,11 @@ class SSoLuongKho extends StatelessWidget {
                               keyboardType: TextInputType.number,
                               inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
+                                contentPadding: const EdgeInsets.all(10),
                                 hintText: 'Enter number',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                  borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
@@ -370,8 +370,8 @@ class SSoLuongKho extends StatelessWidget {
                 ///XL
                 Container(
                   height: 130,
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                   decoration:  BoxDecoration(
                       color:  MyColor.light_grey,
                       borderRadius: BorderRadius.circular(30.0)
@@ -380,7 +380,7 @@ class SSoLuongKho extends StatelessWidget {
                     children: [
                       Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("XL")],)),
+                        children: const [Text("XL")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -388,11 +388,11 @@ class SSoLuongKho extends StatelessWidget {
                               keyboardType: TextInputType.number,
                               inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(10)],
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
+                                contentPadding: const EdgeInsets.all(10),
                                 hintText: 'Enter number',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),
-                                  borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                                  borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0),

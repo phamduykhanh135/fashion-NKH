@@ -56,12 +56,9 @@ dependencies:
   shared_preferences: ^2.2.2
   lite_rolling_switch: ^1.0.1
   geolocator: ^10.1.0
-<<<<<<< HEAD
+
   unorm_dart: ^0.3.0
-=======
-image_picker: ^0.8.6
-provider: ^7.0.0
->>>>>>> HAO
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
