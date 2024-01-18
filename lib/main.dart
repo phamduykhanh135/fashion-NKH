@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'package:sales_application/presenters/home.dart';
 import 'package:sales_application/views/personal_screen.dart';
 import 'package:sales_application/views/change_password_screen.dart';
@@ -19,6 +20,7 @@ Future main() async {
   );
 
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
+
       initialRoute: "/home",
       routes: {
         "/home": (context) => const Home(),

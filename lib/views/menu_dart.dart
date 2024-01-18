@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/item_poduct_home.dart';
+import 'package:sales_application/views/kien/cart_Screen.dart';
 
 import '../model/product.dart';
 import 'seach_screen.dart';
@@ -86,7 +87,14 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartScreen(),
+                          ),
+                        );
+                        },
                         icon: const Icon(
                           Icons.shopping_cart,
                           color: Colors.white,
