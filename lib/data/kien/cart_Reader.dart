@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 class Carts {
   String id;
   String name;
@@ -21,11 +21,11 @@ class Carts {
   });
 
   Carts.fromJson(Map<String, dynamic> json)
-      : id = json["id"] ?? 0,
+      : id = json["id"] ?? '',
         name = json['name'] ?? '',
         status = json['status'] ?? false,
         price = json['price'] ?? '',
-        quality = json['quality'] ?? 0,
+        quality = json['quality'] ?? '',
         size = json['size'] ?? '',
         image = json['image'] ?? '';
 
@@ -50,7 +50,7 @@ class Carts {
     CollectionReference cartCollection = FirebaseFirestore.instance.collection('carts');
 
     // Tạo autoid mới
-    String newId = cartCollection.doc().id;
+    String newId = cartCollection.doc().id;  
 
     // Thêm vào Firestore với autoid mới
     await cartCollection.doc(newId).set({
@@ -62,6 +62,7 @@ class Carts {
       "quality": quality,
       "image": image,
     });
+
 
     // Thêm vào danh sách cart
     Carts newCart = Carts(

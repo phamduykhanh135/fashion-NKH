@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/kien/detail_Screen.dart';
 
+
 import 'firebase_options.dart';
 
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-     home: const DetailScreen()
+     home: const Center()
     //  initialRoute: "/login",
     //  routes: {
     //    "/login":(context)=>const Login_Screen(),

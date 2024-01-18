@@ -54,7 +54,7 @@ class _add_AddressState extends State<add_Address> {
                 LengthLimitingTextInputFormatter(10), // Giới hạn độ dài tối đa là 10
                 TextInputFormatter.withFunction(
                   (oldValue, newValue) {
-                    // Số đầu tiên không được là 0
+                    // Số đầu tiên  được là 0
                     if (newValue.text.isNotEmpty && newValue.text[0] == '0') {
                       return newValue;
                     }

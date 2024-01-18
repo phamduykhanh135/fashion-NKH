@@ -60,7 +60,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>   CartScreen()),
+                MaterialPageRoute(builder: (context) =>   const CartScreen()),
               );
             },
             icon: const Icon(Icons.shopping_cart_outlined),
