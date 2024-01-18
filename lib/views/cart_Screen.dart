@@ -109,7 +109,7 @@ class _CartScreenState extends State<CartScreen> {
 
           if (_cart == null || _cart!.isEmpty) {
             return const Center(
-              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              child: Text('Hiện tại giỏ hàng trống ', style: TextStyle(fontSize: 20)),
             );
           }
 

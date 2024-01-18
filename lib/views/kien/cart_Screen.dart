@@ -113,9 +113,7 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           if (snapshot.hasData && snapshot.data != null) {
-            _cart = snapshot.data!.docs
-                .map((doc) => Carts.fromJson(doc.data() as Map<String, dynamic>))
-                .toList();
+        
           }
 
           if (_cart == null) {

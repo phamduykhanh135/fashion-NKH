@@ -70,9 +70,9 @@ import 'item_detailcontainer.dart';
           ],  
         ),
         Positioned(
-          bottom: 1,
-          left: 1,
-          right: 1,
+          bottom: 0,
+          left: 0,
+          right: 0,
           child: Detail_Bottombar(showBottomSheet: showBottomSheet, product: product),
         ),
       ],

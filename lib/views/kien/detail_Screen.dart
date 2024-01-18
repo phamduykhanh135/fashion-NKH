@@ -2,15 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../data/kien/product_Reader.dart';
 import '../../model/kien/Item_bottomSheet.dart';
-
 import 'package:sales_application/views/kien/cart_Screen.dart';
-
 import 'package:sales_application/model/kien/item_detailbody.dart';
-
 
 class DetailScreen extends StatefulWidget {
   final String idz;
-  const DetailScreen({Key? key,required this.idz}) : super(key: key);
+
+  const DetailScreen({Key? key, required this.idz}) : super(key: key);
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -24,7 +22,12 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     await Products.loadData_product();
     setState(() {
       _products = Products.products;
+    
     });
+  }
+
+  Products? getProductById(String id) {
+    return _products?.firstWhere((product) => product.id == id);
   }
 
   void _showBottomSheet(BuildContext context) {
@@ -38,7 +41,14 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         ),
       ),
       builder: (context) {
-        return Item_bottomSheet(product:_products![3],);
+        // Find the product by idz
+        Products? product = getProductById(widget.idz);
+        if (product != null) {
+          return Item_bottomSheet(product: product);
+        } else {
+
+          return Container();
+        }
       },
     );
   }
@@ -51,7 +61,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: myColor),
@@ -61,7 +70,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>   const CartScreen()),
+                MaterialPageRoute(builder: (context) => const CartScreen()),
               );
             },
             icon: const Icon(Icons.shopping_cart_outlined),
@@ -85,7 +94,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           if (_products == null || _products!.isEmpty) {
             return const Center(
               child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
-              
             );
           }
 
@@ -99,12 +107,18 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             return const Text('Data is null');
           }
 
+          // Find the product by idz
+          Products? product = getProductById(widget.idz);
+
           return Detail_body(
             showBottomSheet: () => _showBottomSheet(context),
-            product: _products![0], 
+            // Pass the product to Detail_body
+            product: product!,
           );
+        
         },
       ),
+      
     );
   }
 }

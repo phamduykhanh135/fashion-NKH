@@ -124,54 +124,54 @@ class _Item_cartState extends State<Item_cart> {
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            width: MediaQuery.of(context).size.width * 0.8,
+            width: MediaQuery.of(context).size.width * 0.85,
             decoration: BoxDecoration(
               color: myLightGrayColor,
               borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             child: Row(
-              children: [
-                Image.network(
-                  widget.carts.image,
-                  width: MediaQuery.of(context).size.width / 6,
-                  height: MediaQuery.of(context).size.height / 6,
-                  fit: BoxFit.contain,
-                ),
+              children:  [
+                 Image.network(
+                   widget.carts.image,
+                   width: MediaQuery.of(context).size.width / 4,
+                   height: MediaQuery.of(context).size.height / 6,
+                   fit: BoxFit.contain,
+                 ),
                 const SizedBox(
-                  width: 30,
+                  width: 10,
                 ),
-                Column(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                   children: [
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(widget.carts.name,
+                    Container(
+                      width:MediaQuery.of(context).size.width /2,
+                      child: Text(widget.carts.name,
                         style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                    const SizedBox(
+                          fontSize: 18, fontWeight: FontWeight.bold)
+                          ),),
+                   const  SizedBox(
                       height: 10,
                     ),
-                    Text(widget.carts.price,
-                        style: const TextStyle(
-                          fontSize: 18,
-                        )),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text("Size:${widget.carts.size}",
+
+                     Text(widget.carts.price,
+                       style: const TextStyle(
+                         fontSize: 18,
+                         )),
+                     const SizedBox(
+                       height: 10,
+                     ),
+                     Text("Size:${widget.carts.size}",
                         style: const TextStyle(fontSize: 18)),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                     // color: Colors.amber,
-                      width: 180,
+                     const SizedBox(
+                       height: 10,
+                     ),
+                     Container(
                       child: Row(
                         children: [
-                          Expanded(
-                            flex: 1,
-                            child: TextButton(
+                         TextButton(
                               onPressed: () async {
                                 setState(() {
                                   if (int.parse(widget.carts.quality) > 0) {
@@ -202,20 +202,14 @@ class _Item_cartState extends State<Item_cart> {
                               ),
                               child: const Icon(Icons.remove),
                             ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                            child: Expanded(
-                              
-                              flex: 1,
-                              child: Text(widget.carts.quality.toString(),
-                                  style: const TextStyle(fontSize: 20.0)),
-                            ),
-                          ),
-                    
-                          Expanded(
-                            flex: 1,
-                            child: TextButton(
+
+                             Container(
+                              margin: EdgeInsets.all(10),
+                      child: Text(widget.carts.quality.toString(),
+                       style: const TextStyle(fontSize: 20.0)),
+                   
+                      ),
+                      TextButton(
                               onPressed: () async {
                                 setState(() {
                                   if (int.parse(widget.carts.quality) >= 0) {
@@ -247,20 +241,15 @@ class _Item_cartState extends State<Item_cart> {
                               ),
                               child: const Icon(Icons.add),
                             ),
-                          ),
-                    
-                          Expanded(
-                            flex: 1,
-                            child: IconButton(
+                            IconButton(
                               onPressed: () {
                                 _showConfirm();
                               },
                               icon: const Icon(Icons.delete),
                             ),
-                          )
                         ],
                       ),
-                    ),
+                     ),
                   ],
                 ),
               ],
