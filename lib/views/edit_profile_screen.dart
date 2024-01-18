@@ -2,7 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/edit_screen.dart';
-import 'package:sales_application/presenters/upload_image.dart';
+import 'package:sales_application/views/upload_image.dart';
+
 
 import '../model/user.dart';
 import 'personal_screen.dart';

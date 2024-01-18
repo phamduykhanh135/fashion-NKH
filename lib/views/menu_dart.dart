@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/item_poduct_home.dart';
+
 
 import '../model/product.dart';
+import 'item_poduct_home.dart';
 import 'seach_screen.dart';
 import '../presenters/bottom.dart';
 class Menu_Screen extends StatefulWidget {
@@ -56,7 +57,6 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                         width: MediaQuery.of(context).size.width - 20,
                         padding: const EdgeInsets.all(10),
                         child: Row(
-                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Icon(
                               Icons.search,

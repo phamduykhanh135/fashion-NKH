@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../presenters/group_category.dart';
-import '../presenters/item_poduct_home.dart';
-import '../model/product.dart'; // Import model Product
+
+import '../model/product.dart';
+import 'item_poduct_home.dart'; // Import model Product
 
 class Search_Screen extends StatefulWidget {
   const Search_Screen({

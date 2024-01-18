@@ -1,18 +1,6 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:sales_application/views/kien/detail_Screen.dart';
-
-
-import 'firebase_options.dart';
-
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
-=======
-
 import 'package:sales_application/model/user.dart';
 import 'package:sales_application/views/personal_screen.dart';
 import 'package:sales_application/views/change_password_screen.dart';
@@ -29,7 +17,6 @@ Future main() async {
   options: DefaultFirebaseOptions.currentPlatform,
 );
   runApp(const MyApp());
->>>>>>> main
 }
 
 class MyApp extends StatelessWidget {
@@ -46,16 +33,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
 
       ),
-<<<<<<< HEAD
-     home: const Center()
-    //  initialRoute: "/login",
-    //  routes: {
-    //    "/login":(context)=>const Login_Screen(),
-    //   "/menu":(context)=>const Menu_Screen(),
-    //   "/personal":(context)=>const Personal_Screen()
-    //  },
-=======
-      // home: const Menu_Screen()
+
+       home: const Menu_Screen(),
       initialRoute: "/sigin_in",
       routes: {
         "/sigin_in": (context) => const SiginIn_Screen(),
@@ -66,7 +45,7 @@ class MyApp extends StatelessWidget {
         "/personal": (context) => const Personal_Screen(),
         
       },
->>>>>>> main
+
     );
   }
 }

@@ -49,10 +49,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '602267568095',
     projectId: 'sales-application-c0d8a',
     authDomain: 'sales-application-c0d8a.firebaseapp.com',
-<<<<<<< HEAD
+
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
-=======
->>>>>>> main
+
+
     storageBucket: 'sales-application-c0d8a.appspot.com',
     measurementId: 'G-0766E369E1',
   );
@@ -62,10 +62,10 @@ class DefaultFirebaseOptions {
     appId: '1:602267568095:android:98e29b73d2c8decd29e66a',
     messagingSenderId: '602267568095',
     projectId: 'sales-application-c0d8a',
-<<<<<<< HEAD
+
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
-=======
->>>>>>> main
+
+
     storageBucket: 'sales-application-c0d8a.appspot.com',
   );
 
@@ -74,10 +74,10 @@ class DefaultFirebaseOptions {
     appId: '1:602267568095:ios:fd9421218505755a29e66a',
     messagingSenderId: '602267568095',
     projectId: 'sales-application-c0d8a',
-<<<<<<< HEAD
+
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
-=======
->>>>>>> main
+
+
     storageBucket: 'sales-application-c0d8a.appspot.com',
     iosBundleId: 'com.example.salesApplication',
   );
@@ -87,10 +87,9 @@ class DefaultFirebaseOptions {
     appId: '1:602267568095:ios:fd9421218505755a29e66a',
     messagingSenderId: '602267568095',
     projectId: 'sales-application-c0d8a',
-<<<<<<< HEAD
+
     databaseURL: 'https://sales-application-c0d8a-default-rtdb.firebaseio.com',
-=======
->>>>>>> main
+
     storageBucket: 'sales-application-c0d8a.appspot.com',
     iosBundleId: 'com.example.salesApplication',
   );
