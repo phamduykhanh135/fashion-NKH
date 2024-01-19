@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/model/color.dart';
 import 'package:flutter/services.dart';
 import 'package:sales_application/views/Hao/suasp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
@@ -56,9 +55,9 @@ class _SoLuongKhoState extends State<SoLuongKho> {
         ),
         child: Row(
           children: [
-            Expanded(child: Row(
+            const Expanded(child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [Text("S")],)),
+              children: [Text("S")],)),
             Expanded( flex: 2,
                 child: Container(
                   child: TextFormField(
@@ -98,9 +97,9 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             ),
             child: Row(
               children: [
-                Expanded(child: Row(
+                const Expanded(child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [Text("M")],)),
+                  children: [Text("M")],)),
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
@@ -138,9 +137,9 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             ),
             child: Row(
               children: [
-                Expanded(child: Row(
+                const Expanded(child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [Text("L")],)),
+                  children: [Text("L")],)),
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
@@ -178,9 +177,9 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             ),
             child: Row(
               children: [
-                Expanded(child: Row(
+                const Expanded(child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [Text("XL")],)),
+                  children: [Text("XL")],)),
                 Expanded( flex: 2,
                     child: Container(
                       child: TextFormField(
@@ -258,9 +257,9 @@ class SSoLuongKho extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(child: Row(
+                      const Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [Text("S")],)),
+                        children: [Text("S")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -298,9 +297,9 @@ class SSoLuongKho extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(child: Row(
+                      const Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [Text("M")],)),
+                        children: [Text("M")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -338,9 +337,9 @@ class SSoLuongKho extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(child: Row(
+                      const Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [Text("L")],)),
+                        children: [Text("L")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(
@@ -378,9 +377,9 @@ class SSoLuongKho extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(child: Row(
+                      const Expanded(child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [Text("XL")],)),
+                        children: [Text("XL")],)),
                       Expanded( flex: 2,
                           child: Container(
                             child: TextFormField(

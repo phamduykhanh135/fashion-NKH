@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../../data/kien/cart_Reader.dart';
 import '../../data/kien/product_Reader.dart';
 import 'item_detailcontainer.dart';
-
-
 class Item_bottomSheet extends StatefulWidget {
   final Products product;
 
@@ -24,14 +21,14 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Lỗi'),
-            content: Text('Vui lòng chọn kích thước và số lượng.'),
+            title: const Text('Lỗi'),
+            content: const Text('Vui lòng chọn kích thước và số lượng.'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );
@@ -54,7 +51,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       height: MediaQuery.of(context).size.height / 1.2,
       child: Column(
         children: [
@@ -66,9 +63,9 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                 height: MediaQuery.of(context).size.height / 5,
                 width: MediaQuery.of(context).size.width / 5,
               ),
-              SizedBox(width: 120),
+              const SizedBox(width: 120),
               Text(widget.product.price,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             ],
           ),
           Container(
@@ -86,8 +83,8 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                 ),
                 Row(
                   children: [
-                    Text("Số lượng:"),
-                    SizedBox(
+                    const Text("Số lượng:"),
+                    const SizedBox(
                       width: 130,
                     ),
                     Container(
@@ -96,7 +93,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                           TextButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(Colors.white),
-                              side: MaterialStateProperty.all(BorderSide(color: Colors.black)),
+                              side: MaterialStateProperty.all(const BorderSide(color: Colors.black)),
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -110,15 +107,15 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                                 }
                               });
                             },
-                            child: Icon(Icons.remove, color: Colors.black),
+                            child: const Icon(Icons.remove, color: Colors.black),
                           ),
-                          SizedBox(width: 20,),
+                          const SizedBox(width: 20,),
                           Text(temp.toString()),
-                          SizedBox(width: 20,),
+                          const SizedBox(width: 20,),
                           TextButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(Colors.white),
-                              side: MaterialStateProperty.all(BorderSide(color: Colors.black)),
+                              side: MaterialStateProperty.all(const BorderSide(color: Colors.black)),
                               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
@@ -132,18 +129,18 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                                 }
                               });
                             },
-                            child: Icon(Icons.add, color: Colors.black),
+                            child: const Icon(Icons.add, color: Colors.black),
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   height: 50,
                   width: MediaQuery.of(context).size.width,
                   child: TextButton(
@@ -172,17 +169,15 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
 }
 
 void showSuccessDialog(BuildContext context) {
-  if (context != null) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        Future.delayed(Duration(seconds: 1), () {
-          Navigator.pop(context);
-        });
-        return const AlertDialog(
-          content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
-        );
-      },
-    ).then((_) => Navigator.pop(context));
-  }
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.pop(context);
+      });
+      return const AlertDialog(
+        content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
+      );
+    },
+  ).then((_) => Navigator.pop(context));
 }

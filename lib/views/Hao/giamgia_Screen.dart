@@ -14,7 +14,7 @@ class GiamGia extends StatefulWidget {
 }
 
 class _GiamGiaState extends State<GiamGia> {
-  var _giamgia=TextEditingController();
+  final _giamgia=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,26 +26,26 @@ class _GiamGiaState extends State<GiamGia> {
           TextButton(onPressed: (){
             Them.discount_sp=int.parse(_giamgia.text);
             Navigator.pop( context,
-              MaterialPageRoute(builder: (context) => ThemSP()),);
+              MaterialPageRoute(builder: (context) => const ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
         leading: IconButton(onPressed: (){
           Navigator.pop( context,
-            MaterialPageRoute(builder: (context) => ThemSP()),);
+            MaterialPageRoute(builder: (context) => const ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
       ),
       body:  Container(
         height: 130,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
         decoration:  BoxDecoration(
             color:  MyColor.light_grey,
             borderRadius: BorderRadius.circular(30.0)
         ),
         child: Row(
           children: [
-            Expanded(child: Row(
+            const Expanded(child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("Giảm giá")],)),
             Expanded( flex: 2,
@@ -58,11 +58,11 @@ class _GiamGiaState extends State<GiamGia> {
                     LengthLimitingTextInputFormatter(3)
                     ],
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
+                      contentPadding: const EdgeInsets.all(10),
                       hintText: 'Enter number',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
-                        borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                        borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
@@ -84,7 +84,7 @@ class _GiamGiaState extends State<GiamGia> {
 class SGiamGia extends StatelessWidget {
     SGiamGia(this.itemId, {Key? key}) : super(key: key);
     String itemId;
-  var _giamgia=TextEditingController(text: SuaMap.myMap['discount'].toString());
+  final _giamgia=TextEditingController(text: SuaMap.myMap['discount'].toString());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,15 +108,15 @@ class SGiamGia extends StatelessWidget {
         ),
         body:  Container(
           height: 130,
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
           decoration:  BoxDecoration(
               color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(30.0)
           ),
           child: Row(
             children: [
-              Expanded(child: Row(
+              const Expanded(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [Text("Giảm giá")],)),
               Expanded( flex: 2,
@@ -128,11 +128,11 @@ class SGiamGia extends StatelessWidget {
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly,
                         LengthLimitingTextInputFormatter(3)],
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
+                        contentPadding: const EdgeInsets.all(10),
                         hintText: 'Enter number',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                          borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),

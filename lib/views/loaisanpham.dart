@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_lsp.dart';
-import 'package:sales_application/views/item_sl.dart';
 import 'package:sales_application/views/serach_lsp.dart';
 
 class LoaiSP extends StatefulWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../data/kien/cart_Reader.dart';
-import '../../views/kien/buy_Sceen.dart';
 import 'item_cartbutton.dart';
 
 class Cart_bottom extends StatefulWidget {
@@ -26,7 +25,7 @@ class Cart_bottom extends StatefulWidget {
 }
 
 class _Cart_bottomState extends State<Cart_bottom> {
-  Color myColor = Color(0xFF8E1C68);
+  Color myColor = const Color(0xFF8E1C68);
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +39,11 @@ class _Cart_bottomState extends State<Cart_bottom> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Tổng tiền", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text("${widget.totalPrice.toStringAsFixed(3)}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text("Tổng tiền", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text(widget.totalPrice.toStringAsFixed(3), style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -53,7 +52,7 @@ class _Cart_bottomState extends State<Cart_bottom> {
                     Checkbox(
                       checkColor: Colors.black,
                       fillColor: MaterialStateProperty.all(Colors.pink.shade100),
-                      side: BorderSide(color: Colors.black),
+                      side: const BorderSide(color: Colors.black),
                       value: widget.isCheckAll,
                       onChanged: (bool? value) async {
                         widget.onToggleCheckAll();

@@ -37,10 +37,10 @@ class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Payment_Screen()),
+                    MaterialPageRoute(builder: (context) => const Payment_Screen()),
                   );
                 },
-                icon: Icon(Icons.arrow_forward_ios),
+                icon: const Icon(Icons.arrow_forward_ios),
               ),
             ],
           ),
@@ -48,7 +48,7 @@ class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Chọn voucher", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text("Chọn voucher", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               IconButton(
                 onPressed: () {
                   Navigator.push(
@@ -63,7 +63,7 @@ class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
                     ),
                   );
                 },
-                icon: Icon(Icons.arrow_forward_ios),
+                icon: const Icon(Icons.arrow_forward_ios),
               ),
             ],
           ),
@@ -90,7 +90,7 @@ class _Buy_SelectedOptionState extends State<Buy_SelectedOption> {
                     });
                   }
                 },
-                icon: Icon(Icons.arrow_forward_ios),
+                icon: const Icon(Icons.arrow_forward_ios),
               ),
             ],
           ),

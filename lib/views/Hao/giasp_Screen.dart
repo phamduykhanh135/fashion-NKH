@@ -14,7 +14,7 @@ class GiaSP extends StatefulWidget {
   State<GiaSP> createState() => _GiaSPState();
 }
 class _GiaSPState extends State<GiaSP> {
-  var _giaban=TextEditingController();
+  final _giaban=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,22 +26,22 @@ class _GiaSPState extends State<GiaSP> {
             TextButton(onPressed: (){
               Them.price_sp=int.parse(_giaban.text);
               Navigator.pop( context,
-                MaterialPageRoute(builder: (context) => ThemSP()),);
+                MaterialPageRoute(builder: (context) => const ThemSP()),);
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
 
         ),
         body:   Container(
           height: 130,
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
           decoration:  BoxDecoration(
               color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(30.0)
           ),
           child: Row(
             children: [
-              Expanded(child: Row(
+              const Expanded(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [Text("Giá bán")],)),
               Expanded( flex: 2,
@@ -51,11 +51,11 @@ class _GiaSPState extends State<GiaSP> {
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly,LengthLimitingTextInputFormatter(8)],
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
+                        contentPadding: const EdgeInsets.all(10),
                         hintText: 'Nhập giá .000',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                          borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -77,7 +77,7 @@ class _GiaSPState extends State<GiaSP> {
 class SGiaSP extends StatelessWidget {
   SGiaSP(this.itemId, {Key? key}) : super(key: key) ;
   String itemId;
-  var _giaban=TextEditingController(text: SuaMap.myMap['price'].toString().replaceAll(RegExp(r'\.0*$'), ''));
+  final _giaban=TextEditingController(text: SuaMap.myMap['price'].toString().replaceAll(RegExp(r'\.0*$'), ''));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,8 +88,8 @@ class SGiaSP extends StatelessWidget {
           actions: [
             TextButton(onPressed: (){
               SuaMap.myMap['id']=itemId;
-              int _price=int.parse(_giaban.text);
-              SuaMap.myMap['price']=_price.toStringAsFixed(3);
+              int price=int.parse(_giaban.text);
+              SuaMap.myMap['price']=price.toStringAsFixed(3);
               Navigator.of(context).pop(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
@@ -102,15 +102,15 @@ class SGiaSP extends StatelessWidget {
         ),
         body:   Container(
           height: 130,
-          padding: EdgeInsets.all(10),
-          margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
           decoration:  BoxDecoration(
               color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(30.0)
           ),
           child: Row(
             children: [
-              Expanded(child: Row(
+              const Expanded(child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [Text("Giá bán")],)),
               Expanded( flex: 2,
@@ -122,11 +122,11 @@ class SGiaSP extends StatelessWidget {
                       ,LengthLimitingTextInputFormatter(8)
                       ],
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(10),
+                        contentPadding: const EdgeInsets.all(10),
                         hintText: 'Enter number',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(color: Colors.grey, width: 2.0),
+                          borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),

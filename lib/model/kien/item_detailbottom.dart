@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../../data/kien/product_Reader.dart';
 
 class Detail_Bottombar extends StatelessWidget {
   final Function() showBottomSheet;
   final Products product;
 
-  const Detail_Bottombar({Key? key, required this.showBottomSheet, required this.product});
+  const Detail_Bottombar({super.key, required this.showBottomSheet, required this.product});
 
   @override
   Widget build(BuildContext context) {
-    Color myColor = Color(0xFF8E1C68);
+    Color myColor = const Color(0xFF8E1C68);
     return Container(
       height:MediaQuery.of(context).size.height/14,
-      decoration:  BoxDecoration(
+      decoration:  const BoxDecoration(
         color: Colors.white
       ),
       child: Row(
@@ -23,7 +20,7 @@ class Detail_Bottombar extends StatelessWidget {
         children: [
           Text(
             product.price,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -38,7 +35,7 @@ class Detail_Bottombar extends StatelessWidget {
       ),
     ),
     fixedSize: MaterialStateProperty.all<Size>(
-      Size(140, 40), 
+      const Size(140, 40), 
     ),
   ),
   onPressed: showBottomSheet,

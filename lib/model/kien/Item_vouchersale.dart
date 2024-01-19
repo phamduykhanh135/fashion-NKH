@@ -19,7 +19,7 @@ class ItemVoucherSale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       child: Row(
         children: [
           Radio<int>(
@@ -36,7 +36,7 @@ class ItemVoucherSale extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 1.35,
             decoration: BoxDecoration(
               color: Colors.grey[200],
-              borderRadius: BorderRadius.all(const Radius.circular(8)),
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             child: Row(
               children: [
@@ -48,13 +48,13 @@ class ItemVoucherSale extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           voucher.name,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
                           voucher.descriptions,

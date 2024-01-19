@@ -55,14 +55,14 @@ class BuyBottom extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Lỗi"),
-          content: Text("Vui lòng chọn địa chỉ trước khi thanh toán."),
+          title: const Text("Lỗi"),
+          content: const Text("Vui lòng chọn địa chỉ trước khi thanh toán."),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("OK"),
+              child: const Text("OK"),
             ),
           ],
         );

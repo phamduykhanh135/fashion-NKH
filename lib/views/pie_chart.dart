@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
 
 class MyPieChart extends StatelessWidget {
-  MyPieChart( this.W1, this.W2, this.W3, this.W4);
+  const MyPieChart( this.W1, this.W2, this.W3, this.W4, {super.key});
   final W1;
   final W2;
   final W3;

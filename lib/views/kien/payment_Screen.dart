@@ -10,13 +10,13 @@ class Payment_Screen extends StatefulWidget {
 }
 
 class _Payment_ScreenState extends State<Payment_Screen> {
-  Color myColor = Color(0xFF8E1C68);
+  Color myColor = const Color(0xFF8E1C68);
   int _select=1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
      appBar: AppBar(title: Text("Phương thức thanh toán",style: TextStyle(color: myColor)),
-       iconTheme: IconThemeData(color: Colors.black),
+       iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.pink.shade100,
         centerTitle: true,
        ),

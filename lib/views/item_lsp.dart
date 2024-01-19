@@ -20,11 +20,11 @@ class ItemLSP extends StatelessWidget {
       child: InkWell(
         onTap: (){},
         child: Container(
-          padding: EdgeInsets.fromLTRB(35,0, 0,0),
-          child: Row(
+          padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(child: Text("Quần"),flex: 3),
+              Expanded(flex: 3, child: Text("Quần")),
               Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
             ],
           ),

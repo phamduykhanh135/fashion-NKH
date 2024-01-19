@@ -15,7 +15,7 @@ import 'item_detailcontainer.dart';
 
   @override
   Widget build(BuildContext context) {
-    Color myColor = Color(0xFF8E1C68);
+    Color myColor = const Color(0xFF8E1C68);
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -40,25 +40,25 @@ import 'item_detailcontainer.dart';
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       product.name,
-                      style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                     ),
                     Item_Container(product: product, onSizeSelected:(String){},),
                     Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 30,),
-                          Text(
+                          const SizedBox(height: 30,),
+                          const Text(
                             "\t\t Mô tả sản phẩm",
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                           ),
-                          Divider(height: 10),
+                          const Divider(height: 10),
                           Text(
                             product.description,
-                            style: TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 18),
                           ),
                         ],
                       ),

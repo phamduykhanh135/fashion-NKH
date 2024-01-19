@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/model/suasp.dart';
 import 'package:sales_application/model/themsp.dart';
 import 'package:sales_application/model/color.dart';
-import 'package:sales_application/model/color.dart';
 import 'package:sales_application/views/Hao/suasp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 
@@ -23,7 +22,7 @@ class _LoaiSPState extends State<LoaiSP> {
         backgroundColor: MyColor.light_pink,
         leading: IconButton(onPressed: (){
           Navigator.pop(   context,
-            MaterialPageRoute(builder: (context) => ThemSP()),);
+            MaterialPageRoute(builder: (context) => const ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),      ),
       body:  SingleChildScrollView(
         child: Column(
@@ -43,15 +42,15 @@ class _LoaiSPState extends State<LoaiSP> {
             child: InkWell(
                 onTap: (){
                   Navigator.push( context,
-                    MaterialPageRoute(builder: (context) => ThemSP()),);
+                    MaterialPageRoute(builder: (context) => const ThemSP()),);
                   Them.l_sp="Quần";
                 },
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(35,0, 0,0),
-                  child: Row(
+                  padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(child: Text("Quần"),flex: 3),
+                      Expanded(flex: 3, child: Text("Quần")),
                       Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
                     ],
                   ),
@@ -73,15 +72,15 @@ class _LoaiSPState extends State<LoaiSP> {
             child: InkWell(
                 onTap: (){
                   Navigator.push( context,
-                    MaterialPageRoute(builder: (context) => ThemSP()),);
+                    MaterialPageRoute(builder: (context) => const ThemSP()),);
                   Them.l_sp="Áo";
                 },
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(35,0, 0,0),
-                  child: Row(
+                  padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(child: Text("Áo"),flex: 3),
+                      Expanded(flex: 3, child: Text("Áo")),
                       Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
                     ],
                   ),
@@ -103,15 +102,15 @@ class _LoaiSPState extends State<LoaiSP> {
             child: InkWell(
                 onTap: (){
                   Navigator.pop( context,
-                    MaterialPageRoute(builder: (context) => ThemSP()),);
+                    MaterialPageRoute(builder: (context) => const ThemSP()),);
                   Them.l_sp="Phụ kiện";
                 },
                 child: Container(
-                  padding: EdgeInsets.fromLTRB(35,0, 0,0),
-                  child: Row(
+                  padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(child: Text("Phụ kiện"),flex: 3),
+                      Expanded(flex: 3, child: Text("Phụ kiện")),
                       Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
                     ],
                   ),
@@ -165,11 +164,11 @@ class SuaLoaiSP extends StatelessWidget {
 
                       },
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(35,0, 0,0),
-                        child: Row(
+                        padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(child: Text("Quần"),flex: 3),
+                            Expanded(flex: 3, child: Text("Quần")),
                             Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
                           ],
                         ),
@@ -197,11 +196,11 @@ class SuaLoaiSP extends StatelessWidget {
 
                       },
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(35,0, 0,0),
-                        child: Row(
+                        padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(child: Text("Áo"),flex: 3),
+                            Expanded(flex: 3, child: Text("Áo")),
                             Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
                           ],
                         ),
@@ -229,11 +228,11 @@ class SuaLoaiSP extends StatelessWidget {
 
                       },
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(35,0, 0,0),
-                        child: Row(
+                        padding: const EdgeInsets.fromLTRB(35,0, 0,0),
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(child: Text("Phụ kiện"),flex: 3),
+                            Expanded(flex: 3, child: Text("Phụ kiện")),
                             Expanded(child: Icon(Icons.arrow_forward_ios_outlined))
                           ],
                         ),

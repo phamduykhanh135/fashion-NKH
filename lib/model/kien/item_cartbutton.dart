@@ -4,14 +4,14 @@ import '../../data/kien/payment_Reader.dart';
 import '../../views/kien/buy_Sceen.dart';
 
 class Cart_ElevatedButton extends StatelessWidget {
-  const Cart_ElevatedButton({Key? key, required this.selectedItems, required this.calculateTotalPrice});
+  const Cart_ElevatedButton({super.key, required this.selectedItems, required this.calculateTotalPrice});
   
   final List<Carts> selectedItems;
   final double Function() calculateTotalPrice;
 
   @override
   Widget build(BuildContext context) {
-    Color myColor = Color(0xFF8E1C68);
+    Color myColor = const Color(0xFF8E1C68);
     return ElevatedButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),

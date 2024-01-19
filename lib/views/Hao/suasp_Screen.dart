@@ -274,7 +274,7 @@ class _SuaSPState extends State<SuaSP> {
                                 text: TextSpan(
                                   text: null,
                                   style: DefaultTextStyle.of(context).style,
-                                  children:  <TextSpan>[
+                                  children:  const <TextSpan>[
                                     TextSpan(text: 'Loại sản phẩm ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
                                     TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
                                   ],
@@ -297,7 +297,7 @@ class _SuaSPState extends State<SuaSP> {
                                 text: TextSpan(
                                   text: null,
                                   style: DefaultTextStyle.of(context).style,
-                                  children: <TextSpan>[
+                                  children: const <TextSpan>[
                                     TextSpan(text: 'Số lượng kho ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
                                     TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
                                   ],
@@ -323,7 +323,7 @@ class _SuaSPState extends State<SuaSP> {
                                 text: TextSpan(
                                   text: null,
                                   style: DefaultTextStyle.of(context).style,
-                                  children: <TextSpan>[
+                                  children: const <TextSpan>[
                                     TextSpan(text: 'Giá bán ', style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.black,decoration: TextDecoration.none,)),
                                     TextSpan(text: '*', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: Colors.red,decoration: TextDecoration.none,)),
                                   ],
