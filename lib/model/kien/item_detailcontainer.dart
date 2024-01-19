@@ -18,30 +18,29 @@ class _Item_ContainerState extends State<Item_Container> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+       
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           children: [
             Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+              
                 children: [
-                  Row(
-                    children: [
-                      const Text("\t\t Kích thước: "),
-                      SizedBox(width: MediaQuery.of(context).size.width / 1.6),
-                      IconButton(
+                  const Text("\t\t Kích thước: "),
+                  SizedBox(width: MediaQuery.of(context).size.width/1.8,),
+                  IconButton(
                         onPressed: () {
-                          _showHelpDialog(context);
+                         _showHelpDialog(context);
                         },
                         icon: Icon(Icons.help_outline),
                       ),
                     ],
                   ),
-                  Row(
+            ),
+              Row(
                     children: [
-                      SizedBox(width: MediaQuery.of(context).size.width / 15),
+                    SizedBox(width: MediaQuery.of(context).size.width / 15),
                       buildSizeButton("S"),
-                      SizedBox(width: MediaQuery.of(context).size.width / 15),
+                    SizedBox(width: MediaQuery.of(context).size.width / 15),
                       buildSizeButton("M"),
                       SizedBox(width: MediaQuery.of(context).size.width / 15),
                       buildSizeButton("L"),
@@ -50,10 +49,8 @@ class _Item_ContainerState extends State<Item_Container> {
                     ],
                   ),
                   if (selectedSize.isNotEmpty) buildQuantityRow(),
-                ],
-              ),
-            ),
-          ],
+
+           ],
         ),
       ),
     );

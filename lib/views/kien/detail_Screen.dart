@@ -117,13 +117,9 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           if (_products == null) {
             return const Text('Data is null');
           }
-
-          // Find the product by idz
           Products? product = getProductById(widget.idz);
-
           return Detail_body(
             showBottomSheet: () => _showBottomSheet(context),
-            // Pass the product to Detail_body
             product: product!,
           );
         

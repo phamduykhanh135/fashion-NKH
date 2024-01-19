@@ -55,6 +55,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
+      width: MediaQuery.of(context).size.width/0.5,
       height: MediaQuery.of(context).size.height / 1.2,
       child: Column(
         children: [
@@ -84,6 +85,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                     },),
                   ],
                 ),
+                SizedBox(height: 10,),
                 Row(
                   children: [
                     Text("Số lượng:"),

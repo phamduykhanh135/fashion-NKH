@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 
 import '../../data/kien/product_Reader.dart';
 
@@ -14,14 +13,14 @@ class Detail_Bottombar extends StatelessWidget {
   Widget build(BuildContext context) {
     Color myColor = Color(0xFF8E1C68);
     return Container(
-      height:MediaQuery.of(context).size.height/14,
+      width: MediaQuery.of(context).size.width/2,
+      height:MediaQuery.of(context).size.height/10,
       decoration:  BoxDecoration(
         color: Colors.white
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          
           product.discount=="0"?Text(
             product.price,
             style: TextStyle(

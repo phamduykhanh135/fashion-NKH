@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../data/kien/cart_Reader.dart';
-import '../../views/kien/buy_Sceen.dart';
 import 'item_cartbutton.dart';
 
 class Cart_bottom extends StatefulWidget {
