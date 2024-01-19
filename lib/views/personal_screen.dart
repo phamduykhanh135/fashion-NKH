@@ -2,6 +2,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:sales_application/presenters/bottom.dart';
+import 'package:sales_application/views/setting_screen.dart';
 import '../model/user.dart';
 import 'Hao/qlsp_Screen.dart';
 
