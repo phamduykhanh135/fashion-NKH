@@ -14,14 +14,10 @@ class Item_Product_Home extends StatelessWidget {
     return GestureDetector(
       onTap: () {
        
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>  DetailScreen(idz: product.id)
-          
-            
-          ),
-        );
+          Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) =>  DetailScreen(idz: product.id)),
+              );
         print("ssssssssssssssssssssssss${product.id}");
       },
       child: Container(

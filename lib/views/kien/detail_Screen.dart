@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sales_application/views/menu_dart.dart';
 import '../../data/kien/product_Reader.dart';
 import '../../model/kien/Item_bottomSheet.dart';
 import 'package:sales_application/views/kien/cart_Screen.dart';
@@ -65,6 +66,15 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
       appBar: AppBar(
         iconTheme: IconThemeData(color: myColor),
         centerTitle: true,
+        leading: IconButton(
+    icon: const Icon(Icons.arrow_back),
+    onPressed: () {
+      Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => Menu_Screen()),
+  );
+    },
+  ),
         actions: [
           IconButton(
             onPressed: () {
@@ -76,6 +86,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
+        
         backgroundColor: const Color.fromARGB(0, 0, 0, 0),
         elevation: 0,
       ),

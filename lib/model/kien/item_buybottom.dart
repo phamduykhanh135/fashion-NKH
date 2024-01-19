@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/data/kien/address_Reader.dart';
+import 'package:sales_application/views/menu_dart.dart';
 
 class BuyBottom extends StatelessWidget {
   final double onTotalAmountChanged;
@@ -39,6 +40,10 @@ class BuyBottom extends StatelessWidget {
                 } else {
                   showAddressDialog(context);
                 }
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => Menu_Screen()),
+              );
               },
               child: Text(
                 'Thanh toán',
