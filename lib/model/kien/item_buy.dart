@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import '../../data/kien/payment_Reader.dart';
 
 class item_buy extends StatefulWidget {
@@ -12,21 +10,21 @@ class item_buy extends StatefulWidget {
 }
 
 class _item_buyState extends State<item_buy> {
-  Color myLightGrayColor = Color.fromRGBO(243, 243, 243, 1.0);
+  Color myLightGrayColor = const Color.fromRGBO(243, 243, 243, 1.0);
   @override
   Widget build(BuildContext context) {
     print(widget.payment.idUser);
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       
       child: Row(
         children: [
         Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         width: MediaQuery.of(context).size.width / 1.2,
         decoration: BoxDecoration(
           color: myLightGrayColor,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
       
         ),
         child: Row(
@@ -37,22 +35,22 @@ class _item_buyState extends State<item_buy> {
               height: MediaQuery.of(context).size.height /6,
               fit: BoxFit.contain,
             ),
-            SizedBox(width: 20,),
+            const SizedBox(width: 20,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 5,),
-               Container(
+                const SizedBox(height: 5,),
+               SizedBox(
                 width: MediaQuery.of(context).size.width/1.8,
-                child:  Text(widget.payment.name,style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),softWrap: true),
+                child:  Text(widget.payment.name,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold),softWrap: true),
                ),
-                SizedBox(height: 5,),
-                Text("Size: ${widget.payment.size}",style: TextStyle(fontSize: 16,)),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
+                Text("Size: ${widget.payment.size}",style: const TextStyle(fontSize: 16,)),
+                const SizedBox(height: 5,),
                 
-                Text("${widget.payment.price}",style: const TextStyle(fontSize: 16,),),
-                SizedBox(height: 5,),
-                Text("số lượng: ${widget.payment.quality}",style:  TextStyle(fontSize: 16,)),
+                Text(widget.payment.price,style: const TextStyle(fontSize: 16,),),
+                const SizedBox(height: 5,),
+                Text("số lượng: ${widget.payment.quality}",style:  const TextStyle(fontSize: 16,)),
                 
               ],
             )

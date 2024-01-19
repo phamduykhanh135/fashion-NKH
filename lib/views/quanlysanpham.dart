@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
+
 import 'package:sales_application/views/item_qlsp.dart';
 import 'package:sales_application/views/search_qlsp.dart';
 import 'package:sales_application/views/themsanpham.dart';
@@ -26,11 +25,11 @@ class _QuanLySPState extends State<QuanLySP> {
         actions: [
           IconButton(onPressed: () {
             Navigator.push( context,
-              MaterialPageRoute(builder: (context) => SearchPage()),);
+              MaterialPageRoute(builder: (context) => const SearchPage()),);
           }, icon: Icon(Icons.search, color: MyColor.dark_pink,)),
           IconButton(onPressed: () {
             Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ThemSP()),);
+              MaterialPageRoute(builder: (context) => const ThemSP()),);
           }, icon: Icon(Icons.add, color: MyColor.dark_pink)),
         ],
       ),
@@ -38,7 +37,7 @@ class _QuanLySPState extends State<QuanLySP> {
         itemCount: 10, // Số lượng phần tử trong danh sách
         itemBuilder: (BuildContext context, int index) {
           // Hàm này được gọi mỗi khi một phần tử cần được hiển thị
-          return ItemSP();
+          return const ItemSP();
         },
       ),
     );

@@ -13,7 +13,7 @@ class _add_AddressState extends State<add_Address> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
-  Color myColor = Color(0xFF8E1C68);
+  Color myColor = const Color(0xFF8E1C68);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _add_AddressState extends State<add_Address> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           TextFormField(
           controller: _fullNameController,
           decoration: const InputDecoration(
@@ -38,7 +38,7 @@ class _add_AddressState extends State<add_Address> {
             labelStyle: TextStyle(color: Colors.black), // Màu label
           ),
         ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextFormField(
               controller: _phoneController,
               decoration: const InputDecoration(
@@ -63,7 +63,7 @@ class _add_AddressState extends State<add_Address> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
            TextFormField(
           controller: _addressController,
           decoration: const InputDecoration(
@@ -74,7 +74,7 @@ class _add_AddressState extends State<add_Address> {
             labelStyle: TextStyle(color: Colors.black), // Màu label
           ),
         ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),

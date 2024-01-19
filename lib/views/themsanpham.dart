@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/giamgia.dart';
 import 'package:sales_application/views/loaisanpham.dart';
 import 'package:sales_application/views/soluongkho.dart';
@@ -56,7 +53,7 @@ class _ThemSPState extends State<ThemSP> {
                       ),
                       child:InkWell(
                         onTap: (){/*TODO:*/},
-                        child: Center(
+                        child: const Center(
                           child: Text("Thêm ảnh"),/*TODO:*/
                         ),
                       ),
@@ -65,7 +62,7 @@ class _ThemSPState extends State<ThemSP> {
                       top: 0,
                       right: 0,
                       child: IconButton(
-                        icon: Icon(Icons.close_rounded),
+                        icon: const Icon(Icons.close_rounded),
                         onPressed: () {},
                       ),
                     ),
@@ -80,12 +77,12 @@ class _ThemSPState extends State<ThemSP> {
         SizedBox(height: MediaQuery.of(context).size.height/60),
         Container(
           height: 120,
-          padding:EdgeInsets.all(10),
-          constraints:BoxConstraints(maxHeight: 200.0),
+          padding:const EdgeInsets.all(10),
+          constraints:const BoxConstraints(maxHeight: 200.0),
           decoration:  BoxDecoration(
             color:  MyColor.light_grey
           ),
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -112,12 +109,12 @@ class _ThemSPState extends State<ThemSP> {
           SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
             height: 120,
-            padding:EdgeInsets.all(10),
-            constraints:BoxConstraints(maxHeight: 200.0),
+            padding:const EdgeInsets.all(10),
+            constraints:const BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(
               color:  MyColor.light_grey
             ),
-            child: Column(
+            child: const Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
@@ -144,7 +141,7 @@ class _ThemSPState extends State<ThemSP> {
           ///Phần chọn
             Container(
             height: 250,
-            padding:EdgeInsets.all(10),
+            padding:const EdgeInsets.all(10),
             decoration:  BoxDecoration(
         color:  MyColor.light_grey
             ),
@@ -155,12 +152,12 @@ class _ThemSPState extends State<ThemSP> {
 
                 child: InkWell(onTap: (){
                   Navigator.push( context,
-                    MaterialPageRoute(builder: (context) => LoaiSP()),);
+                    MaterialPageRoute(builder: (context) => const LoaiSP()),);
                 },
-                   child: Row(
+                   child: const Row(
               children: [
                 Expanded(child: Icon(Icons.category)), // Icon ở đầu
-                Expanded(child: Text("Loại sản phẩm"),flex: 3,), // Khoảng trắng giữa hai icon
+                Expanded(flex: 3,child: Text("Loại sản phẩm"),), // Khoảng trắng giữa hai icon
                 Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
               ],
             ),)),
@@ -169,10 +166,10 @@ class _ThemSPState extends State<ThemSP> {
 
                 child: InkWell(
                   onTap: (){},
-                  child: Row(
+                  child: const Row(
                     children: [
                       Expanded(child: Icon(Icons.format_size)), // Icon ở đầu
-                      Expanded(child: Text("Kích cỡ"),flex: 3,), // Khoảng trắng giữa hai icon
+                      Expanded(flex: 3,child: Text("Kích cỡ"),), // Khoảng trắng giữa hai icon
                       Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                     ],
                   ),)),
@@ -180,12 +177,12 @@ class _ThemSPState extends State<ThemSP> {
             Expanded(
                 child: InkWell(onTap: (){
                   Navigator.push( context,
-                    MaterialPageRoute(builder: (context) => SoLuongKho()),);
+                    MaterialPageRoute(builder: (context) => const SoLuongKho()),);
                 },
-                  child: Row(
+                  child: const Row(
                     children: [
                       Expanded(child: Icon(Icons.warehouse)), // Icon ở đầu
-                      Expanded(child: Text("Số lượng kho"),flex: 3,), // Khoảng trắng giữa hai icon
+                      Expanded(flex: 3,child: Text("Số lượng kho"),), // Khoảng trắng giữa hai icon
                       Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                     ],
                   ),)),
@@ -193,10 +190,10 @@ class _ThemSPState extends State<ThemSP> {
             Expanded(
                 child: InkWell(
                   onTap: (){},
-                  child: Row(
+                  child: const Row(
                     children: [
                       Expanded(child: Icon(Icons.price_change)), // Icon ở đầu
-                      Expanded(child: Text("Giá"),flex: 3,), // Khoảng trắng giữa hai icon
+                      Expanded(flex: 3,child: Text("Giá"),), // Khoảng trắng giữa hai icon
                       Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                     ],
                   ),)),
@@ -206,12 +203,12 @@ class _ThemSPState extends State<ThemSP> {
                 child: InkWell(
                   onTap: (){
                     Navigator.push( context,
-                      MaterialPageRoute(builder: (context) => GiamGia()),);
+                      MaterialPageRoute(builder: (context) => const GiamGia()),);
                   },
-                  child: Row(
+                  child: const Row(
                     children: [
                       Expanded(child: Icon(Icons.percent)), // Icon ở đầu
-                      Expanded(child: Text("Mua nhiều giảm giá"),flex: 3,), // Khoảng trắng giữa hai icon
+                      Expanded(flex: 3,child: Text("Mua nhiều giảm giá"),), // Khoảng trắng giữa hai icon
                       Expanded(child: Icon(Icons.arrow_forward_ios)),  // Icon ở cuối
                     ],
                   ),))

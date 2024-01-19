@@ -104,7 +104,7 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (_cart == null || _cart!.isEmpty) {
@@ -120,7 +120,7 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           if (_cart == null) {
-            return Text('Data is null');
+            return const Text('Data is null');
           }
 
           return SingleChildScrollView(

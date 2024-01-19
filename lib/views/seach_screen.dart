@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../presenters/group_category.dart';
 import './search_history.dart';
 import '../presenters/item_product_search.dart';
 import '../model/product.dart'; // Import model Product
@@ -169,9 +168,9 @@ class _Search_ScreenState extends State<Search_Screen> {
                   productSnapshot.data!.isEmpty) {
                 count = productSnapshot.data!.length;
                 print("hshshs$count");
-                return Center(
+                return const Center(
                     child: Column(
-                  children: const [
+                  children: [
                     Text("Không có sản phẩm nào cả! "),
                     Text("Muốn tìm sản phẩm thì bạn cần phải có "),
                     Text("KIẾN THỨC"),

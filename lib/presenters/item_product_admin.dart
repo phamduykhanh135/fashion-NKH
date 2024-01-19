@@ -49,9 +49,9 @@ class Item_Product_Admin extends StatelessWidget {
                               ),
                               width: 50,
                               height: 25,
-                              child: Row(
+                              child: const Row(
                                 
-                                children: const [
+                                children: [
                                   Icon(
                                     Icons.local_offer,
                                     color: Colors.white,
@@ -75,11 +75,11 @@ class Item_Product_Admin extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Padding(
                         padding: EdgeInsets.all(3.0),
                         child: Text(

@@ -1,9 +1,8 @@
-import 'package:sales_application/model/searchsp.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/color.dart';
 import 'package:sales_application/views/Hao/qlsp_Screen.dart';
 class SearchPage extends StatefulWidget {
-   SearchPage( {Key? key}) : super(key: key);
+   const SearchPage( {Key? key}) : super(key: key);
   // final List<Map<String, dynamic>> items;
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -12,7 +11,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController _search=TextEditingController();
+    TextEditingController search=TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyColor.light_pink,
@@ -23,7 +22,7 @@ class _SearchPageState extends State<SearchPage> {
                 color:Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Center(
               child: TextField(
-                controller: _search,
+                controller: search,
                   onChanged: (value) {
                     setState(() {
                       // SearchSP.found = widget.items
@@ -44,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.clear),
                       onPressed: () {
-                        _search.clear();
+                        search.clear();
                       },
                     ),
                     hintText: 'Search...',

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_lsp.dart';
-import 'package:sales_application/views/item_sl.dart';
 import 'package:sales_application/views/serach_lsp.dart';
 
 class LoaiSP extends StatefulWidget {
@@ -23,14 +21,14 @@ class _LoaiSPState extends State<LoaiSP> {
         actions: [
           IconButton(onPressed: (){
             Navigator.push( context,
-              MaterialPageRoute(builder: (context) => SearchPage()),);
+              MaterialPageRoute(builder: (context) => const SearchPage()),);
           }, icon: Icon(Icons.search,color:MyColor.dark_pink ,))
         ],
       ),
       body:  ListView.builder(
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
-          return ItemLSP();
+          return const ItemLSP();
         },
       ),
     );

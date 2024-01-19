@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/item_sl.dart';
 
 class SoLuongKho extends StatefulWidget {

@@ -58,8 +58,8 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                         height: 40,
                         width: MediaQuery.of(context).size.width - 20,
                         padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: const [
+                        child: const Row(
+                          children: [
                             Icon(
                               Icons.search,
                               size: 15,

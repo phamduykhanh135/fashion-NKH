@@ -29,8 +29,8 @@ class ItemSP extends StatelessWidget {
             data = documentSnapshot.data() as Map;
             return Container(
               height: 300,
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               decoration: BoxDecoration(
                 color: MyColor.light_grey,
                 borderRadius: BorderRadius.circular(20.0),
@@ -45,7 +45,7 @@ class ItemSP extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Expanded(child: Row(
+                  Expanded(flex: 2, child: Row(
                     children: [
                       Expanded(child: Container(
                         decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class ItemSP extends StatelessWidget {
                             width: 1,
 
                           ),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               offset: Offset(0.0, 3.0),
@@ -85,7 +85,7 @@ class ItemSP extends StatelessWidget {
                       Expanded(
                           flex: 1,
                           child: Container(
-                            padding: EdgeInsets.only(left: 10.0),
+                            padding: const EdgeInsets.only(left: 10.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class ItemSP extends StatelessWidget {
                                 Text(
                                   '${data['name']}',
                                   softWrap: true,
-                                  style: TextStyle(fontWeight: FontWeight.bold,
+                                  style: const TextStyle(fontWeight: FontWeight.bold,
                                       fontSize: 18),
                                   maxLines: 3,),
                                 RichText(
@@ -103,7 +103,7 @@ class ItemSP extends StatelessWidget {
                                         .of(context)
                                         .style,
                                     children: <TextSpan>[
-                                      TextSpan(text: 'Giá: ',
+                                      const TextSpan(text: 'Giá: ',
                                           style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 15,
@@ -133,19 +133,19 @@ class ItemSP extends StatelessWidget {
                                         .of(context)
                                         .style,
                                     children: <TextSpan>[
-                                      TextSpan(text: 'Giảm: ',
+                                      const TextSpan(text: 'Giảm: ',
                                           style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 15,
                                             color: Colors.black,
                                             decoration: TextDecoration.none,)),
-                                      TextSpan(text: '${(int.parse(data['price'].replaceAll(RegExp(r'\.0*$'), '').toString())-(int.parse(data['price'].replaceAll(RegExp(r'\.0*$'), '').toString())*int.parse(data['discount'])/100).toInt()).toStringAsFixed(3)}',
-                                          style: TextStyle(
+                                      TextSpan(text: (int.parse(data['price'].replaceAll(RegExp(r'\.0*$'), '').toString())-int.parse(data['price'].replaceAll(RegExp(r'\.0*$'), '').toString())*int.parse(data['discount'])~/100).toStringAsFixed(3),
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18,
                                             color: Colors.red,
                                             decoration: TextDecoration.none,)),
-                                      TextSpan(text: 'đ',
+                                      const TextSpan(text: 'đ',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14,
@@ -161,14 +161,14 @@ class ItemSP extends StatelessWidget {
                                         .of(context)
                                         .style,
                                     children: <TextSpan>[
-                                      TextSpan(text: 'Số lượng: ',
+                                      const TextSpan(text: 'Số lượng: ',
                                           style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 15,
                                             color: Colors.black,
                                             decoration: TextDecoration.none,)),
                                       TextSpan(text: '${int.parse(data['sizeS'])+int.parse(data['sizeM'])+int.parse(data['sizeL'])+int.parse(data['sizeXL'])}',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,
                                             decoration: TextDecoration.none,)),
@@ -178,10 +178,10 @@ class ItemSP extends StatelessWidget {
                               ],),
                           ))
                     ],
-                  ), flex: 2),
+                  )),
                   Expanded(flex: 1,child: Row(
                     children: [
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       Expanded(
                           child: ElevatedButton(onPressed: () async{
                             bool result = await showDialog(
@@ -190,26 +190,26 @@ class ItemSP extends StatelessWidget {
                                 return _showDialog(context);
                               },
                             );
-                            if (result != null && result) {
+                            if (result) {
                               _reference.delete();
                             } else {
                               print('Người dùng đã chọn "No" hoặc đóng dialog');
                             }
-                          }, child: Text(
+                          }, child: const Text(
                               "Xoá"))),
-                      SizedBox(width: 30,),
+                      const SizedBox(width: 30,),
                       Expanded(child: ElevatedButton(onPressed: () {
                         // truyen id
                         data['id'] =itemId;
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SuaSP(data)));
                         //Firebase gán class sửa
-                      }, child: Text("Sửa"), style: ElevatedButton.styleFrom(
+                      }, style: ElevatedButton.styleFrom(
                         // Màu nền khi nút không được nhấn
                         foregroundColor: MyColor
                             .light_pink, // Màu chữ khi nút không được nhấn, // Màu nền khi nút được nhấn
-                      ),)),
-                      SizedBox(width: 10,),
+                      ), child: const Text("Sửa"),)),
+                      const SizedBox(width: 10,),
                     ],
                   ),)
                 ],
@@ -218,7 +218,7 @@ class ItemSP extends StatelessWidget {
           }
 
 
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
     );
   }
@@ -230,7 +230,6 @@ class ItemSP extends StatelessWidget {
       backgroundColor: Colors.white,
       actions: <Widget>[
         ElevatedButton(
-          child: Text('No',style: TextStyle(color: MyColor.dark_pink),),
           style: ElevatedButton.styleFrom(
             // Màu nền của nút
           ),
@@ -238,18 +237,18 @@ class ItemSP extends StatelessWidget {
             // Đóng dialog và không thực hiện hành động gì
             Navigator.of(context).pop(false);
           },
+          child: Text('No',style: TextStyle(color: MyColor.dark_pink),),
         ),
         ElevatedButton(
-          child: Text('Yes'),
           style: ElevatedButton.styleFrom(
             // Màu nền của nút
-            primary: MyColor.light_pink,
-            onPrimary:Colors.white
+            foregroundColor: Colors.white, backgroundColor: MyColor.light_pink
           ),
           onPressed: () {
             // Thực hiện hành động khi người dùng chọn "Yes"
             Navigator.of(context).pop(true);
           },
+          child: const Text('Yes'),
         ),
       ],
     );

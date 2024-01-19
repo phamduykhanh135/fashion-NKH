@@ -13,15 +13,15 @@ class _ItemSPState extends State<ItemSP> {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       decoration:  BoxDecoration(
           color:  MyColor.light_grey,
           borderRadius: BorderRadius.circular(20.0)
       ),
       child: Column(
         children: [
-          Expanded(child: Row(
+          Expanded(flex: 2, child: Row(
             children: [
               Expanded(child: Container(
                 decoration:  BoxDecoration(
@@ -45,7 +45,7 @@ class _ItemSPState extends State<ItemSP> {
                 )
               ),
 
-              Expanded(
+              const Expanded(
                 flex: 1,
                   child: Row(
                     children: [
@@ -54,7 +54,7 @@ class _ItemSPState extends State<ItemSP> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(child:  Text("Tên San Pham"), flex: 2,),
+                      Expanded(flex: 2,child:  Text("Tên San Pham"),),
                       Expanded(child:  Text("Giá"), ),
                       Expanded(child:  Text("Số lượng") )
                     ],)
@@ -62,16 +62,16 @@ class _ItemSPState extends State<ItemSP> {
 
               ))
             ],
-          ),flex: 2),
-          Expanded(child: Row(
+          )),
+          Expanded(flex: 1,child: Row(
             children: [
-              SizedBox(width: 10,),
-              Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Xoá"))),
-              SizedBox(width: 30,),
-              Expanded(child: ElevatedButton(onPressed: (){}, child: Text("Sửa"))),
-              SizedBox(width: 10,),
+              const SizedBox(width: 10,),
+              Expanded(child: ElevatedButton(onPressed: (){}, child: const Text("Xoá"))),
+              const SizedBox(width: 30,),
+              Expanded(child: ElevatedButton(onPressed: (){}, child: const Text("Sửa"))),
+              const SizedBox(width: 10,),
             ],
-          ),flex: 1,)
+          ),)
         ],
       ),
     );

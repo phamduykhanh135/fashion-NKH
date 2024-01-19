@@ -19,24 +19,24 @@ class Buy_List extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Tổng tiền hàng:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text(totalPrice.toStringAsFixed(3), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text("Tổng tiền hàng:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(totalPrice.toStringAsFixed(3), style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           ),
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Voucher giảm giá (áp dụng):", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text("${selectedVoucherValue.toInt()}%", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text("Voucher giảm giá (áp dụng):", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text("${selectedVoucherValue.toInt()}%", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           ),
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Thành tiền:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text(finalTotalAmount.toStringAsFixed(3), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text("Thành tiền:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(finalTotalAmount.toStringAsFixed(3), style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           ),
         ],

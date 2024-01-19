@@ -15,7 +15,6 @@ import 'package:sales_application/views/menu_dart.dart';
 import 'package:sales_application/views/sigin_up_screen.dart';
 
 import 'firebase_options.dart';
-import 'model/user.dart';
 
 
 Future main() async {
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
 
 
       
-      initialRoute: "/sigin_in",
+      initialRoute: "/home",
 
       routes: {
         "/home": (context) => const Home(),

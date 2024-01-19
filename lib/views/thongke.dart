@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
-import 'package:sales_application/views/color.dart';
 import 'package:sales_application/views/pie_chart.dart';
 
 class ThongKe extends StatefulWidget {
@@ -43,7 +41,7 @@ class _ThongKeState extends State<ThongKe> {
                           };
                         }
                       }
-                      , child: Text("Đơn hàng"),
+                      ,
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
@@ -53,10 +51,10 @@ class _ThongKeState extends State<ThongKe> {
                           return MyColor.light_grey; // Màu nền khi nút 1 không được chọn
                         },
                       ),
-                      minimumSize: MaterialStateProperty.all(Size(125,60)),
+                      minimumSize: MaterialStateProperty.all(const Size(125,60)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái trên
                             bottomLeft: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái dưới
                           ),
@@ -64,7 +62,7 @@ class _ThongKeState extends State<ThongKe> {
 
                     ),
                   ),
-                    ),
+                    ), child: const Text("Đơn hàng"),
 
                   ),
                   ElevatedButton(
@@ -76,7 +74,6 @@ class _ThongKeState extends State<ThongKe> {
                           })
                         };
                       },
-                    child: Text("Chi tiêu"),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
@@ -86,10 +83,10 @@ class _ThongKeState extends State<ThongKe> {
                           return MyColor.light_grey; // Màu nền khi nút 1 không được chọn
                         },
                       ),
-                      minimumSize: MaterialStateProperty.all(Size(125,60)),
+                      minimumSize: MaterialStateProperty.all(const Size(125,60)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái trên
                             bottomRight: Radius.circular(20.0),  // Bán kính bo tròn ở góc trái dưới
                           ),
@@ -98,6 +95,7 @@ class _ThongKeState extends State<ThongKe> {
                         ),
                       ),
                     ),
+                    child: const Text("Chi tiêu"),
 
                   )
                 ],
@@ -108,18 +106,18 @@ class _ThongKeState extends State<ThongKe> {
           Expanded(
             flex: 3,
               child: Container(
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               height: 300
               ,width: 320,
-            child:  MyPieChart(10.0,10.0,10.0,10.0),
             decoration:  BoxDecoration(
               color:  MyColor.light_grey,
               borderRadius: BorderRadius.circular(20.0)
-          )
+          ),
+            child:  MyPieChart(10.0,10.0,10.0,10.0)
               )
           ),
           //TEXT
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
               child: Container(
                 height: 40,
@@ -131,7 +129,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 child: Row(
                   children: [
-                   Expanded(child: Row(
+                   const Expanded(child: Row(
                      mainAxisAlignment: MainAxisAlignment.center,
                      children: [
                        Text("Week 1")
@@ -140,7 +138,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(
                     flex: 4,child: Column(
                       children: [
-                        Expanded(child: Column(
+                        const Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text("10")
@@ -149,11 +147,11 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(flex:2,child:
                         SliderTheme(
                           data: SliderThemeData(
-                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 0.0),
                             trackHeight: 8.0,
                               disabledActiveTrackColor:MyColor.color_w1
                           ),
-                          child: Slider(
+                          child: const Slider(
                             value:50 ,
                             onChanged: null,
                             min: 0,
@@ -167,7 +165,7 @@ class _ThongKeState extends State<ThongKe> {
 
           ),)
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
               child: Container(
                 height: 40,
@@ -179,7 +177,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 child: Row(
                   children: [
-                    Expanded(child: Row(
+                    const Expanded(child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Week 2")
@@ -188,7 +186,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(
                         flex: 4,child: Column(
                       children: [
-                        Expanded(child: Column(
+                        const Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text("10")
@@ -197,10 +195,10 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(flex:2,child:
                         SliderTheme(
                           data: SliderThemeData(
-                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 0.0),
                             trackHeight: 8.0,
                               disabledActiveTrackColor:MyColor.color_w2),
-                          child: Slider(
+                          child: const Slider(
 
                             value:50 ,
                             onChanged: null,
@@ -215,7 +213,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 ),)
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
               child: Container(
                 height: 40,
@@ -227,7 +225,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 child: Row(
                   children: [
-                    Expanded(child: Row(
+                    const Expanded(child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Week 3")
@@ -236,7 +234,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(
                         flex: 4,child: Column(
                       children: [
-                        Expanded(child: Column(
+                        const Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text("10")
@@ -245,10 +243,10 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(flex:2,child:
                         SliderTheme(
                           data: SliderThemeData(
-                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 0.0),
                             trackHeight: 8.0,
                               disabledActiveTrackColor:MyColor.color_w3),
-                          child: Slider(
+                          child: const Slider(
 
                             value:50 ,
                             onChanged: null,
@@ -263,7 +261,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 ),)
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
               child: Container(
                 height: 40,
@@ -275,7 +273,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 child: Row(
                   children: [
-                    Expanded(child: Row(
+                    const Expanded(child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Week 4")
@@ -284,7 +282,7 @@ class _ThongKeState extends State<ThongKe> {
                     Expanded(
                         flex: 4,child: Column(
                       children: [
-                        Expanded(child: Column(
+                        const Expanded(child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text("10")
@@ -293,10 +291,10 @@ class _ThongKeState extends State<ThongKe> {
                         Expanded(flex:2,child:
                         SliderTheme(
                           data: SliderThemeData(
-                            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0.0),
+                            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 0.0),
                             trackHeight: 8.0,
                               disabledActiveTrackColor:MyColor.color_w4),
-                          child: Slider(
+                          child: const Slider(
                             value:50 ,
                             onChanged: null,
                             min: 0,
@@ -310,7 +308,7 @@ class _ThongKeState extends State<ThongKe> {
 
                 ),)
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     );

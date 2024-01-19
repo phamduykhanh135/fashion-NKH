@@ -51,8 +51,6 @@ class _Personal_ScreenState extends State<Personal_Screen> {
   
   @override
   Widget build(BuildContext context) {
-    int a = 2;
-
     return Scaffold(
       body: SingleChildScrollView(
         
@@ -181,9 +179,9 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                   child: SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width - 20,
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'Đơn hàng',
                           style: TextStyle(
@@ -218,9 +216,9 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                   child: SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width - 20,
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'Xác nhận đơn hàng',
                           style: TextStyle(
@@ -261,9 +259,9 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                   child: SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width - 20,
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text(
                           'Quản lý sản phẩm',
                           style: TextStyle(
@@ -297,9 +295,9 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                 child: SizedBox(
                   height: 50,
                   width: MediaQuery.of(context).size.width - 20,
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         'Đăng xuất',
                         style: TextStyle(

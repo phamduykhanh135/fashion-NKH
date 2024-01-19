@@ -146,7 +146,7 @@ class _Item_cartState extends State<Item_cart> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
+                    SizedBox(
                       width:MediaQuery.of(context).size.width /2,
                       child: Text(widget.carts.name,
                         style: const TextStyle(
@@ -204,7 +204,7 @@ class _Item_cartState extends State<Item_cart> {
                             ),
 
                              Container(
-                              margin: EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(10),
                       child: Text(widget.carts.quality.toString(),
                        style: const TextStyle(fontSize: 20.0)),
                    
