@@ -206,5 +206,3 @@ Future<List<Product>> searchProductsByCategory(String searchQuery, String catego
     return productsSnapshot.size;
   }
 }
-
-

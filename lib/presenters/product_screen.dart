@@ -13,6 +13,8 @@ class Product_Screen extends StatefulWidget {
 class _Product_ScreenState extends State<Product_Screen> {
   late Product products = Product();
 
+
+
   @override
   void initState() {
     super.initState();
@@ -43,6 +45,16 @@ class _Product_ScreenState extends State<Product_Screen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
+                    Image.network(
+                      // products.image,
+'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0',
+                      fit: BoxFit.contain,
+                      width: MediaQuery.of(context).size.width / 2 - 10,
+                      //color: Colors.amber,
+                      // height: 100,
+                    ),
+
                     SizedBox(
                       height: 210,
                       child: Row(
@@ -56,6 +68,7 @@ class _Product_ScreenState extends State<Product_Screen> {
                         ],
                       ),
                     ),
+
                   ],
                 ),
               ),

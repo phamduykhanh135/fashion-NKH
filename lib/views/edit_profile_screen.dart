@@ -1,13 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/edit_screen.dart';
 import 'package:sales_application/presenters/upload_image.dart';
+import 'package:sales_application/views/edit_screen.dart';
 
 import '../model/user.dart';
 import 'personal_screen.dart';
-
-
 
 class Edit_Profile_Screen extends StatefulWidget {
   final void Function(int) onUpdate;
@@ -96,7 +94,6 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                   ],
                 ),
               ),
-            
             Container(
               padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
               child: Column(
@@ -215,12 +212,14 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Email: ${user.email}',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                            Expanded(
+                              child: Text(
+                                'Email: ${user.email}',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
                             const Icon(
@@ -302,8 +301,9 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
       });
     }
   }
-   changeButton() async {
-    if (isChanges==true) {
+
+  changeButton() async {
+    if (isChanges == true) {
       setState(() {
         isChanges = false;
       });

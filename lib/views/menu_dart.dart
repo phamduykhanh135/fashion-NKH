@@ -1,11 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/item_poduct_home.dart';
+import 'package:sales_application/views/cart_Screen.dart';
+
+
 
 import '../model/product.dart';
+
 import 'seach_screen.dart';
 import '../presenters/bottom.dart';
-
 class Menu_Screen extends StatefulWidget {
   const Menu_Screen({super.key});
 
@@ -56,9 +59,8 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                         height: 40,
                         width: MediaQuery.of(context).size.width - 20,
                         padding: const EdgeInsets.all(10),
-                        child: Row(
-                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                        child: const Row(
+                          children: [
                             Icon(
                               Icons.search,
                               size: 15,
@@ -87,7 +89,14 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CartScreen(),
+                          ),
+                        );
+                        },
                         icon: const Icon(
                           Icons.shopping_cart,
                           color: Colors.white,

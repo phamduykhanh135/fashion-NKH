@@ -231,10 +231,10 @@ Future<void> signIn(BuildContext context, String email, String password) async {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return AlertDialog(
+      return const AlertDialog(
         content: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             CircularProgressIndicator(),
             SizedBox(height: 16),
             Text("Đang đăng nhập..."),

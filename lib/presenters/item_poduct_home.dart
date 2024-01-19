@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/product_screen.dart';
+import 'package:sales_application/views/kien/detail_Screen.dart';
 
 import '../model/product.dart';
+
 
 class Item_Product_Home extends StatelessWidget {
   final Product product;
@@ -17,7 +18,8 @@ class Item_Product_Home extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Product_Screen(idz: product.id),
+            builder: (context) =>  DetailScreen(idz: product.id)
+          
             
           ),
         );

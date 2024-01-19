@@ -66,8 +66,8 @@ class _Edit_ScreenState extends State<Edit_Screen> {
                 someFunction();
               },
               child: Container(
-                child: Row(
-                  children: const [
+                child: const Row(
+                  children: [
                     Text(
                       "Lưu",
                       style: TextStyle(

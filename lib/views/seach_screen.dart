@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../model/product.dart';
+import '../presenters/group_category.dart';
+import './search_history.dart';
 import '../presenters/item_product_search.dart';
-import 'search_history.dart';
+import '../model/product.dart'; // Import model Product
 
 class Search_Screen extends StatefulWidget {
   const Search_Screen({
