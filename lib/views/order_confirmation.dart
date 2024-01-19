@@ -63,7 +63,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                             width: MediaQuery.of(context).size.width / 2,
                             height: MediaQuery.of(context).size.height / 2,
                           ),
-                          Text("Không có sản phẩm nào"),
+                          Text("Không có đơn hàng nào"),
                         ],
                       ),
                     ),

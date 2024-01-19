@@ -52,6 +52,23 @@ class _PurchaseHistoryState extends State<PurchaseHistory> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            if (bills.every((bill) => bill.bill_state == true))
+              Container(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/img/package.jpg',
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 2,
+                      ),
+                      Text("Không có đơn hàng nào"),
+                    ],
+                  ),
+                ),
+              )
+            else
             for(int i=0;i<n;i++)
               if(bills[i].bill_state==false)
               GestureDetector(

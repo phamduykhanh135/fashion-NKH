@@ -48,7 +48,11 @@ class _Item_StateOrderState extends State<Item_StateOrder> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [ 
                     //Tên sản phẩm
-                    Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),),
+                    Container(
+                      height: MediaQuery.of(context).size.height/12,
+                      width: MediaQuery.of(context).size.width/2,
+                      child:Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.ellipsis ,),
+                    ),
                     //Đơn giá
                     Text("${widget.bill.items[0]['price']} đ",style: TextStyle(fontSize: 15,color: Colors.red),),
                     //Số lượng

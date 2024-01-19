@@ -15,7 +15,7 @@ class _Item_CancelState extends State<Item_Cancel> {
     try {
       await Bills.firestore
           .collection('invoices')
-          .doc(widget.bill.mahd.toString())
+          .doc(widget.bill.mahd)
           .update({'cancel_state': true});
       print('Đã cập nhật trạng thái hủy thành công');
     } catch (error) {
@@ -83,7 +83,12 @@ class _Item_CancelState extends State<Item_Cancel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [ 
                       //Tên sản phẩm
-                      Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),),
+                      Container(
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width/2,
+                        child:Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.ellipsis ,),
+                      ),
+                      
                       //Đơn giá
                       Text("${widget.bill.items[0]['price']} đ",style: TextStyle(fontSize: 15,color: Colors.red),),
                       //Số lượng

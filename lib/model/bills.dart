@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Bills {
-  int mahd;
+  String mahd;
   List<Map<String, dynamic>> items;
   DateTime timestamp;
   double totalAmount;
@@ -20,7 +20,7 @@ class Bills {
   });
 
   factory Bills.fromJson(Map<String, dynamic> json) => Bills(
-        mahd: json["mahd"] ?? 0,
+        mahd: json["mahd"] ?? '',
         items: List<Map<String, dynamic>>.from(json['items'] ?? []),
         timestamp: (json['timestamp'] as Timestamp).toDate(),
         totalAmount: json["totalAmount"] ?? 0,

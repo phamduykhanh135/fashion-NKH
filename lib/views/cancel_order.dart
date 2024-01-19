@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/model/item_cancel_order.dart';
 import '../model/bills.dart';
 import 'detail_bill.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CancelOrder extends StatefulWidget {
   const CancelOrder({super.key});
@@ -51,52 +52,65 @@ class _CancelOrderState extends State<CancelOrder> {
           color: Colors.purpleAccent.shade400,//thay doi
         ),
       ),
-      body:SingleChildScrollView(
-            child: Column(
-              children: [
-                if (bills.every((bill) =>
-                    bill.confirm_state == true ||
-                    bill.bill_state == false ||
-                    bill.cancel_state == true))
-                  Container(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/img/package.jpg',
-                            width: MediaQuery.of(context).size.width / 2,
-                            height: MediaQuery.of(context).size.height / 2,
-                          ),
-                          Text("Không có sản phẩm nào"),
-                        ],
+      body:StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('invoices').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+      return 
+        SingleChildScrollView(
+        child: Column(
+          children: [
+            if (bills.every((bill) =>
+                bill.confirm_state == true ||
+                bill.bill_state == false ||
+                bill.cancel_state == true))
+              Container(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/img/package.jpg',
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 2,
                       ),
-                    ),
-                  )
-                else
-                for(int i=0;i<n;i++)
-                if(bills[i].bill_state==true && bills[i].confirm_state==false&&bills[i].cancel_state==false)  
-                 GestureDetector(
-                  onTap: () {
-                    // Xử lý sự kiện khi container được nhấn
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Detail_bill(bill: bills[i],)));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(10),
-                    padding: EdgeInsets.all(5),
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height /3,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Item_Cancel(bill: bills[i]),
+                      Text("Không có đơn hàng nào"),
+                    ],
                   ),
-                )
-                      
-              ],
-            ),
-          ),
+                ),
+              )
+            else
+            for(int i=0;i<n;i++)
+            if(bills[i].bill_state==true && bills[i].confirm_state==false&&bills[i].cancel_state==false)  
+              GestureDetector(
+              onTap: () {
+                // Xử lý sự kiện khi container được nhấn
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Detail_bill(bill: bills[i],)));
+              },
+              child: Container(
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(5),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height /3,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Item_Cancel(bill: bills[i]),
+              ),
+            )
+                  
+          ],
+        ),
+      );
+    },
+    )
     );
   }
 }

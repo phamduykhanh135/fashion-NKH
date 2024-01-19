@@ -10,11 +10,16 @@ class Item_Confirm extends StatefulWidget {
 
 class _Item_ConfirmState extends State<Item_Confirm> {
 
-  bool confirmedState=false;
-  void confirmed_state() {
-    setState(() {
-      confirmedState=true;
-    });
+  void updateConfirmState() async {
+    try {
+      await Bills.firestore
+          .collection('invoices')
+          .doc(widget.bill.mahd)
+          .update({'confirm_state': true});
+      print('Đã cập nhật trạng thái hủy thành công');
+    } catch (error) {
+      print('Lỗi khi cập nhật trạng thái hủy: $error');
+    }
     showDialog(
       context: context, 
       builder: (BuildContext context){
@@ -75,7 +80,11 @@ class _Item_ConfirmState extends State<Item_Confirm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [ 
                       //Tên sản phẩm
-                      Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),),
+                      Container(
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width/2,
+                        child:Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.ellipsis ,),
+                      ),
                       //Đơn giá
                       Text("${widget.bill.items[0]['price']} đ",style: TextStyle(fontSize: 15,color: Colors.red),),
                       //Số lượng
@@ -104,7 +113,7 @@ class _Item_ConfirmState extends State<Item_Confirm> {
                 children: [
                   //Trang thai huy              
                   ElevatedButton(
-                    onPressed: confirmed_state,                     
+                    onPressed: updateConfirmState,                     
                     child: Text("Xác nhận đơn",style: TextStyle(color: Colors.purpleAccent.shade400,fontSize: 15),),
                     style:ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.pink.shade100), //thay đổi
