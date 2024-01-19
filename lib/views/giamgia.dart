@@ -21,7 +21,8 @@ class _GiamGiaState extends State<GiamGia> {
         ],
 
       ),
-      body:  ItemSL()
+      body:  const ItemSL()
     );
   }
 }
+

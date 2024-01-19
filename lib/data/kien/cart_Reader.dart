@@ -33,8 +33,6 @@ class Carts {
         size = json['size'] ?? '',
         image = json['image'] ?? '';
 
-
-
   static Future<void> loadData_cart() async {
   try {
     User? currentUser = FirebaseAuth.instance.currentUser;
@@ -106,7 +104,8 @@ class Carts {
 
       // Xóa đối tượng khỏi danh sách cart
       cart.remove(cartToDelete);
-// Xóa đối tượng trong Firestore
+
+      // Xóa đối tượng trong Firestore
       await FirebaseFirestore.instance
           .collection('carts')
           .doc(autoid)

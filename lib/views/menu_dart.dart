@@ -1,12 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/bottom.dart';
-import 'package:sales_application/presenters/item_poduct_home.dart';
 import 'package:sales_application/views/cart_Screen.dart';
 
-
-
 import '../model/product.dart';
+
+import 'item_poduct_home.dart';
 
 import 'seach_screen.dart';
 class Menu_Screen extends StatefulWidget {

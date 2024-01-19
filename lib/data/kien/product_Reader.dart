@@ -48,12 +48,12 @@ class Products {
 
   static Future<void> loadData_product() async {
     try {
-      CollectionReference _productCollection =
+      CollectionReference productCollection =
           FirebaseFirestore.instance.collection('products');
 
-      QuerySnapshot _productSnapshot = await _productCollection.get();
+      QuerySnapshot productSnapshot = await productCollection.get();
 
-      products = _productSnapshot.docs
+      products = productSnapshot.docs
           .map((doc) => Products.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
     } catch (e) {

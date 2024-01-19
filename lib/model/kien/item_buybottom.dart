@@ -1,7 +1,9 @@
-// BuyBottom.dart
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/data/kien/address_Reader.dart';
+import 'package:sales_application/views/menu_dart.dart';
 
 class BuyBottom extends StatelessWidget {
   final double onTotalAmountChanged;
@@ -38,6 +40,10 @@ class BuyBottom extends StatelessWidget {
                 } else {
                   showAddressDialog(context);
                 }
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const Menu_Screen()),
+              );
               },
               child: Text(
                 'Thanh toán',
@@ -73,9 +79,10 @@ class BuyBottom extends StatelessWidget {
   Future<void> createAndAddInvoice() async {
     QuerySnapshot paymentsSnapshot = await FirebaseFirestore.instance.collection('payments').get();
     List<Map<String, dynamic>> items = paymentsSnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
-
+    User? currentUser = FirebaseAuth.instance.currentUser;
     await FirebaseFirestore.instance.collection('invoices').add({
       'confirm_state': false,
+      'idUSer':currentUser?.uid??"",
       'cancel_state': false,
       'bill_state': true,
       'name': address?.fullname,

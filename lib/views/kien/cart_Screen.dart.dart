@@ -1,5 +1,3 @@
-// cart_Screen
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/data/kien/cart_Reader.dart';
@@ -113,7 +111,8 @@ class _CartScreenState extends State<CartScreen> {
               child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
             );
           }
-if (snapshot.hasData && snapshot.data != null) {
+
+          if (snapshot.hasData && snapshot.data != null) {
         
           }
 

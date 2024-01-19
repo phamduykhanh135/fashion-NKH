@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/kien/detail_Screen.dart';
 
 import '../model/product.dart';
-
+import '../views/kien/detail_Screen.dart';
 
 class Item_Product_Home extends StatelessWidget {
   final Product product;
@@ -16,14 +14,10 @@ class Item_Product_Home extends StatelessWidget {
     return GestureDetector(
       onTap: () {
        
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>  DetailScreen(idz: product.id)
-          
-            
-          ),
-        );
+          Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) =>  DetailScreen(idz: product.id)),
+              );
         print("ssssssssssssssssssssssss${product.id}");
       },
       child: Container(
@@ -103,5 +97,3 @@ class Item_Product_Home extends StatelessWidget {
     );
   }
 }
-// TODO Implement this library.
-

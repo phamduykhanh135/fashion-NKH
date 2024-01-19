@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sales_application/model/kien/item_buy.dart';
-import 'package:sales_application/model/kien/item_buybottom.dart';
-import 'package:sales_application/model/kien/item_buylist.dart';
-import 'package:sales_application/model/kien/item_buyselectedoption.dart';
+
 import '../../data/kien/address_Reader.dart';
 import '../../data/kien/payment_Reader.dart';
+import '../../model/kien/item_buyselectedoption.dart';
+import '../../model/kien/item_buylist.dart';
+import '../../model/kien/item_buybottom.dart';
+
+import '../../model/kien/item_buy.dart';
 
 class Buy_Screen extends StatefulWidget {
   final double totalPrice;
   double? selectedVoucherValue;
 
-  Buy_Screen({super.key, required this.totalPrice, this.selectedVoucherValue});
+
+  Buy_Screen({super.key, Key, required this.totalPrice, this.selectedVoucherValue});
 
   @override
   State<Buy_Screen> createState() => _Buy_ScreenState();
@@ -160,4 +163,6 @@ class _Buy_ScreenState extends State<Buy_Screen> {
     await Payments.deleteAllPayments();
     return true;
   }
+
 }
+

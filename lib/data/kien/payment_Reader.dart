@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'cart_Reader.dart';
 
 class Payments {
   String id;
   String name;
+  String idUser;
   bool status;
   String size;
   String price;
@@ -14,6 +15,7 @@ class Payments {
   Payments({
     required this.id,
     required this.name,
+    required this.idUser,
     required this.status,
     required this.size,
     required this.price,
@@ -24,6 +26,7 @@ class Payments {
   Payments.fromJson(Map<String, dynamic> json)
       : id = json["id"] ?? '',
         name = json['name'] ?? '',
+        idUser = json['idUser'] ?? '',
         status = json['status'] ?? false,
         price = json['price'] ?? '',
         quality = json['quality'] ?? '',
@@ -34,16 +37,25 @@ class Payments {
 
   static Future<void> loadData_payment() async {
     try {
-      CollectionReference paymentCollection =
-          FirebaseFirestore.instance.collection('payments');
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        String userId = currentUser.uid;
+        print(userId);
 
-      QuerySnapshot Paymentsnapshot = await paymentCollection.get();
+        CollectionReference paymentCollection =
+            FirebaseFirestore.instance.collection('payments');
+        QuerySnapshot Paymentsnapshot =
+            await paymentCollection.where('idUser', isEqualTo: userId).get();
+        payment = Paymentsnapshot.docs
+            .map((doc) =>
+                Payments.fromJson(doc.data() as Map<String, dynamic>))
+            .toList();
 
-      payment = Paymentsnapshot.docs
-          .map((doc) => Payments.fromJson(doc.data() as Map<String, dynamic>))
-          .toList();
+        print(payment.length);
+      } else {
+        payment.clear();
+      }
     } catch (e) {
-      // Handle exceptions or errors here
       print('Error loading data from Firestore: $e');
     }
   }
@@ -56,33 +68,42 @@ class Payments {
     try {
       CollectionReference paymentCollection =
           FirebaseFirestore.instance.collection('payments');
+      User? currentUser = FirebaseAuth.instance.currentUser;
 
-      for (var cart in selectedItems) {
-        // Lấy autoId từ DocumentReference
-        String newId = await generateAutoId();
+      if (currentUser != null) {
+        String userId = currentUser.uid;
 
-        // Thêm mới một payment và lấy DocumentReference
-        DocumentReference newPaymentRef = await paymentCollection.add({
-          'id': newId,
-          "name": cart.name,
-          "status": true,
-          "size": cart.size,
-          "price": cart.price,
-          "quality": cart.quality,
-          "image": cart.image,
-        });
+        for (var cart in selectedItems) {
+          // Lấy autoId từ DocumentReference
+          String newId = await generateAutoId();
 
-        // Cập nhật ID của payment trong danh sách payments
-        Payments newPayment = Payments(
-          id: newId,
-          name: cart.name,
-          status: true,
-          size: cart.size,
-          price: cart.price,
-          quality: cart.quality,
-          image: cart.image,
-        );
-        payment.add(newPayment);
+          // Thêm mới một payment và lấy DocumentReference
+          DocumentReference newPaymentRef = await paymentCollection.add({
+            'id': newId,
+            'idUser': userId,
+            "name": cart.name,
+            "status": true,
+            "size": cart.size,
+            "price": cart.price,
+            "quality": cart.quality,
+            "image": cart.image,
+          });
+
+          // Cập nhật ID của payment trong danh sách payments
+          Payments newPayment = Payments(
+            id: newId,
+            idUser: userId,
+            name: cart.name,
+            status: true,
+            size: cart.size,
+            price: cart.price,
+            quality: cart.quality,
+            image: cart.image,
+          );
+          payment.add(newPayment);
+        }
+      } else {
+        print('No user logged in');
       }
     } catch (e) {
       print('Error adding new payment: $e');
@@ -91,16 +112,23 @@ class Payments {
 
   static Future<void> deleteAllPayments() async {
     try {
-      QuerySnapshot paymentSnapshot =
-          await FirebaseFirestore.instance.collection('payments').get();
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        String userId = currentUser.uid;
 
-      WriteBatch batch = FirebaseFirestore.instance.batch();
+        QuerySnapshot paymentSnapshot = await FirebaseFirestore.instance
+            .collection('payments')
+            .where('idUser', isEqualTo: userId)
+            .get();
 
-      for (QueryDocumentSnapshot doc in paymentSnapshot.docs) {
-        batch.delete(doc.reference);
+        WriteBatch batch = FirebaseFirestore.instance.batch();
+
+        for (QueryDocumentSnapshot doc in paymentSnapshot.docs) {
+          batch.delete(doc.reference);
+        }
+
+        await batch.commit();
       }
-
-      await batch.commit();
     } catch (e) {
       print('Error deleting all payments: $e');
     }

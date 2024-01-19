@@ -1,4 +1,3 @@
-// voucher.dart
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/data/kien/voucherSale_Reader.dart';
@@ -16,7 +15,7 @@ class Voucher extends StatefulWidget {
 
 class _VoucherState extends State<Voucher> {
   int _selectedVoucherMoney = 0;
-  int? _selectedVoucherId;
+  String? _selectedVoucherId;
   List<VoucherSales>? _voucherSale;
   Color myColor = Color(0xFF8E1C68);
   TextEditingController _voucherController = TextEditingController();
@@ -120,44 +119,49 @@ class _VoucherState extends State<Voucher> {
           return ListView(
             padding: EdgeInsets.all(5.0),
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: _voucherController,
-                      decoration: InputDecoration(
-                        labelText: 'Nhập mã voucher',
-                        hintText: 'Nhập mã voucher của bạn',
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 16.0),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-                      minimumSize: MaterialStateProperty.all(const Size(80, 30)),
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      _confirmVoucher();
-                    },
-                    child: Text(
-                      'Áp dụng',
-                      style: TextStyle(color: myColor),
-                    ),
-                  )
-                ],
-              ),
-              const Divider(
-                color: Colors.grey,
-                thickness: 1,
-              ),
-              Text("voucher ưa đãi giảm giá"),
+            //   Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Expanded(
+            //         child: TextFormField(
+            //           controller: _voucherController,
+            //           decoration:const InputDecoration(
+            //             labelText: 'Nhập mã voucher',
+            //             hintText: 'Nhập mã voucher của bạn',
+            //             focusedBorder: OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.black), // Màu viền khi trường được focus
+            // ),
+            // labelStyle: TextStyle(color: Colors.black), 
+            //           ),
+                      
+            //         ),
+            //       ),
+            //       SizedBox(width: 16.0),
+            //       ElevatedButton(
+            //         style: ButtonStyle(
+            //           backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
+            //           minimumSize: MaterialStateProperty.all(const Size(80, 30)),
+            //           shape: MaterialStateProperty.all(
+            //             RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(10),
+            //             ),
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           _confirmVoucher();
+            //         },
+            //         child: Text(
+            //           'Áp dụng',
+            //           style: TextStyle(color: myColor),
+            //         ),
+            //       )
+              //   ],
+              // ),
+              // const Divider(
+              //   color: Colors.grey,
+              //   thickness: 1,
+              // ),
+              Text("danh sách voucher ưa đãi giảm giá:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
               if (_voucherSale != null && _voucherSale!.isNotEmpty)
                 ListView.builder(
                   shrinkWrap: true,

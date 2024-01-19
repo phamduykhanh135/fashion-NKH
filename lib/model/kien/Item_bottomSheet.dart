@@ -51,7 +51,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10),
       height: MediaQuery.of(context).size.height / 1.2,
       child: Column(
         children: [
@@ -81,6 +81,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                     },),
                   ],
                 ),
+                const SizedBox(height: 10,),
                 Row(
                   children: [
                     const Text("Số lượng:"),
@@ -169,15 +170,18 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
 }
 
 void showSuccessDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      Future.delayed(const Duration(seconds: 1), () {
-        Navigator.pop(context);
-      });
-      return const AlertDialog(
-        content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
-      );
-    },
-  ).then((_) => Navigator.pop(context));
+  if (context != null) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        Future.delayed(Duration(seconds: 1), () {
+          Navigator.pop(context);
+        });
+        return const AlertDialog(
+          content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
+        );
+      },
+    ).then((_) => Navigator.pop(context));
+  }
 }
+

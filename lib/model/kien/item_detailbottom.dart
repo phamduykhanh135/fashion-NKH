@@ -11,22 +11,44 @@ class Detail_Bottombar extends StatelessWidget {
   Widget build(BuildContext context) {
     Color myColor = const Color(0xFF8E1C68);
     return Container(
-      height:MediaQuery.of(context).size.height/14,
-      decoration:  const BoxDecoration(
+      width: MediaQuery.of(context).size.width/2,
+      height:MediaQuery.of(context).size.height/10,
+      decoration:  BoxDecoration(
         color: Colors.white
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
+          product.discount=="0"?Text(
             product.price,
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-          ),
-          TextButton(
+          ):Column(
+            children: [
+              Text(
+            product.price,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              decoration: TextDecoration.lineThrough,
+            ),
+              ),
+              Text(
+            product.price=((double.parse(product.price)-((double.parse(product.price)*double.parse(product.discount))/100.0))).toStringAsFixed(3),
+             style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+            
+              ),
+            ],
+          )
+          ,TextButton(
   style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.pink.shade100),
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -35,7 +57,7 @@ class Detail_Bottombar extends StatelessWidget {
       ),
     ),
     fixedSize: MaterialStateProperty.all<Size>(
-      const Size(140, 40), 
+      Size(140, 40), 
     ),
   ),
   onPressed: showBottomSheet,

@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/data/kien/cart_Reader.dart';
-import 'package:sales_application/model/kien/item_cart.dart';
-import 'package:sales_application/model/kien/item_cartbottom.dart';
+
+
+import '../model/kien/item_cart.dart';
+import '../model/kien/item_cartbottom.dart';
+
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -19,7 +22,7 @@ class _CartScreenState extends State<CartScreen> {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[(cart.id).length   - 1]).toList();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[(cart.id).length- 1]).toList();
     });
   }
 
@@ -112,7 +115,7 @@ class _CartScreenState extends State<CartScreen> {
           }
 
           if (snapshot.hasData && snapshot.data != null) {
-            _cart = snapshot.data!.docs
+        _cart = snapshot.data!.docs
                 .map((doc) => Carts.fromJson(doc.data() as Map<String, dynamic>))
                 .toList();
           }
@@ -165,4 +168,7 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
+
+
 }
+

@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/Item_bottomSheet.dart';
-import 'package:sales_application/model/kien/item_detailbody.dart';
 import 'package:sales_application/views/cart_Screen.dart';
+
+import 'package:sales_application/views/menu_dart.dart';
 import '../../data/kien/product_Reader.dart';
+import '../../model/kien/Item_bottomSheet.dart';
+import 'package:sales_application/model/kien/item_detailbody.dart';
 
 class DetailScreen extends StatefulWidget {
   final String idz;
@@ -65,6 +67,15 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
       appBar: AppBar(
         iconTheme: IconThemeData(color: myColor),
         centerTitle: true,
+        leading: IconButton(
+    icon: const Icon(Icons.arrow_back),
+    onPressed: () {
+      Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => Menu_Screen()),
+  );
+    },
+  ),
         actions: [
           IconButton(
             onPressed: () {
@@ -76,6 +87,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
         ],
+        
         backgroundColor: const Color.fromARGB(0, 0, 0, 0),
         elevation: 0,
       ),
@@ -107,12 +119,10 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             return const Text('Data is null');
           }
 
-          // Find the product by idz
           Products? product = getProductById(widget.idz);
-
           return Detail_body(
             showBottomSheet: () => _showBottomSheet(context),
-            // Pass the product to Detail_body
+
             product: product!,
           );
         
