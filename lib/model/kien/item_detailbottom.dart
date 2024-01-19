@@ -21,15 +21,37 @@ class Detail_Bottombar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
+          
+          product.discount=="0"?Text(
             product.price,
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-          ),
-          TextButton(
+          ):Column(
+            children: [
+              Text(
+            product.price,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              decoration: TextDecoration.lineThrough,
+            ),
+              ),
+              Text(
+            product.price=((double.parse(product.price)-((double.parse(product.price)*double.parse(product.discount))/100.0))).toStringAsFixed(3),
+             style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+            
+              ),
+            ],
+          )
+          ,TextButton(
   style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(Colors.pink.shade100),
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(

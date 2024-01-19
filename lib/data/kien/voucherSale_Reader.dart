@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VoucherSales {
-  int id;
+  String id;
   String name;
   bool status;
   String image;
@@ -20,7 +20,7 @@ class VoucherSales {
   });
 
   VoucherSales.fromJson(Map<String, dynamic> json)
-      : id = json["id"] ?? 0,
+      : id = json["id"] ?? '',
         name = json['name'] ?? '',
         status = json['status'] ?? false,
         image = json['image'] ?? '',
@@ -30,6 +30,12 @@ class VoucherSales {
 
   static List<VoucherSales> voucher = [];
 
+static VoucherSales? findVoucherById(String voucherId) {
+    return voucher.firstWhere(
+      (voucher) => voucher.id == voucherId,
+      orElse:null,
+    );
+  }
   static Future<void> loadData_voucher() async {
     try {
       CollectionReference voucherCollection = FirebaseFirestore.instance.collection('voucherSale');

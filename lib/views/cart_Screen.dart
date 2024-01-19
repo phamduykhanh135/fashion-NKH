@@ -21,7 +21,7 @@ class _CartScreenState extends State<CartScreen> {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[int.parse(cart.id) - 1]).toList();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[(cart.id).length- 1]).toList();
     });
   }
 
