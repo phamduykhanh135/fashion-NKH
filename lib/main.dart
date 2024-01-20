@@ -1,21 +1,14 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 import 'package:sales_application/model/user.dart';
-
-
 import 'package:sales_application/presenters/home.dart';
-
 import 'package:sales_application/views/personal_screen.dart';
 import 'package:sales_application/views/change_password_screen.dart';
 import 'package:sales_application/views/seach_screen.dart';
 import 'package:sales_application/views/sigin_in_screen.dart';
 import 'package:sales_application/views/menu_dart.dart';
 import 'package:sales_application/views/sigin_up_screen.dart';
-
 import 'firebase_options.dart';
-
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
