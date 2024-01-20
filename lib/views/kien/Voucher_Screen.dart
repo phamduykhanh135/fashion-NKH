@@ -89,6 +89,7 @@ class _VoucherState extends State<Voucher> {
 
   @override
   Widget build(BuildContext context) {
+     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text("Chọn voucher", style: TextStyle(color: myColor)),
@@ -202,7 +203,7 @@ class _VoucherState extends State<Voucher> {
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-                      minimumSize: MaterialStateProperty.all(const Size(360, 50)),
+                      minimumSize: MaterialStateProperty.all( Size(screenSize.width*0.9, screenSize.height/15)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

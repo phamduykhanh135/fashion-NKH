@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/data/kien/cart_Reader.dart';
+
+
 import '../../model/kien/item_cart.dart';
 import '../../model/kien/item_cartbottom.dart';
 
@@ -20,7 +22,7 @@ class _CartScreenState extends State<CartScreen> {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id.length - 1]).toList();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[(cart.id).length- 1]).toList();
     });
   }
 
@@ -108,12 +110,12 @@ class _CartScreenState extends State<CartScreen> {
 
           if (_cart == null || _cart!.isEmpty) {
             return const Center(
-              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              child: Text('Hiện tại giỏ hàng trống ', style: TextStyle(fontSize: 20)),
             );
           }
 
           if (snapshot.hasData && snapshot.data != null) {
-        
+      
           }
 
           if (_cart == null) {
@@ -164,4 +166,7 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
+
+
 }
+

@@ -30,7 +30,7 @@ class _Cart_bottomState extends State<Cart_bottom> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: MediaQuery.of(context).size.height/6,
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(8),

@@ -46,6 +46,7 @@ class Carts {
       cart = cartSnapshot.docs
           .map((doc) => Carts.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
+          print("so luong ${cart.length}");
     } else {
       cart.clear(); // Clear the cart list if user is not logged in
     }

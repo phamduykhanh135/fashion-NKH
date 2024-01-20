@@ -35,7 +35,7 @@ class ItemVoucherSale extends StatelessWidget {
           Container(
             
             padding: const EdgeInsets.all(5),
-            width: MediaQuery.of(context).size.width / 1.15,
+            width: MediaQuery.of(context).size.width*0.6,
             decoration: BoxDecoration(
               color: Colors.grey[200],
               borderRadius: const BorderRadius.all(Radius.circular(8)),

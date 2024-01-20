@@ -124,7 +124,7 @@ class _Item_cartState extends State<Item_cart> {
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            width: MediaQuery.of(context).size.width * 0.85,
+            width: MediaQuery.of(context).size.width * 0.8,
             decoration: BoxDecoration(
               color: myLightGrayColor,
               borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -146,8 +146,8 @@ class _Item_cartState extends State<Item_cart> {
                     const SizedBox(
                       height: 10,
                     ),
-                    SizedBox(
-                      width:MediaQuery.of(context).size.width /2,
+                    Container(
+                      width:MediaQuery.of(context).size.width /2.2,
                       child: Text(widget.carts.name,
                         style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold)

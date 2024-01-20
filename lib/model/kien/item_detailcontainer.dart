@@ -38,13 +38,13 @@ class _Item_ContainerState extends State<Item_Container> {
             ),
               Row(
                     children: [
-                    SizedBox(width: MediaQuery.of(context).size.width / 15),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("S"),
-                    SizedBox(width: MediaQuery.of(context).size.width / 15),
+                    SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("M"),
-                      SizedBox(width: MediaQuery.of(context).size.width / 15),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("L"),
-                      SizedBox(width: MediaQuery.of(context).size.width / 15),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("XL"),
                     ],
                   ),

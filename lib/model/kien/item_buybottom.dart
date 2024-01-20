@@ -15,6 +15,7 @@ class BuyBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color myColor = const Color(0xFF8E1C68);
+    Size screenSize = MediaQuery.of(context).size;
 
     return Container(
       height: 60,
@@ -27,7 +28,7 @@ class BuyBottom extends StatelessWidget {
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-                minimumSize: MaterialStateProperty.all(const Size(360, 50)),
+                minimumSize: MaterialStateProperty.all( Size(screenSize.width*0.9, screenSize.height*10)),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
