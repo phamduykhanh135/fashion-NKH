@@ -1,5 +1,5 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.updateBuildConfiguration": "disabled",
     "cmake.sourceDirectory": "D:/CDTH21DD/flutter_demo/sales_application/linux"
 
 }
