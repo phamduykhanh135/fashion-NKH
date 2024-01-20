@@ -1,9 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
+
 import 'package:sales_application/model/user.dart';
->>>>>>> 33c203ed42269891fd95ea105ed17f577fb30a9e
+
 import 'package:sales_application/presenters/home.dart';
 import 'package:sales_application/views/personal_screen.dart';
 import 'package:sales_application/views/change_password_screen.dart';
@@ -13,11 +12,6 @@ import 'package:sales_application/views/menu_dart.dart';
 import 'package:sales_application/views/sigin_up_screen.dart';
 import 'firebase_options.dart';
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 33c203ed42269891fd95ea105ed17f577fb30a9e
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
  await Firebase.initializeApp(

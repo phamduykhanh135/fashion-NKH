@@ -174,18 +174,16 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
 }
 
 void showSuccessDialog(BuildContext context) {
-  if (context != null) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        Future.delayed(Duration(seconds: 1), () {
-          Navigator.pop(context);
-        });
-        return const AlertDialog(
-          content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
-        );
-      },
-    ).then((_) => Navigator.pop(context));
-  }
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      Future.delayed(Duration(seconds: 1), () {
+        Navigator.pop(context);
+      });
+      return const AlertDialog(
+        content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
+      );
+    },
+  ).then((_) => Navigator.pop(context));
 }
 
