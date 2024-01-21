@@ -37,14 +37,12 @@ class BuyBottom extends StatelessWidget {
               ),
               onPressed: () async {
                 if (address != null && address!.fullname.isNotEmpty) {
+                  shownotiDialog(context);
                   await createAndAddInvoice();
                 } else {
                   showAddressDialog(context);
                 }
-                Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Menu_Screen()),
-              );
+                
               },
               child: Text(
                 'Thanh toán',
@@ -64,6 +62,25 @@ class BuyBottom extends StatelessWidget {
         return AlertDialog(
           title: const Text("Lỗi"),
           content: const Text("Vui lòng chọn địa chỉ trước khi thanh toán."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+  void shownotiDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Thông báo"),
+          content: const Text("Thanh toán thành công."),
           actions: [
             TextButton(
               onPressed: () {

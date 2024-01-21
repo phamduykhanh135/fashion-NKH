@@ -45,7 +45,7 @@ import 'item_detailcontainer.dart';
                       product.name,
                       style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                     ),
-                    Item_Container(product: product, onSizeSelected:(String){},),
+                    Item_Container(product: product, onSizeSelected:(String){}, onQuantityChanged: (int ) {  },),
                     Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

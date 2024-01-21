@@ -211,12 +211,18 @@ class _Item_cartState extends State<Item_cart> {
                       ),
                       TextButton(
                               onPressed: () async {
-                                setState(() {
-                                  if (int.parse(widget.carts.quality) >= 0) {
+                                String productQuantity = await Carts.getProductQuantity(widget.carts.idproduct, widget.carts.size);
+                                setState(()  {
+                                  
+                                  if (int.parse(widget.carts.quality) >= 0 &&int.parse(widget.carts.quality)<int.parse(productQuantity)) {
                                     widget.carts.quality =
                                         (int.parse(widget.carts.quality) + 1)
                                             .toString();
+                                  }else
+                                  {
+                                     widget.carts.quality=productQuantity.toString();
                                   }
+                                  
                                 });
                     
                                 await FirebaseFirestore.instance
@@ -226,7 +232,7 @@ class _Item_cartState extends State<Item_cart> {
                                   'quality': widget.carts.quality,
                                 });
                                 widget.onCheckboxChanged(_ischeck);
-                                widget.onQuantityChanged(); //thay đổi số lượng
+                                widget.onQuantityChanged(); 
                               },
                               style: ButtonStyle(
                                 backgroundColor:

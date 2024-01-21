@@ -17,7 +17,26 @@ class Item_bottomSheet extends StatefulWidget {
 class _Item_bottomSheetState extends State<Item_bottomSheet> {
   int temp = 0;
   String selectedSize = '';
-
+  int quanlity=0;
+  void shownotiDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Thông báo"),
+          content: const Text("hãy chọn size trước"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
   void _addToCart() {
     if (selectedSize.isEmpty || temp <= 0) {
       showDialog(
@@ -43,6 +62,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
     // Thêm thông tin vào Firestore
     Carts.addNewCart(
       widget.product.name,
+      widget.product.id,
       selectedSize,
       widget.product.price,
       temp.toString(),
@@ -80,9 +100,11 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                     Item_Container(product: widget.product,onSizeSelected: (size) {
                       setState(() {
                           selectedSize = size;
+
                         });
                       
-                    },),
+                    }, onQuantityChanged: (_quanlity ) { quanlity=_quanlity; },),
+                    
                   ],
                 ),
                 SizedBox(height: 10,),
@@ -106,11 +128,16 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                               ),
                             ),
                             onPressed: () {
+                              if(selectedSize.isEmpty)
+                              {
+                                shownotiDialog(context);
+                              }else{
                               setState(() {
                                 if (temp > 0) {
                                   temp--;
                                 }
                               });
+                              }
                             },
                             child: Icon(Icons.remove, color: Colors.black),
                           ),
@@ -128,11 +155,19 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                               ),
                             ),
                             onPressed: () {
+                               if(selectedSize.isEmpty )
+                              {
+                                shownotiDialog(context);
+                              }else{
                               setState(() {
-                                if (temp >= 0) {
+                                print(quanlity);
+                                if (temp >= 0&& temp<quanlity) {
                                   temp++;
+                                }else{
+                                  temp=quanlity;
                                 }
                               });
+                              }
                             },
                             child: Icon(Icons.add, color: Colors.black),
                           ),
