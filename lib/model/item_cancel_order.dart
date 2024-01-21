@@ -12,15 +12,10 @@ class Item_Cancel extends StatefulWidget {
 
 class _Item_CancelState extends State<Item_Cancel> {
   void updateCancelState() async {
-    try {
-      await Bills.firestore
-          .collection('invoices')
-          .doc(widget.bill.mahd)
-          .update({'cancel_state': true});
-      print('Đã cập nhật trạng thái hủy thành công');
-    } catch (error) {
-      print('Lỗi khi cập nhật trạng thái hủy: $error');
+     if (!mounted) {
+      return; // Tránh thực hiện tác vụ nếu State đã bị hủy
     }
+    if (mounted) {
     showDialog(
       context: context, 
       builder: (BuildContext context){
@@ -46,23 +41,29 @@ class _Item_CancelState extends State<Item_Cancel> {
         );
       }
     );
+    }
+    try {
+      await Bills.firestore
+          .collection('invoices')
+          .doc(widget.bill.mahd)
+          .update({'cancel_state': true});
+      print('Đã cập nhật trạng thái hủy thành công');
+    } catch (error) {
+      print('Lỗi khi cập nhật trạng thái hủy: $error');
+    }
   }
   
   
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Bills.loadBills(),
-      builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
-      }
-
-      if (snapshot.hasError) {
-        return Text('Error: ${snapshot.error}');
-      }
-
-      return
+    // return StreamBuilder(
+    //   stream: FirebaseFirestore.instance.collection('invoices').snapshots(),
+    //   builder: (context, snapshot) {
+    //   if (!snapshot.hasData) {
+    //     return CircularProgressIndicator(); // hoặc một widget loading khác
+    //   }
+    
+      return 
         Column(
           children: [
             Row(
@@ -132,7 +133,7 @@ class _Item_CancelState extends State<Item_Cancel> {
             )
           ]
         );
-      }
-    );
+      //}
+    //);
   }
 }

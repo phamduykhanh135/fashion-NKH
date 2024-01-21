@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sales_application/model/notifications.dart';
 import '../model/bills.dart';
+import 'products.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class Item_Confirm extends StatefulWidget {
   const Item_Confirm({super.key,required this.bill});
@@ -11,15 +13,10 @@ class Item_Confirm extends StatefulWidget {
 class _Item_ConfirmState extends State<Item_Confirm> {
 
   void updateConfirmState() async {
-    try {
-      await Bills.firestore
-          .collection('invoices')
-          .doc(widget.bill.mahd)
-          .update({'confirm_state': true});
-      print('Đã cập nhật trạng thái hủy thành công');
-    } catch (error) {
-      print('Lỗi khi cập nhật trạng thái hủy: $error');
+    if (!mounted) {
+      return; // Tránh thực hiện tác vụ nếu State đã bị hủy
     }
+    if (mounted) {
     showDialog(
       context: context, 
       builder: (BuildContext context){
@@ -29,7 +26,7 @@ class _Item_ConfirmState extends State<Item_Confirm> {
           actions: [
             Center(
               child: ElevatedButton(
-                onPressed:(){ Navigator.of(context).pop();}, 
+                onPressed:(){ Navigator.maybePop(context);}, 
                 child: Text("OK",style: TextStyle(color: Colors.purpleAccent.shade400,fontSize: 15),),
                 
                 style:ButtonStyle(
@@ -44,7 +41,121 @@ class _Item_ConfirmState extends State<Item_Confirm> {
           ],
         );
       }
-    );
+    ); 
+    }
+     
+    try {
+      int n=widget.bill.items.length;
+    
+      for(int i=0;i<n;i++){
+        if(widget.bill.items[i]['size']=='L'){  //Size L
+          // Lấy giá trị hiện tại từ Firestore
+          DocumentSnapshot<Map<String, dynamic>> docSnapshot = await Products.firestore
+            .collection('products')
+            .doc(widget.bill.items[i]['id'])
+            .get();
+
+          String currentSizeL = docSnapshot.data()?['sizeL'] ?? '';
+
+          // Kiểm tra số nguyên hợp lệ
+          if (int.tryParse(currentSizeL) != null) { 
+        
+            int iSizeL = int.parse(currentSizeL)-int.parse(widget.bill.items[i]['quality']);
+            String sizeL = iSizeL.toString();
+
+            // Cập nhật trong Firestore
+            await Products.firestore
+              .collection('products')
+              .doc(widget.bill.items[i]['id'])
+              .update({'sizeL': sizeL});
+          } else {
+            print('Giá trị hiện tại của sizeL không phải là một số nguyên hợp lệ.');
+          }
+        }
+        else if(widget.bill.items[i]['size']=='M'){   //Size M  
+          // Lấy giá trị hiện tại từ Firestore
+          DocumentSnapshot<Map<String, dynamic>> docSnapshot = await Products.firestore
+            .collection('products')
+            .doc(widget.bill.items[i]['id'])
+            .get();
+
+          String currentSizeM = docSnapshot.data()?['sizeM'] ?? '';
+
+          // Kiểm tra số nguyên hợp lệ
+          if (int.tryParse(currentSizeM) != null) {
+        
+            int iSizeM = int.parse(currentSizeM)-int.parse(widget.bill.items[i]['quality']);
+            String sizeM = iSizeM.toString();
+
+            // Cập nhật
+            await Products.firestore
+              .collection('products')
+              .doc(widget.bill.items[i]['id'])
+              .update({'sizeM': sizeM});
+          } else {
+            print('Giá trị hiện tại của sizeL không phải là một số nguyên hợp lệ.');
+          }
+        }
+        else if(widget.bill.items[i]['size']=='S'){ //Size S
+          // Lấy giá trị hiện tại từ Firestore
+          DocumentSnapshot<Map<String, dynamic>> docSnapshot = await Products.firestore
+            .collection('products')
+            .doc(widget.bill.items[i]['id'])
+            .get();
+
+          String currentSizeS = docSnapshot.data()?['sizeS'] ?? '';
+
+          // Kiểm tra số nguyên hợp lệ
+          if (int.tryParse(currentSizeS) != null) {
+        
+            int iSizeS = int.parse(currentSizeS)-int.parse(widget.bill.items[i]['quality']);
+            String sizeS = iSizeS.toString();
+
+            // Cập nhật
+            await Products.firestore
+              .collection('products')
+              .doc(widget.bill.items[i]['id'])
+              .update({'sizeS': sizeS});
+          } else {
+            print('Giá trị hiện tại của sizeL không phải là một số nguyên hợp lệ.');
+          }
+        }
+        else if(widget.bill.items[i]['size']=='XL'){  //Size XL
+          // Lấy giá trị hiện tại từ Firestore
+          DocumentSnapshot<Map<String, dynamic>> docSnapshot = await Products.firestore
+            .collection('products')
+            .doc(widget.bill.items[i]['id'])
+            .get();
+
+          String currentSizeXL = docSnapshot.data()?['sizeXL'] ?? '';
+
+          // Kiểm tra số nguyên hợp lệ
+          if (int.tryParse(currentSizeXL) != null) {
+        
+            int iSizeXL = int.parse(currentSizeXL)-int.parse(widget.bill.items[i]['quality']);
+            String sizeXL = iSizeXL.toString();
+
+            // Cập nhật
+            await Products.firestore
+              .collection('products')
+              .doc(widget.bill.items[i]['id'])
+              .update({'sizeXL': sizeXL});
+          } else {
+            print('Giá trị hiện tại của sizeL không phải là một số nguyên hợp lệ.');
+          }
+        }
+      }
+
+      await Bills.firestore
+          .collection('invoices')
+          .doc(widget.bill.mahd)
+          .update({'confirm_state': true});
+     
+      
+      print('Đã cập nhật trạng thái thành công');
+    } catch (error) {
+      print('Lỗi khi cập nhật trạng thái: $error');
+    }
   }
   @override
   Widget build(BuildContext context) {

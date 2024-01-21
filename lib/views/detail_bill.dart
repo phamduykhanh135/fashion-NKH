@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'order_status.dart';
 import '../model/bills.dart';
 class Detail_bill extends StatefulWidget {
   const Detail_bill({super.key,required this.bill}) ;

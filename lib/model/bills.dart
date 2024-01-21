@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'dart:async';
 
 class Bills {
   String mahd;
@@ -23,7 +24,7 @@ class Bills {
         mahd: json["mahd"] ?? '',
         items: List<Map<String, dynamic>>.from(json['items'] ?? []),
         timestamp: (json['timestamp'] as Timestamp).toDate(),
-        totalAmount: json["totalAmount"] ?? 0,
+        totalAmount: json["totalAmount"] ?? 0.0,
         bill_state: json["bill_state"] ?? true,
         cancel_state: json["cancel_state"] ?? false,
         confirm_state: json["confirm_state"] ?? false,
@@ -32,7 +33,9 @@ class Bills {
   static List<Bills> bills = [];
 
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
-  
+  // static StreamController<List<Bills>> _billsController = StreamController<List<Bills>>.broadcast();
+  // static Stream<List<Bills>> get billsStream => _billsController.stream;
+
   static Future<void> loadBills() async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
@@ -45,6 +48,8 @@ class Bills {
 
       // Gán danh sách bills đã load vào biến bills
       bills = loadedBills;
+      // // Thêm dữ liệu mới vào StreamController
+      // _billsController.add(bills);
     } catch (error) {
       print('Error loading bills: $error');
     }

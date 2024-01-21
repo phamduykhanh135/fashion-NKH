@@ -4,6 +4,7 @@ import '../model/bills.dart';
 import 'detail_bill.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 class CancelOrder extends StatefulWidget {
   const CancelOrder({super.key});
 
@@ -25,6 +26,10 @@ class _CancelOrderState extends State<CancelOrder> {
   void initState() {
     super.initState();
 
+    FirebaseFirestore.instance.collection('invoices').snapshots().listen((event) {
+      _loadData();
+    });
+    
     _loadData();
   }
 
@@ -52,16 +57,12 @@ class _CancelOrderState extends State<CancelOrder> {
           color: Colors.purpleAccent.shade400,//thay doi
         ),
       ),
-      body:StreamBuilder<QuerySnapshot>(
+      body:StreamBuilder(
       stream: FirebaseFirestore.instance.collection('invoices').snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        }
-
-        if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
+      builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return CircularProgressIndicator();
+      }                
       return 
         SingleChildScrollView(
         child: Column(
@@ -97,7 +98,7 @@ class _CancelOrderState extends State<CancelOrder> {
                 margin: EdgeInsets.all(10),
                 padding: EdgeInsets.all(5),
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height /3,
+                height: MediaQuery.of(context).size.height /3+10,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade300,
                   borderRadius: BorderRadius.circular(10),

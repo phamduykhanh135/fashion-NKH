@@ -24,11 +24,7 @@ class _Item_StateOrderState extends State<Item_StateOrder> {
       }
 
       return Column(
-      children: [
-        // ListView.builder(
-        // itemCount: n, // Số lượng phần tử trong danh sách
-        // itemBuilder: (context, index) {
-        // return 
+      children: [   
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

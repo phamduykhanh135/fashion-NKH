@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/item_order_status.dart';
 import '../model/bills.dart';
@@ -26,6 +27,11 @@ class _OrderStatusState extends State<OrderStatus>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
+    FirebaseFirestore.instance.collection('invoices').snapshots().listen((event) {
+      _loadData();
+    });
+    
     _loadData();
   }
 
@@ -71,7 +77,14 @@ class _OrderStatusState extends State<OrderStatus>
           ),
         ),
       ),
-      body: TabBarView(
+      body:StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('invoices').snapshots(),
+      builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return CircularProgressIndicator();
+      }                
+      return 
+       TabBarView(
         controller: _tabController,
         children: [
           // Nội dung của Tab Chờ xác nhận
@@ -170,7 +183,9 @@ class _OrderStatusState extends State<OrderStatus>
             ),
           ),
         ],
-      ),
+      );
+      }
+      )
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/item_notification.dart';
 import 'package:sales_application/presenter/bottom.dart';
@@ -23,6 +24,10 @@ class _NotificationsState extends State<Notifications> {
   void initState() {
     super.initState();
 
+    FirebaseFirestore.instance.collection('notificates').snapshots().listen((event) {
+      _loadData();
+    });
+    
     _loadData();
   }
 
@@ -44,26 +49,34 @@ class _NotificationsState extends State<Notifications> {
         centerTitle: true,// chỉnh titile ở giữa
         
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            for(int i=n-1;i>=0;i--)
-            
-            Container(
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-              width:MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height/4,
-              decoration: BoxDecoration(color: Colors.grey.shade300 ,borderRadius: BorderRadius.circular(10)),
-              child: Item_Notification(notificate: notificates[i],)
-                
-            ),
+      body: StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('invoices').snapshots(),
+      builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return CircularProgressIndicator();
+      }                
+      return 
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              for(int i=n-1;i>=0;i--)
               
-             
-            
-          ]
-        ),
-      ),
+              Container(
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                width:MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height/4,
+                decoration: BoxDecoration(color: Colors.grey.shade300 ,borderRadius: BorderRadius.circular(10)),
+                child: Item_Notification(notificate: notificates[i],)
+                  
+              ),
+                
+              
+              
+            ]
+          ),
+        );
+      }),
       bottomNavigationBar:const Bottom_Nav(id:2) ,
     );
   }

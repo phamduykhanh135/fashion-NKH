@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Notificates {
-  int id;
+  String id;
   String message;
   String title;
   String url_img;
@@ -15,7 +15,7 @@ class Notificates {
   });
 
   factory Notificates.fromJson(Map<String, dynamic> json) => Notificates(
-        id: json["id"] ?? 0,       
+        id: json["id"] ?? '',       
         message: json['message']??'',
         title: json['title']??'',
         url_img: json['url_img']??'',

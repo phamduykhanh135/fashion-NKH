@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../model/bills.dart';
@@ -23,7 +24,11 @@ class _PurchaseHistoryState extends State<PurchaseHistory> {
   @override
   void initState() {
     super.initState();
-  
+
+    FirebaseFirestore.instance.collection('invoices').snapshots().listen((event) {
+      _loadData();
+    });
+
     _loadData();
   }
   
@@ -49,7 +54,14 @@ class _PurchaseHistoryState extends State<PurchaseHistory> {
           color: Colors.purpleAccent.shade400,//thay doi
         ),
       ),
-      body: SingleChildScrollView(
+      body:StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('invoices').snapshots(),
+      builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return CircularProgressIndicator();
+      }                
+      return 
+       SingleChildScrollView(
         child: Column(
           children: [
             if (bills.every((bill) => bill.bill_state == true))
@@ -91,7 +103,9 @@ class _PurchaseHistoryState extends State<PurchaseHistory> {
            
           ],
         ),
-      ),
+      );
+      }
+      )
     );
   }
 }
