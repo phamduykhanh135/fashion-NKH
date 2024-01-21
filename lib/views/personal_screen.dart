@@ -5,6 +5,7 @@ import 'package:sales_application/views/nghia/order_confirmation.dart';
 import 'package:sales_application/views/setting_screen.dart';
 import '../model/user.dart';
 import 'Hao/qlsp_Screen.dart';
+import 'nghia/notification.dart';
 class Personal_Screen extends StatefulWidget {
   const Personal_Screen({
     Key? key,
@@ -170,7 +171,12 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add your onPressed function here
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Notifications(),
+                          ),
+                        );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey.shade300,

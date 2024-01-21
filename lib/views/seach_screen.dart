@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sales_application/presenters/item_poduct_home.dart';
 import './search_history.dart';
 import '../presenters/item_product_search.dart';
 import '../model/product.dart'; // Import model Product
@@ -198,7 +199,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Item_Product_Search(
+                            child: Item_Product_Home(
                                 product:
                                     productSnapshot.data![firstProductIndex]),
                           ),
@@ -206,7 +207,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                           Expanded(
                             child: secondProductIndex <
                                     productSnapshot.data!.length
-                                ? Item_Product_Search(
+                                ? Item_Product_Home(
                                     product: productSnapshot
                                         .data![secondProductIndex])
                                 : const SizedBox(),
