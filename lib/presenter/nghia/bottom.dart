@@ -1,5 +1,5 @@
   import 'package:flutter/material.dart';
-  import '../views/notification.dart';
+  import '../../views/nghia/notification.dart';
 
   class Bottom_Nav extends StatelessWidget {
     const Bottom_Nav({super.key,required this.id});

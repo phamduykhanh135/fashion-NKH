@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 
-import 'package:sales_application/model/item_manage1.dart';
-import 'package:sales_application/model/item_manage2.dart';
-import 'package:sales_application/model/item_manage3.dart';
+import 'package:sales_application/model/nghia/item_manage1.dart';
+import 'package:sales_application/model/nghia/item_manage2.dart';
+import 'package:sales_application/model/nghia/item_manage3.dart';
 
 class Manage_order extends StatefulWidget {
   const Manage_order({super.key});

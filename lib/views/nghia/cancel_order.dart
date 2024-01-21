@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/item_cancel_order.dart';
-import '../model/bills.dart';
+import 'package:sales_application/model/nghia/item_cancel_order.dart';
+import 'package:sales_application/data/nghia/bills.dart';
 import 'detail_bill.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

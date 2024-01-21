@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/bills.dart';
+import 'package:sales_application/data/nghia/bills.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Item_Cancel extends StatefulWidget {

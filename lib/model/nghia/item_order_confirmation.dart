@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/notifications.dart';
-import '../model/bills.dart';
-import 'products.dart';
+import 'package:sales_application/data/nghia/bills.dart';
+import '../../data/nghia/products.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class Item_Confirm extends StatefulWidget {
   const Item_Confirm({super.key,required this.bill});

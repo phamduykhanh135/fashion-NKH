@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/manage_order.dart';
-import 'package:sales_application/views/purchase_history.dart';
-import 'package:sales_application/views/order_status.dart';
-import 'package:sales_application/views/cancel_order.dart';
-import 'package:sales_application/views/notification.dart';
-import 'package:sales_application/views/order_confirmation.dart';
+import 'package:sales_application/views/nghia/manage_order.dart';
+import 'package:sales_application/views/nghia/purchase_history.dart';
+import 'package:sales_application/views/nghia/order_status.dart';
+import 'package:sales_application/views/nghia/cancel_order.dart';
+import 'package:sales_application/views/nghia/notification.dart';
+import 'package:sales_application/views/nghia/order_confirmation.dart';
 import 'firebase_options.dart';
 
 void main() async {

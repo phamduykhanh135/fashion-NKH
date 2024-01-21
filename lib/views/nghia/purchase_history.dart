@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../model/bills.dart';
-import 'package:sales_application/model/item_order_status.dart';
+import 'package:sales_application/model/nghia/item_order_status.dart';
+import 'package:sales_application/data/nghia/bills.dart';
 import 'detail_bill.dart';
 
 class PurchaseHistory extends StatefulWidget {
