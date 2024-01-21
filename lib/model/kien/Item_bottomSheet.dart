@@ -73,7 +73,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Expanded(child: Container(
       padding: EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width/0.5,
       height: MediaQuery.of(context).size.height / 1.2,
@@ -112,7 +112,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                   children: [
                     Text("Số lượng:"),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width/8,
+                      width: MediaQuery.of(context).size.width/10,
                     ),
                     Container(
                       child: Row(
@@ -161,7 +161,8 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                               }else{
                               setState(() {
                                 print(quanlity);
-                                if (temp >= 0&& temp<quanlity) {
+                                print(temp);
+                                if (temp >= 0 && temp<quanlity) {
                                   temp++;
                                 }else{
                                   temp=quanlity;
@@ -204,7 +205,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 

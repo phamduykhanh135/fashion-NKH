@@ -22,6 +22,7 @@ import 'item_detailcontainer.dart';
         CustomScrollView(
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               expandedHeight: MediaQuery.of(context).size.height / 2.1,
               floating: false,
               pinned: true,
