@@ -122,7 +122,7 @@ class _OrderStatusState extends State<OrderStatus>
                     margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(5),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 4 + 10,
+                    height: MediaQuery.of(context).size.height / 4 + 30,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(10),
@@ -170,7 +170,7 @@ class _OrderStatusState extends State<OrderStatus>
                     margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(5),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 4 + 10,
+                    height: MediaQuery.of(context).size.height / 4 + 30,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(10),

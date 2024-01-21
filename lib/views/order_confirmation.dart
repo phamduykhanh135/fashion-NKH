@@ -92,7 +92,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                     margin: EdgeInsets.all(10),
                     padding: EdgeInsets.all(5),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height /3+10,
+                    height: MediaQuery.of(context).size.height /3+20,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(10),

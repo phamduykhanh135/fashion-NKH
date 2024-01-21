@@ -194,12 +194,14 @@ class _Item_ConfirmState extends State<Item_Confirm> {
                       Container(
                         height: MediaQuery.of(context).size.height/12,
                         width: MediaQuery.of(context).size.width/2,
-                        child:Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.ellipsis ,),
+                        child:Text("${widget.bill.items[0]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.clip ,),
                       ),
                       //Đơn giá
                       Text("${widget.bill.items[0]['price']} đ",style: TextStyle(fontSize: 15,color: Colors.red),),
                       //Số lượng
                       Text("Số lượng: ${widget.bill.items[0]['quality']}",style: TextStyle(fontSize: 15),),
+                      //Size
+                      Text("Size: ${widget.bill.items[0]['size']}",style: TextStyle(fontSize: 15),),
                     ]
                   ),
                 )

@@ -77,12 +77,14 @@ class _Detail_billState extends State<Detail_bill> {
                           Container(
                             height: MediaQuery.of(context).size.height/12,
                             width: MediaQuery.of(context).size.width/2,
-                            child:Text("${widget.bill.items[i]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.ellipsis ,),
+                            child:Text("${widget.bill.items[i]['name']}",style: TextStyle(fontSize: 18),softWrap: true,overflow:TextOverflow.clip ,),
                           ),
                           //Đơn giá
                           Text("${widget.bill.items[i]['price']} đ",style: TextStyle(fontSize: 15,color: Colors.red),),
                           //Số lượng
                           Text("Số lượng: ${widget.bill.items[i]['quality']}",style: TextStyle(fontSize: 15),),
+                          //Size
+                          Text("Size: ${widget.bill.items[i]['size']}",style: TextStyle(fontSize: 15),),
                         ]
                       ),
                     )     
