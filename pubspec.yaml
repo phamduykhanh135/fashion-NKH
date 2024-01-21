@@ -85,7 +85,12 @@ flutter:
     - assets/email.png
     - assets/google.png
     - assets/avartar.png
+    - assets/name1.png
+    - assets/name2.png
+    - assets/name3.png
+    - assets/name4.png
     - assets/logo.png
+    - assets/img/package.jpg
     # - assets/img/package.jpg
     # - assets/img/quanjean.jpg
 

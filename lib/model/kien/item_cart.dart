@@ -124,7 +124,7 @@ class _Item_cartState extends State<Item_cart> {
           ),
           Container(
             padding: const EdgeInsets.all(5),
-            width: MediaQuery.of(context).size.width * 0.85,
+            width: MediaQuery.of(context).size.width * 0.8,
             decoration: BoxDecoration(
               color: myLightGrayColor,
               borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -147,7 +147,7 @@ class _Item_cartState extends State<Item_cart> {
                       height: 10,
                     ),
                     SizedBox(
-                      width:MediaQuery.of(context).size.width /2,
+                      width:MediaQuery.of(context).size.width /2.2,
                       child: Text(widget.carts.name,
                         style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold)
@@ -211,12 +211,18 @@ class _Item_cartState extends State<Item_cart> {
                       ),
                       TextButton(
                               onPressed: () async {
-                                setState(() {
-                                  if (int.parse(widget.carts.quality) >= 0) {
+                                String productQuantity = await Carts.getProductQuantity(widget.carts.idproduct, widget.carts.size);
+                                setState(()  {
+                                  
+                                  if (int.parse(widget.carts.quality) >= 0 &&int.parse(widget.carts.quality)<int.parse(productQuantity)) {
                                     widget.carts.quality =
                                         (int.parse(widget.carts.quality) + 1)
                                             .toString();
+                                  }else
+                                  {
+                                     widget.carts.quality=productQuantity.toString();
                                   }
+                                  
                                 });
                     
                                 await FirebaseFirestore.instance
@@ -226,7 +232,7 @@ class _Item_cartState extends State<Item_cart> {
                                   'quality': widget.carts.quality,
                                 });
                                 widget.onCheckboxChanged(_ischeck);
-                                widget.onQuantityChanged(); //thay đổi số lượng
+                                widget.onQuantityChanged(); 
                               },
                               style: ButtonStyle(
                                 backgroundColor:

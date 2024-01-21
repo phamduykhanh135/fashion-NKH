@@ -83,11 +83,16 @@ class _SiginIn_ScreenState extends State<SiginIn_Screen> {
                   false,
                   _emailTextController,
                   (value) {
-                    if (value != null && !EmailValidator.validate(value)) {
+                      if (value != null && value.isNotEmpty) {
+                         if ( !EmailValidator.validate(value)) {
                       return LanguagePresenter.language.enterEmailValid;
                     }
-                    return null;
-                  },
+                      } else {
+                        return LanguagePresenter.language.notBeEmpty;
+                      }
+                      return null;
+                    },
+
                 ),
               ),
               Container(

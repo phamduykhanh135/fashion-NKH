@@ -17,8 +17,8 @@ class _VoucherState extends State<Voucher> {
   int _selectedVoucherMoney = 0;
   String? _selectedVoucherId;
   List<VoucherSales>? _voucherSale;
-  Color myColor = Color(0xFF8E1C68);
-  TextEditingController _voucherController = TextEditingController();
+  Color myColor = const Color(0xFF8E1C68);
+  final TextEditingController _voucherController = TextEditingController();
 
   void _loadData() async {
     await VoucherSales.loadData_voucher();
@@ -89,6 +89,7 @@ class _VoucherState extends State<Voucher> {
 
   @override
   Widget build(BuildContext context) {
+     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text("Chọn voucher", style: TextStyle(color: myColor)),
@@ -105,7 +106,7 @@ class _VoucherState extends State<Voucher> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (_voucherSale == null || _voucherSale!.isEmpty) {
@@ -117,7 +118,7 @@ class _VoucherState extends State<Voucher> {
           _updateVoucherSale(snapshot);
 
           return ListView(
-            padding: EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(5.0),
             children: [
             //   Row(
             //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,7 +162,7 @@ class _VoucherState extends State<Voucher> {
               //   color: Colors.grey,
               //   thickness: 1,
               // ),
-              Text("danh sách voucher ưa đãi giảm giá:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+              const Text("danh sách voucher ưa đãi giảm giá:",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
               if (_voucherSale != null && _voucherSale!.isNotEmpty)
                 ListView.builder(
                   shrinkWrap: true,
@@ -202,7 +203,7 @@ class _VoucherState extends State<Voucher> {
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-                      minimumSize: MaterialStateProperty.all(const Size(360, 50)),
+                      minimumSize: MaterialStateProperty.all( Size(screenSize.width*0.9, screenSize.height/15)),
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

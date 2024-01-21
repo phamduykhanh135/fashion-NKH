@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/data/kien/address_Reader.dart';
-import 'package:sales_application/views/menu_dart.dart';
 
 class BuyBottom extends StatelessWidget {
   final double onTotalAmountChanged;
@@ -15,6 +14,7 @@ class BuyBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color myColor = const Color(0xFF8E1C68);
+    Size screenSize = MediaQuery.of(context).size;
 
     return Container(
       height: 60,
@@ -27,7 +27,7 @@ class BuyBottom extends StatelessWidget {
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-                minimumSize: MaterialStateProperty.all(const Size(360, 50)),
+                minimumSize: MaterialStateProperty.all( Size(screenSize.width*0.9, screenSize.height*10)),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -36,14 +36,12 @@ class BuyBottom extends StatelessWidget {
               ),
               onPressed: () async {
                 if (address != null && address!.fullname.isNotEmpty) {
+                  shownotiDialog(context);
                   await createAndAddInvoice();
                 } else {
                   showAddressDialog(context);
                 }
-                Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Menu_Screen()),
-              );
+                
               },
               child: Text(
                 'Thanh toán',
@@ -63,6 +61,25 @@ class BuyBottom extends StatelessWidget {
         return AlertDialog(
           title: const Text("Lỗi"),
           content: const Text("Vui lòng chọn địa chỉ trước khi thanh toán."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+  void shownotiDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Thông báo"),
+          content: const Text("Thanh toán thành công."),
           actions: [
             TextButton(
               onPressed: () {

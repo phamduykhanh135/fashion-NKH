@@ -23,12 +23,14 @@ class _Edit_ScreenState extends State<Edit_Screen> {
     // Thực hiện các thao tác và khi cần cập nhật trạng thái của trang trước đó
     widget.onUpdate(1); // Gọi hàm callback từ trang trước đó
   }
+
   @override
   void initState() {
     super.initState();
     getData();
     // Đặt giá trị ban đầu từ widget.name_edit
   }
+
   Future<void> getData() async {
     UserModel? userData = await FirestoreService().getUserData();
     if (userData != null) {
@@ -38,27 +40,40 @@ class _Edit_ScreenState extends State<Edit_Screen> {
       });
     }
   }
+
   Future<void> getName() async {
-    if(widget.sst==1) {
+    if (widget.sst == 1) {
       name.text = user.fullname;
-    } 
-    if(widget.sst==2) {
+    }
+    if (widget.sst == 2) {
       name.text = user.phone;
-    } 
-    if(widget.sst==3) {
+    }
+    if (widget.sst == 3) {
       name.text = user.email;
-    } 
-    if(widget.sst==4) {
+    }
+    if (widget.sst == 4) {
       name.text = user.address;
-    } 
+    }
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sửa ${widget.name_edit}"),
+        title: Text(
+          "Sửa ${widget.name_edit}",
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
         actions: [
           TextButton(
               onPressed: () {

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/views/cart_Screen.dart';
+import 'package:sales_application/views/kien/cart_Screen.dart';
 
 import 'package:sales_application/views/menu_dart.dart';
 import '../../data/kien/product_Reader.dart';
@@ -72,10 +72,11 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     onPressed: () {
       Navigator.pushReplacement(
     context,
-    MaterialPageRoute(builder: (context) => Menu_Screen()),
+    MaterialPageRoute(builder: (context) => const Menu_Screen()),
   );
     },
   ),
+  automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {

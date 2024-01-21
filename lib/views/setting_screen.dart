@@ -13,9 +13,15 @@ class Setting_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cài đặt"),
+     appBar: AppBar(
+        title: const Text("Cài đặt",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.pink.shade100,
+        leading:IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back,color: Colors.white,)) ,
+        
       ),
       body: Center(
         child: Column(

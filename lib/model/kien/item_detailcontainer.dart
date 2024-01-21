@@ -4,7 +4,9 @@ import 'package:sales_application/data/kien/product_Reader.dart';
 class Item_Container extends StatefulWidget {
   final Products product;
   final Function(String) onSizeSelected;
-  const Item_Container({Key? key, required this.product, required this.onSizeSelected}) : super(key: key);
+  final void Function(int) onQuantityChanged;
+
+  const Item_Container({Key? key, required this.product, required this.onSizeSelected, required this.onQuantityChanged}) : super(key: key);
 
   @override
   State<Item_Container> createState() => _Item_ContainerState();
@@ -38,13 +40,13 @@ class _Item_ContainerState extends State<Item_Container> {
             ),
               Row(
                     children: [
-                    SizedBox(width: MediaQuery.of(context).size.width / 15),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("S"),
-                    SizedBox(width: MediaQuery.of(context).size.width / 15),
+                    SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("M"),
-                      SizedBox(width: MediaQuery.of(context).size.width / 15),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("L"),
-                      SizedBox(width: MediaQuery.of(context).size.width / 15),
+                      SizedBox(width: MediaQuery.of(context).size.width / 20),
                       buildSizeButton("XL"),
                     ],
                   ),
@@ -92,6 +94,7 @@ class _Item_ContainerState extends State<Item_Container> {
             default:
               quantity = 0;
           }
+          widget.onQuantityChanged(quantity);
         });
       },
       child: Text(size,

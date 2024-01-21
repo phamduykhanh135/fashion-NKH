@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sales_application/model/kien/item_addaddress.dart';
 import '../../data/kien/address_Reader.dart';
 
 class address_Screen extends StatefulWidget {
@@ -81,6 +82,7 @@ Future<void> _showConfirm(String addressId) async {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -104,7 +106,7 @@ Future<void> _showConfirm(String addressId) async {
           }
 
           if (snapshot.hasData && snapshot.data != null) {
-            addr = snapshot.data!.docs.map((doc) => Address.fromJson(doc.data() as Map<String, dynamic>)).toList();
+            addr = Address.address;
           }
 
           return Padding(
@@ -129,21 +131,21 @@ Future<void> _showConfirm(String addressId) async {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       TextButton.icon(
-                        onPressed: (){},
-                        // onPressed: () 
-                        // async {
-                        //   final result = await Navigator.push<Address?>(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => add_Address(),
-                        //     ),
-                        //   );
+                       
+                        onPressed: () 
+                        async {
+                          final result = await Navigator.push<Address?>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const add_Address(),
+                            ),
+                          );
 
-                        //   if (result != null && result is Address) {
-                        //     // Pass the selected address back to the previous screen
-                        //     Navigator.pop(context, result);
-                        //   }
-                        // },
+                          if (result != null) {
+                            // Pass the selected address back to the previous screen
+                            Navigator.pop(context, result);
+                          }
+                        },
                         icon: Icon(Icons.add,color:myColor ),
                         label:  Text('Thêm địa chỉ mới',style: TextStyle(color:myColor, fontSize: 18)),
                       ),
@@ -160,7 +162,7 @@ Future<void> _showConfirm(String addressId) async {
         child: ElevatedButton(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-            minimumSize: MaterialStateProperty.all(const Size(120, 50)),
+            minimumSize: MaterialStateProperty.all( Size(screenSize.width*0.9, screenSize.height*10)),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -181,6 +183,7 @@ Future<void> _showConfirm(String addressId) async {
 
   Widget buildAddressItem(int index) {
     return ListTile(
+      
       title: Row(
         
         children: [
@@ -191,13 +194,13 @@ Future<void> _showConfirm(String addressId) async {
             onChanged: (value) {
               setState(() {
                 selectedAddressIndex = value as int;
-                widget.onAddressSelected(addr[index]); // Use the callback method
+                widget.onAddressSelected(addr[index]); 
               });
             },
           ),
-          const SizedBox(width: 50,),
+          
           SizedBox(
-            width: MediaQuery.of(context).size.width/2,
+            width: MediaQuery.of(context).size.width*0.5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -207,16 +210,14 @@ Future<void> _showConfirm(String addressId) async {
               ],
               
             ),
-            
-            
           ),
            IconButton(
-                          onPressed: (){
-                            _showConfirm(addr[index].id);
-                          },
-                          icon: const Icon(Icons.delete),
-                        ),
-        ],
+          onPressed: (){
+            _showConfirm(addr[index].id);
+          },
+          icon: const Icon(Icons.delete),
+        ),
+      ],
       ),
     );
   }

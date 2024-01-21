@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/bottom.dart';
+import 'package:sales_application/views/nghia/order_confirmation.dart';
 import 'package:sales_application/views/setting_screen.dart';
 import '../model/user.dart';
 import 'Hao/qlsp_Screen.dart';
@@ -163,6 +164,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
             ),
             if (user.admin == false)
               Container(
+                 padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
@@ -190,7 +192,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                         Icon(
                           Icons.arrow_forward_ios_outlined,
                           size: 15,
-                          color: Colors.black,
+                          color: Colors.grey,
                         ),
                       ],
                     ),
@@ -199,13 +201,20 @@ class _Personal_ScreenState extends State<Personal_Screen> {
               ),
             if (user.admin==true)
               Container(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add your onPressed function here
+                     Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                           const OrderConfirmation()
+                                    ),
+                                  );
+                    
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey.shade300,
@@ -236,7 +245,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
               ),
               if (user.admin==true)
                    Container(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+               padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
@@ -278,7 +287,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                 ),
               ),
             Container(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              padding: const EdgeInsets.fromLTRB(5, 20, 5, 0),
               decoration: const BoxDecoration(
                 color: Colors.white,
               ),

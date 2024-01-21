@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/data/kien/cart_Reader.dart';
+
+
 import '../../model/kien/item_cart.dart';
 import '../../model/kien/item_cartbottom.dart';
 
@@ -20,7 +22,7 @@ class _CartScreenState extends State<CartScreen> {
     await Carts.loadData_cart();
     setState(() {
       _cart = Carts.cart;
-      selectedItems = _cart!.where((cart) => itemCheckboxStates[cart.id.length - 1]).toList();
+      selectedItems = _cart!.where((cart) => itemCheckboxStates[(cart.id).length- 1]).toList();
     });
   }
 
@@ -86,13 +88,18 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Giỏ hàng",
-          style: TextStyle(color: myColor),
+          style: TextStyle(color: Colors.white),
         ),
         iconTheme: IconThemeData(color: myColor),
         backgroundColor: Colors.pink.shade100,
         centerTitle: true,
+         leading:IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back,color: Colors.white,)) ,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('carts').snapshots(),
@@ -108,12 +115,12 @@ class _CartScreenState extends State<CartScreen> {
 
           if (_cart == null || _cart!.isEmpty) {
             return const Center(
-              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              child: Text('Hiện tại giỏ hàng trống ', style: TextStyle(fontSize: 20)),
             );
           }
 
           if (snapshot.hasData && snapshot.data != null) {
-        
+      
           }
 
           if (_cart == null) {
@@ -123,33 +130,37 @@ class _CartScreenState extends State<CartScreen> {
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 1),
-              child: Column(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: _cart!.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Item_cart(
-                        ischeck: itemCheckboxStates[index],
-                        onCheckboxChanged: (bool value) {
-                          setState(() {
-                            itemCheckboxStates[index] = value;
-                            isCheckAll = itemCheckboxStates.every((state) => state);
-                            if (value) {
-                              selectedItems.add(_cart![index]);
-                            } else {
-                              selectedItems.remove(_cart![index]);
-                            }
-                          });
-                           clearAndReloadSelectedItems();
-                        },
-                        carts: _cart![index],
-                        onQuantityChanged: () {},
-                      );
-                    },
-                  ),
-                ],
+              child: Container(
+               // margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                //width: MediaQuery.of(context).size.width-30,
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: _cart!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Item_cart(
+                          ischeck: itemCheckboxStates[index],
+                          onCheckboxChanged: (bool value) {
+                            setState(() {
+                              itemCheckboxStates[index] = value;
+                              isCheckAll = itemCheckboxStates.every((state) => state);
+                              if (value) {
+                                selectedItems.add(_cart![index]);
+                              } else {
+                                selectedItems.remove(_cart![index]);
+                              }
+                            });
+                             clearAndReloadSelectedItems();
+                          },
+                          carts: _cart![index],
+                          onQuantityChanged: () {},
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -164,4 +175,6 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
+
+
 }

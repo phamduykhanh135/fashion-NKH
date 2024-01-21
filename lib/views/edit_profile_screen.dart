@@ -2,10 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-
 import 'package:sales_application/views/edit_screen.dart';
 import 'package:sales_application/views/upload_image.dart';
-
 
 import '../model/user.dart';
 import 'personal_screen.dart';
@@ -56,17 +54,15 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cài đặt"),
+        appBar: AppBar(
+        title: const Text("Cài đặt",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.pink.shade100,
-        // actions: [
-        //   IconButton(
-        //       onPressed: () {
-        //         updateUserDataWithImage(user.image);
-        //         someFunction();
-        //       },
-        //       icon: const Icon(Icons.add))
-        // ],
+        leading:IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back,color: Colors.white,)) ,
+        
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -127,12 +123,14 @@ class _Edit_Profile_ScreenState extends State<Edit_Profile_Screen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Tên: ${user.fullname}',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                            Expanded(
+                              child: Text(
+                                'Tên: ${user.fullname}',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
                             const Icon(

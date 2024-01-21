@@ -15,10 +15,18 @@ class SoLuongKho extends StatefulWidget {
 }
 
 class _SoLuongKhoState extends State<SoLuongKho> {
-  final _sizeS=TextEditingController();
-  final _sizeM=TextEditingController();
-  final _sizeL=TextEditingController();
-  final _sizeXL=TextEditingController();
+  var _sizeS=TextEditingController();
+  var _sizeM=TextEditingController();
+  var _sizeL=TextEditingController();
+  var _sizeXL=TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+     _sizeS=TextEditingController(text:Them.quatitySizeS.toString());
+     _sizeM=TextEditingController(text: Them.quatitySizeM.toString());
+    _sizeL=TextEditingController(text: Them.quatitySizeL.toString());
+    _sizeXL=TextEditingController(text:Them.quatitySizeXL.toString());
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

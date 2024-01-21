@@ -209,7 +209,7 @@ class _ThemSPState extends State<ThemSP> {
           ,
         SizedBox(height: MediaQuery.of(context).size.height/60),
         Container(
-          height: MediaQuery.of(context).size.width/3.5,
+          height: MediaQuery.of(context).size.width/3,
           padding:const EdgeInsets.all(10),
           constraints:const BoxConstraints(maxHeight: 200.0),
           decoration:  BoxDecoration(
@@ -256,7 +256,7 @@ class _ThemSPState extends State<ThemSP> {
         ),
           SizedBox(height: MediaQuery.of(context).size.height/60),
           Container(
-            height:MediaQuery.of(context).size.width/3.5,
+            height:MediaQuery.of(context).size.width/3,
             padding:const EdgeInsets.all(10),
             constraints:const BoxConstraints(maxHeight: 200.0),
             decoration:  BoxDecoration(

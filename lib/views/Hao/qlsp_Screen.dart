@@ -18,23 +18,23 @@ class QuanLySP extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Quản lý sản phẩm",
+        title: const Text("Quản lý sản phẩm",
             style: TextStyle(
-                color: MyColor.dark_pink, fontWeight: FontWeight.bold)),
+                color: Colors.white, fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: MyColor.light_pink,
         actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SearchPage()),
-                );
-              },
-              icon: Icon(
-                Icons.search,
-                color: MyColor.dark_pink,
-              )),
+          // IconButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => const SearchPage()),
+          //       );
+          //     },
+          //     icon: Icon(
+          //       Icons.search,
+          //       color: MyColor.dark_pink,
+          //     )),
           IconButton(
               onPressed: () {
                 Navigator.push(
@@ -42,13 +42,13 @@ class QuanLySP extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const ThemSP()),
                 );
               },
-              icon: Icon(Icons.add, color: MyColor.dark_pink)),
+              icon: const Icon(Icons.add, color: Colors.white)),
         ],
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back, color: MyColor.dark_pink)),
+            icon: const Icon(Icons.arrow_back, color: Colors.white)),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _stream,

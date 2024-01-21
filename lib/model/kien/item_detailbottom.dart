@@ -13,7 +13,7 @@ class Detail_Bottombar extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width/2,
       height:MediaQuery.of(context).size.height/10,
-      decoration:  BoxDecoration(
+      decoration:  const BoxDecoration(
         color: Colors.white
       ),
       child: Row(
@@ -30,7 +30,7 @@ class Detail_Bottombar extends StatelessWidget {
             children: [
               Text(
             product.price,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -39,7 +39,7 @@ class Detail_Bottombar extends StatelessWidget {
               ),
               Text(
             product.price=((double.parse(product.price)-((double.parse(product.price)*double.parse(product.discount))/100.0))).toStringAsFixed(3),
-             style: TextStyle(
+             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 20,
@@ -57,7 +57,7 @@ class Detail_Bottombar extends StatelessWidget {
       ),
     ),
     fixedSize: MaterialStateProperty.all<Size>(
-      Size(140, 40), 
+      const Size(140, 40), 
     ),
   ),
   onPressed: showBottomSheet,

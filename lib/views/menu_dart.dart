@@ -1,13 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/bottom.dart';
-import 'package:sales_application/views/cart_Screen.dart';
+import 'package:sales_application/views/kien/cart_Screen.dart';
 
 import '../model/product.dart';
 
 import 'item_poduct_home.dart';
 
 import 'seach_screen.dart';
+
 class Menu_Screen extends StatefulWidget {
   const Menu_Screen({super.key});
 
@@ -90,11 +91,11 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                       IconButton(
                         onPressed: () {
                           Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CartScreen(),
-                          ),
-                        );
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CartScreen(),
+                            ),
+                          );
                         },
                         icon: const Icon(
                           Icons.shopping_cart,
@@ -108,21 +109,15 @@ class _Menu_ScreenState extends State<Menu_Screen> {
             ),
             Container(
               color: Colors.pink.withOpacity(0.1),
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Column(
                 children: [
                   CarouselSlider(
                     items: [
-                      Image.network(
-                          'https://cmsv2.yame.vn/uploads/8ae9ab2a-c50b-4854-87cb-0ff81b8afbbc/Banner_web_03_(1280x1280).jpg?quality=80&w=0&h=0'),
-                      Image.network(
-                          'https://cmsv2.yame.vn/uploads/60b16fe1-2f0f-4535-b264-9ba7784e0934/Banner_web_04_(_1280x1280).jpg?quality=80&w=0&h=0'),
-                      Image.network(
-                          'https://cmsv2.yame.vn/uploads/da6551a6-7ed7-4515-8502-f8b1de462d36/z4963783541296_74a59797be557c9e67f67f28fbc7ba41.jpg?quality=80&w=0&h=0'),
-                      Image.network(
-                          'https://cmsv2.yame.vn/uploads/c54d6d05-b510-43ef-bfed-96fcc70b0639/Landing_page_MGC_(1280x..)02.jpg?quality=80&w=0&h=0'),
-                      Image.network(
-                          'https://cmsv2.yame.vn/uploads/ae4227ee-2ac9-49c4-918b-689f5f9c0fae/BALO-Sale-2.jpg?quality=80&w=0&h=0'),
+                      Image.asset('assets/name2.png'),
+                      Image.asset('assets/name3.png'),
+                      Image.asset('assets/name1.png'),
+                      Image.asset('assets/name4.png'),
                       // Add more images if needed
                     ],
                     options: CarouselOptions(
@@ -152,7 +147,6 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                       ),
                     ),
                   ),
-
                   FutureBuilder<List<Product>>(
                     future: products,
                     builder: (context, snapshot) {
@@ -209,7 +203,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
           ]),
         ),
       ),
-      bottomNavigationBar:  Bottom_Nav(id: 0),
+      bottomNavigationBar: const Bottom_Nav(id: 0),
     );
   }
 

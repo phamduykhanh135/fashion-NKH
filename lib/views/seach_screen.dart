@@ -68,7 +68,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               suffixIcon: IconButton(
-                icon: const Icon(Icons.search),
+                icon: const Icon(Icons.search,color: Colors.grey,),
                 onPressed: () {
                   String searchTerm = searchController.text;
                   if (searchTerm.isNotEmpty) {
@@ -88,7 +88,13 @@ class _Search_ScreenState extends State<Search_Screen> {
             textAlignVertical: TextAlignVertical.center,
           ),
         ),
+         leading:IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back,color: Colors.white,)) ,
       ),
+      
       body: showResultText && searchController.text.isNotEmpty
       // Đã nhấn icon hoặc trường bằng rỗng
           ? buildList()
