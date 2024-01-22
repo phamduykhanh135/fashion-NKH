@@ -145,10 +145,10 @@ class _ThemSPState extends State<ThemSP> {
         Them.char_ten=0;
         Them.char_mota=0;
         _selected="";
-        Navigator.pop(context);
-        // Navigator.pop (context,
-        //   MaterialPageRoute(builder: (context) => QuanLySP())
-        //   );
+        //Navigator.pop(context);
+        Navigator.pop (context,
+          MaterialPageRoute(builder: (context) => QuanLySP())
+          );
       }, icon: const Icon(Icons.arrow_back,color: Colors.white)),
     ),
          body:

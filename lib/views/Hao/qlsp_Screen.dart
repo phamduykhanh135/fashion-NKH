@@ -4,6 +4,7 @@ import 'package:sales_application/presenters/item_qlsp.dart';
 import 'package:sales_application/views/Hao/searchqlsp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sales_application/views/personal_screen.dart';
 
 class QuanLySP extends StatelessWidget {
   QuanLySP({Key? key}) : super(key: key) {
@@ -46,7 +47,9 @@ class QuanLySP extends StatelessWidget {
         ],
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+                Navigator.pop (context,
+          MaterialPageRoute(builder: (context) => const Personal_Screen())
+          );
             },
             icon: const Icon(Icons.arrow_back, color: Colors.white)),
       ),

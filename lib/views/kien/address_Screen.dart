@@ -55,6 +55,7 @@ Future<void> _showConfirm(String addressId) async {
               ),
              onPressed: () async {
                 Address.deleteAddress(addressId);
+                _loadData();
                 Navigator.of(context).pop();
             },
 

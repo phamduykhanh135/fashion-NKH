@@ -79,6 +79,7 @@ class _Edit_ScreenState extends State<Edit_Screen> {
               onPressed: () {
                 updateUserInfo(name.text, widget.sst);
                 someFunction();
+                showSaveSuccessSnackBar();
               },
               child: Container(
                 child: const Row(
@@ -130,5 +131,12 @@ class _Edit_ScreenState extends State<Edit_Screen> {
         ),
       ),
     );
+  }
+   void showSaveSuccessSnackBar() {
+    const snackBar = SnackBar(
+      content: Text('Lưu thành công!'),
+      backgroundColor: Colors.green, // Màu nền của Snackbar
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

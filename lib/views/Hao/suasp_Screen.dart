@@ -55,7 +55,7 @@ class _SuaSPState extends State<SuaSP> {
   Widget build(BuildContext context) {
    return Scaffold(
         appBar: AppBar(
-          title: Text("Sửa sản phẩm",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)),
+          title: const Text("Sửa sản phẩm",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
           centerTitle: true,
           backgroundColor: MyColor.light_pink,
           actions: [
@@ -100,12 +100,12 @@ class _SuaSPState extends State<SuaSP> {
 
               }
 
-            }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold,fontSize: 17)))
+            }, child: const Text("Lưu",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 17)))
           ],
           leading: IconButton(onPressed: ()async{
             Navigator.push( context,
               MaterialPageRoute(builder: (context) => QuanLySP()),);
-          }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
+          }, icon: const Icon(Icons.arrow_back,color: Colors.white)),
         ),
         body:
         SingleChildScrollView(
@@ -166,7 +166,7 @@ class _SuaSPState extends State<SuaSP> {
               ,
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-                height: MediaQuery.of(context).size.width/3.5,
+               // height: MediaQuery.of(context).size.width/3.5,
                 padding:const EdgeInsets.all(10),
                 constraints:const BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(
@@ -209,7 +209,7 @@ class _SuaSPState extends State<SuaSP> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-                height: MediaQuery.of(context).size.width/3.5,
+           //     height: MediaQuery.of(context).size.width/3.5,
                 padding:const EdgeInsets.all(10),
                 constraints:const BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(

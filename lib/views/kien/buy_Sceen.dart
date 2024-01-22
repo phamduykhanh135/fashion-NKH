@@ -53,8 +53,8 @@ void dispose() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Mua hàng", style: TextStyle(color: myColor)),
-        iconTheme: IconThemeData(color: myColor),
+        title: const Text("Mua hàng", style: TextStyle(color: Colors.white)),
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.pink.shade100,
         centerTitle: true,
       ),

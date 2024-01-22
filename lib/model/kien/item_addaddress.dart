@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; 
+import 'package:flutter/services.dart';
+import 'package:sales_application/views/kien/address_Screen.dart';
 import '../../data/kien/address_Reader.dart';
 
 class add_Address extends StatefulWidget {
@@ -13,7 +14,7 @@ class _add_AddressState extends State<add_Address> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
-  Color myColor = Color(0xFF8E1C68);
+  Color myColor = const Color(0xFF8E1C68);
 
   @override
   Widget build(BuildContext context) {
@@ -27,31 +28,33 @@ class _add_AddressState extends State<add_Address> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30),
-          TextFormField(
-          controller: _fullNameController,
-          decoration: const InputDecoration(
-            labelText: 'Họ và tên',
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black), // Màu viền khi trường được focus
+            const SizedBox(height: 30),
+            TextFormField(
+              controller: _fullNameController,
+              decoration: const InputDecoration(
+                labelText: 'Họ và tên',
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.black), // Màu viền khi trường được focus
+                ),
+                labelStyle: TextStyle(color: Colors.black), // Màu label
+              ),
             ),
-            labelStyle: TextStyle(color: Colors.black), // Màu label
-          ),
-        ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextFormField(
               controller: _phoneController,
               decoration: const InputDecoration(
-              labelText: 'Số điện thoại',
-              focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
-            ),
-            labelStyle: TextStyle(color: Colors.black),
+                labelText: 'Số điện thoại',
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+                labelStyle: TextStyle(color: Colors.black),
               ),
               keyboardType: TextInputType.phone,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly, // Chỉ cho phép nhập số
-                LengthLimitingTextInputFormatter(10), // Giới hạn độ dài tối đa là 10
+                LengthLimitingTextInputFormatter(
+                    10), // Giới hạn độ dài tối đa là 10
                 TextInputFormatter.withFunction(
                   (oldValue, newValue) {
                     // Số đầu tiên không được là 0
@@ -63,21 +66,23 @@ class _add_AddressState extends State<add_Address> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-           TextFormField(
-          controller: _addressController,
-          decoration: const InputDecoration(
-            labelText: 'Địa chỉ',
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black), // Màu viền khi trường được focus
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: _addressController,
+              decoration: const InputDecoration(
+                labelText: 'Địa chỉ',
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.black), // Màu viền khi trường được focus
+                ),
+                labelStyle: TextStyle(color: Colors.black), // Màu label
+              ),
             ),
-            labelStyle: TextStyle(color: Colors.black), // Màu label
-          ),
-        ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
+                backgroundColor:
+                    MaterialStateProperty.all(Colors.pink.shade100),
                 minimumSize: MaterialStateProperty.all(const Size(360, 50)),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
@@ -103,7 +108,8 @@ class _add_AddressState extends State<add_Address> {
                   );
                 }
               },
-              child: Text('Lưu địa chỉ', style: TextStyle(color: myColor, fontSize: 18)),
+              child: Text('Lưu địa chỉ',
+                  style: TextStyle(color: myColor, fontSize: 18)),
             ),
           ],
         ),
