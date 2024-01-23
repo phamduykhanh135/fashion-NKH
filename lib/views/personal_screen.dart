@@ -1,9 +1,10 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/bottom.dart';
+import 'package:sales_application/views/nghia/manage_order.dart';
 import 'package:sales_application/views/nghia/order_confirmation.dart';
 import 'package:sales_application/views/setting_screen.dart';
-import '../model/user.dart';
+import '../models/user.dart';
 import 'Hao/qlsp_Screen.dart';
 import 'nghia/notification.dart';
 class Personal_Screen extends StatefulWidget {
@@ -174,7 +175,7 @@ class _Personal_ScreenState extends State<Personal_Screen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Notifications(),
+                            builder: (context) => const Manage_order(),
                           ),
                         );
                   },

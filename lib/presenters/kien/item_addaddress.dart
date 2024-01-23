@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sales_application/model/kien/address_Reader.dart';
+import 'package:sales_application/models/kien/address_Reader.dart';
 import 'package:sales_application/views/kien/address_Screen.dart';
 
 

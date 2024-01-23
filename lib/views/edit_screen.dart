@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sales_application/presenters/language_presenter.dart';
 
-import '../model/user.dart';
+import '../models/user.dart';
 
 class Edit_Screen extends StatefulWidget {
   final void Function(int) onUpdate;
@@ -22,6 +22,7 @@ class Edit_Screen extends StatefulWidget {
 class _Edit_ScreenState extends State<Edit_Screen> {
   late UserModel user = UserModel();
   TextEditingController name = TextEditingController();
+
   void someFunction() {
     // Thực hiện các thao tác và khi cần cập nhật trạng thái của trang trước đó
     widget.onUpdate(1); // Gọi hàm callback từ trang trước đó

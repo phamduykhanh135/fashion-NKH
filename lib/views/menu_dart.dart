@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/bottom.dart';
 import 'package:sales_application/views/kien/cart_Screen.dart';
 
-import '../model/product.dart';
+import '../models/product.dart';
 
 import 'item_poduct_home.dart';
 

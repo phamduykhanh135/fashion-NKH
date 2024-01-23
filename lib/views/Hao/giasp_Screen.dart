@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/themsp.dart';
+import 'package:sales_application/models/themsp.dart';
 import 'package:flutter/services.dart';
 import 'package:sales_application/views/Hao/suasp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 
-import '../../model/color.dart';
-import '../../model/suasp.dart';
+import '../../models/color.dart';
+import '../../models/suasp.dart';
 
 class GiaSP extends StatefulWidget {
   const GiaSP({super.key});

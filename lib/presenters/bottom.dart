@@ -30,6 +30,7 @@ class Bottom_Nav extends StatelessWidget {
             label: "Thông tin cá nhân",
             icon: Icon(Icons.person, color: Colors.black),
           ),
+          
           //Statistical_Page
         ],
         currentIndex: id,

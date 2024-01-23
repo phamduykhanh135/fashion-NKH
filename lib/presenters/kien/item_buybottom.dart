@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sales_application/model/kien/address_Reader.dart';
+import 'package:sales_application/models/kien/address_Reader.dart';
 
 
 class BuyBottom extends StatelessWidget {
   final double onTotalAmountChanged;
   final double VoucherSale;
-  final Address? address; // Change the type to Address?
+  final Address? address; 
 
   const BuyBottom(
       {Key? key,

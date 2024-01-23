@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/presenters/item_poduct_home.dart';
+import 'package:sales_application/presenters/item_product_search.dart';
 import './search_history.dart';
-import '../model/product.dart'; // Import model Product
+import '../models/product.dart'; // Import model Product
 
 class Search_Screen extends StatefulWidget {
   const Search_Screen({
@@ -33,10 +33,8 @@ class _Search_ScreenState extends State<Search_Screen> {
     setState(() {
       // Gán giá trị từ khóa tìm kiếm vào ô nhập liệu
       searchController.text = searchTerm;
-
       // Bắt đầu quá trình tìm kiếm sản phẩm dựa trên từ khóa tìm kiếm
       products = FirebaseModel().searchProducts(searchTerm);
-
       // Lấy userId nếu đã đăng nhập và lưu từ khóa tìm kiếm vào lịch sử
       String? userId = currentUser?.uid;
       if (userId != null) {
@@ -198,7 +196,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Item_Product_Home(
+                            child: Item_Product_Search(
                                 product:
                                     productSnapshot.data![firstProductIndex]),
                           ),
@@ -206,7 +204,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                           Expanded(
                             child: secondProductIndex <
                                     productSnapshot.data!.length
-                                ? Item_Product_Home(
+                                ? Item_Product_Search(
                                     product: productSnapshot
                                         .data![secondProductIndex])
                                 : const SizedBox(),

@@ -17,12 +17,14 @@ class _Manage_orderState extends State<Manage_order> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink.shade100,//có thể thay đổi
-        title: Text('Quản lý đơn hàng',textAlign: TextAlign.center,style: TextStyle(color: Colors.purpleAccent.shade400,)),//thay doi
+        title: const Text('Quản lý đơn hàng',textAlign: TextAlign.center,style: TextStyle(color: Colors.white)),//thay doi
         centerTitle: true,// chỉnh titile ở giữa
         leading: IconButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back),
-          color: Colors.purpleAccent.shade400,//thay doi
+          color: Colors.white,//thay doi
         ),
       ),
       body: Column(

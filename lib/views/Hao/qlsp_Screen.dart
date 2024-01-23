@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/color.dart';
+import 'package:sales_application/models/color.dart';
 import 'package:sales_application/presenters/item_qlsp.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

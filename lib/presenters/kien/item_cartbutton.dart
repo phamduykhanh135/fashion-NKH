@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/cart_Reader.dart';
-import 'package:sales_application/model/kien/payment_Reader.dart';
+import 'package:sales_application/models/kien/cart_Reader.dart';
+import 'package:sales_application/models/kien/payment_Reader.dart';
 
 import '../../views/kien/buy_Sceen.dart';
 

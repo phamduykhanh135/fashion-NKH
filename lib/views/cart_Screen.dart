@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/cart_Reader.dart';
+import 'package:sales_application/models/kien/cart_Reader.dart';
 import 'package:sales_application/presenters/kien/item_cart.dart';
 import 'package:sales_application/presenters/kien/item_cartbottom.dart';
 

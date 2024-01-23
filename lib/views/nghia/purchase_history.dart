@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/models/nghia/bills.dart';
 import 'package:sales_application/presenters/nghia/item_order_status.dart';
 import 'detail_bill.dart';
 
@@ -43,14 +43,14 @@ class _PurchaseHistoryState extends State<PurchaseHistory> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink.shade100,//có thể thay đổi
-        title: Text('Lịch sử mua hàng',textAlign: TextAlign.center,style: TextStyle(color: Colors.purpleAccent.shade400,)),//thay doi
+        title: const Text('Lịch sử mua hàng',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,)),//thay doi
         centerTitle: true,// chỉnh titile ở giữa
         leading: IconButton(
           onPressed: (){
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back),
-          color: Colors.purpleAccent.shade400,//thay doi
+          color: Colors.white,//thay doi
         ),
       ),
       body:StreamBuilder(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/bills.dart';
-import '../../model/nghia/products.dart';
+import 'package:sales_application/models/nghia/bills.dart';
+import '../../models/nghia/products.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Item_Confirm extends StatefulWidget {
@@ -175,16 +175,16 @@ class _Item_ConfirmState extends State<Item_Confirm> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Bills.loadBills(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          }
+    // return FutureBuilder(
+    //     future: Bills.loadBills(),
+    //     builder: (context, snapshot) {
+    //       if (snapshot.connectionState == ConnectionState.waiting) {
+    //         return const CircularProgressIndicator();
+    //       }
 
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
+    //       if (snapshot.hasError) {
+    //         return Text('Error: ${snapshot.error}');
+    //       }
 
           return Column(children: [
             Row(
@@ -279,6 +279,6 @@ class _Item_ConfirmState extends State<Item_Confirm> {
                   ],
                 ))
           ]);
-        });
+        //});
   }
 }

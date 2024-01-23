@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/product_screen.dart';
-import '../model/product.dart';
+import 'package:sales_application/views/kien/detail_Screen.dart';
+import '../models/product.dart';
 
 class Item_Product_Search extends StatelessWidget {
   final Product product;
@@ -16,7 +17,7 @@ class Item_Product_Search extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Product_Screen(idz: product.id),
+            builder: (context) => DetailScreen(idz: product.id),
           ),
         );
         print("ssssssssssssssssssssssss${product.id}");
@@ -66,7 +67,7 @@ class Item_Product_Search extends StatelessWidget {
                   children: [
                     if (hasDiscount)
                       Text(
-                        '\$${product.price}',
+                        '${product.price}đ',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
@@ -75,7 +76,7 @@ class Item_Product_Search extends StatelessWidget {
                       ),
                     const SizedBox(height: 4),
                     Text(
-                      '\$${(double.tryParse(product.price) ?? 0.0) - (double.tryParse(product.price) ?? 0.0) * ((double.tryParse(product.discount) ?? 0.0) / 100)}',
+                      '${(double.tryParse(product.price) ?? 0.0) - (double.tryParse(product.price) ?? 0.0) * ((double.tryParse(product.discount) ?? 0.0) / 100)}đ',
                       style: const TextStyle(
                         color: Colors.green,
                         //decoration: TextDecoration.lineThrough,

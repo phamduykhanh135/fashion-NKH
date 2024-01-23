@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/suasp.dart';
-import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/model/color.dart';
+import 'package:sales_application/models/suasp.dart';
+import 'package:sales_application/models/themsp.dart';
+import 'package:sales_application/models/color.dart';
 import 'package:sales_application/views/Hao/suasp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 

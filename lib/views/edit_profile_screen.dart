@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/views/edit_screen.dart';
 import 'package:sales_application/views/upload_image.dart';
 
-import '../model/user.dart';
+import '../models/user.dart';
 import 'personal_screen.dart';
 
 class Edit_Profile_Screen extends StatefulWidget {

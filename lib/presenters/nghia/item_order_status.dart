@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/models/nghia/bills.dart';
 
 class Item_StateOrder extends StatefulWidget {
   const Item_StateOrder({Key? key, required this.bill}) : super(key: key);

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/views/kien/detail_Screen.dart';
 
-import '../model/product.dart';
+import '../models/product.dart';
 
 
 class Item_Product_Home extends StatelessWidget {

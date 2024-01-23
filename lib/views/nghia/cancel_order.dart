@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/models/nghia/bills.dart';
 import 'package:sales_application/presenters/nghia/item_cancel_order.dart';
 
 import 'detail_bill.dart';
@@ -47,7 +47,7 @@ class _CancelOrderState extends State<CancelOrder> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink.shade100,//có thể thay đổi
-        title: Text('Hủy đơn hàng',textAlign: TextAlign.center,style: TextStyle(color: Colors.purpleAccent.shade400,)),//thay doi
+        title: const Text('Hủy đơn hàng',textAlign: TextAlign.center,style: TextStyle(color: Colors.white,)),//thay doi
         centerTitle: true,// chỉnh titile ở giữa
         leading: IconButton(
           onPressed: (){
@@ -55,7 +55,7 @@ class _CancelOrderState extends State<CancelOrder> {
              
           },
           icon: const Icon(Icons.arrow_back),
-          color: Colors.purpleAccent.shade400,//thay doi
+          color: Colors.white,//thay doi
         ),
       ),
       body:StreamBuilder(

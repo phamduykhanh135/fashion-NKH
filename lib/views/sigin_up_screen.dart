@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/language_presenter.dart';
 import 'package:sales_application/presenters/resuable_widget.dart';
-import '../model/user.dart';
+import '../models/user.dart';
 class SiginUp_Screen extends StatefulWidget {
   const SiginUp_Screen({super.key});
 

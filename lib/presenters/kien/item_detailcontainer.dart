@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/product_Reader.dart';
+import 'package:sales_application/models/kien/product_Reader.dart';
 
 class Item_Container extends StatefulWidget {
   final Products product;

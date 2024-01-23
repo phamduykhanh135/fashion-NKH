@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/models/nghia/bills.dart';
 import 'package:sales_application/presenters/nghia/item_order_status.dart';
 import 'detail_bill.dart';
 
@@ -47,10 +47,10 @@ class _OrderStatusState extends State<OrderStatus>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.pink.shade100,
-        title: Text(
+        title: const Text(
           'Trạng thái đơn hàng',
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.purpleAccent.shade400),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -58,7 +58,7 @@ class _OrderStatusState extends State<OrderStatus>
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back),
-          color: Colors.purpleAccent.shade400,
+          color: Colors.white,
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48.0),

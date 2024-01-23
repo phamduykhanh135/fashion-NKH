@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/product_Reader.dart';
+import 'package:sales_application/models/kien/product_Reader.dart';
 
 class Detail_Bottombar extends StatelessWidget {
   final Function() showBottomSheet;
@@ -20,16 +20,16 @@ class Detail_Bottombar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           product.discount=="0"?Text(
-            product.price,
+            "${product.price}đ",
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 28,
+              fontSize: 24,
             ),
           ):Column(
             children: [
               Text(
-            product.price,
+            "${product.price}đ",
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class Detail_Bottombar extends StatelessWidget {
             ),
               ),
               Text(
-            product.price=((double.parse(product.price)-((double.parse(product.price)*double.parse(product.discount))/100.0))).toStringAsFixed(3),
+             "${product.price =((double.parse(product.price)-((double.parse(product.price)*double.parse(product.discount))/100.0))).toStringAsFixed(3)}đ",
              style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -53,7 +53,7 @@ class Detail_Bottombar extends StatelessWidget {
     backgroundColor: MaterialStateProperty.all<Color>(Colors.pink.shade100),
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(20),
       ),
     ),
     fixedSize: MaterialStateProperty.all<Size>(

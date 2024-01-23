@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/language_presenter.dart';
 import 'package:sales_application/presenters/resuable_widget.dart';
 import 'package:sales_application/views/sigin_up_screen.dart';
-import '../model/user.dart';
+import '../models/user.dart';
 
 class SiginIn_Screen extends StatefulWidget {
   const SiginIn_Screen({super.key});

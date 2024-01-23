@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/product.dart';
+import '../models/product.dart';
 
 class Product_Screen extends StatefulWidget {
   final String idz;

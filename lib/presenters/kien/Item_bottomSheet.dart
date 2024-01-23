@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../model/kien/cart_Reader.dart';
-import '../../model/kien/product_Reader.dart';
+import '../../models/kien/cart_Reader.dart';
+import '../../models/kien/product_Reader.dart';
 import 'item_detailcontainer.dart';
 
 
@@ -88,7 +88,7 @@ class _Item_bottomSheetState extends State<Item_bottomSheet> {
                 width: MediaQuery.of(context).size.width / 5,
               ),
               const SizedBox(width: 120),
-              Text(widget.product.price,
+              Text("${widget.product.price}đ",
                   style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             ],
           ),
@@ -214,9 +214,9 @@ void showSuccessDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      Future.delayed(const Duration(seconds: 1), () {
+       Future.delayed(const Duration(seconds: 1), () {
         Navigator.pop(context);
-      });
+       });
       return const AlertDialog(
         content: Text("Đã thêm sản phẩm vào giỏ hàng thành công"),
       );

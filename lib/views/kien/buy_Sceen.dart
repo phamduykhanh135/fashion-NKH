@@ -5,8 +5,8 @@ import 'package:sales_application/presenters/kien/item_buy.dart';
 import 'package:sales_application/presenters/kien/item_buybottom.dart';
 import 'package:sales_application/presenters/kien/item_buylist.dart';
 import 'package:sales_application/presenters/kien/item_buyselectedoption.dart';
-import '../../model/kien/address_Reader.dart';
-import '../../model/kien/payment_Reader.dart';
+import '../../models/kien/address_Reader.dart';
+import '../../models/kien/payment_Reader.dart';
 
 class Buy_Screen extends StatefulWidget {
   final double totalPrice;

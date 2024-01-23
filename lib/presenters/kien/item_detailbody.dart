@@ -1,5 +1,5 @@
   import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/product_Reader.dart';
+import 'package:sales_application/models/kien/product_Reader.dart';
 
   import 'package:sales_application/presenters/kien/item_detailbottom.dart';
 import 'item_detailcontainer.dart';
@@ -33,7 +33,7 @@ import 'item_detailcontainer.dart';
                   fit: BoxFit.cover,
                 ),
               ),
-              backgroundColor: myColor,
+              backgroundColor: Colors.transparent,
               elevation: 0,
             ),
             SliverToBoxAdapter(
@@ -63,6 +63,7 @@ import 'item_detailcontainer.dart';
                             
                             style: const TextStyle(fontSize: 16),
                           ),
+                          const SizedBox(height: 110,),
                         ],
                       ),
                     ),

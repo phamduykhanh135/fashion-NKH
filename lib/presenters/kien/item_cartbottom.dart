@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../model/kien/cart_Reader.dart';
+import '../../models/kien/cart_Reader.dart';
 import 'item_cartbutton.dart';
 
 class Cart_bottom extends StatefulWidget {
@@ -8,7 +8,7 @@ class Cart_bottom extends StatefulWidget {
   final double totalPrice; 
   final List<Carts> selectedItems;
 
-  final double Function() calculateTotalPrice;  // Add this line
+  final double Function() calculateTotalPrice;  
 
   const Cart_bottom({
     Key? key,
@@ -17,7 +17,7 @@ class Cart_bottom extends StatefulWidget {
     required this.totalPrice,
     required this.selectedItems,
 
-    required this.calculateTotalPrice,  // Add this line
+    required this.calculateTotalPrice,  
   }) : super(key: key);
 
   @override

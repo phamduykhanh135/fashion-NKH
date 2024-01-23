@@ -1,5 +1,5 @@
 
-import 'package:sales_application/model/info_reader.dart';
+import 'package:sales_application/models/info_reader.dart';
 import 'package:sales_application/presenters/setting.dart';
 class SettingPresenter {
   static Setting setting = Setting();

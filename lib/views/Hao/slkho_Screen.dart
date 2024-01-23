@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/themsp.dart';
-import 'package:sales_application/model/color.dart';
+import 'package:sales_application/models/themsp.dart';
+import 'package:sales_application/models/color.dart';
 import 'package:flutter/services.dart';
 import 'package:sales_application/views/Hao/suasp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 
-import '../../model/suasp.dart';
+import '../../models/suasp.dart';
 
 class SoLuongKho extends StatefulWidget {
   const SoLuongKho({super.key});

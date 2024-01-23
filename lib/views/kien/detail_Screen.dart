@@ -5,7 +5,7 @@ import 'package:sales_application/presenters/kien/item_detailbody.dart';
 import 'package:sales_application/views/kien/cart_Screen.dart';
 
 import 'package:sales_application/views/menu_dart.dart';
-import '../../model/kien/product_Reader.dart';
+import '../../models/kien/product_Reader.dart';
 
 class DetailScreen extends StatefulWidget {
   final String idz;

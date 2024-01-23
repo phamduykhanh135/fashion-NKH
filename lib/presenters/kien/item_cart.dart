@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/cart_Reader.dart';
+import 'package:sales_application/models/kien/cart_Reader.dart';
 
 class Item_cart extends StatefulWidget {
   final Carts carts;
@@ -191,16 +191,17 @@ class _Item_cartState extends State<Item_cart> {
                               },
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.black),
+                                    MaterialStateProperty.all(Colors.white),
                                 minimumSize:
                                     MaterialStateProperty.all(const Size(1, 1)),
+                                    side: MaterialStateProperty.all(const BorderSide(color: Colors.black)),
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
                               ),
-                              child: const Icon(Icons.remove),
+                              child: const Icon(Icons.remove,color: Colors.black,),
                             ),
 
                              Container(
@@ -236,16 +237,17 @@ class _Item_cartState extends State<Item_cart> {
                               },
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all(Colors.black),
+                                    MaterialStateProperty.all(Colors.white),
                                 minimumSize:
                                     MaterialStateProperty.all(const Size(1, 1)),
+                                    side: MaterialStateProperty.all(const BorderSide(color: Colors.black)),
                                 shape: MaterialStateProperty.all(
                                   RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
                               ),
-                              child: const Icon(Icons.add),
+                              child: const Icon(Icons.add,color: Colors.black,),
                             ),
                             IconButton(
                               onPressed: () {

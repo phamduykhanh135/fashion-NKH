@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/kien/payment_Reader.dart';
+import 'package:sales_application/models/kien/payment_Reader.dart';
 
 
 class item_buy extends StatefulWidget {

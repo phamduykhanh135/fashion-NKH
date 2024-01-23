@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/models/nghia/bills.dart';
 import 'package:sales_application/presenters/nghia/item_order_confirmation.dart';
 import 'detail_bill.dart';
 
@@ -31,11 +31,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
     _loadData();
   }
 
-  @override
-  void dispose() {
-  
-    super.dispose();
-  }
+
   
   @override
   Widget build(BuildContext context) {
