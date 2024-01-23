@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sales_application/model/kien/address_Reader.dart';
 import 'package:sales_application/views/kien/address_Screen.dart';
-import '../../data/kien/address_Reader.dart';
+
 
 class add_Address extends StatefulWidget {
   const add_Address({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _add_AddressState extends State<add_Address> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Thêm địa chỉ mới", style: TextStyle(color: myColor)),
+        title: const Text("Thêm địa chỉ mới", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: myColor),
         backgroundColor: Colors.pink.shade100,
         centerTitle: true,

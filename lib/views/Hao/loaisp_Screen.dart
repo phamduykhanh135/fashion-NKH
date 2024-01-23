@@ -101,7 +101,7 @@ class _LoaiSPState extends State<LoaiSP> {
 
             child: InkWell(
                 onTap: (){
-                  Navigator.pop( context,
+                  Navigator.push( context,
                     MaterialPageRoute(builder: (context) => const ThemSP()),);
                   Them.l_sp="Phụ kiện";
                 },
@@ -137,7 +137,7 @@ class SuaLoaiSP extends StatelessWidget {
           backgroundColor: MyColor.light_pink,
           leading: IconButton(onPressed: (){
             SuaMap.myMap['id']=itemId;
-            Navigator.of(context).pop(MaterialPageRoute(
+            Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => SuaSP(SuaMap.myMap)));
           }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),      ),
         body:  SingleChildScrollView(

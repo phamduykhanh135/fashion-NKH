@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/data/kien/cart_Reader.dart';
+import 'package:sales_application/model/kien/cart_Reader.dart';
 
 
-import '../../model/kien/item_cart.dart';
-import '../../model/kien/item_cartbottom.dart';
+import '../../presenters/kien/item_cart.dart';
+import '../../presenters/kien/item_cartbottom.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);

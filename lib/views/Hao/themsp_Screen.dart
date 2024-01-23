@@ -146,7 +146,7 @@ class _ThemSPState extends State<ThemSP> {
         Them.char_mota=0;
         _selected="";
         //Navigator.pop(context);
-        Navigator.pop (context,
+        Navigator.push (context,
           MaterialPageRoute(builder: (context) => QuanLySP())
           );
       }, icon: const Icon(Icons.arrow_back,color: Colors.white)),
@@ -284,7 +284,7 @@ class _ThemSPState extends State<ThemSP> {
                 TextField(
                   controller: _mota/*Todo:*/,
                   maxLines:2,
-                  inputFormatters: [LengthLimitingTextInputFormatter(120)],
+                  inputFormatters: [LengthLimitingTextInputFormatter(3000)],
                   onChanged: (text) {
                     setState(() {
                       Them.mota_sp=_mota.text;

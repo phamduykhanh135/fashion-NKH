@@ -40,12 +40,12 @@ class _SoLuongKhoState extends State<SoLuongKho> {
             Them.quatitySizeM=int.parse(_sizeM.text);
             Them.quatitySizeL=int.parse(_sizeL.text);
             Them.quatitySizeXL=int.parse(_sizeXL.text);
-            Navigator.pop( context,
+            Navigator.pushReplacement( context,
               MaterialPageRoute(builder: (context) => const ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
         leading: IconButton(onPressed: (){
-          Navigator.push( context,
+          Navigator.pushReplacement( context,
             MaterialPageRoute(builder: (context) => const ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
@@ -242,12 +242,12 @@ class SSoLuongKho extends StatelessWidget {
               SuaMap.myMap['sizeL']=_sizeL.text;
               SuaMap.myMap['sizeXL']=_sizeXL.text;
               SuaMap.myMap['id']=itemId;
-              Navigator.of(context).pop(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
             leading:IconButton(onPressed: (){
-              Navigator.of(context).pop(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink))
 

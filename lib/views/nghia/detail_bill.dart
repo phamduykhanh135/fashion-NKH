@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/data/nghia/bills.dart';
+import 'package:sales_application/model/nghia/bills.dart';
 class Detail_bill extends StatefulWidget {
   const Detail_bill({super.key,required this.bill}) ;
   final Bills bill;

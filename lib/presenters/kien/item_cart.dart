@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/data/kien/cart_Reader.dart';
+import 'package:sales_application/model/kien/cart_Reader.dart';
 
 class Item_cart extends StatefulWidget {
   final Carts carts;

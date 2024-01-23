@@ -25,10 +25,14 @@ class _GiaSPState extends State<GiaSP> {
           actions: [
             TextButton(onPressed: (){
               Them.price_sp=int.parse(_giaban.text);
-              Navigator.pop( context,
+              Navigator.pushReplacement( context,
                 MaterialPageRoute(builder: (context) => const ThemSP()),);
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
+           leading: IconButton(onPressed: (){
+          Navigator.push( context,
+            MaterialPageRoute(builder: (context) => const ThemSP()),);
+        }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
         ),
         body:   Container(
@@ -90,7 +94,7 @@ class SGiaSP extends StatelessWidget {
               SuaMap.myMap['id']=itemId;
               int price=int.parse(_giaban.text);
               SuaMap.myMap['price']=price.toStringAsFixed(3);
-              Navigator.of(context).pop(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],

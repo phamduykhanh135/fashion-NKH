@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sales_application/presenters/item_poduct_home.dart';
 import './search_history.dart';
-import '../presenters/item_product_search.dart';
 import '../model/product.dart'; // Import model Product
 
 class Search_Screen extends StatefulWidget {
@@ -61,7 +60,7 @@ class _Search_ScreenState extends State<Search_Screen> {
             },
             decoration: InputDecoration(
               hintText: 'Tìm kiếm...',
-              hintStyle: const TextStyle(color: Colors.grey, fontSize: 12),
+              hintStyle: const TextStyle(color: Colors.grey, fontSize: 13),
               filled: true,
               fillColor: Colors.grey.shade200,
               border: OutlineInputBorder(
@@ -69,7 +68,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               suffixIcon: IconButton(
-                icon: const Icon(Icons.search,color: Colors.grey,),
+                icon: const Icon(Icons.search,color: Colors.grey,size: 18,),
                 onPressed: () {
                   String searchTerm = searchController.text;
                   if (searchTerm.isNotEmpty) {

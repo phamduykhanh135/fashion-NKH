@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sales_application/data/kien/product_Reader.dart';
+import 'package:sales_application/model/kien/product_Reader.dart';
 
 class Carts {
   String id;

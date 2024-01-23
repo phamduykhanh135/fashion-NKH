@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/data/kien/product_Reader.dart';
+import 'package:sales_application/model/kien/product_Reader.dart';
 
 class Item_Container extends StatefulWidget {
   final Products product;
@@ -27,8 +27,8 @@ class _Item_ContainerState extends State<Item_Container> {
               child: Row(
               
                 children: [
-                  const Text("\t\t Kích thước: "),
-                  SizedBox(width: MediaQuery.of(context).size.width/1.8,),
+                  const Text("\t\t Kích thước:",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(width: 180,),
                   IconButton(
                         onPressed: () {
                          _showHelpDialog(context);

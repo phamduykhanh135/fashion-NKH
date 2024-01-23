@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sales_application/presenters/kien/Item_bottomSheet.dart';
+import 'package:sales_application/presenters/kien/item_detailbody.dart';
 import 'package:sales_application/views/kien/cart_Screen.dart';
 
 import 'package:sales_application/views/menu_dart.dart';
-import '../../data/kien/product_Reader.dart';
-import '../../model/kien/Item_bottomSheet.dart';
-import 'package:sales_application/model/kien/item_detailbody.dart';
+import '../../model/kien/product_Reader.dart';
 
 class DetailScreen extends StatefulWidget {
   final String idz;
@@ -16,7 +16,8 @@ class DetailScreen extends StatefulWidget {
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
-class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin {
+class _DetailScreenState extends State<DetailScreen>
+    with TickerProviderStateMixin {
   List<Products>? _products;
   Color myColor = const Color(0xFF8E1C68);
 
@@ -24,7 +25,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     await Products.loadData_product();
     setState(() {
       _products = Products.products;
-    
     });
   }
 
@@ -48,7 +48,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         if (product != null) {
           return Item_bottomSheet(product: product);
         } else {
-
           return Container();
         }
       },
@@ -65,18 +64,19 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: myColor),
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
         leading: IconButton(
-    icon: const Icon(Icons.arrow_back),
-    onPressed: () {
-      Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (context) => const Menu_Screen()),
-  );
-    },
-  ),
-  automaticallyImplyLeading: false,
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const Menu_Screen()),
+            );
+          },
+        ),
+        
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {
@@ -85,11 +85,10 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                 MaterialPageRoute(builder: (context) => const CartScreen()),
               );
             },
-            icon: const Icon(Icons.shopping_cart_outlined),
+            icon:  const Icon(Icons.shopping_cart_outlined,color: Colors.white,),
           ),
         ],
-        
-        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+        backgroundColor: Colors.pink.shade100,
         elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -106,13 +105,15 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
 
           if (_products == null || _products!.isEmpty) {
             return const Center(
-              child: Text('Waiting for data to load...', style: TextStyle(fontSize: 20)),
+              child: Text('Waiting for data to load...',
+                  style: TextStyle(fontSize: 20)),
             );
           }
 
           if (snapshot.hasData && snapshot.data != null) {
             _products = snapshot.data!.docs
-                .map((doc) => Products.fromJson(doc.data() as Map<String, dynamic>))
+                .map((doc) =>
+                    Products.fromJson(doc.data() as Map<String, dynamic>))
                 .toList();
           }
 
@@ -123,13 +124,10 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           Products? product = getProductById(widget.idz);
           return Detail_body(
             showBottomSheet: () => _showBottomSheet(context),
-
             product: product!,
           );
-        
         },
       ),
-      
     );
   }
 }

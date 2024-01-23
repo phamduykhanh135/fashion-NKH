@@ -95,7 +95,7 @@ class _SuaSPState extends State<SuaSP> {
                   'sizeXL':"0",
                   'discount':"0"
                 };
-                Navigator.pop( context,
+                Navigator.push( context,
                   MaterialPageRoute(builder: (context) => QuanLySP()),);
 
               }
@@ -166,7 +166,7 @@ class _SuaSPState extends State<SuaSP> {
               ,
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-               // height: MediaQuery.of(context).size.width/3.5,
+                height: MediaQuery.of(context).size.width/3,
                 padding:const EdgeInsets.all(10),
                 constraints:const BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(
@@ -196,7 +196,7 @@ class _SuaSPState extends State<SuaSP> {
                       controller: _tensp/*Todo:*/,
                       maxLines:2,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(120)
+                        LengthLimitingTextInputFormatter(3000)
                       ],
                       decoration: const InputDecoration(
                           hintText: 'Nhập tên sản phẩm',
@@ -209,7 +209,7 @@ class _SuaSPState extends State<SuaSP> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height/60),
               Container(
-           //     height: MediaQuery.of(context).size.width/3.5,
+               height: MediaQuery.of(context).size.width/3,
                 padding:const EdgeInsets.all(10),
                 constraints:const BoxConstraints(maxHeight: 200.0),
                 decoration:  BoxDecoration(

@@ -38,7 +38,7 @@ class Products {
         discount = json["discount"] ?? '',
         image = json["image"] ?? '',
         price = json["price"] ?? '',
-        description = json['Descriptions'] ?? '',
+        description = json['descriptions'] ?? '',
         sizeM=json["sizeM"]?? '',
         sizeS=json["sizeS"]?? '',
         sizeL=json["sizeL"]?? '',

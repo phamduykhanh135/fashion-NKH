@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sales_application/model/kien/item_buy.dart';
-import 'package:sales_application/model/kien/item_buybottom.dart';
-import 'package:sales_application/model/kien/item_buylist.dart';
-import 'package:sales_application/model/kien/item_buyselectedoption.dart';
-import '../../data/kien/address_Reader.dart';
-import '../../data/kien/payment_Reader.dart';
+import 'package:sales_application/presenters/kien/item_buy.dart';
+import 'package:sales_application/presenters/kien/item_buybottom.dart';
+import 'package:sales_application/presenters/kien/item_buylist.dart';
+import 'package:sales_application/presenters/kien/item_buyselectedoption.dart';
+import '../../model/kien/address_Reader.dart';
+import '../../model/kien/payment_Reader.dart';
 
 class Buy_Screen extends StatefulWidget {
   final double totalPrice;
@@ -172,7 +172,7 @@ void dispose() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Nút quay lại đã được nhấn!'),
-        duration: Duration(seconds: 2),
+       
       ),
     );
 

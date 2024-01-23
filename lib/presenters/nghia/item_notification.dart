@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../data/nghia/notifications.dart';
-import 'package:sales_application/data/nghia/bills.dart';
+import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/model/nghia/notifications.dart';
 class Item_Notification extends StatefulWidget {
   const Item_Notification({super.key,required this.notificate});
   final Notificates notificate;

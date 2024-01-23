@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_application/data/kien/voucherSale_Reader.dart';
+import 'package:sales_application/model/kien/voucherSale_Reader.dart';
 
 class ItemVoucherSale extends StatelessWidget {
   final VoucherSales voucher;

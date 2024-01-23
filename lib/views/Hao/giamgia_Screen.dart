@@ -25,12 +25,12 @@ class _GiamGiaState extends State<GiamGia> {
         actions: [
           TextButton(onPressed: (){
             Them.discount_sp=int.parse(_giamgia.text);
-            Navigator.pop( context,
+            Navigator.pushReplacement( context,
               MaterialPageRoute(builder: (context) => const ThemSP()),);
           }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
         ],
         leading: IconButton(onPressed: (){
-          Navigator.pop( context,
+          Navigator.push( context,
             MaterialPageRoute(builder: (context) => const ThemSP()),);
         }, icon: Icon(Icons.arrow_back,color: MyColor.dark_pink)),
 
@@ -96,12 +96,12 @@ class SGiamGia extends StatelessWidget {
             TextButton(onPressed: (){
               SuaMap.myMap['id']=itemId;
               SuaMap.myMap['discount']=_giamgia.text;
-              Navigator.of(context).pop(MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, child: Text("Lưu",style: TextStyle(color: MyColor.dark_pink,fontWeight: FontWeight.bold)))
           ],
             leading:IconButton(onPressed: (){
-              Navigator.of(context).pop(MaterialPageRoute(
+              Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => SuaSP(SuaMap.myMap)));
             }, icon:Icon(Icons.arrow_back,color: MyColor.dark_pink))
 

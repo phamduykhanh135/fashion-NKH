@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales_application/model/color.dart';
 import 'package:sales_application/presenters/item_qlsp.dart';
-import 'package:sales_application/views/Hao/searchqlsp_Screen.dart';
 import 'package:sales_application/views/Hao/themsp_Screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sales_application/views/personal_screen.dart';
@@ -47,7 +46,7 @@ class QuanLySP extends StatelessWidget {
         ],
         leading: IconButton(
             onPressed: () {
-                Navigator.pop (context,
+                Navigator.push (context,
           MaterialPageRoute(builder: (context) => const Personal_Screen())
           );
             },

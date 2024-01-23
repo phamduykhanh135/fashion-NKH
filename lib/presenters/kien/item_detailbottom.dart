@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../data/kien/product_Reader.dart';
+import 'package:sales_application/model/kien/product_Reader.dart';
 
 class Detail_Bottombar extends StatelessWidget {
   final Function() showBottomSheet;
@@ -24,7 +24,7 @@ class Detail_Bottombar extends StatelessWidget {
             style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 28,
             ),
           ):Column(
             children: [

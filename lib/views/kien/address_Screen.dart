@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sales_application/model/kien/item_addaddress.dart';
-import '../../data/kien/address_Reader.dart';
+import 'package:sales_application/model/kien/address_Reader.dart';
+import 'package:sales_application/presenters/kien/item_addaddress.dart';
+
 
 class address_Screen extends StatefulWidget {
   final void Function(Address) onAddressSelected;
@@ -86,13 +87,14 @@ Future<void> _showConfirm(String addressId) async {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Chọn địa chỉ nhận hàng",
-          style: TextStyle(color: myColor),
+          style: TextStyle(color:  Colors.white),
         ),
-        iconTheme: IconThemeData(color: myColor),
+        iconTheme: const IconThemeData(color:  Colors.white),
         backgroundColor: Colors.pink.shade100,
         centerTitle: true,
+        
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('address').snapshots(),
@@ -114,7 +116,9 @@ Future<void> _showConfirm(String addressId) async {
             padding: const EdgeInsets.only(bottom: 1),
             child: ListView(
               children: [
-                Text("Chọn địa chỉ:",style: TextStyle(color: myColor, fontSize: 18,fontWeight: FontWeight.bold)),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  child: Text("Chọn địa chỉ:",style: TextStyle(color: myColor, fontSize: 18,fontWeight: FontWeight.bold))),
                 const Divider(color: Colors.grey, thickness: 1),
                 ListView.builder(
                   padding: const EdgeInsets.only(left: 20),

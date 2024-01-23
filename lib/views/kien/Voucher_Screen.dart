@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sales_application/data/kien/voucherSale_Reader.dart';
-import 'package:sales_application/model/kien/Item_vouchersale.dart';
+import 'package:sales_application/model/kien/voucherSale_Reader.dart';
+
+import 'package:sales_application/presenters/kien/Item_vouchersale.dart';
 
 class Voucher extends StatefulWidget {
   final double totalPrice;

@@ -72,7 +72,7 @@ class _Menu_ScreenState extends State<Menu_Screen> {
                             Text(
                               'Tìm kiếm...',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                                 color: Colors.grey,
                               ),
                             ),

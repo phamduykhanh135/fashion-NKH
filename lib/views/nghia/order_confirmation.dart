@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sales_application/model/nghia/item_order_confirmation.dart';
-import 'package:sales_application/data/nghia/bills.dart';
+import 'package:sales_application/model/nghia/bills.dart';
+import 'package:sales_application/presenters/nghia/item_order_confirmation.dart';
 import 'detail_bill.dart';
 
 class OrderConfirmation extends StatefulWidget {
@@ -47,6 +47,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
         centerTitle: true,// chỉnh titile ở giữa
         leading: IconButton(
           onPressed: (){
+            
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back),

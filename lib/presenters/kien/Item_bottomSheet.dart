@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../data/kien/cart_Reader.dart';
-import '../../data/kien/product_Reader.dart';
+import '../../model/kien/cart_Reader.dart';
+import '../../model/kien/product_Reader.dart';
 import 'item_detailcontainer.dart';
 
 
